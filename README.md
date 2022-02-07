@@ -9,8 +9,6 @@
 
 ## Proyecto del laboratorio del curso Software Avanzado "B". <!-- omit in toc -->
 
-
-
 # **SOCCER STATS** <!-- omit in toc -->
 
 ## **Grupo D** <!-- omit in toc -->
@@ -27,26 +25,36 @@
 ## **Tabla de contenido** <!-- omit in toc -->
 
 
-- [Diagrama de clases <a name="clasesd"></a>](#diagrama-de-clases-)
-- [Diagrama de esquema relacional <a name="erd"></a>](#diagrama-de-esquema-relacional-)
-- [Diagrama de casos de uso <a name="usecasesd"></a>](#diagrama-de-casos-de-uso-)
-- [Diagrama de actividades <a name="activityd"></a>](#diagrama-de-actividades-)
-- [Diagrama de despliegue <a name="deployd"></a>](#diagrama-de-despliegue-)
-- [Diagrama de componentes <a name="componentsd"></a>](#diagrama-de-componentes-)
-- [Diagrama arquitectonico <a name="archd"></a>](#diagrama-arquitectonico-)
-- [Mockups <a name="mockups"></a>](#mockups-)
-- [Historias de usuario <a name="userstories"></a>](#historias-de-usuario-)
-- [Casos de uso <a name="usecases"></a>](#casos-de-uso-)
+- [**Diagramas**](#diagramas)
+  - [Diagrama de clases](#diagrama-de-clases)
+  - [Diagrama de esquema relacional](#diagrama-de-esquema-relacional)
+  - [Diagrama de casos de uso](#diagrama-de-casos-de-uso)
+    - [Diagrama de casos de uso - Generalizado](#diagrama-de-casos-de-uso---generalizado)
+    - [Diagrama de casos de uso - Detallado](#diagrama-de-casos-de-uso---detallado)
+  - [Diagrama de actividades](#diagrama-de-actividades)
+  - [Diagrama de despliegue](#diagrama-de-despliegue)
+  - [Diagrama de componentes](#diagrama-de-componentes)
+  - [Diagrama de la arquitectura](#diagrama-de-la-arquitectura)
+- [**Documentación**](#documentación)
+  - [Stakeholders](#stakeholders)
+  - [Mockups](#mockups)
+  - [Historias de usuario](#historias-de-usuario)
+  - [Casos de uso](#casos-de-uso)
 
-## **Diagramas** <a name="diagramas_title"></a> <!-- omit in toc -->
-## Diagrama de clases <a name="clasesd"></a>
-## Diagrama de esquema relacional <a name="erd"></a>
-## Diagrama de casos de uso <a name="usecasesd"></a>
-## Diagrama de actividades <a name="activityd"></a>
-## Diagrama de despliegue <a name="deployd"></a>
-## Diagrama de componentes <a name="componentsd"></a>
-## Diagrama arquitectonico <a name="archd"></a>
-## **Documentación** <a name="doc"></a> <!-- omit in toc -->
-## Mockups <a name="mockups"></a>
-## Historias de usuario <a name="userstories"></a>
-## Casos de uso <a name="usecases"></a>
+# **Diagramas**
+## Diagrama de clases
+## Diagrama de esquema relacional
+## Diagrama de casos de uso
+### Diagrama de casos de uso - Generalizado
+![Diagrama de casos de uso - generalizado](/assets/img/use-case-gen.png "use cases gen")
+### Diagrama de casos de uso - Detallado
+![Diagrama de casos de uso - detallado](/assets/img/use-case-det.png "use cases det")
+## Diagrama de actividades
+## Diagrama de despliegue
+## Diagrama de componentes
+## Diagrama de la arquitectura
+# **Documentación**
+## Stakeholders
+## Mockups
+## Historias de usuario
+## Casos de uso

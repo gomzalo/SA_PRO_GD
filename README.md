@@ -21,9 +21,7 @@
 |  3. | Juan José Hernández Rodríguez  | 201612378 |
 |  4. | Steven Aaron Sis Hernández     | 201706357 |
 
-
 ## **Tabla de contenido** <!-- omit in toc -->
-
 
 - [**Diagramas**](#diagramas)
   - [Diagrama de clases](#diagrama-de-clases)

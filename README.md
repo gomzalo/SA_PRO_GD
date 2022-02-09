@@ -60,7 +60,7 @@
 ## Mockups
 ## Historias de usuario
 ## Casos de uso
-| Id             | CDU011                         |
+| ID             | CDU011                         |
 | -------------- | ------------------------------ |
 |  Caso de uso   | Gestionar memebresia           |
 |  Actores       | Cliente, Administrador         |

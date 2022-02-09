@@ -56,3 +56,9 @@
 ## Mockups
 ## Historias de usuario
 ## Casos de uso
+| Id             | CDU011                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Gestionar memebresia           |
+|  Actores       | Cliente, Administrador         |
+|  Clasificacion | Primario, Real                 |
+|  Descripcion   | El administrador confirma una membresia para un cliente, tambien puede darle de baja a esta.     |

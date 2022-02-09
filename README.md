@@ -60,3 +60,37 @@
 ## Mockups
 ## Historias de usuario
 ## Casos de uso
+| ID             | CDU011                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Gestionar memebresia           |
+|  Actores       | Cliente, Administrador         |
+|  Clasificación | Primario, Real                 |
+|  Descripción   | El cliente puede adquirir o canjear una membresia.<br /> El administrador confirma una membresia para un cliente, también puede darle de baja a esta.     |
+
+| ID             | CDU012                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Suscribirse a equipo           |
+|  Actores       | Cliente                        |
+|  Clasificación | Primario, Real                 |
+|  Descripción   | Un cliente con membresía puede suscribirse a un equipo y recibir noticias y notificaciones del mismo.     |
+
+| ID             | CDU013                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Descargar reportes             |
+|  Actores       | Empleado, Administrador        |
+|  Clasificación | Primario, Real                 |
+|  Descripción   | Un administrador, como un empleado, pueden descargar en PDF el reporte que deseen.     |
+
+| ID             | CDU014                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Participar en quiniela         |
+|  Actores       | Cliente                        |
+|  Clasificación | Primario, Real                 |
+|  Descripción   | Un cliente con membresía, puede participar en una quiniela, antes de que el partido de inicio.     |
+
+| ID             | CDU015                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Transferir técnico             |
+|  Actores       | Empleado, Administrador        |
+|  Clasificación | Primario, Real                 |
+|  Descripción   | Un administrador o un empleado, pueden cambiar el equipo al que un entrenador pertenece.     |

@@ -23,6 +23,7 @@
 
 ## **Tabla de contenido** <!-- omit in toc -->
 
+- [**Descripción**](#descripción)
 - [**Diagramas**](#diagramas)
   - [Diagrama de clases](#diagrama-de-clases)
   - [Diagrama de esquema relacional](#diagrama-de-esquema-relacional)
@@ -39,8 +40,11 @@
   - [Historias de usuario](#historias-de-usuario)
   - [Casos de uso](#casos-de-uso)
 
+# **Descripción**
+
 # **Diagramas**
 ## Diagrama de clases
+![Diagrama de clases](/assets/img/clases.png "clases")
 ## Diagrama de esquema relacional
 ## Diagrama de casos de uso
 ### Diagrama de casos de uso - Generalizado

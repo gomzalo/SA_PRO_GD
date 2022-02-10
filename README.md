@@ -125,7 +125,6 @@
 | -------------- | ------------------------------ |
 |  Caso de uso   | Suscribirse a equipo           |
 |  Actores       | Cliente                        |
-|  Descripción   | Un cliente con membresía puede suscribirse a un equipo, recibir noticias y notificaciones del mismo.     |
 |  Clasificación | Primario                |
 |  Descripción   | Un cliente con membresía puede suscribirse a un equipo y recibir noticias y notificaciones del mismo.     |
 

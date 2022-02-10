@@ -26,7 +26,7 @@
 - [**Descripción**](#descripción)
 - [**Diagramas**](#diagramas)
   - [Diagrama de clases](#diagrama-de-clases)
-  - [Diagrama de esquema relacional](#diagrama-de-esquema-relacional)
+  - [Diagrama de Entidad Relacion](#diagrama-de-entidad-relacion)
   - [Diagrama de casos de uso](#diagrama-de-casos-de-uso)
     - [Diagrama de casos de uso - Generalizado](#diagrama-de-casos-de-uso---generalizado)
     - [Diagrama de casos de uso - Detallado](#diagrama-de-casos-de-uso---detallado)
@@ -62,39 +62,38 @@
 ## Mockups
 ## Historias de usuario
 
-| ID      | Historia de usuario             |
-| ------- | ------------------------------- |
-| 11.1    | Como cliente deseo poder suscribirme a una nueva membresía, para poder suscribirme a un equipo.           |
-| 11.2    | Como cliente deseo poder cancelar una membresía, para poder suscribirme a un equipo.           |
-| 11.3    | Como administrador deseo poder dar de alta nueva membresía, para poder suscribirme a un equipo.           |
-| 11.4    | Como administrador deseo poder dar de baja nueva membresía, para poder suscribirme a un equipo.           |
-| 12.1    | Como cliente deseo poder suscribirme a un equipo, para recibir noticias y notificaciones de este.           |
-| 13.1    | Como administrador deseo poder descargar en PDF un reporte consultado, para poder tener una copia local.           |
-| 13.2    | Como empleado deseo poder descargar en PDF un reporte consultado, para poder tener una copia local.           |
-| 14.1    | Como cliente deseo poder participar en una quiniela, para poder optar a obtener una membresía por 2 meses.           |
-| 15.1    | Como administrador deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada.           |
-| 15.2    | Como empleado deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada.           |
+| ID   | Historia de usuario                                                                                                   |
+| ---- | --------------------------------------------------------------------------------------------------------------------- |
+| 11.1 | Como cliente deseo poder suscribirme a una nueva membresía, para poder suscribirme a un equipo.                       |
+| 11.2 | Como cliente deseo poder cancelar una membresía, para poder suscribirme a un equipo.                                  |
+| 11.3 | Como administrador deseo poder dar de alta nueva membresía, para poder suscribirme a un equipo.                       |
+| 11.4 | Como administrador deseo poder dar de baja nueva membresía, para poder suscribirme a un equipo.                       |
+| 12.1 | Como cliente deseo poder suscribirme a un equipo, para recibir noticias y notificaciones de este.                     |
+| 13.1 | Como administrador deseo poder descargar en PDF un reporte consultado, para poder tener una copia local.              |
+| 13.2 | Como empleado deseo poder descargar en PDF un reporte consultado, para poder tener una copia local.                   |
+| 14.1 | Como cliente deseo poder participar en una quiniela, para poder optar a obtener una membresía por 2 meses.            |
+| 15.1 | Como administrador deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada. |
+| 15.2 | Como empleado deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada.      |
 
 ## Casos de uso
 
 | ID             | CDU01                         |
 | -------------- | ------------------------------ |
 |  Caso de uso   | Login  |
-|  Actores       | Cliente, Administrador,Empleado         |
+|  Actores       | Cliente, Administrador, Empleado         |
 |  Clasificación | Primario               |
-|  Descripción   | El cliente,Administrador o Empleado ingresa las credenciales para acceder a la aplicación, 
-<br/> si los datos estan correctos accede a la funcionalidad de la aplicación    |
+|  Descripción   | El Cliente, Administrador o Empleado ingresa las credenciales para acceder a la aplicación,<br/> si los datos están correctos accede a la funcionalidad de la aplicación    |
 
 | ID             | CDU02                         |
 | -------------- | ------------------------------ |
 |  Caso de uso   | Registro           |
 |  Actores       | Cliente                        |
 |  Clasificación | Primario                |
-|  Descripción   | Un cliente accede a la pantalla de registro y ingresa sus datos de usuario y selecciona la opcion de registrarse <br/> para tener un usuario para logearse a la aplicación.     |
+|  Descripción   | Un cliente accede a la pantalla de registro y ingresa sus datos de usuario y selecciona la opcion de registrarse<br/> para tener un usuario para logearse a la aplicación.     |
 
 | ID             | CDU03                         |
 | -------------- | ------------------------------ |
-|  Caso de uso   | Gestionar Partido             |
+|  Caso de uso   | Gestionar partido             |
 |  Actores       | Empleado, Administrador        |
 |  Clasificación | Primario                |
 |  Descripción   | El administrador y empleado pueden registrar los datos de un nuevo partido y cambiar su estado     |
@@ -108,7 +107,7 @@
 
 | ID             | CDU05                         |
 | -------------- | ------------------------------ |
-|  Caso de uso   | Confirmar Registro            |
+|  Caso de uso   | Confirmar registro            |
 |  Actores       | Cliente        |
 |  Clasificación | Primario             |
 |  Descripción   | Un cliente previo a llenar sus datos de registro confirmara su correo eléctronico <br/> y que si es el la persona que se registro a a la aplicación.    |

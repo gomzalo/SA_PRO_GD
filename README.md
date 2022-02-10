@@ -55,11 +55,62 @@
 ## Diagrama de actividades
 !["Diagramas Actividades](/assets/img/Diagramas_actividades.png "Diagramas Actividades")
 ## Diagrama de despliegue
+!["Diagrama Despliegue](/assets/img/Despliegue.png "Diagrama Despliegue")
 ## Diagrama de componentes
 ## Diagrama de la arquitectura
 # **Documentación**
 ## Stakeholders
 ## Mockups
+### Singin
+!["Diagrama singin](/assets/img/singin.png "Diagrama singin")
+### Singout
+!["Diagrama singup](/assets/img/singup.png "Diagrama singup")
+
+### Principal
+!["Diagrama principal](/assets/img/principal.png "Diagrama principal")
+
+### Profileuser
+!["Diagrama profileuser](/assets/img/profileuser.png "Diagrama profileuser")
+
+### Agregar usuario
+!["Diagrama agregar_usuario](/assets/img/agregar_usuario.png "Diagrama singuagregar_usuariop")
+
+### Reportes
+!["Diagrama reportes](/assets/img/reportes.png "Diagrama reportes")
+
+### Adquirir Membresia
+!["Diagrama adquirirmembresia](/assets/img/adquirirmembresia.png "Diagrama adquirirmembresia")
+
+### Cliente Membresia
+!["Diagrama clientemembresia](/assets/img/clientemembresia.png "Diagrama clientemembresia")
+
+### Cliente Sin Membresia
+!["Diagrama clientesinmembresia](/assets/img/clientesinmembresia.png "Diagrama clientesinmembresia")
+
+### Modulo Competencia
+!["Diagrama modulocompetencia](/assets/img/modulocompetencia.png "Diagrama modulocompetencia")
+
+### Modulo Director Tecnico
+!["Diagrama modulodirectortecnico](/assets/img/modulodirectortecnico.png "Diagrama modulodirectortecnico")
+
+### Modulo Equipo
+!["Diagrama moduloequipo](/assets/img/moduloequipo.png "Diagrama moduloequipo")
+
+### Modulo Estadio
+!["Diagrama moduloestadio](/assets/img/moduloestadio.png "Diagrama moduloestadio")
+
+### Modulo Jugador
+!["Diagrama modulojugador](/assets/img/modulojugador.png "Diagrama modulojugador")  
+
+### Modulo Partido
+!["Diagrama modulopartido](/assets/img/modulopartido.png "Diagrama modulopartido")  
+
+### Ppciones Empleo
+!["Diagrama opcionesempleo](/assets/img/opcionesempleo.png "Diagrama opcionesempleo")  
+
+
+
+
 
 
 ## Casos de uso

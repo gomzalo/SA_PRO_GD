@@ -45,7 +45,8 @@
 # **Diagramas**
 ## Diagrama de clases
 ![Diagrama de clases](/assets/img/clases.png "clases")
-## Diagrama de esquema relacional
+## Diagrama de Entidad Relacion
+![Diagrama de clases](/assets/img/ER.png "clases")
 ## Diagrama de casos de uso
 ### Diagrama de casos de uso - Generalizado
 ![Diagrama de casos de uso - generalizado](/assets/img/use-case-gen.png "use cases gen")

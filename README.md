@@ -46,13 +46,14 @@
 ## Diagrama de clases
 ![Diagrama de clases](/assets/img/clases.png "clases")
 ## Diagrama de Entidad Relacion
-![Diagrama de clases](/assets/img/ER.png "clases")
+![Entidad Relacion](/assets/img/ER.png "ER")
 ## Diagrama de casos de uso
 ### Diagrama de casos de uso - Generalizado
 ![Diagrama de casos de uso - generalizado](/assets/img/use-case-gen.png "use cases gen")
 ### Diagrama de casos de uso - Detallado
 ![Diagrama de casos de uso - detallado](/assets/img/use-case-det.png "use cases det")
 ## Diagrama de actividades
+!["Diagramas Actividades](/assets/img/Diagramas_actividades.png "Diagramas Actividades")
 ## Diagrama de despliegue
 ## Diagrama de componentes
 ## Diagrama de la arquitectura

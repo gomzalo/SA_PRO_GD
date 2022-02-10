@@ -150,7 +150,6 @@
 | 4.2 | Yo como cliente con mebresia quiero poder filtrar por equipos favoritos los partidos para reducir los resultados mostrados |
 | 4.3 | Yo como Administrador,Empleado quiero poder cambiar el estado de un partido                   |
 | 5 | Yo como usuario quiero que en el correo de confirmacion haya un link o boton para confirmar mi registro y mi identidad     |
-
 | 11.1 | Como cliente deseo poder suscribirme a una nueva membresía, para poder suscribirme a un equipo.                       |
 | 11.2 | Como cliente deseo poder cancelar una membresía, para poder suscribirme a un equipo.                                  |
 | 11.3 | Como administrador deseo poder dar de alta nueva membresía, para poder suscribirme a un equipo.                       |

@@ -59,20 +59,34 @@
 ## Stakeholders
 ## Mockups
 ## Historias de usuario
+
+| ID      | Historia de usuario             |
+| ------- | ------------------------------- |
+| 11.1    | Como cliente deseo poder suscribirme a una nueva membresía, para poder suscribirme a un equipo.           |
+| 11.2    | Como cliente deseo poder cancelar una membresía, para poder suscribirme a un equipo.           |
+| 11.3    | Como administrador deseo poder dar de alta nueva membresía, para poder suscribirme a un equipo.           |
+| 11.4    | Como administrador deseo poder dar de baja nueva membresía, para poder suscribirme a un equipo.           |
+| 12.1    | Como cliente deseo poder suscribirme a un equipo, para recibir noticias y notificaciones de este.           |
+| 13.1    | Como administrador deseo poder descargar en PDF un reporte consultado, para poder tener una copia local.           |
+| 13.2    | Como empleado deseo poder descargar en PDF un reporte consultado, para poder tener una copia local.           |
+| 14.1    | Como cliente deseo poder participar en una quiniela, para poder optar a obtener una membresía por 2 meses.           |
+| 15.1    | Como administrador deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada.           |
+| 15.2    | Como empleado deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada.           |
+
 ## Casos de uso
 | ID             | CDU011                         |
 | -------------- | ------------------------------ |
-|  Caso de uso   | Gestionar memebresia           |
+|  Caso de uso   | Gestionar membresía            |
 |  Actores       | Cliente, Administrador         |
 |  Clasificación | Primario, Real                 |
-|  Descripción   | El cliente puede adquirir o canjear una membresia.<br /> El administrador confirma una membresia para un cliente, también puede darle de baja a esta.     |
+|  Descripción   | El cliente puede adquirir o canjear una membresia.<br />El administrador confirma una membresia para un cliente, también puede darle de baja a esta.     |
 
 | ID             | CDU012                         |
 | -------------- | ------------------------------ |
 |  Caso de uso   | Suscribirse a equipo           |
 |  Actores       | Cliente                        |
 |  Clasificación | Primario, Real                 |
-|  Descripción   | Un cliente con membresía puede suscribirse a un equipo y recibir noticias y notificaciones del mismo.     |
+|  Descripción   | Un cliente con membresía puede suscribirse a un equipo, recibir noticias y notificaciones del mismo.     |
 
 | ID             | CDU013                         |
 | -------------- | ------------------------------ |

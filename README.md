@@ -60,20 +60,7 @@
 # **Documentación**
 ## Stakeholders
 ## Mockups
-## Historias de usuario
 
-| ID   | Historia de usuario                                                                                                   |
-| ---- | --------------------------------------------------------------------------------------------------------------------- |
-| 11.1 | Como cliente deseo poder suscribirme a una nueva membresía, para poder suscribirme a un equipo.                       |
-| 11.2 | Como cliente deseo poder cancelar una membresía, para poder suscribirme a un equipo.                                  |
-| 11.3 | Como administrador deseo poder dar de alta nueva membresía, para poder suscribirme a un equipo.                       |
-| 11.4 | Como administrador deseo poder dar de baja nueva membresía, para poder suscribirme a un equipo.                       |
-| 12.1 | Como cliente deseo poder suscribirme a un equipo, para recibir noticias y notificaciones de este.                     |
-| 13.1 | Como administrador deseo poder descargar en PDF un reporte consultado, para poder tener una copia local.              |
-| 13.2 | Como empleado deseo poder descargar en PDF un reporte consultado, para poder tener una copia local.                   |
-| 14.1 | Como cliente deseo poder participar en una quiniela, para poder optar a obtener una membresía por 2 meses.            |
-| 15.1 | Como administrador deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada. |
-| 15.2 | Como empleado deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada.      |
 
 ## Casos de uso
 
@@ -147,3 +134,30 @@
 |  Actores       | Empleado, Administrador        |
 |  Clasificación | Primario             |
 |  Descripción   | Un administrador o un empleado, pueden cambiar el equipo al que un entrenador pertenece.     |
+
+
+## Historias de usuario
+
+| ID   | Historia de usuario                                                                                                   |
+| ---- | --------------------------------------------------------------------------------------------------------------------- |
+| 1.1 | Yo como usuario quiero poder iniciar sesion en la aplicacione con mis credenciales previamente registradas             |
+| 1.2 | Yo como usuario quiero que se muestre un mensaje de error si mis credenciales son invalidas                       |
+| 2 | Yo como usuario quiero poder registrarme en la aplicacion para poder inicar sesion posteriormente     |
+| 2.1 | Yo como usuario quiero que al registrarme se envie un correo de confirmacion al correo electrónico ingresado para confirmar el registro     |
+| 3.1 | Yo como Administrador,Empleado quiero poder registrar un nuevo partido                      |
+| 3.2 | Yo como Administrador,Empleado quiero poder cambiar el estado de un partido                   |
+| 4.1 | Yo como cliente quiero poder consultar un partido filtrando por su estado  para reducir los resultados mostrados|
+| 4.2 | Yo como cliente con mebresia quiero poder filtrar por equipos favoritos los partidos para reducir los resultados mostrados |
+| 4.3 | Yo como Administrador,Empleado quiero poder cambiar el estado de un partido                   |
+| 5 | Yo como usuario quiero que en el correo de confirmacion haya un link o boton para confirmar mi registro y mi identidad     |
+
+| 11.1 | Como cliente deseo poder suscribirme a una nueva membresía, para poder suscribirme a un equipo.                       |
+| 11.2 | Como cliente deseo poder cancelar una membresía, para poder suscribirme a un equipo.                                  |
+| 11.3 | Como administrador deseo poder dar de alta nueva membresía, para poder suscribirme a un equipo.                       |
+| 11.4 | Como administrador deseo poder dar de baja nueva membresía, para poder suscribirme a un equipo.                       |
+| 12.1 | Como cliente deseo poder suscribirme a un equipo, para recibir noticias y notificaciones de este.                     |
+| 13.1 | Como administrador deseo poder descargar en PDF un reporte consultado, para poder tener una copia local.              |
+| 13.2 | Como empleado deseo poder descargar en PDF un reporte consultado, para poder tener una copia local.                   |
+| 14.1 | Como cliente deseo poder participar en una quiniela, para poder optar a obtener una membresía por 2 meses.            |
+| 15.1 | Como administrador deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada. |
+| 15.2 | Como empleado deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada.      |

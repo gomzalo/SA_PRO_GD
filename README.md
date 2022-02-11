@@ -24,6 +24,7 @@
 ## **Tabla de contenido** <!-- omit in toc -->
 
 - [**Descripción**](#descripción)
+  - [Algoritmo de predicción](#algoritmo-de-predicción)
 - [**Diagramas**](#diagramas)
   - [Diagrama de clases](#diagrama-de-clases)
   - [Diagrama de Entidad Relacion](#diagrama-de-entidad-relacion)
@@ -37,13 +38,92 @@
 - [**Documentación**](#documentación)
   - [Stakeholders](#stakeholders)
   - [Mockups](#mockups)
-  - [Historias de usuario](#historias-de-usuario)
+    - [Singin](#singin)
+    - [Singout](#singout)
+    - [Principal](#principal)
+    - [Profileuser](#profileuser)
+    - [Agregar usuario](#agregar-usuario)
+    - [Reportes](#reportes)
+    - [Adquirir Membresia](#adquirir-membresia)
+    - [Cliente Membresia](#cliente-membresia)
+    - [Cliente Sin Membresia](#cliente-sin-membresia)
+    - [Modulo Competencia](#modulo-competencia)
+    - [Modulo Director Tecnico](#modulo-director-tecnico)
+    - [Modulo Equipo](#modulo-equipo)
+    - [Modulo Estadio](#modulo-estadio)
+    - [Modulo Jugador](#modulo-jugador)
+    - [Modulo Partido](#modulo-partido)
+    - [Ppciones Empleo](#ppciones-empleo)
   - [Casos de uso](#casos-de-uso)
+  - [Historias de usuario](#historias-de-usuario)
 
 # **Descripción**
 Soccer Stats es un sistema web y móvil en la cual se tendra centralizada información de partidos de futbol, se tendra disponible datos estadisticos de los equipos, y los resultados en sus partidos, en distintas compentencias, además se contará con predicciones y quinielas sobre los resultados de los partidos.
 
 Los usuarios podrán adquirir una membresía para poder suscribirse a equipos y poder filtrar los partidos y resultados de sus distintos equipos.
+
+## Lenguaje de programación
+
+Los lenguajes a utilizar son:
+
+- **Backend:** NodeJS y Python
+- **Frontend:** AngularJS
+
+## Herramientas de desarrollo a utilizar
+
+- **Docker:** Para contenerizar los microservicios.
+- **Jenkins:** Utilizado para las fases de construcción, testing y despliegue continuo.
+- **NGTest:** Para las pruebas en el frontend.
+- **JUnit:** Implementado para las pruebas unitarias
+- **Terraform:** Utilizado para implementar la fase de IaC.
+
+## Herramientas de metodología a utilizar
+
+- **SCRUM:** Metodología elegida para el desarrollo del proyecto, elegida por su facilidad de colaboración y la familiaridad que se tiene con la misma.
+- **Trello:** Herramienta para tener un control de las tareas por realizar, las que estan en proceso y las que ya estan terminadas.
+- **Planning Pocker:** Utilizada para determinar la prioridad de las historias de usuario definidas.
+
+## Herramientas de control de tiempo de trabajo
+
+- **Trello:** Mediante la definición de fechas de entrega y recordatorios, cuando estas estan proximas a vencer, se hace muy útil su uso.
+
+## Pruebas a implementar
+
+- **Unitarias:** Llevadas a cabo para comprobar partes o fragmentos del código, asegurandose de que funcione correctamente.
+- **Manuales:** Realizado por los desarrolladores involucrados, en el proyecto, para asegurar la calidad del sistema.
+
+## Arquitectura a implementar
+
+- **SOA (Software Oriented Architecture):** Arquitectura que permite tener distintas funcionalidades distribuidas, a modo de garantizar el funcionamiento del sistema, incluso si un microservicio dejase de funcionar.
+
+## Algoritmo de predicción
+Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn y para generar graficas y manipulación de los datos Pandas.
+
+![algoritmo](/assets/img/algoritmo.png "algoritmo")
+
+- **Obtener resultados**
+  
+  Se le enviará un historial de los resultados, de ultimos encuentros entre los dos equipos que estan por disputar un partido.
+
+- **Limpiar datos de resultados**
+
+  Se verifica que los datos de los resultados sean válidos, de lo contrario se descartan.
+
+- **Parametrizar datos de resultados, para definir ejes**
+  
+  En esta parte, se definen los datos que se ingresaran en un eje *"x"* que contendrán los resultados, ademas el eje *"y"* contendra las fechas de los encuentros.
+
+- **Definir el grado del polinomio**
+  
+  El grado del polinomio se definirá dependiendo del valor de chi-cuadrado.
+
+- **Transformar el polinomio con el grado y los datos ya definidos**
+  
+  Se procede a transformar los datos para ingresarlos en nuestro polinomio definido anteriormente.
+
+- **Predecir resultado**
+  
+  Ya teniendo todo listo, se procede a realizar la predicción.
 
 # **Diagramas**
 ## Diagrama de clases

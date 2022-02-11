@@ -24,6 +24,12 @@
 ## **Tabla de contenido** <!-- omit in toc -->
 
 - [**Descripción**](#descripción)
+  - [Lenguajes de programación](#lenguajes-de-programación)
+  - [Herramientas de desarrollo a utilizar](#herramientas-de-desarrollo-a-utilizar)
+  - [Herramientas de metodología a utilizar](#herramientas-de-metodología-a-utilizar)
+  - [Herramientas de control de tiempo de trabajo](#herramientas-de-control-de-tiempo-de-trabajo)
+  - [Pruebas a implementar](#pruebas-a-implementar)
+  - [Arquitectura a implementar](#arquitectura-a-implementar)
   - [Algoritmo de predicción](#algoritmo-de-predicción)
 - [**Diagramas**](#diagramas)
   - [Diagrama de clases](#diagrama-de-clases)
@@ -53,16 +59,27 @@
     - [Modulo Estadio](#modulo-estadio)
     - [Modulo Jugador](#modulo-jugador)
     - [Modulo Partido](#modulo-partido)
-    - [Ppciones Empleo](#ppciones-empleo)
+    - [Opciones Empleo](#opciones-empleo)
   - [Casos de uso](#casos-de-uso)
   - [Historias de usuario](#historias-de-usuario)
+- [Tablero de Trello](#tablero-de-trello)
+- [Reuniones](#reuniones)
 
 # **Descripción**
+
+![Soccer Stats](/assets/img/logo.jpeg "Soccer Stats")
+
 Soccer Stats es un sistema web y móvil en la cual se tendra centralizada información de partidos de futbol, se tendra disponible datos estadisticos de los equipos, y los resultados en sus partidos, en distintas compentencias, además se contará con predicciones y quinielas sobre los resultados de los partidos.
 
 Los usuarios podrán adquirir una membresía para poder suscribirse a equipos y poder filtrar los partidos y resultados de sus distintos equipos.
 
-## Lenguaje de programación
+## Lenguajes de programación
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" alt="Python" height="40" style="vertical-align:top; margin:4px">
+<img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png" alt="Javascript" height="40" style="vertical-align:top; margin:4px">
+<img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png" alt="VS Code" height="40" style="vertical-align:top; margin:4px">
+</p>
 
 Los lenguajes a utilizar son:
 
@@ -190,7 +207,7 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 ### Modulo Partido
 !["Diagrama modulopartido](/assets/img/modulopartido.png "Diagrama modulopartido")  
 
-### Ppciones Empleo
+### Opciones Empleo
 !["Diagrama opcionesempleo](/assets/img/opcionesempleo.png "Diagrama opcionesempleo")  
 
 
@@ -356,3 +373,11 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 | 21 | Como cliente deseo gestionar la información de mi perfil, para tener actualizada mi información en la plataforma. |
 | 21.1 | Como cliente deseo poder visualizar toda mi información cuando desee, para verificar los datos actuales de mi cuenta. |
 | 21.2 | Como cliente deseo poder modificar mi información personal cuando desee, para actualizar los datos actuales de mi cuenta. |
+
+# Tablero de Trello
+
+!["trello](/assets/img/trello.png "trello")
+
+# Reuniones
+
+!["sprint1](/assets/img/sprint1.jpeg "sprint1")

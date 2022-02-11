@@ -41,6 +41,9 @@
   - [Casos de uso](#casos-de-uso)
 
 # **Descripción**
+Soccer Stats es un sistema web y móvil en la cual se tendra centralizada información de partidos de futbol, se tendra disponible datos estadisticos de los equipos, y los resultados en sus partidos, en distintas compentencias, además se contará con predicciones y quinielas sobre los resultados de los partidos.
+
+Los usuarios podrán adquirir una membresía para poder suscribirse a equipos y poder filtrar los partidos y resultados de sus distintos equipos.
 
 # **Diagramas**
 ## Diagrama de clases

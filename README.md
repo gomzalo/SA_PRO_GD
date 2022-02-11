@@ -163,6 +163,8 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 # **Documentación**
 ## Stakeholders
 
+|     |
+| --------------- |
 | Mario Morales   |
 | Gonzalo Garcia  |
 | Walter  Paredes |

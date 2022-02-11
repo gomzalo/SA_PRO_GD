@@ -257,3 +257,20 @@ Los usuarios podrán adquirir una membresía para poder suscribirse a equipos y 
 | 14.1 | Como cliente deseo poder participar en una quiniela, para poder optar a obtener una membresía por 2 meses.            |
 | 15.1 | Como administrador deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada. |
 | 15.2 | Como empleado deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada.      |
+| 16 | Como cliente deseo poder restablecer mi contraseña de perfil, para poder mantener segura mi cuenta. |
+| 16.1 | Como cliente deseo poder cambiar mi contraseña en cualquier momento, para poder actualizar mi información cuando sea necesario y así mantener segura mi cuenta. |
+| 16.2 | Como cliente deseo restablecer mi contraseña de perfil en caso de perdida, para poder tener acceso a mi cuenta siempre que lo desee. |
+| 17 | Como administrador, empleado deseo poder transferir un jugador de un equipo a otro, para poder mantener la base de datos actualizada. |
+| 18 | Como cliente con membresía deseo poder realizar consultas de datos estadísticos, para tener información útil a la mano que pueda servir en mis predicciones. |
+| 18.1 | Como cliente con membresía deseo poder manipular las consultas con parámetros, para tener una consulta estadística más específica. |
+| 19 | Como administrador, empleado deseo poder gestionar la información de los datos deportivos, para mantener actualizada la plataforma. |
+| 19.1 | Como administrador, empleado deseo poder agregar nueva información de datos deportivos, para mantener actualizada la plataforma. |
+| 19.2 | Como administrador, empleado deseo poder modificar información de los datos deportivos, para mantener actualizada la plataforma. |
+| 19.3 | Como administrador, empleado deseo poder eliminar información de los datos deportivos, para mantener actualizada la plataforma. |
+| 20 | Como administrador, empleado deseo poder crear quinielas para eventos deportivos, para que los clientes puedan participar en ellas. | 
+| 20.1 | Como cliente con membresía deseo poder acceder a las quinielas, para poder participar y tener la posibilidad de ganar membresías. | 
+| 20.2 | Como cliente deseo poder modificar el resultado mi quiniela cuando desee, para poder cambiar mi opinión en cuanto a la predicción de los resultados de los partidos. | 
+| 20.3 | Como administrador deseo que los clientes no puedan modificar el resultado de sus predicciones una vez el partido haya iniciado, para mantener la veracidad de las quinielas. | 
+| 21 | Como cliente deseo gestionar la información de mi perfil, para tener actualizada mi información en la plataforma. |
+| 21.1 | Como cliente deseo poder visualizar toda mi información cuando desee, para verificar los datos actuales de mi cuenta. |
+| 21.2 | Como cliente deseo poder modificar mi información personal cuando desee, para actualizar los datos actuales de mi cuenta. |

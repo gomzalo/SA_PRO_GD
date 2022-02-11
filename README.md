@@ -64,6 +64,8 @@
   - [Historias de usuario](#historias-de-usuario)
 - [Tablero de Trello](#tablero-de-trello)
 - [Reuniones](#reuniones)
+- [Vídeo](#vídeo)
+- [Endpoints](#endpoints)
 
 # **Descripción**
 
@@ -432,3 +434,11 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 # Reuniones
 
 !["sprint1](/assets/img/sprint1.jpeg "sprint1")
+
+# Vídeo
+
+![video](https://img.youtube.com/vi/qONY3y-wluQ/0.jpg) https://youtu.be/qONY3y-wluQ
+
+# Endpoints
+
+https://docs.google.com/document/d/1uVddjEpHwvCZKaUTgMsjYj9W-MKqSr1Bx_YaoVaCDrU/edit?usp=sharing

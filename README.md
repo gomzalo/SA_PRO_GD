@@ -43,6 +43,9 @@
   - [Diagrama de la arquitectura](#diagrama-de-la-arquitectura)
 - [**Documentación**](#documentación)
   - [Stakeholders](#stakeholders)
+  - [Requerimientos](#requerimientos)
+  - [Matriz de trazabilidad](#matriz-de-trazabilidad)
+    - [Requerimiento - Requerimiento](#requerimiento---requerimiento)
   - [Mockups](#mockups)
     - [Singin](#singin)
     - [Singout](#singout)
@@ -80,7 +83,7 @@ Los usuarios podrán adquirir una membresía para poder suscribirse a equipos y 
 <p align="center">
 <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" alt="Python" height="40" style="vertical-align:top; margin:4px">
 <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png" alt="Javascript" height="40" style="vertical-align:top; margin:4px">
-<img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png" alt="VS Code" height="40" style="vertical-align:top; margin:4px">
+<img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/angular/angular.png" alt="Angular" height="40" style="vertical-align:top; margin:4px">
 </p>
 
 Los lenguajes a utilizar son:
@@ -114,6 +117,10 @@ Los lenguajes a utilizar son:
 ## Arquitectura a implementar
 
 - **SOA (Software Oriented Architecture):** Arquitectura que permite tener distintas funcionalidades distribuidas, a modo de garantizar el funcionamiento del sistema, incluso si un microservicio dejase de funcionar.
+
+Esta arquitectura, a su vez, permite reutilizar sus elementos gracias a las interfaces de servicios que se comunican a través de una red de lenguaje común.
+
+Un servicio es una unidad autónoma de una o más funciones del software, diseñada para realizar una tarea específica, como recuperar información o ejecutar una operación.
 
 ## Algoritmo de predicción
 Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn y para generar graficas y manipulación de los datos Pandas.
@@ -173,6 +180,35 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 | Juan Hernández  |
 | Steven Sis      |
 
+## Requerimientos
+
+| ID      | Descripción     | Criterio de aceptación         |
+| ------- | ----------------| ------------------------------ |
+|  R001   | Interfaz        | Tener una UI amigable y de facil uso. |
+|  R002   | Búsqueda        | Búsqueda de equipos y partidos, eficiente. |
+|  R003   | Filtrado        | Permitir el filtrado de partidos y equipos. |
+|  R004   | Reportes        | Visualizar y descargar los reportes indicados. |
+|  R005   | Seguridad       | Validar que el usuario tenga un token y rol valido al inresar al sistema. |
+|  R006   | Predicción      | Ofrecer predicciones, basadas en un historial previo, para fomentar la participación en quinielas. |
+|  R007   | Noticias        | Brindar noticias relevantes al usuario, sobre los equipos que sigue. |
+|  R008   | Información     | Tener información actualizada de los equipos, competiciones, jugadores, entrenadores y arbitros. |
+|  R009   | Quiniela        | Opción de participar en una quiniela, antes de un partido, teniendo los datos de la predicción. |
+## Matriz de trazabilidad
+
+### Requerimiento - Requerimiento
+
+|   R/R    | R001    | R002    | R003    | R004    | R005    | R006    | R007    | R008    | R009    |
+| -------  | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| **R001** |         |         |         |         |    X    |         |         |         |         |
+| **R002** |    X    |         |    X    |         |    X    |         |         |    X    |         |
+| **R003** |    X    |    X    |         |         |    X    |         |         |    X    |         |
+| **R004** |    X    |         |         |         |    X    |         |         |    X    |         |
+| **R005** |         |         |         |         |         |         |         |         |         |
+| **R006** |    X    |         |         |         |    X    |         |         |    X    |         |
+| **R007** |    X    |         |         |         |    X    |         |         |    X    |         |
+| **R008** |         |         |         |         |    X    |         |         |         |         |
+| **R009** |    X    |         |         |         |    X    |    X    |         |    X    |         |
+
 ## Mockups
 ### Singin
 !["Diagrama singin](/assets/img/singin.png "Diagrama singin")
@@ -220,11 +256,6 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 
 ### Opciones Empleo
 !["Diagrama opcionesempleo](/assets/img/opcionesempleo.png "Diagrama opcionesempleo")  
-
-
-
-
-
 
 ## Casos de uso
 

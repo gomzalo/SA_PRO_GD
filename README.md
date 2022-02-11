@@ -259,6 +259,40 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 |  Clasificación | Primario             |
 |  Descripción   | Un cliente previo a llenar sus datos de registro confirmara su correo eléctronico <br/> y que si es el la persona que se registro a a la aplicación.    |
 
+| ID             | CDU06                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Gestionar noticia            |
+|  Actores       | Administrador, Empleado        |
+|  Clasificación | Secundario             |
+|  Descripción   | Un administrador tiene la opcion de tener la gestion completa del modulo de noticias <br/> mientras el empleado solo la visualizacion.    |
+
+| ID             | CDU07                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Consultar prediccion            |
+|  Actores       | Usuario        |
+|  Clasificación | Secundario             |
+|  Descripción   | Un usuario tiene la opcion de visualizar la parte de predicciones en la plataforma.    |
+
+| ID             | CDU08                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Gestionar usuario            |
+|  Actores       | Administrador        |
+|  Clasificación | Primario             |
+|  Descripción   | La gestion de usuarios solo puede ser hecha por el administracion, tando la creacion de distintos roles como la eliminacion de los mismos    |
+
+| ID             | CDU09                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Consultar Noticia            |
+|  Actores       | Usuario        |
+|  Clasificación | Secundario             |
+|  Descripción   | Un usuario tiene la opcion de visualizar la parte de noticias en la plataforma.    |
+
+| ID             | CDU10                         |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Consultar reportes            |
+|  Actores       | Administrador, Usuario        |
+|  Clasificación | Secundario             |
+|  Descripción   | El administrador como el usuario pueden consultar los reportes generados por la plataforma    |
 
 | ID             | CDU011                         |
 | -------------- | ------------------------------ |
@@ -353,6 +387,14 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 | 4.2 | Yo como cliente con mebresia quiero poder filtrar por equipos favoritos los partidos para reducir los resultados mostrados |
 | 4.3 | Yo como Administrador,Empleado quiero poder cambiar el estado de un partido                   |
 | 5 | Yo como usuario quiero que en el correo de confirmacion haya un link o boton para confirmar mi registro y mi identidad     |
+| 6.1 | Yo como administrador quiero gestionar con un CRUD todas las noticias    |
+| 6.2 | Yo como empleado quiero gestionar con algunos funcionamientos las noticias    |
+| 7 | Yo como usuario quiero poder consultar las predicciones en la plataforma    |
+| 8.1 | Yo como administrador quiero gestionar todo tipo de usuarios que tienen acceso a la plataforma   |
+| 8.2 | Yo como administrador quiero poder gestionar a que tiene acceso cada grupo de usuarios en la plataforma |
+| 9 | Yo como usuario quiero poder consultar las notcias en la plataforma  |
+| 10.1 | Yo administrador quiero poder consultar reportes dentro de la plataforma |
+| 10.2 | Yo administrador quiero poder enseñar reportes a usuarios dependiendo de la membresia  |
 | 11.1 | Como cliente deseo poder suscribirme a una nueva membresía, para poder suscribirme a un equipo.                       |
 | 11.2 | Como cliente deseo poder cancelar una membresía, para poder suscribirme a un equipo.                                  |
 | 11.3 | Como administrador deseo poder dar de alta nueva membresía, para poder suscribirme a un equipo.                       |

@@ -140,7 +140,9 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 ## Diagrama de despliegue
 !["Diagrama Despliegue](/assets/img/Despliegue.png "Diagrama Despliegue")
 ## Diagrama de componentes
+!["Diagrama Componentes](/assets/img/componentes.png "Diagrama Componentes")
 ## Diagrama de la arquitectura
+!["Diagrama Arquitectonico](/assets/img/arquitectonico.png "Diagrama Arquitectonico")
 # **Documentación**
 ## Stakeholders
 ## Mockups
@@ -269,6 +271,49 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 |  Clasificación | Primario             |
 |  Descripción   | Un administrador o un empleado, pueden cambiar el equipo al que un entrenador pertenece.     |
 
+| ID             | CDU016                        |
+| -------------- | ------------------------------|
+|  Caso de uso   | Restablecer contraseña        |
+|  Actores       | Cliente                       |
+|  Clasificación | Secundario                    |
+|  Descripción   | El Cliente puede cambiar la contraseña de su usuario por medio del modulo de gestión de información, el sistema genera un código provisional con duración de 2 minutos y es enviado al correo del cliente, esta contraseña permite ingresar al perfil del cliente redireccionándolo a un módulo en donde se le solicita la contraseña nueva. Luego de 2 minutos este código vence y la contraseña regresa a su estado inicial. |
+
+| ID             | CDU017                        |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Transferir jugador  |
+|  Actores       | Administrador, Empleado         |
+|  Clasificación | Primario               |
+|  Descripción   | El Administrador o Empleado puede transferir a un jugador de un equipo a otro con el fin de mantener la información de la base de datos actualizada. Un jugador debe pertenecer a un equipo para poder realizar la transferencia y el equipo destino debe existir.    |
+
+| ID             | CDU018                        |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Consultar datos estadisticos  |
+|  Actores       | Cliente con membresía |
+|  Clasificación | Primario |
+|  Descripción   | El Cliente con membresía puede realizar consultas estadísticas para poder obtener información relevante de los resultados, jugadores, equipos, técnicos y demás datos deportivos que sirvan para que el cliente pueda tener información útil para sus predicciones. Estas consultas son filtradas por medio de parámetros para tener una consulta más específica.    |
+
+| ID             | CDU019                        |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Gestionar información  |
+|  Actores       | Administrador, Empleado         |
+|  Clasificación | Primario               |
+|  Descripción   | El administrador/empleado puede crear, modificar o eliminar información de los datos deportivos con el fin de mantener la información de la plataforma actualizada; esto incluye jugadores, técnicos, equipos, estadios, partidos, etc.  |
+
+| ID             | CDU020                        |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Gestionar quiniela  |
+|  Actores       | Administrador, Empleado |
+|  Clasificación | Primario               |
+|  Descripción   | El administrador/empleado puede crear quinielas para que los clientes puedan participar en ellas. Las quinielas pueden ser modificadas y eliminadas si el administrador lo considera. |
+
+| ID             | CDU021                        |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Gestionar perfil  |
+|  Actores       | Cliente |
+|  Clasificación | Primario               |
+|  Descripción   | El cliente puede modificar toda su información de perfil a través del módulo de gestión del perfil, el usuario puede actualizar cualquier información que desee exceptuando el correo con el que se registró.
+
+
 
 ## Historias de usuario
 
@@ -294,3 +339,20 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 | 14.1 | Como cliente deseo poder participar en una quiniela, para poder optar a obtener una membresía por 2 meses.            |
 | 15.1 | Como administrador deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada. |
 | 15.2 | Como empleado deseo poder transferir un tecnico a otro equipo, para poder mantener la base de datos actualizada.      |
+| 16 | Como cliente deseo poder restablecer mi contraseña de perfil, para poder mantener segura mi cuenta. |
+| 16.1 | Como cliente deseo poder cambiar mi contraseña en cualquier momento, para poder actualizar mi información cuando sea necesario y así mantener segura mi cuenta. |
+| 16.2 | Como cliente deseo restablecer mi contraseña de perfil en caso de perdida, para poder tener acceso a mi cuenta siempre que lo desee. |
+| 17 | Como administrador, empleado deseo poder transferir un jugador de un equipo a otro, para poder mantener la base de datos actualizada. |
+| 18 | Como cliente con membresía deseo poder realizar consultas de datos estadísticos, para tener información útil a la mano que pueda servir en mis predicciones. |
+| 18.1 | Como cliente con membresía deseo poder manipular las consultas con parámetros, para tener una consulta estadística más específica. |
+| 19 | Como administrador, empleado deseo poder gestionar la información de los datos deportivos, para mantener actualizada la plataforma. |
+| 19.1 | Como administrador, empleado deseo poder agregar nueva información de datos deportivos, para mantener actualizada la plataforma. |
+| 19.2 | Como administrador, empleado deseo poder modificar información de los datos deportivos, para mantener actualizada la plataforma. |
+| 19.3 | Como administrador, empleado deseo poder eliminar información de los datos deportivos, para mantener actualizada la plataforma. |
+| 20 | Como administrador, empleado deseo poder crear quinielas para eventos deportivos, para que los clientes puedan participar en ellas. | 
+| 20.1 | Como cliente con membresía deseo poder acceder a las quinielas, para poder participar y tener la posibilidad de ganar membresías. | 
+| 20.2 | Como cliente deseo poder modificar el resultado mi quiniela cuando desee, para poder cambiar mi opinión en cuanto a la predicción de los resultados de los partidos. | 
+| 20.3 | Como administrador deseo que los clientes no puedan modificar el resultado de sus predicciones una vez el partido haya iniciado, para mantener la veracidad de las quinielas. | 
+| 21 | Como cliente deseo gestionar la información de mi perfil, para tener actualizada mi información en la plataforma. |
+| 21.1 | Como cliente deseo poder visualizar toda mi información cuando desee, para verificar los datos actuales de mi cuenta. |
+| 21.2 | Como cliente deseo poder modificar mi información personal cuando desee, para actualizar los datos actuales de mi cuenta. |

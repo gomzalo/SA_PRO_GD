@@ -62,6 +62,7 @@ Los usuarios podrán adquirir una membresía para poder suscribirse a equipos y 
 ## Diagrama de componentes
 !["Diagrama Componentes](/assets/img/componentes.png "Diagrama Componentes")
 ## Diagrama de la arquitectura
+!["Diagrama Arquitectonico](/assets/img/arquitectonico.png "Diagrama Arquitectonico")
 # **Documentación**
 ## Stakeholders
 ## Mockups

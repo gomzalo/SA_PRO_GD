@@ -189,6 +189,49 @@ Los usuarios podrán adquirir una membresía para poder suscribirse a equipos y 
 |  Clasificación | Primario             |
 |  Descripción   | Un administrador o un empleado, pueden cambiar el equipo al que un entrenador pertenece.     |
 
+| ID             | CDU016                        |
+| -------------- | ------------------------------|
+|  Caso de uso   | Restablecer contraseña        |
+|  Actores       | Cliente                       |
+|  Clasificación | Secundario                    |
+|  Descripción   | El Cliente puede cambiar la contraseña de su usuario por medio del modulo de gestión de información, el sistema genera un código provisional con duración de 2 minutos y es enviado al correo del cliente, esta contraseña permite ingresar al perfil del cliente redireccionándolo a un módulo en donde se le solicita la contraseña nueva. Luego de 2 minutos este código vence y la contraseña regresa a su estado inicial. |
+
+| ID             | CDU017                        |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Transferir jugador  |
+|  Actores       | Administrador, Empleado         |
+|  Clasificación | Primario               |
+|  Descripción   | El Administrador o Empleado puede transferir a un jugador de un equipo a otro con el fin de mantener la información de la base de datos actualizada. Un jugador debe pertenecer a un equipo para poder realizar la transferencia y el equipo destino debe existir.    |
+
+| ID             | CDU018                        |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Consultar datos estadisticos  |
+|  Actores       | Cliente con membresía |
+|  Clasificación | Primario |
+|  Descripción   | El Cliente con membresía puede realizar consultas estadísticas para poder obtener información relevante de los resultados, jugadores, equipos, técnicos y demás datos deportivos que sirvan para que el cliente pueda tener información útil para sus predicciones. Estas consultas son filtradas por medio de parámetros para tener una consulta más específica.    |
+
+| ID             | CDU019                        |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Gestionar información  |
+|  Actores       | Administrador, Empleado         |
+|  Clasificación | Primario               |
+|  Descripción   | El administrador/empleado puede crear, modificar o eliminar información de los datos deportivos con el fin de mantener la información de la plataforma actualizada; esto incluye jugadores, técnicos, equipos, estadios, partidos, etc.  |
+
+| ID             | CDU020                        |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Gestionar quiniela  |
+|  Actores       | Administrador, Empleado |
+|  Clasificación | Primario               |
+|  Descripción   | El administrador/empleado puede crear quinielas para que los clientes puedan participar en ellas. Las quinielas pueden ser modificadas y eliminadas si el administrador lo considera. |
+
+| ID             | CDU021                        |
+| -------------- | ------------------------------ |
+|  Caso de uso   | Gestionar perfil  |
+|  Actores       | Cliente |
+|  Clasificación | Primario               |
+|  Descripción   | El cliente puede modificar toda su información de perfil a través del módulo de gestión del perfil, el usuario puede actualizar cualquier información que desee exceptuando el correo con el que se registró.
+
+
 
 ## Historias de usuario
 

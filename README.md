@@ -468,7 +468,9 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 
 # Vídeo
 
-![video](https://img.youtube.com/vi/qONY3y-wluQ/0.jpg) https://youtu.be/qONY3y-wluQ
+![video](https://img.youtube.com/vi/qONY3y-wluQ/0.jpg) 
+
+https://youtu.be/qONY3y-wluQ
 
 # Endpoints
 

@@ -162,6 +162,13 @@ Para realizar la predicción se utilizará la librería, de Python, Scikit-Learn
 !["Diagrama Arquitectonico](/assets/img/arquitectonico.png "Diagrama Arquitectonico")
 # **Documentación**
 ## Stakeholders
+
+| Mario Morales   |
+| Gonzalo Garcia  |
+| Walter  Paredes |
+| Juan Hernández  |
+| Steven Sis      |
+
 ## Mockups
 ### Singin
 !["Diagrama singin](/assets/img/singin.png "Diagrama singin")

@@ -17,7 +17,7 @@
 | No. | Nombre                         | Carnet    |
 | --- | ------------------------------ | --------- |
 |  1. | Gonzalo Antonio Garcia Solares | 201318652 |
-|  2. | Walter Josué Paredes Sol       | 201503392 |
+|  2. | Walter Josué Paredes Sol       | 201504326 |
 |  3. | Juan José Hernández Rodríguez  | 201612378 |
 |  4. | Steven Aaron Sis Hernández     | 201706357 |
 

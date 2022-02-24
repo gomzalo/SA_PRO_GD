@@ -190,3 +190,28 @@ CREATE TABLE Incidencia (
     CONSTRAINT FK_Incidencia_Partido FOREIGN KEY (id_partido)
         REFERENCES Partido(id_partido)
 );
+
+create table Rol(
+	 id_rol int NOT NULL AUTO_INCREMENT primary key,
+     descripcion varchar(100) not null
+);
+
+CREATE TABLE Usuario (
+    id_usuario int NOT NULL AUTO_INCREMENT primary key,
+    firstnameu varchar(100) not null,
+    lastname varchar(100) not null ,
+    password  varchar(50)  not null,
+    email varchar(100) not null,
+    photo varchar(200) not null,
+    gender char(1) not null,
+    fecha_nac date not null,
+    fecha_registro date default now(),
+    direccion varchar(200) not null,
+    id_pais int not null,
+    rol int not null,
+	CONSTRAINT FK_pais FOREIGN KEY (id_pais)
+	REFERENCES tipo_gol(id_gol),
+    	CONSTRAINT FK_rol FOREIGN KEY (rol)
+	REFERENCES Rol(id_rol)
+);
+

@@ -1,1 +1,6 @@
-.vscode/settings.json
+node_modules/
+mochawesome-report/
+# System Files
+.DS_Store
+Thumbs.db
+.vscode/

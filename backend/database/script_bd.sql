@@ -203,20 +203,26 @@ create table Rol(
 
 CREATE TABLE Usuario (
     id_usuario INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    firstnameu VARCHAR(100) NOT NULL,
-    lastname VARCHAR(100) NOT NULL ,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL ,
     pass  VARCHAR(50)  NOT NULL,
     email VARCHAR(100) NOT NULL,
+    phone INTEGER NOT NULL,
     photo VARCHAR(200) NOT NULL,
     gender CHAR(1) NOT NULL,
     fecha_nac DATE NOT NULL,
     fecha_registro DATE NOT NULL,
     direccion VARCHAR(200) NOT NULL,
     id_pais INTEGER NOT NULL,
-    rol INTEGER NOT NULL,
-	CONSTRAINT FK_pais FOREIGN KEY (id_pais)
-        REFERENCES Tipo_Gol(id_tipo_gol),
-    CONSTRAINT FK_rol FOREIGN KEY (rol)
+    id_estado INTEGER NOT NULL,
+    id_rol INTEGER NOT NULL,
+    age INTEGER NOT NULL,
+    membership BOOLEAN NOT NULL,
+	CONSTRAINT FK_Usuario_Pais FOREIGN KEY (id_pais)
+        REFERENCES Pais(id_pais),
+    CONSTRAINT FK_Usuario_Estado FOREIGN KEY (id_estado)
+        REFERENCES Estado(id_estado),
+    CONSTRAINT FK_Usuario_Rol FOREIGN KEY (id_rol)
         REFERENCES Rol(id_rol)
 );
 

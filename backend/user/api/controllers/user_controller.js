@@ -1,4 +1,4 @@
-const userm = require('../../models/user_models')
+const userm = require('../models/user_models')
 
 module.exports = {
     all: function(req, res) {
@@ -14,14 +14,15 @@ module.exports = {
   
 
     add: function(req, res) {
-      userm.verifyCorreo(req.con, req.body, function(err, rowss){
+      userm.verifyEmail(req.con, req.body, function(err, rowss){
         // console.log(rowss[0].num)
         var num = rowss[0].num;
         console.log(num)
         if (num > 0) {
           
-          res.status(200).send({
-            data: 'correo existe'
+          res.status(409).send({
+            status: 'false',
+            msj: 'Error'
           });
           
         } else {

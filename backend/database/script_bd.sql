@@ -1,8 +1,36 @@
-CREATE TABLE Pais (
-    id_pais INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre_pais VARCHAR(100) NOT NULL,
-    nombre_nacionalidad VARCHAR(100) NOT NULL
-);
+-- drop table Usuario;
+-- drop table  Incidencia;
+--  drop table Arbitro_Partido;
+--  drop table Jugador_Partido;
+--  drop table Partido;
+--   drop table Competencia;
+--   drop table Estadio;
+--  drop table Asignacion_Jugador_Equipo;
+--  drop table Asignacion_Tecnico_Equipo;
+--   drop table Tecnico;
+--   drop table Jugador;
+--    drop table Posicion;
+--  Drop table Equipo;
+--   drop table Tipo_Incidencia;
+--  drop table Tipo_Gol;
+--  drop table Tipo_Competencia;
+--  drop table Arbitro;
+--  drop table Rol;
+--  DROP TABLE Pais;
+--  DROP TABLE Estado;
+
+
+
+CREATE TABLE `Pais` (
+  `id_pais` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  `nicename` varchar(80) NOT NULL,
+  `iso` char(2) NOT NULL,
+  `iso3` char(3) DEFAULT NULL,
+  `numcode` smallint(6) DEFAULT NULL,
+  `phonecode` int(5) NOT NULL,
+  PRIMARY KEY (`id_pais`)
+) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8;
 
 CREATE TABLE Estado (
     id_estado INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -470,3 +498,7 @@ INSERT INTO `Pais` (`id_pais`, `iso`, `name`, `nicename`, `iso3`, `numcode`, `ph
 (237, 'YE', 'YEMEN', 'Yemen', 'YEM', 887, 967),
 (238, 'ZM', 'ZAMBIA', 'Zambia', 'ZMB', 894, 260),
 (239, 'ZW', 'ZIMBABWE', 'Zimbabwe', 'ZWE', 716, 263);
+
+insert into Rol values(1,'Admin');
+insert into Rol values(2,'Empleado');
+insert into Rol values(3,'Cliente');

@@ -26,7 +26,10 @@ module.exports = {
           fecha_registro,
           direccion,
           id_pais,
-          rol
+          id_estado,
+          id_rol,
+          age,
+          membership
           )
         VALUES (
           '${data.name}',
@@ -35,24 +38,30 @@ module.exports = {
           '${data.email}',
           '${data.phone}',
           '${data.photo}',
-          '${data.photo}',
-          '${data.photo}',
-          '${data.photo}',
-          '${data.photo}',
+          '${data.gender}',
+          '${data.birth_date}',
+          '${data.signup_date}',
+          '${data.address}',
+          '${data.id_pais}',
+          '${data.id_estado}',
+          '${data.id_rol}',
+          '${data.age}',
+          '${data.membership}'
           )
         `,
         callback
       )
     },
 
-    verifyCorreo: async function(con, data, callback){
-      const {nickname, correo, id} = data;
-      console.log("nickname: " + nickname + "\ncorreo: " + correo + "\nid: " + id)
-      let cif_correo = await encrypt_cryptojs_1.encrypt_cryptojs.encrypt(correo, nickname)
+    verifyEmail: async function(con, data, callback){
+      const {id_usuario, email} = data;
+      console.log("email: " + email + "\nid_usuario: " + id_usuario)
       await con.query(
-        `SELECT COUNT(*) AS num FROM usuario
-        WHERE correo = '${cif_correo}'
-        AND id != '${id}';`,
+        `
+        SELECT COUNT(*) AS num FROM Usuario
+        WHERE email = '${email}'
+        AND id_usuario != '${id_usuario}';`
+        ,
         callback
       )
     }

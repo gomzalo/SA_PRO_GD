@@ -1,0 +1,25 @@
+### SERVER EDITAR ###
+
+GET http://localhost:5003/user/all HTTP/1.1
+
+###
+POST http://localhost:5003/user/add HTTP/1.1
+content-type: application/json
+
+{
+    "name": "tepo",
+    "lastname": "kun",
+    "password": "Tepo1234/",
+    "email" : "tepochan@gmail.com",
+    "phone": 54549984,
+    "photo": "asdkfhjkasdljfklasdj",
+    "gender": "M",
+    "birth_date": "1996-02-27",
+    "signup_date": "2022-02-27",
+    "address": "Patcizia",
+    "id_pais": 69,
+    "id_estado": 0,
+    "age": 21,
+    "membership": "True"
+}
+###

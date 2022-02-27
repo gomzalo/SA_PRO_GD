@@ -16,5 +16,4 @@ app.get('/', function (req, res) {
 app.listen(port, (err) => {
     if (err) console.log('Error :c'), process.exit(1);
     console.log(`Servidor corriendo on:\n\nhttp://localhost:${port}`);
-
 });

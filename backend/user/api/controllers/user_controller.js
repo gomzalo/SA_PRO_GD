@@ -1,14 +1,12 @@
-const userm = require('../models/user_models')
+const userm = require('../models/user_model')
 
 module.exports = {
     all: function(req, res) {
-      userm.get(req.con, function(err, rows) {
+      userm.all(req.con, function(err, rows) {
         // res.render("usuario/index", { data: rows })
         console.log(rows);
-        res.status(200).send({
-            data: rows
-        });
-        // console.log("res", res)
+        console.log(new Date())
+        res.status(200).send(rows);
       })
     },
   
@@ -21,20 +19,21 @@ module.exports = {
         if (num > 0) {
           
           res.status(409).send({
-            status: 'false',
-            msj: 'Error'
+            status: false,
+            msj: 'Error al crear el usuario'
           });
           
         } else {
         // console.log(res)
           userm.add(req.con, req.body, function(err, rows) {
             // res.redirect("/home")
-            if(rows.affectedRows != 0){
+            console.log(rows);
+            if(rows.length != 0){
               res.status(200).send({
-                data: 'Agregado'
+                status: true,
+                msj: 'Usuario creado con exito'
               });
             }
-            
           })
         }
       });  

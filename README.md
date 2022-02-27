@@ -69,6 +69,8 @@
 - [Reuniones](#reuniones)
 - [Vídeo](#vídeo)
 - [Endpoints](#endpoints)
+- [Estados](#estados)
+- [Roles](#roles)
 
 # **Descripción**
 
@@ -475,3 +477,19 @@ https://youtu.be/qONY3y-wluQ
 # Endpoints
 
 https://docs.google.com/document/d/1uVddjEpHwvCZKaUTgMsjYj9W-MKqSr1Bx_YaoVaCDrU/edit?usp=sharing
+
+# Estados
+
+| ID   | Estado |
+| ---- | ------ |
+| 0 | Congelado |
+| 1 | Activo    |
+| 2 | xd        |
+
+# Roles
+
+| ID   | Rol |
+| ---- | ------ |
+| 1 | Admin     |
+| 2 | Empleado  |
+| 3 | Cliente   |

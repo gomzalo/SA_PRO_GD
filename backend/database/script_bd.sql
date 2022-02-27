@@ -502,3 +502,6 @@ INSERT INTO `Pais` (`id_pais`, `iso`, `name`, `nicename`, `iso3`, `numcode`, `ph
 insert into Rol values(1,'Admin');
 insert into Rol values(2,'Empleado');
 insert into Rol values(3,'Cliente');
+
+insert into Estado values(1,'Activo');
+insert into Estado values (0,'Congelado');

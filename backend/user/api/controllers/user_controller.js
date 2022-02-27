@@ -3,38 +3,26 @@ const userm = require('../models/user_model')
 module.exports = {
     all: function(req, res) {
       userm.all(req.con, function(err, rows) {
-        // res.render("usuario/index", { data: rows })
-        console.log(rows);
-        console.log(new Date())
         res.status(200).send(rows);
       })
     },
   
 
     add: function(req, res) {
-      userm.verifyEmail(req.con, req.body, function(err, rowss){
-        // console.log(rowss[0].num)
-        var num = rowss[0].num;
-        console.log(num)
-        if (num > 0) {
-          
+      userm.add(req.con, req.body, function(err, rows){
+        console.log("ROWSSSS");
+        console.log(rows);
+        if(err){
+          // console.log(res)
           res.status(409).send({
             status: false,
-            msj: 'Error al crear el usuario'
+            msj: 'Error al crear usuario'
           });
-          
         } else {
-        // console.log(res)
-          userm.add(req.con, req.body, function(err, rows) {
-            // res.redirect("/home")
-            console.log(rows);
-            if(rows.length != 0){
-              res.status(200).send({
-                status: true,
-                msj: 'Usuario creado con exito'
-              });
-            }
-          })
+          res.status(200).send({
+            status: true,
+            msj: 'Usuario creado con exito'
+          });
         }
       });  
     },

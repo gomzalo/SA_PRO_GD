@@ -1,5 +1,7 @@
 var cryptoJS = require('crypto-js');
 
+
+
 module.exports = {
     all: async function(con, callback) {
       await con.query("SELECT * FROM Usuario;", callback)
@@ -9,7 +11,7 @@ module.exports = {
     add: async function(con, data, callback) {
       const {name, lastname, password, email, phone, photo, gender, birth_date, signup_date, address, id_pais, id_estado, id_rol, age, membership} = data;
       console.log("data: ", data);
-      let cif_pass = cryptoJS.AES.encrypt(password, 'SiSaleSA_');
+      let cif_pass = cryptoJS.AES.encrypt(password, 'SiSaleSA_').toString();
       console.log("cif_pass: ", cif_pass);
       
       await con.query(
@@ -49,19 +51,6 @@ module.exports = {
           '${data.membership}'
           )
         `,
-        callback
-      )
-    },
-
-    verifyEmail: async function(con, data, callback){
-      const {id_usuario, email} = data;
-      console.log("email: " + email + "\nid_usuario: " + id_usuario)
-      await con.query(
-        `
-        SELECT COUNT(*) AS num FROM Usuario
-        WHERE email = '${email}'
-        AND id_usuario != '${id_usuario}';`
-        ,
         callback
       )
     }

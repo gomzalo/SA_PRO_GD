@@ -10,7 +10,7 @@ content-type: application/json
     "name": "tepo",
     "lastname": "kun",
     "password": "Tepo1234/",
-    "email" : "tepochan@gmail.com",
+    "email": "tepochan@gmail.com",
     "phone": 54549984,
     "photo": "asdkfhjkasdljfklasdj",
     "gender": "M",
@@ -18,7 +18,8 @@ content-type: application/json
     "signup_date": "2022-02-27",
     "address": "Patcizia",
     "id_pais": 69,
-    "id_estado": 0,
+    "id_estado": 1,
+    "id_rol": 3,
     "age": 21,
     "membership": "True"
 }

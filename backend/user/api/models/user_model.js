@@ -6,6 +6,20 @@ module.exports = {
       await con.query("SELECT * FROM Usuario;", callback)
     },
 
+    login: async function(con, data, callback) {
+      const {password, email} = data;
+      let cif_pass = cryptoJS.AES.encrypt(password, 'SiSaleSA_').toString();
+      console.log('email: ' + email + '\npass: ' + cif_pass + '\npassword: ' + password);
+      await con.query(
+        `
+        SELECT * FROM Usuario
+        WHERE email = '${email}'
+          AND pass = '${cif_pass}';
+        `,
+        callback
+      )
+    },
+
     add: async function(con, data, callback) {
       const {name, lastname, password, email, phone, photo, gender, birth_date, signup_date, address, id_pais, id_estado, id_rol, age, membership} = data;
       let cif_pass = cryptoJS.AES.encrypt(password, 'SiSaleSA_').toString();

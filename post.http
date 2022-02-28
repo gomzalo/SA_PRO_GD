@@ -7,20 +7,22 @@ POST http://localhost:5003/user/add HTTP/1.1
 content-type: application/json
 
 {
-    "name": "tepo",
-    "lastname": "kun",
-    "password": "Tepo1234/",
-    "email": "tepochan@gmail.com",
-    "phone": 54549984,
+    "name": "Gonzalo",
+    "lastname": "Garcia",
+    "password": "gomzalo123/",
+    "email": "gxmzalx@gmail.com",
+    "phone": 5668998,
     "photo": "asdkfhjkasdljfklasdj",
-    "gender": "M",
-    "birth_date": "1996-02-27",
-    "signup_date": "2022-02-27",
-    "address": "Patcizia",
-    "id_pais": 69,
-    "id_estado": 1,
+    "gender": "W",
+    "birth_date": "1998-02-27",
+    "signup_date": "2022-02-28",
+    "address": "Chinautla",
+    "id_pais": 100,
+    "id_estado": 2,
     "id_rol": 3,
-    "age": 21,
-    "membership": "True"
+    "age": 24,
+    "membership": 0
 }
 ###
+
+GET http://localhost:5003/user/email_confirmation?id=1 HTTP/1.1

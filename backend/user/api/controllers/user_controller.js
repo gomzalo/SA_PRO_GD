@@ -1,5 +1,6 @@
 const userm = require('../models/user_model');
 const { get_last_id, email_confirmation } = require('../models/user_model');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     all: function(req, res) {
@@ -26,6 +27,30 @@ module.exports = {
       });  
     },
     
+    login: async function(req, res) {
+      userm.login(req.con, req.body, async function(err, rows){
+        console.log(rows);
+        // const accessToken = generateAccessToken()
+        if(!err){
+          if(rows.length > 0){
+            res.status(200).send({
+              statusAccount: true,
+              msj: 'Logueado correctamente'
+            });
+          } else {
+            res.status(409).send({
+              msj: 'Error al iniciar sesion'
+            });
+          }
+        } else {
+          res.status(409).send({
+            msj: 'Error al iniciar sesion',
+            error: err.toString()
+          });
+        }
+      });  
+    },
+
     email_confirmation: function(req, res)   {
       userm.email_confirmation(req.con, req.query.id, function(err, rows){
         if(err){
@@ -78,6 +103,10 @@ module.exports = {
         return true;
       }
       return false;
+    },
+
+    generateAccessToken(user){
+      return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
     },
 
     validar_pass(pass, conf){

@@ -1,33 +1,27 @@
-<form [formGroup]="registroForm">
+<form [formGroup]="RegistroForm" autocomplete="off" novalidate (ngSubmit)="submit(RegistroForm.value)" class="content">
+  <mat-card-content >
+    <div class="center margin-dark" style="display:flex;flex-flow: column;">
 
-    <label for="first-name">Nombres: </label>
-    <input id="first-name" type="text" formControlName="first_name">
-  
-    <label for="last-name">Apellidos: </label>
-    <input id="last-name" type="text" formControlName="last_name">
+      <mat-form-field appearance="outline" class="center" >
+        <mat-label >Nombres: </mat-label>
+        <input matInput type="text" placeholder="Nombre" formControlName="first_name" id="first-name">
+      </mat-form-field>
 
-    <label for="pass">Contraseña: </label>
-    <input id="pass" type="text" formControlName="pass">
-    
-    <label for="pass">Confirmar Contraseña: </label>
-    <input id="pass" type="text" formControlName="pass">
-    
-    <label for="last-name">Apellidos: </label>
-    <input id="last-name" type="text" formControlName="last_name">
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Apellidos: </mat-label>
+        <input matInput type="text" placeholder="Apellido" formControlName="last_name" id="first-name">
+      </mat-form-field>
 
-    <label for="last-name">Apellidos: </label>
-    <input id="last-name" type="text" formControlName="last_name">
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Contraseña </mat-label>
+        <input matInput type="password" placeholder="Contraseña" formControlName="pass" id="first-name">
+      </mat-form-field>
 
-    <label for="last-name">Apellidos: </label>
-    <input id="last-name" type="text" formControlName="last_name">
-
-    <label for="last-name">Apellidos: </label>
-    <input id="last-name" type="text" formControlName="last_name">
-
-    <label for="last-name">Apellidos: </label>
-    <input id="last-name" type="text" formControlName="last_name">
-
-    <label for="last-name">Apellidos: </label>
-    <input id="last-name" type="text" formControlName="last_name">
-  
-  </form>
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Confirmar Contraseña </mat-label>
+        <input matInput type="password" placeholder="Confirmar Contraseña" formControlName="confirmpass"
+          id="first-name">
+      </mat-form-field>
+  </div>
+  </mat-card-content>
+</form>

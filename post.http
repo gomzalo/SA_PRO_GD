@@ -1,28 +1,52 @@
-### SERVER user ###
+# *******************************************
+# ************** USER SERVER ************** 
+# *******************************************
 
 GET http://localhost:5003/user/all HTTP/1.1
 
 ###
+# POST http://localhost:5003/user/add HTTP/1.1
+# content-type: application/json
+
+# {
+#     "name": "Tepo",
+#     "lastname": "Kun",
+#     "password": "Tepo123/",
+#     "email": "gomzalo@outlook.com",
+#     "phone": 5668998,
+#     "photo": "asdkfhjkasdljfklasdj",
+#     "gender": "M",
+#     "birth_date": "1997-02-27",
+#     "signup_date": "2022-02-28",
+#     "address": "Patcizia",
+#     "id_pais": 88,
+#     "id_estado": 2,
+#     "id_rol": 3,
+#     "age": 24,
+#     "membership": 0
+# }
+
 POST http://localhost:5003/user/add HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Tepo",
-    "lastname": "Kun",
-    "password": "Tepo123/",
-    "email": "gomzalo@outlook.com",
+    "name": "Martha",
+    "lastname": "Debaile",
+    "password": "Marta123/",
+    "email": "mclwithmusic@gmail.com",
     "phone": 5668998,
     "photo": "asdkfhjkasdljfklasdj",
     "gender": "M",
-    "birth_date": "1997-02-27",
-    "signup_date": "2022-02-28",
-    "address": "Patcizia",
+    "birth_date": "1993-02-27",
+    "signup_date": "2022-03-01",
+    "address": "Zona 10",
     "id_pais": 88,
     "id_estado": 2,
-    "id_rol": 1,
-    "age": 24,
+    "id_rol": 2,
+    "age": 33,
     "membership": 0
 }
+
 ###
 
 GET http://localhost:5003/user/email_confirmation?id=1 HTTP/1.1
@@ -32,10 +56,72 @@ POST http://localhost:5003/user/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "gxmzalx@gmail.com",
-    "password": "gomzalo123/"
+    "email": "gomzalo@outlook.com",
+    "password": "Tepo123/"
+}
+
+# POST http://localhost:5003/user/login HTTP/1.1
+# content-type: application/json
+
+# {
+#     "email": "gxmzalx@gmail.com",
+#     "password": "Bicho123/"
+# }
+
+###
+
+POST http://localhost:5003/user/send_email_confirmation HTTP/1.1
+content-type: application/json
+
+{
+    "email": "gomzalo@outlook.com"
 }
 
 ###
 
 GET http://localhost:5003/user/all_countries HTTP/1.1
+
+# *******************************************
+# ************** CLIENT SERVER ************** 
+# *******************************************
+
+GET http://localhost:5000/client/all HTTP/1.1
+
+###
+POST http://localhost:5000/client/add HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Ay mi madre",
+    "lastname": "El bicho",
+    "password": "Bicho123/",
+    "email": "gxmzalx@gmail.com",
+    "phone": 5668998,
+    "photo": "asdkfhjkasdljfklasdj",
+    "gender": "M",
+    "birth_date": "1985-02-05",
+    "signup_date": "2022-03-01",
+    "address": "Funchal, Portugal",
+    "id_pais": 172,
+    "id_estado": 2,
+    "id_rol": 3,
+    "age": 37,
+    "membership": 0
+}
+
+###
+
+POST http://localhost:5000/client/send_email_confirmation HTTP/1.1
+content-type: application/json
+
+{
+    "email": "gomzalo@outlook.com"
+}
+
+###
+
+GET http://localhost:5000/client/email_confirmation?id=4 HTTP/1.1
+
+###
+
+GET http://localhost:5000/client/all_countries HTTP/1.1

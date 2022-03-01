@@ -7,5 +7,6 @@ router.get('/all_countries', user_controller.all_countries);
 router.post('/add', user_controller.add);
 router.post('/login', user_controller.login);
 router.get('/email_confirmation', user_controller.email_confirmation);
+router.post('/send_email_confirmation', user_controller.send_email);
 
 module.exports = router

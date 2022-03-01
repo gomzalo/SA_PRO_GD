@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <label class="col-sm-8 col-form-label title">GESTOR DE SUCURSALES</label>
+                <button class="btn btn-cancel" (click)="goCancel()">CANCELAR</button>
+                <button class="btn btn-add" (click)="createbranch()">GUARDAR</button>
+            </div>
+        </div>
+
+        <div class="col-11 bg">
+            <form class="needs-validation" novalidate>
+                <br>
+                <div class="col-md-12 mb-3">
+                    <label class="title-span" for="validationCustom07">Empresa asignada</label>
+                    <select *ngIf="!editForm" (change)="getSelection($event)" class="form-control" id="manager">
+                      <option hidden value="" selected>Selecciona la empresa...</option>
+                      <option  *ngFor="let busines of business; index as i" value="{{busines.uid}}">{{ busines.name }}</option>
+                    </select>
+                    <select *ngIf="editForm" readonly (change)="getSelection($event)" class="form-control" id="manager">
+                        <option value="">{{ userEditInfo.business.name }}</option>
+                      </select>
+                  </div>
+                <div class="col-md-12 mb-3">
+                    <label class="title-span" for="validationCustom01">Nombre de la sucursal</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Nombre de la sucursal"
+                        [formControl]="branchsForm.controls['name']" required>
+                </div>
+                <br>
+            </form>
+        </div>
+        <br>
+        <br>
+        <div class="row center">
+            <button class="btn cancel" (click)="goCancel()">CANCELAR</button> &nbsp;
+            <button class="btn add" (click)="createbranch()">GUARDAR</button>
+        </div>
+        <br>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+.login-img {
+    width: 100%;
+    height: 85vh;
+    top: -5px;
+    left: -5px;
+    position: absolute;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: left;
+    object-position: left;
+    z-index: 1;
+}
+
+.logo_dash {
+    width: 175px;
+    position: absolute;
+    z-index: 2;
+    margin-left: 42%;
+    margin-top: 0px;
+}
+
+.margin{
+    margin-top: 25px;
+    margin-left: 5%; 
+
+    .boxi{
+        margin-left: 55px;
+    }
+}
+
+
+
+.boxes{
+    position: absolute;
+    width: 175px;
+    z-index: 2;
+    margin-top: 100px;
+}
+
+.boxes2{
+    position: absolute;
+    width: 175px;
+    z-index: 2;
+    margin-top: 250px;
+}
+
+.copy{
+    position: absolute;
+    z-index: 2;
+    color: #414042;
+    margin-top: 15px;
+    font-size: 10px;
+    text-align: center;
+    margin-left: 25%;
+}
+
+.icon{
+    position: absolute;
+    z-index: 3;
+    width: 60px;
+    margin-left: 20%;
+    margin-top: 20%;
+}
+
+.label{
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    font-size: 13px;
+    font-family: Roboto;
+    margin-bottom: 0;
+    margin-top: 110px;
+    margin-left: 5%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.label2{
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    font-size: 13px;
+    font-family: Roboto;
+    margin-bottom: 0;
+    margin-top: 110px;
+    margin-left: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+}

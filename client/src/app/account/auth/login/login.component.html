@@ -1,0 +1,36 @@
+<div class="container-fluid">
+	<div class="row">
+	  <div class="col-sm-4">
+		<img class="bg" src="assets/imgs/bg.png" alt="">
+
+		<div class="col-sm-4 login-section-wrapper">
+		  <div class="brand-wrapper">
+			<img src="assets/img/marketin.png" alt="logo" class="logo">
+		  </div>
+		  <div class="login-wrapper my-auto">
+			  <div class="form-group">
+				<img class="icon" src="assets/imgs/usuario.svg" alt="">
+				<input [(ngModel)]="email" type="email" name="email" id="email" class="form-control ip" placeholder="Usuario">
+			  </div>
+			  <br>
+			  <div class="form-group mb-4">
+				<img class="icon" src="assets/imgs/lock.png" alt="">
+				<input [(ngModel)]="password" type="password" name="password" id="password" class="form-control ip" placeholder="Contraseña">
+			  </div>
+			  <button (click)="handleLogin()" class="btn buton">INGRESAR</button>
+			<br> <br>
+			<!-- <a href="#!" class="forgot-password-link">¿Olvidaste tu contraseña?</a> -->
+			<!-- <p class="login-wrapper-footer-text">¿Olvidaste tu contraseña? </p> -->
+		  </div>
+		</div>
+	  </div>
+	  <div class="col-sm-8 px-0 d-none d-sm-block">
+		<h1 class="label">Login</h1>
+		<h1 class="label2">SOCCER STATS</h1>
+		<!-- <h1 class="label3">Industrial Hivimar</h1> -->
+
+		<p class="label-p">Adivina el resultado</p>
+		<img src="assets/imgs/7507.jpg" alt="login image" class="login-img">
+	  </div>
+	</div>
+  </div>

@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <label class="col-sm-2 col-form-label title">Usuarios</label>
+            <div class="row">
+                <select class="form-control input" id="uidUser">
+                    <option hidden value="" selected>ACCIONES EN LOTE</option>
+                    <option value="user">Accion 1</option>
+                    <option value="user">Accion 2</option>
+                    <option value="user">Accion 3</option>
+                </select> &nbsp;
+                <button class="btn boton">APLICAR</button>
+                <button class="btn boton2" (click)="addUser()">AÑADIR USUARIO</button>
+            </div>
+            <div class="table-responsive table_use">
+                <table class="table" id="excel-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let user of users; index as i"> 
+                        <tr>
+                            <th scope="row"> {{i+1}} </th>
+                            <td class="file-open"> {{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td *ngIf="user.roleType === 2">Usuario</td>
+                            <td *ngIf="user.roleType === 3">Administrador</td>
+                            <td>
+                                <!-- <app-feather-icons class="icon-edit" icon="edit"></app-feather-icons> &nbsp; -->
+                                <app-feather-icons (click)="goView(user)" style="color: blue;" icon="eye"></app-feather-icons> &nbsp;
+                                <app-feather-icons (click)="statusServiceUpdate(user.uid, 1)" *ngIf="user.status === 0" style="color: red;" icon="minus-circle"></app-feather-icons>
+                                <app-feather-icons (click)="statusServiceUpdate(user.uid, 0)" *ngIf="user.status === 1" style="color: green;" icon="plus-circle"></app-feather-icons>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

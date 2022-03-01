@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <label class="col-sm-8 col-form-label title">GESTOR DE EMPRESAS</label>
+                <button class="btn btn-cancel" (click)="goCancel()">CANCELAR</button>
+                <button class="btn btn-add" (click)="createBusiness()">GUARDAR</button>
+            </div>
+        </div>
+
+        <div class="col-11 bg">
+            <form class="needs-validation" novalidate>
+                <br>
+                <div class="col-md-12 mb-3">
+                    <label for="validationCustom01" class="title-span">Nombre de la empresa</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Nombre de la empresa"
+                        [formControl]="businessForm.controls['name']" required>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="title-span" for="validationCustom01">Nombre del encargado</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Nombre del encargado"
+                        [formControl]="businessForm.controls['manager']" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="title-span">* Logo de la empresa</label>
+                    <input type="file" class="form-control" (change)="fileBusiness($event)" accept=".png,.jpg,.pdf"
+                        [formControl]="businessForm.controls['icon']" />
+                </div>
+                <br>
+            </form>
+        </div>
+        <br>
+        <br>
+        <div class="row center">
+            <button class="btn cancel" (click)="goCancel()">CANCELAR</button> &nbsp;
+            <button class="btn add" (click)="createBusiness()">GUARDAR</button>
+        </div>
+        <br>
+    </div>
+</div>

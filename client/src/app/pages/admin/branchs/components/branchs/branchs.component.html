@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <label class="col-sm-8 col-form-label title">Sucursales de empresas</label>
+            <div class="row">
+                <select class="form-control input" id="uidUser">
+                    <option hidden value="" selected>ACCIONES EN LOTE</option>
+                    <option value="user">Accion 1</option>
+                    <option value="user">Accion 2</option>
+                    <option value="user">Accion 3</option>
+                </select> &nbsp;
+                <button class="btn boton">APLICAR</button>
+                <button class="btn boton2" (click)="addBranch()">AÑADIR SUCURSAL</button>
+            </div>
+            <div class="table-responsive table_use">
+                <table class="table" id="excel-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Empresa</th>
+                            <th scope="col">Sucursal</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let branch of branchs; index as i"> 
+                        <tr>
+                            <th scope="row"> {{i+1}} </th>
+                            <td class="file-open"> {{ branch.business.name }} </td>
+                            <td> {{ branch.name }} </td>
+                            <td *ngIf="branch.status === 1" class="active">Activo</td>
+                            <td *ngIf="branch.status === 0" class="cancel">Cancelado</td>
+                            <!-- <td >Administrador</td> -->
+                            <td>
+                                <!-- <app-feather-icons class="icon-edit" icon="edit"></app-feather-icons> &nbsp; -->
+                                <app-feather-icons (click)="goEdit(branch)" style="color: blue;" icon="edit"></app-feather-icons> &nbsp;
+                                <app-feather-icons *ngIf="branch.status === 0" (click)="statusServiceUpdate(branch.uid, 1)" style="color: red;" icon="minus-circle"></app-feather-icons>
+                                <app-feather-icons *ngIf="branch.status === 1" (click)="statusServiceUpdate(branch.uid, 0)" style="color: green;" icon="plus-circle"></app-feather-icons>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

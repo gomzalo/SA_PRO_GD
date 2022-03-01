@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <label class="col-sm-8 col-form-label title">Asignación de proyectos</label>
+            <div class="row">
+                <select class="form-control input" id="uidUser">
+                    <option hidden value="" selected>ACCIONES EN LOTE</option>
+                    <option value="user">Accion 1</option>
+                    <option value="user">Accion 2</option>
+                    <option value="user">Accion 3</option>
+                </select> &nbsp;
+                <button class="btn boton">APLICAR</button>
+            </div>
+            <div class="table-responsive table_use">
+                <table class="table" id="excel-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Proyecto</th>
+                            <th scope="col">Empresa</th>
+                            <th scope="col">Encargado de proyecto</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let proyect of proyects; index as i"> 
+                        <tr>
+                            <th scope="row"> {{i+1}} </th>
+                            <td> {{ proyect.proyectName }} </td>
+                            <td class="file-open"> {{ proyect.business.name }} </td>
+                            <td> {{ proyect.proyectManager }} </td>
+                            <td *ngIf="proyect.status === 1" class="active">Activo</td>
+                            <td *ngIf="proyect.status === 0" class="cancel">Cancelado</td>                            <!-- <td >Administrador</td> -->
+                            <td>
+                                <!-- <app-feather-icons class="icon-edit" icon="edit"></app-feather-icons> &nbsp; -->
+                                <app-feather-icons (click)="goEdit(proyect)" style="color: blue;" icon="check-square"></app-feather-icons> &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

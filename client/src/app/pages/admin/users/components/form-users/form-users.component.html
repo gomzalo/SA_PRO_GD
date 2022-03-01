@@ -1,0 +1,154 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <label class="col-sm-8 col-form-label title">{{title}}</label>
+                <button class="btn btn-cancel" (click)="goCancel()">CANCELAR</button>
+                <button class="btn btn-add" (click)="createUser()">GUARDAR</button>
+            </div>
+        </div>
+        <div class="col-11 bg">
+            <form class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-12">
+                        <input [formControl]="userForm.controls['name']" type="text" class="form-control input"
+                            placeholder="NOMBRE DEL USUARIO">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['email']" type="text" class="form-control input"
+                            placeholder="EMAIL DEL USUARIO">
+                    </div>
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['password']" type="password" class="form-control input"
+                            placeholder="CONTRASEÑA DEL USUARIO">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['messIne']" type="text" class="form-control input"
+                            placeholder="COMENTARIO DEL INE">
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <br>
+                            <input type="file" class="form-control" (change)="readUrl($event, 0)"
+                                accept=".png,.jpg,.pdf" [formControl]="userForm.controls['pathFile0']" />
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['messDomicilio']" type="text" class="form-control input"
+                            placeholder="COMENTARIO DEL COMPROBATE DOMICILIO  (luz o agua)">
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <br>
+                            <input type="file" class="form-control" (change)="readUrl($event, 1)"
+                                accept=".png,.jpg,.pdf" [formControl]="userForm.controls['pathFile1']" />
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['messCurp']" type="text" class="form-control input"
+                            placeholder="COMENTARIO DEL CURP">
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <br>
+                            <input type="file" class="form-control" (change)="readUrl($event, 2)"
+                                accept=".png,.jpg,.pdf" [formControl]="userForm.controls['pathFile2']" />
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['messImss']" type="text" class="form-control input"
+                            placeholder="COMENTARIO DEL COMPROBANTE IMSS">
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <br>
+                            <input type="file" class="form-control" (change)="readUrl($event, 3)"
+                                accept=".png,.jpg,.pdf" [formControl]="userForm.controls['pathFile3']" />
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['messContrato']" type="text" class="form-control input"
+                            placeholder="COMENTARIO DEL CONTRATO DE TRABAJO FIRMADO ">
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <br>
+                            <input type="file" class="form-control" (change)="readUrl($event, 4)"
+                                accept=".png,.jpg,.pdf" [formControl]="userForm.controls['pathFile4']" />
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="row">
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['messActa']" type="text" class="form-control input"
+                            placeholder="COMENTARIO DEL ACTA NACIMIENTO">
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <br>
+                            <input type="file" class="form-control" (change)="readUrl($event, 5)"
+                                accept=".png,.jpg,.pdf" [formControl]="userForm.controls['pathFile5']" />
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['messRfc']" type="text" class="form-control input"
+                            placeholder="COMENTARIO DEL RFC SAT">
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <br>
+                            <input type="file" class="form-control" (change)="readUrl($event, 6)"
+                                accept=".png,.jpg,.pdf" [formControl]="userForm.controls['pathFile6']" />
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['messBancaria']" type="text" class="form-control input"
+                            placeholder="COMENTARIO DEL CARATULA BANCARIA">
+                    </div>
+                    <div class="col-6">
+                        <div>
+                            <br>
+                            <input type="file" class="form-control" (change)="readUrl($event, 7)"
+                                accept=".png,.jpg,.pdf" [formControl]="userForm.controls['pathFile7']" />
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <br>
+        <br>
+        <div class="row center">
+            <button class="btn cancel" (click)="goCancel()">CANCELAR</button> &nbsp;
+            <button class="btn add" (click)="createUser()">AÑADIR NUEVO USUARIO</button>
+        </div>
+        <br>
+    </div>
+</div>

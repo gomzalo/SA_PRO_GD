@@ -1,4 +1,4 @@
-### SERVER EDITAR ###
+### SERVER user ###
 
 GET http://localhost:5003/user/all HTTP/1.1
 
@@ -35,3 +35,7 @@ content-type: application/json
     "email": "gxmzalx@gmail.com",
     "password": "gomzalo123/"
 }
+
+###
+
+GET http://localhost:5003/user/all_countries HTTP/1.1

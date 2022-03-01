@@ -1,10 +1,16 @@
 const userm = require('../models/user_model');
 const { get_last_id, email_confirmation } = require('../models/user_model');
-const jwt = require('jsonwebtoken');
+var cryptoJS = require('crypto-js');
 
 module.exports = {
     all: function(req, res) {
       userm.all(req.con, function(err, rows) {
+        res.status(200).send(rows);
+      })
+    },
+
+    all_countries: function(req, res) {
+      userm.all_countries(req.con, function(err, rows) {
         res.status(200).send(rows);
       })
     },
@@ -28,15 +34,28 @@ module.exports = {
     },
     
     login: async function(req, res) {
-      userm.login(req.con, req.body, async function(err, rows){
-        console.log(rows);
-        // const accessToken = generateAccessToken()
+      userm.login(req.con, req.body, async function(err, rows, fields){
+        // console.log(rows);
+        let datos = rows[0];
+        let pass = req.body.password;
+        let id_user_rol = {id_usuario: datos.id_usuario, id_rol: datos.id_rol};
+        const accessToken = userm.generateAccessToken(id_user_rol);
         if(!err){
           if(rows.length > 0){
-            res.status(200).send({
-              statusAccount: true,
-              msj: 'Logueado correctamente'
-            });
+            let pass_bytes = cryptoJS.AES.decrypt(datos.pass, 'SiSaleSA_');
+            let uncif_pass = pass_bytes.toString(cryptoJS.enc.Utf8);
+            if(uncif_pass == pass){
+              res.status(200).send({
+                data: datos,
+                statusAccount: datos.id_estado.toString(),
+                token: accessToken,
+                msj: 'Logueado correctamente'
+              });
+            } else {
+              res.status(409).send({
+                msj: 'Error al iniciar sesion, contraseña incorrecta.'
+              });
+            }
           } else {
             res.status(409).send({
               msj: 'Error al iniciar sesion'
@@ -103,10 +122,6 @@ module.exports = {
         return true;
       }
       return false;
-    },
-
-    generateAccessToken(user){
-      return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
     },
 
     validar_pass(pass, conf){

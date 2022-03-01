@@ -1,23 +1,29 @@
 var cryptoJS = require('crypto-js');
 const nodemailer = require("nodemailer");
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     all: async function(con, callback) {
       await con.query("SELECT * FROM Usuario;", callback)
     },
 
+    all_countries: async function(con, callback){
+      await con.query("SELECT * FROM Pais;", callback)
+    },
+
     login: async function(con, data, callback) {
       const {password, email} = data;
-      let cif_pass = cryptoJS.AES.encrypt(password, 'SiSaleSA_').toString();
-      console.log('email: ' + email + '\npass: ' + cif_pass + '\npassword: ' + password);
       await con.query(
         `
         SELECT * FROM Usuario
-        WHERE email = '${email}'
-          AND pass = '${cif_pass}';
+        WHERE email = '${email}';
         `,
         callback
       )
+    },
+
+    generateAccessToken: function(id_user_rol){
+      return jwt.sign(id_user_rol, process.env.ACCESS_TOKEN_SECRET);
     },
 
     add: async function(con, data, callback) {

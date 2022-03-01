@@ -7,19 +7,19 @@ POST http://localhost:5003/user/add HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Gonzalo",
-    "lastname": "Garcia",
-    "password": "gomzalo123/",
-    "email": "gxmzalx@gmail.com",
+    "name": "Tepo",
+    "lastname": "Kun",
+    "password": "Tepo123/",
+    "email": "gomzalo@outlook.com",
     "phone": 5668998,
     "photo": "asdkfhjkasdljfklasdj",
     "gender": "M",
-    "birth_date": "1998-02-27",
+    "birth_date": "1997-02-27",
     "signup_date": "2022-02-28",
-    "address": "Chinautla",
-    "id_pais": 100,
+    "address": "Patcizia",
+    "id_pais": 88,
     "id_estado": 2,
-    "id_rol": 3,
+    "id_rol": 1,
     "age": 24,
     "membership": 0
 }

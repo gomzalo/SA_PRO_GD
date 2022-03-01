@@ -80,7 +80,7 @@ module.exports = {
               <head>
                   <title>Soccer Stats SIUUU</title>
                   <meta name="viewport" content="width=device-width, initial-scale=1">
-                  <link rel="stylesheet" href="https://bootswatch.com/5/vapor/bootstrap.css">
+                  <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
                   <meta charset="utf-8" />
               </head>
               <body>
@@ -88,6 +88,7 @@ module.exports = {
                   <h1>¡No se ha podido confirmar su cuenta!</h1>
                   Puede que ya lo hayas hecho.
                   <a href="http://0.0.0.0:4200/login">Iniciar sesión</a>
+                  <a type="button" class="btn btn-primary btn-lg" href="http://localhost:4200/login">Iniciar sesión</a>
                 </center>
               </body>
             </html>
@@ -101,13 +102,13 @@ module.exports = {
               <head>
                 <title>Soccer Stats SIUUU</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link rel="stylesheet" href="https://bootswatch.com/5/vapor/bootstrap.css">
+                <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
                 <meta charset="utf-8" />
               </head>
               <body>
                 <center>
                   <h1>¡Se ha confirmado su cuenta!</h1>
-                  <a href="http://0.0.0.0:4200/login">Iniciar sesión</a>
+                  <a type="button" class="btn btn-primary btn-lg" href="http://localhost:4200/login">Iniciar sesión</a>
                 </center>
               </body>
             </html>

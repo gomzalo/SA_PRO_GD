@@ -8,6 +8,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+  genero=[{id:'M',value:'Masculino'},{id:'F',value:'Femenino'},{id:'a',value:'Lo que sea'},]
   form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -26,7 +27,7 @@ export class RegistroComponent implements OnInit {
     id_pais: new FormControl('',[Validators.required]),
     id_estado: new FormControl('',[Validators.required]),
     id_rol: new FormControl('',[Validators.required]),
-    age: new FormControl('',[Validators.required]),
+    age: new FormControl('',[Validators.required,Validators.min(1)]),
     membership: new FormControl('',[Validators.required]),
     
   });

@@ -139,16 +139,16 @@ export class FormUsersComponent implements OnInit {
   }
 
   createUserAuth(userInfo: any) {
-    this.authService.createUser(userInfo)
-      .then((userAuth) => {
-        const {
-          user
-        } = userAuth;
-        this.createUserInfo(userInfo, user.uid);
-      }).catch((error: any) => {
-        console.log(error);
-        // this.errorAlert('Error en Creación de cuenta: GL', 'Verifica si una cuenta tiene el correo electronicó asignado.');
-      });
+    // this.authService.createUser(userInfo)
+    //   .then((userAuth) => {
+    //     const {
+    //       user
+    //     } = userAuth;
+    //     this.createUserInfo(userInfo, user.uid);
+    //   }).catch((error: any) => {
+    //     console.log(error);
+    //     // this.errorAlert('Error en Creación de cuenta: GL', 'Verifica si una cuenta tiene el correo electronicó asignado.');
+    //   });
   }
 
   async createUserInfo(userInfo: any, uidAuth: any) {

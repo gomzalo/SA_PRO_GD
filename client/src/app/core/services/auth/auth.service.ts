@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from  "@angular/fire/auth";
+
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from "../../../../environments/environment"
 
 // Libs
 import { CookieService } from 'ngx-cookie-service';
@@ -9,17 +10,16 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class AuthService {
-  url:any;
+  url=environment.apiUser;
   constructor(
-    private afAuth: AngularFireAuth,
     private cookieService: CookieService,
     private http:HttpClient
   ) {
-    this.url = "http://localhost:5000/";
+    
    }
 
   isLoggedIn() {
-    return this.afAuth.authState;
+    //return this.afAuth.authState;
   }
 
   login(data: any) {
@@ -27,11 +27,11 @@ export class AuthService {
   }
 
   logout() {
-    return this.afAuth.signOut();
+   // return this.afAuth.signOut();
   }
 
   forgotPassword(email: string) {
-    return this.afAuth.sendPasswordResetEmail(email);
+    //return this.afAuth.sendPasswordResetEmail(email);
   }
 
   resetPassword(password: string){
@@ -40,11 +40,11 @@ export class AuthService {
   }
 
   createUser(user:any){
-    return this.afAuth.createUserWithEmailAndPassword(user.email, user.password);
+   // return this.afAuth.createUserWithEmailAndPassword(user.email, user.password);
   }
 
   resetPasswordEmail(email:string){
-    return this.afAuth.sendPasswordResetEmail(email);
+    //return this.afAuth.sendPasswordResetEmail(email);
   }
 
   getUserInfo(){

@@ -36,7 +36,6 @@ import { AngularDualListBoxModule } from 'angular-dual-listbox';
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFirestoreModule,

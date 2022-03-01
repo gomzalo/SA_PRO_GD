@@ -38,31 +38,36 @@ module.exports = {
         // console.log(rows);
         let datos = rows[0];
         let pass = req.body.password;
-        let id_user_rol = {id_usuario: datos.id_usuario, id_rol: datos.id_rol};
-        const accessToken = userm.generateAccessToken(id_user_rol);
+        let id_user_rol;
         if(!err){
           if(rows.length > 0){
             let pass_bytes = cryptoJS.AES.decrypt(datos.pass, 'SiSaleSA_');
             let uncif_pass = pass_bytes.toString(cryptoJS.enc.Utf8);
             if(uncif_pass == pass){
+              id_user_rol = {id_usuario: datos.id_usuario, id_rol: datos.id_rol};
+              const accessToken = userm.generateAccessToken(id_user_rol);
               res.status(200).send({
                 data: datos,
                 statusAccount: datos.id_estado.toString(),
                 token: accessToken,
+                status: true,
                 msj: 'Logueado correctamente'
               });
             } else {
               res.status(409).send({
+                status: false,
                 msj: 'Error al iniciar sesion, contraseña incorrecta.'
               });
             }
           } else {
             res.status(409).send({
-              msj: 'Error al iniciar sesion'
+              status: false,
+              msj: 'Error al iniciar sesion, usuario no encontrado'
             });
           }
         } else {
           res.status(409).send({
+            status: false,
             msj: 'Error al iniciar sesion',
             error: err.toString()
           });
@@ -75,6 +80,7 @@ module.exports = {
         if(err){
           res.status(409).send(
             `
+            <!--html-->
             <!doctype html>
             <html lang="en">
               <head>
@@ -87,16 +93,17 @@ module.exports = {
                 <center>
                   <h1>¡No se ha podido confirmar su cuenta!</h1>
                   Puede que ya lo hayas hecho.
-                  <a href="http://0.0.0.0:4200/login">Iniciar sesión</a>
                   <a type="button" class="btn btn-primary btn-lg" href="http://localhost:4200/login">Iniciar sesión</a>
                 </center>
               </body>
             </html>
+            <!--!html-->
                 `
           );
         } else {
           res.status(200).send(
             `
+            <!--html-->
             <!doctype html>
             <html lang="en">
               <head>
@@ -112,6 +119,7 @@ module.exports = {
                 </center>
               </body>
             </html>
+            <!--!html-->
                 `
           );
         }

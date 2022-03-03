@@ -1,0 +1,10 @@
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+  
+  .margin-dark {
+    box-shadow: 20px 20px 50px grey;
+    border-radius: 15px;
+  }

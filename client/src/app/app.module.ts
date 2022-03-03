@@ -6,8 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 
-// Firebase
-import { AngularFireModule } from "@angular/fire";
+
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -24,6 +23,7 @@ import {EditorModule} from 'primeng/editor';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MatSelectModule } from '@angular/material/select';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
+import { MaterialModule } from 'src/material.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { AngularDualListBoxModule } from 'angular-dual-listbox';
     EditorModule,
     HttpClientModule,
     NgxDropzoneModule,
+    MaterialModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [

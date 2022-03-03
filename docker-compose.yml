@@ -1,0 +1,22 @@
+version: "3"
+services:
+  server_client:
+    build: ./backend/client
+    container_name: client
+    ports:
+      - "5000:5000"
+    restart: on-failure
+  server_user:
+    build: ./backend/user
+    container_name: user
+    ports:
+      - "5003:5003" 
+    restart: on-failure
+  # frontend:
+  #   build: ./Frontend
+  #   container_name: frontend
+  #   ports:
+  #     - 80:80
+  #   depends_on:
+  #     - server_client
+  #   restart: on-failure

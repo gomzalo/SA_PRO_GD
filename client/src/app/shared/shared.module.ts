@@ -8,10 +8,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ContentLayoutComponent } from './components/layout/content-layout/content-layout.component';
 import { FeatherIconsComponent } from './components/feather-icons/feather-icons.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-
-// services
-import { NavService } from "./services/nav.service";
-
+import { HttpClientModule } from '@angular/common/http';
 // Directives
 import { ToggleFullscreenDirective } from "./directives/fullscreen.directive";
 
@@ -33,12 +30,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     FormsModule,
     NgbModule,
+    HttpClientModule
   ],
   exports: [
     FeatherIconsComponent,
   ],
   providers: [
-    NavService
+
   ]
 })
 export class SharedModule { }

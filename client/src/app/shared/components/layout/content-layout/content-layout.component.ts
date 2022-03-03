@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { NavService } from '../../../services/nav.service';
 import * as feather from 'feather-icons';
-import { CustomizerService } from '../../../services/customizer.service';
+
 
 @Component({
   selector: 'app-content-layout',
@@ -10,7 +10,7 @@ import { CustomizerService } from '../../../services/customizer.service';
 })
 export class ContentLayoutComponent implements OnInit, AfterViewInit {
   
-  constructor(public navServices: NavService, public customizer: CustomizerService) {   }
+  constructor(public navServices: NavService) {   }
 
   ngOnInit() {
   }

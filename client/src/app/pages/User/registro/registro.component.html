@@ -1,4 +1,4 @@
- <form [formGroup]="RegistroForm" autocomplete="off" novalidate (ngSubmit)="submit(RegistroForm.value)" class="content">
+<form [formGroup]="RegistroForm" autocomplete="off" novalidate (ngSubmit)="submit(RegistroForm.value)" class="content">
   <mat-card-content>
     <div class="center margin-dark" style="display:flex;flex-flow: column;">
 
@@ -25,7 +25,7 @@
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Genero </mat-label>
-        <mat-select formControlName="id_pais" id="pais">
+        <mat-select formControlName="gender" id="gender">
           <mat-option *ngFor="let gen of genero" [value]="gen.id">
             {{gen.value}}
           </mat-option>
@@ -50,21 +50,35 @@
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Pais </mat-label>
-        <mat-select formControlName="gender" id="genero">
-          <mat-option *ngFor="let gen of genero" [value]="gen.id">
-            {{gen.value}}
+        <mat-select formControlName="id_pais" id="pais">
+          <mat-option *ngFor="let pais of paises" [value]="pais.id_pais">
+            {{pais.nicename}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Teléfono </mat-label>
+        <input matInput type="tel" placeholder="Teléfono" formControlName="phone" id="phone">
+      </mat-form-field>
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Edad </mat-label>
-        <input matInput type="number" placeholder="Edad" formControlName="age"
-          id="age">
+        <input matInput type="number" placeholder="Edad" formControlName="age" id="age">
       </mat-form-field>
 
+      <mat-label class="margenes">Foto de perfil </mat-label>
+      <input 
+      formControlName="photo"
+      id="file" 
+      type="file" 
+      class="form-control margenes"
+      (change)="onFileChange($event)">
+     
+
+      <br />
+
+      <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>
 
     </div>
   </mat-card-content>
-</form> 
+</form>

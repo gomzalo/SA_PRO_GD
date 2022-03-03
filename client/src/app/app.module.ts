@@ -43,7 +43,6 @@ import { MaterialModule } from 'src/material.module';
     EditorModule,
     HttpClientModule,
     NgxDropzoneModule,
-    MaterialModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [

@@ -1,0 +1,89 @@
+<form [formGroup]="RegistroForm" autocomplete="off" novalidate (ngSubmit)="submit(RegistroForm.value)" class="content">
+  <mat-card-content>
+    <div class="center margin-dark" style="display:flex;flex-flow: column;">
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Nombres: </mat-label>
+        <input matInput type="text" placeholder="Nombre" formControlName="name" id="first-name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Apellidos: </mat-label>
+        <input matInput type="text" placeholder="Apellido" formControlName="lastname" id="last-name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Email: </mat-label>
+        <input matInput type="email" placeholder="Email" formControlName="email" id="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Contraseña </mat-label>
+        <input matInput type="password" placeholder="Contraseña" formControlName="password" id="password">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Confirmar Contraseña </mat-label>
+        <input matInput type="password" placeholder="Confirmar Contraseña" formControlName="confirmpass"
+          id="confirm-pass">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Genero </mat-label>
+        <mat-select formControlName="gender" id="gender">
+          <mat-option *ngFor="let gen of genero" [value]="gen.id">
+            {{gen.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Fecha Nacimiento </mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birth_date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Dirección </mat-label>
+        <textarea matInput id="address" formControlName="address" placeholder="Dirección"
+          formControlName="address">
+       </textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Pais </mat-label>
+        <mat-select formControlName="id_pais" id="pais">
+          <mat-option *ngFor="let pais of paises" [value]="pais.id_pais">
+            {{pais.nicename}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Teléfono </mat-label>
+        <input matInput type="tel" placeholder="Teléfono" formControlName="phone" id="phone">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Edad </mat-label>
+        <input matInput type="number" placeholder="Edad" formControlName="age" id="age">
+      </mat-form-field>
+
+      <mat-label class="margenes">Foto de perfil </mat-label>
+      <input 
+      formControlName="photo"
+      id="file" 
+      type="file" 
+      class="form-control margenes"
+      (change)="onFileChange($event)">
+     
+
+      <br />
+
+      <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>
+
+    </div>
+  </mat-card-content>
+</form>

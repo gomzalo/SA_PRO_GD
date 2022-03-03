@@ -1,0 +1,50 @@
+.title{
+    color: #041D50;
+    font-size: 35px;
+    font-family: Roboto;
+    font-weight: bold;
+}
+
+.input{
+    width: 200px;
+    font-size: 12px;
+    color: #C3C3C3;
+    border-radius: 8px;
+    font-family: Roboto;
+    position: absolute;
+    left: 20px;
+}
+
+.boton{
+    color: #C3C3C3;
+    background: transparent;
+    border: 1px solid #C3C3C3;
+    border-radius: 8px;
+    height: 32px;
+    font-family: Roboto;
+    position: absolute;
+    left: 240px;
+}
+
+.boton2{
+    color: #FFFFFF;
+    background: #041D50;
+    border-radius: 8px;
+    height: 32px;
+    font-family: Roboto;
+    right: 50px;
+    position: absolute;
+}
+
+.table_use{
+    position: absolute;
+    top: 110px;
+}
+
+.icon-trash{
+    color: #C90E2D;
+}
+
+.icon-edit{
+    color: #041D50;
+}

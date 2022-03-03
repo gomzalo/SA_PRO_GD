@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <!-- <div class="row">
+                <label class="col-sm-8 col-form-label title">Informacion del usuario</label>
+                <button class="btn btn-cancel">CANCELAR</button>
+                <button class="btn btn-add">GUARDAR</button>
+            </div> -->
+        </div>
+
+        <div class="col-11 bg">
+            <form class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-12">
+                        <input [formControl]="userForm.controls['name']" type="text" class="form-control input"
+                            placeholder="NOMBRE DEL USUARIO">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <input [formControl]="userForm.controls['email']" type="text" class="form-control input"
+                            placeholder="EMAIL DEL USUARIO">
+                    </div>
+                    <!-- <div class="col-6">
+                        <input [formControl]="userForm.controls['password']" type="password" class="form-control input"
+                            placeholder="CONTRASEÑA DEL USUARIO">
+                    </div> -->
+                </div>
+                <br>
+                <div *ngFor="let user of userEditInfo.files; index as i">
+                    <a href="{{ user.path }}" target="_blank" alt="..." class="span">Ver imágen {{i+1}} </a>
+                    <!-- <img class="img" src="{{ user.path }}"> -->
+                    <br>
+                </div>
+            </form>
+        </div>
+        <br>
+        <br>
+        <!-- <div class="row center">
+            <button class="btn cancel">CANCELAR</button> &nbsp;
+            <button class="btn add">AÑADIR NUEVO USUARIO</button>
+        </div> -->
+        <br>
+    </div>
+</div>

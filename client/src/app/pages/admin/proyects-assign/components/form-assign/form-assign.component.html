@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <label class="col-sm-8 col-form-label title">ASIGNACIÓN DE PROYECTOS</label>
+                <label class="col-sm-8 col-form-label title2">{{ userEditInfo.proyectName }}</label>
+                <button class="btn btn-cancel" (click)="goCancel()">CANCELAR</button>
+                <button class="btn btn-add" (click)="createProyect()">GUARDAR</button>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <p></p>
+            <dual-list [sort]="keepSorted" [source]="source" [key]="key" [display]="display" [filter]="filter"
+                [(destination)]="confirmed" height="265px" [format]="format" [disabled]="disabled"></dual-list>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row center">
+            <button class="btn cancel" (click)="goCancel()">CANCELAR</button> &nbsp;
+            <button class="btn add" (click)="createProyect()">GUARDAR</button>
+        </div>
+    </div>
+</div>

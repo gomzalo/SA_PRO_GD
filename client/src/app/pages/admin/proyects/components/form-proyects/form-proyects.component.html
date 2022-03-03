@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <label class="col-sm-8 col-form-label title">GESTOR DE PROYECTOS</label>
+                <button class="btn btn-cancel" (click)="goCancel()">CANCELAR</button>
+                <button class="btn btn-add" (click)="createProyect()">GUARDAR</button>
+            </div>
+        </div>
+
+        <div class="col-11 bg">
+            <form class="needs-validation" novalidate>
+                <br>
+                <div class="col-md-12 mb-3">
+                    <label class="title-span" for="validationCustom01">Nombre del proyecto</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Nombre del proyecto"
+                        [formControl]="proyectForm.controls['proyectName']" required>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="title-span" for="validationCustom01">Descripción del proyecto</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Descripcion del proyecto"
+                        [formControl]="proyectForm.controls['proyectDescription']" required>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="title-span" for="validationCustom01">Actividades del proyecto</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Actividades del proyecto"
+                        [formControl]="proyectForm.controls['proyectActivities']" required>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="title-span" for="validationCustom07">Sucursal asignada</label>
+                    <select *ngIf="!editForm" (change)="getSelection($event)" class="form-control" id="manager">
+                      <option hidden value="" selected>Selecciona la empresa...</option>
+                      <option  *ngFor="let busines of business; index as i" value="{{busines.uid}}">Sucursal: {{ busines.name }} - Empresa: {{ busines.business.name }}</option>
+                    </select>
+                    <select *ngIf="editForm" readonly (change)="getSelection($event)" class="form-control" id="manager">
+                        <option value="">{{ userEditInfo.business.name }}</option>
+                      </select>
+                  </div>
+                <div class="col-md-12 mb-3">
+                    <label class="title-span" for="validationCustom01">Nombre del supervisor del proyecto</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="Nombre del encargado"
+                        [formControl]="proyectForm.controls['proyectManager']" required>
+                </div>
+                <br>
+            </form>
+        </div>
+        <br>
+        <br>
+        <div class="row center">
+            <button class="btn cancel" (click)="goCancel()">CANCELAR</button> &nbsp;
+            <button class="btn add" (click)="createProyect()">GUARDAR</button>
+        </div>
+        <br>
+    </div>
+</div>

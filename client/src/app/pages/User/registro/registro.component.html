@@ -4,17 +4,22 @@
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Nombres: </mat-label>
-        <input matInput type="text" placeholder="Nombre" formControlName="first_name" id="first-name">
+        <input matInput type="text" placeholder="Nombre" formControlName="name" id="first-name">
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Apellidos: </mat-label>
-        <input matInput type="text" placeholder="Apellido" formControlName="last_name" id="last-name">
+        <input matInput type="text" placeholder="Apellido" formControlName="lastname" id="last-name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="center">
+        <mat-label>Email: </mat-label>
+        <input matInput type="email" placeholder="Email" formControlName="email" id="email">
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Contraseña </mat-label>
-        <input matInput type="password" placeholder="Contraseña" formControlName="pass" id="pass">
+        <input matInput type="password" placeholder="Contraseña" formControlName="password" id="password">
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="center">
@@ -35,7 +40,7 @@
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Fecha Nacimiento </mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="fecha_nac">
+        <input matInput [matDatepicker]="picker" formControlName="birth_date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -43,8 +48,8 @@
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Dirección </mat-label>
-        <textarea matInput id="direccion" formControlName="direccion" placeholder="Dirección"
-          formControlName="direccion">
+        <textarea matInput id="address" formControlName="address" placeholder="Dirección"
+          formControlName="address">
        </textarea>
       </mat-form-field>
 

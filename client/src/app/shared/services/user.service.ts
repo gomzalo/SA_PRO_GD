@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   insertUser(user){
-    return this.http.post<any>(environment.apiUser, user)
+    return this.http.post<any>(environment.apiClient+'create', user)
     .pipe(
       catchError(this.handleError)
     );

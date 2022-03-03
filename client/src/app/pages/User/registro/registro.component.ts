@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { PaisService } from '../../../shared/services/pais.service'
+import { UserService } from '../../../shared/services/user.service'
 
 
 @Component({
@@ -11,30 +12,38 @@ import { PaisService } from '../../../shared/services/pais.service'
 export class RegistroComponent implements OnInit {
   genero = [{ id: 'M', value: 'Masculino' }, { id: 'F', value: 'Femenino' }, { id: 'a', value: 'Lo que sea' },]
   paises = []
-  photo64= null
+  photo64 = null
   RegistroForm = new FormGroup({
-    first_name: new FormControl('', [Validators.required]),
-    last_name: new FormControl('', [Validators.required]),
-    pass: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required]),
+    lastname: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
     confirmpass: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
-    fecha_nac: new FormControl('', [Validators.required]),
-    fecha_registro: new FormControl(new Date(), [Validators.required]),
-    direccion: new FormControl('', [Validators.required]),
+    birth_date: new FormControl('', [Validators.required]),
+    signup_date: new FormControl(this.formatDate(new Date()), [Validators.required]),
+    address: new FormControl('', [Validators.required]),
     id_pais: new FormControl('', [Validators.required]),
     id_estado: new FormControl(2, [Validators.required]),
     id_rol: new FormControl(3, [Validators.required]),
-    phone : new FormControl('', [Validators.required,Validators.minLength(8)]),
-    photo : new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    photo: new FormControl('', [Validators.required]),
     age: new FormControl('', [Validators.required, Validators.min(1)]),
-    membership: new FormControl(false, [Validators.required]),
+    membership: new FormControl(0, [Validators.required]),
 
   });
 
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService) { }
+  constructor(private formBuilder: FormBuilder, private paisService: PaisService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.getcountries();
+  }
+
+  formatDate(date:Date) {
+    const isoDateString = date.toISOString();
+    const isoDate = new Date(isoDateString);
+    const mySQLDateString = isoDate.toJSON().slice(0, 19).replace('T', ' ');
+    return mySQLDateString
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -48,23 +57,26 @@ export class RegistroComponent implements OnInit {
 
 
   submit(form) {
-  console.log(form);
+
     if (this.RegistroForm.valid) {
-      if(form.pass==form.confirmpass){
-        form.photo=
+      if (form.password == form.confirmpass) {
+        form.photo = this.photo64
+        form.birth_date = this.formatDate(form.birth_date)
         console.log(form);
+        this.userService.insertUser(form)
+          .subscribe(res => console.log(res));
       }
     }
   }
 
   onFileChange(event) {
-    
+
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-    console.log(reader.result);
-    this.photo64=reader.result;
+      console.log(reader.result);
+      this.photo64 = reader.result;
 
     };
   }

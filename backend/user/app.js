@@ -10,7 +10,7 @@ const config = require('./config/init')
 app.use(function(req, res, next) {
     req.con = con
     next()
-  })
+})
 
 con.getConnection(function(err) {
     if (err) throw err;

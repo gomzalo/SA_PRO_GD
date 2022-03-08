@@ -1,6 +1,7 @@
 var cryptoJS = require('crypto-js');
 const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
+var emailCheck = require('email-check');
 
 module.exports = {
     all: async function(con, callback) {
@@ -79,7 +80,7 @@ module.exports = {
         callback)
     },
 
-    send_email_confirmation: async function(datos) {
+    send_email_confirmation: async function(datos, callback) {
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
@@ -98,7 +99,8 @@ module.exports = {
         }
       });
       let url = 'http://0.0.0.0:5003/user/email_confirmation?id='+datos.id.toString();
-      const info = await transporter.sendMail({        
+      const info = await transporter.sendMail(
+        {
         from:'Soccer Stats <pweb.g16@gmail.com>',
         to: datos.email,
         subject: 'Confirmación de correo electrónico',
@@ -132,9 +134,11 @@ module.exports = {
           </html>
         <!--!html-->
         `
-      });
+      },
+      callback
+      );
       console.log("Email sent: %s", info.messageId);
-      return "success";
+      // return result ;
     },
 
     send_email_credentials: async function(datos) {
@@ -188,7 +192,8 @@ module.exports = {
         <!--!html-->
         `
       });
-      console.log("Email sent: %s", info.messageId);
+      // console.log("Email sent: %s", info.messageId);
+      console.log(info.notify);
       return "success";
     },
 
@@ -204,5 +209,34 @@ module.exports = {
         `,
         callback
       )
+    },
+
+    authenticate_token: function(req, res, next){
+      const authHeader = req.headers['authorization'];
+      const token = authHeader && authHeader.split(' ')[1];
+      if(token == null) return res.sendStatus(401);
+
+      jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, id_user_rol) => {
+          if (err) return res.sendStatus(403);
+          req.id_user_rol = id_user_rol;
+          next();
+      });
+    },
+
+    check_email: function(email){
+      emailCheck(email)
+      .then(function (res) {
+        // Returns "true" if the email address exists, "false" if it doesn't.
+        return true
+      })
+      .catch(function (err) {
+        if (err.message === 'refuse') {
+          // The MX server is refusing requests from your IP address.
+          return false;
+        } else {
+          // Decide what to do with other errors.
+          return false;
+        }
+      });
     }
   }

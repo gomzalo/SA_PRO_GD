@@ -26,6 +26,29 @@ GET http://localhost:5003/user/all HTTP/1.1
 #     "membership": 0
 # }
 
+# POST http://localhost:5003/user/add HTTP/1.1
+# content-type: application/json
+
+# {
+#     "name": "Martha",
+#     "lastname": "Debaile",
+#     "password": "Marta123/",
+#     "email": "mclwithmusic@gmail.com",
+#     "phone": 5668998,
+#     "photo": "asdkfhjkasdljfklasdj",
+#     "gender": "M",
+#     "birth_date": "1993-02-27",
+#     "signup_date": "2022-03-01",
+#     "address": "Zona 10",
+#     "id_pais": 88,
+#     "id_estado": 2,
+#     "id_rol": 2,
+#     "age": 33,
+#     "membership": 0
+# }
+
+# Wrong email test
+
 POST http://localhost:5003/user/add HTTP/1.1
 content-type: application/json
 
@@ -33,18 +56,18 @@ content-type: application/json
     "name": "Martha",
     "lastname": "Debaile",
     "password": "Marta123/",
-    "email": "mclwithmusic@gmail.com",
+    "email": "f45asd4f56@gmail.com",
     "phone": 5668998,
     "photo": "asdkfhjkasdljfklasdj",
     "gender": "M",
-    "birth_date": "1993-02-27",
-    "signup_date": "2022-03-01",
-    "address": "Zona 10",
+    "birth_date": "2001-02-27",
+    "signup_date": "2022-03-03",
+    "address": "Zona 14",
     "id_pais": 88,
     "id_estado": 2,
-    "id_rol": 2,
-    "age": 33,
-    "membership": 0
+    "id_rol": 3,
+    "age": 21,
+    "membership": 3
 }
 
 ###

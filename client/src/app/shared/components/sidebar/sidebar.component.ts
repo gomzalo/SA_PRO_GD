@@ -65,27 +65,48 @@ export class SidebarComponent {
         },
         {
           path: './users',
-          title: 'USUARIOS',
+          title: 'ADMINISTRACION USUARIOS',
           type: 'link'
         },
         {
           path: './business',
-          title: 'GESTOR DE EMPRESAS',
+          title: 'ESTADIO',
           type: 'link'
         },
         {
           path: './branchs',
-          title: 'GESTOR DE SUCURSALES',
+          title: 'PARTIDO',
           type: 'link'
         },
         {
           path: './proyects',
-          title: 'GESTOR DE PROYECTOS',
+          title: 'ARBITROS',
           type: 'link'
         },
         {
           path: './proyects-assign',
           title: 'ASIGNACIÓN DE PROYECTOS',
+          type: 'link'
+        },
+        {
+          path: './proyects-assign',
+          title: 'EQUIPOS',
+          type: 'link'
+        },
+        {
+          path: './proyects-assign',
+          title: 'JUGADOR',
+          type: 'link'
+        },
+        {
+          path: './proyects-assign',
+          title: 'INCIDENCIA',
+          type: 'link'
+        },
+        
+        {
+          path: './proyects-assign',
+          title: 'COMPETENCIA',
           type: 'link'
         },
         {

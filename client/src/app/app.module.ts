@@ -23,7 +23,8 @@ import {EditorModule} from 'primeng/editor';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MatSelectModule } from '@angular/material/select';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
-import { MaterialModule } from 'src/material.module';
+
+
 
 @NgModule({
   declarations: [

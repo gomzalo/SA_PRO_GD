@@ -22,14 +22,14 @@
 
 
 CREATE TABLE `Pais` (
-  `id_pais` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(80) NOT NULL,
-  `nicename` varchar(80) NOT NULL,
-  `iso` char(2) NOT NULL,
-  `iso3` char(3) DEFAULT NULL,
-  `numcode` smallint(6) DEFAULT NULL,
-  `phonecode` int(5) NOT NULL,
-  PRIMARY KEY (`id_pais`)
+    `id_pais` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(80) NOT NULL,
+    `nicename` varchar(80) NOT NULL,
+    `iso` char(2) NOT NULL,
+    `iso3` char(3) DEFAULT NULL,
+    `numcode` smallint(6) DEFAULT NULL,
+    `phonecode` int(5) NOT NULL,
+    PRIMARY KEY (`id_pais`)
 ) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8;
 
 CREATE TABLE Estado (

@@ -27,8 +27,8 @@ app.use(cors())
 // app.use(methodOverride("_method"))
 
 //  Rutas
-const client_routes = require('./api/routes/administrative_route')
+const administrative_routes = require('./api/routes/administrative_route')
 // Routing
-app.use('/administrative/', client_routes)
+app.use('/administrative/', administrative_routes)
 
 module.exports = app

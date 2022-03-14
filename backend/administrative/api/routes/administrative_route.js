@@ -2,7 +2,7 @@ const express = require('express');
 const router = new express.Router();
 const administrative_controller = require('../controllers/administrative_controller');
 
-router.post('/all', administrative_controller.all);
+router.get('/all', administrative_controller.all);
 router.get('/all_countries', administrative_controller.all_countries);
 
 // *************************************************

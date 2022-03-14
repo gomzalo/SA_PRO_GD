@@ -2,6 +2,13 @@ const administrativem = require('../models/administrative_model');
 var cryptoJS = require('crypto-js');
 
 module.exports = {
+    all: function(req, res) {
+      administrativem.all(req.con, function(err, rows) {
+        res.status(200).send(rows);
+      })
+    },
+
+
     all_countries: function(req, res) {
       administrativem.all_countries(req.con, function(err, rows) {
         res.status(200).send(rows);

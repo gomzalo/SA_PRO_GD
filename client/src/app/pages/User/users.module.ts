@@ -19,5 +19,6 @@ import { RegistroComponent } from './registro/registro.component';
     ReactiveFormsModule,
     MaterialModule
   ]
+  ,exports:[RegistroComponent]
 })
 export class UsersModule { }

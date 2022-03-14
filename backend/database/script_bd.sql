@@ -19,7 +19,8 @@
 --  DROP TABLE Pais;
 --  DROP TABLE Estado;
 
-
+create database soccer_stats_db;
+use soccer_stats_db;
 
 CREATE TABLE `Pais` (
   `id_pais` int(11) NOT NULL AUTO_INCREMENT,
@@ -505,3 +506,5 @@ insert into Rol values(3,'Cliente');
 
 insert into Estado values(1,'Activo');
 insert into Estado values (0,'Congelado');
+insert into Estado values(3,'Eliminado');
+

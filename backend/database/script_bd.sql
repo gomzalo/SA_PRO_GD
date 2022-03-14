@@ -23,14 +23,14 @@ create database soccer_stats_db;
 use soccer_stats_db;
 
 CREATE TABLE `Pais` (
-  `id_pais` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(80) NOT NULL,
-  `nicename` varchar(80) NOT NULL,
-  `iso` char(2) NOT NULL,
-  `iso3` char(3) DEFAULT NULL,
-  `numcode` smallint(6) DEFAULT NULL,
-  `phonecode` int(5) NOT NULL,
-  PRIMARY KEY (`id_pais`)
+    `id_pais` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(80) NOT NULL,
+    `nicename` varchar(80) NOT NULL,
+    `iso` char(2) NOT NULL,
+    `iso3` char(3) DEFAULT NULL,
+    `numcode` smallint(6) DEFAULT NULL,
+    `phonecode` int(5) NOT NULL,
+    PRIMARY KEY (`id_pais`)
 ) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8;
 
 CREATE TABLE Estado (
@@ -146,11 +146,9 @@ CREATE TABLE Estadio (
     direccion VARCHAR(300) NOT NULL,
     foto VARCHAR(300) NOT NULL,
     id_pais INTEGER NOT NULL,
-    id_estado INTEGER NOT NULL,
+    state VARCHAR(250) NOT NULL,
     CONSTRAINT FK_Estadio_Pais FOREIGN KEY (id_pais)
-        REFERENCES Pais(id_pais),
-    CONSTRAINT FK_Estadio_Estado FOREIGN KEY (id_estado)
-        REFERENCES Estado(id_estado)
+        REFERENCES Pais(id_pais)
 );
 
 CREATE TABLE Arbitro (

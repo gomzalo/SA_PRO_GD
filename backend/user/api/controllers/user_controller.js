@@ -26,6 +26,12 @@ module.exports = {
             let pass_bytes = cryptoJS.AES.decrypt(datos.pass, 'SiSaleSA_');
             let uncif_pass = pass_bytes.toString(cryptoJS.enc.Utf8);
             if(uncif_pass == pass){
+              if(datos.id_estado != 1){
+                res.status(409).send({
+                  status: false,
+                  msj: 'Error al iniciar sesion, correo no confirmado.'
+                });
+              }
               id_user_rol = {id_usuario: datos.id_usuario, id_rol: datos.id_rol};
               const accessToken = userm.generateAccessToken(id_user_rol);
               res.status(200).send({
@@ -66,15 +72,27 @@ module.exports = {
             error: err.toString()
           });
         } else {
-          if(req.body.id_rol == 3){
-            userm.send_email_confirmation({email: req.body.email, id: rows.insertId});
-          } else {
-            userm.send_email_credentials({email: req.body.email, password: req.body.password});
+          if(!userm.check_email(req.body.email)){
+            res.status(409).send({
+              status: true,
+              msj: 'Correo invalido.'
+            });
+          }else{
+            if(req.body.id_rol == 3){
+              userm.send_email_confirmation({email: req.body.email, id: rows.insertId}, async (err, data) => {
+                if(err){
+                  res.status(409).send({
+                    status: true,
+                    msj: 'Error al enviar correo.'
+                  });
+                }else{
+                  console.log("data: ", data);
+                }
+              });
+            } else {
+              userm.send_email_credentials({email: req.body.email, password: req.body.password});
+            }
           }
-          res.status(200).send({
-            status: true,
-            msj: 'Usuario creado con exito'
-          });
         }
       });  
     },
@@ -143,7 +161,16 @@ module.exports = {
           });
         } else {
           if(rows.length > 0){
-            userm.send_email_confirmation({email: req.body.email, id: rows[0].id_usuario});
+            userm.send_email_confirmation({email: req.body.email, id: rows[0].id_usuario}, async (err, data) => {
+              if(err){
+                res.status(409).send({
+                  status: true,
+                  msj: 'Error al enviar correo.'
+                });
+              }else{
+                console.log(data);
+              }
+            });
             res.status(200).send({
               status: true,
               msj: 'Se envio el correo exitosamente'

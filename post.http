@@ -1,10 +1,11 @@
-# *******************************************
-# ************** USER SERVER ************** 
-# *******************************************
+
 
 GET http://localhost:5003/user/all HTTP/1.1
 
 ###
+
+# ----------    Crear   ----------
+
 # POST http://localhost:5003/user/add HTTP/1.1
 # content-type: application/json
 
@@ -26,6 +27,29 @@ GET http://localhost:5003/user/all HTTP/1.1
 #     "membership": 0
 # }
 
+# POST http://localhost:5003/user/add HTTP/1.1
+# content-type: application/json
+
+# {
+#     "name": "Martha",
+#     "lastname": "Debaile",
+#     "password": "Marta123/",
+#     "email": "mclwithmusic@gmail.com",
+#     "phone": 5668998,
+#     "photo": "asdkfhjkasdljfklasdj",
+#     "gender": "M",
+#     "birth_date": "1993-02-27",
+#     "signup_date": "2022-03-01",
+#     "address": "Zona 10",
+#     "id_pais": 88,
+#     "id_estado": 2,
+#     "id_rol": 2,
+#     "age": 33,
+#     "membership": 0
+# }
+
+# Wrong email test
+
 POST http://localhost:5003/user/add HTTP/1.1
 content-type: application/json
 
@@ -33,18 +57,18 @@ content-type: application/json
     "name": "Martha",
     "lastname": "Debaile",
     "password": "Marta123/",
-    "email": "mclwithmusic@gmail.com",
+    "email": "f45asd4f56@gmail.com",
     "phone": 5668998,
     "photo": "asdkfhjkasdljfklasdj",
     "gender": "M",
-    "birth_date": "1993-02-27",
-    "signup_date": "2022-03-01",
-    "address": "Zona 10",
+    "birth_date": "2001-02-27",
+    "signup_date": "2022-03-03",
+    "address": "Zona 14",
     "id_pais": 88,
     "id_estado": 2,
-    "id_rol": 2,
-    "age": 33,
-    "membership": 0
+    "id_rol": 3,
+    "age": 21,
+    "membership": 3
 }
 
 ###
@@ -52,6 +76,9 @@ content-type: application/json
 GET http://localhost:5003/user/email_confirmation?id=1 HTTP/1.1
 
 ###
+
+# ----------    Login   ----------
+
 POST http://localhost:5003/user/login HTTP/1.1
 content-type: application/json
 
@@ -88,6 +115,9 @@ GET http://localhost:5003/user/all_countries HTTP/1.1
 GET http://localhost:5000/client/all HTTP/1.1
 
 ###
+
+# ----------    Crear   ----------
+
 POST http://localhost:5000/client/add HTTP/1.1
 content-type: application/json
 
@@ -125,3 +155,64 @@ GET http://localhost:5000/client/email_confirmation?id=4 HTTP/1.1
 ###
 
 GET http://localhost:5000/client/all_countries HTTP/1.1
+
+
+###
+
+# *******************************************
+# ************** ADMINISTRATIVE SERVER ************** 
+# *******************************************
+
+# :::::::::::::::::     STADIUM     :::::::::::::::::
+
+# ----------    Crear   ----------
+
+POST http://localhost:5001/administrative/stadium HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Spotify Camp Nou",
+    "fundation_date": "1985-02-05",
+    "capacity": "5566224",
+    "id_country": "100",
+    "address": "Cumeada, Portugal",
+    "state": "Catalunya",
+    "photo": "Masdkfjasdlkjfkmasdcmkjlasdnijfnasdlkfj"
+}
+
+###
+
+# ----------    Editar   ----------
+
+PUT http://localhost:5001/administrative/stadium HTTP/1.1
+content-type: application/json
+
+{
+    "id": 5,
+    "name": "Santiago Bernaleo",
+    "fundation_date": "1940-02-05",
+    "capacity": "5566224",
+    "id_country": "100",
+    "address": "Chamartin, Madrid",
+    "state": "Chamartin",
+    "photo": "Masdkfjasdlkjfkmasdcmkjlasdnijfnasdlkfj"
+}
+
+###
+
+# ----------    Get   ----------
+
+GET http://localhost:5001/administrative/stadium/?id=5 HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://localhost:5001/administrative/stadium/ HTTP/1.1
+content-type: application/json
+
+###
+
+# ----------    Delete   ----------
+
+DELETE http://localhost:5001/administrative/stadium/?id=3 HTTP/1.1
+content-type: application/json

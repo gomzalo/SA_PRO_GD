@@ -2,12 +2,6 @@ const administrativem = require('../models/administrative_model');
 var cryptoJS = require('crypto-js');
 
 module.exports = {
-    all: function(req, res) {
-      administrativem.all(req.con, function(err, rows) {
-        res.status(200).send(rows);
-      })
-    },
-
     all_countries: function(req, res) {
       administrativem.all_countries(req.con, function(err, rows) {
         res.status(200).send(rows);
@@ -17,96 +11,72 @@ module.exports = {
     create: async function(req, res) {
       administrativem.create(req.con, req.body, async function(err, rows){
         if(err){
-          res.status(409).send({
+          res.status(500).send({
             status: false,
-            msj: 'Error al crear usuario',
+            data: [],
+            msj: 'Error al crear estadio',
             error: err.toString()
           });
         } else {
-          administrativem.send_email({email: req.body.email, id: rows.insertId});
           res.status(200).send({
             status: true,
-            msj: 'Usuario creado con exito'
+            data: rows,
+            msj: 'Estadio creado con exito'
           });
         }
       });  
     },
 
-    email_confirmation: function(req, res)   {
-      administrativem.email_confirmation(req.con, req.query.id, function(err, rows){
+    get: function(req, res)   {
+      administrativem.get(req.con, req.query.id, function(err, rows){
         if(err){
-          res.status(409).send(
-            `
-            <!--html-->
-            <!doctype html>
-            <html lang="en">
-              <head>
-                  <title>Soccer Stats SIUUU</title>
-                  <meta name="viewport" content="width=device-width, initial-scale=1">
-                  <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
-                  <meta charset="utf-8" />
-              </head>
-              <body>
-                <center>
-                  <h1>¡No se ha podido confirmar su cuenta!</h1>
-                  <br>
-                  <h3>Puede que ya lo haya hecho.</h3>
-                  <br>
-                  <a type="button" class="btn btn-primary btn-lg" href="http://localhost:4200/login">Iniciar sesión</a>
-                </center>
-              </body>
-            </html>
-            <!--!html-->
-                `
-          );
+          res.status(500).send({
+            status: false,
+            data: [],
+            msj: 'Error al obtener estadio(s)',
+            error: err.toString()
+          });
         } else {
-          res.status(200).send(
-            `
-            <!--html-->
-            <!doctype html>
-            <html lang="en">
-              <head>
-                <title>Soccer Stats SIUUU</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
-                <meta charset="utf-8" />
-              </head>
-              <body>
-                <center>
-                  <h1>¡Se ha confirmado su cuenta!</h1>
-                  <a type="button" class="btn btn-primary btn-lg" href="http://localhost:4200/login">Iniciar sesión</a>
-                </center>
-              </body>
-            </html>
-            <!--!html-->
-                `
-          );
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msj: 'Información de estadio(s)',
+            error: err.toString()
+          });
         }
       });
     },
 
-    send_email: async function(req, res) {
-      administrativem.get_id(req.con, req.body, async function(err, rows){
-        // console.log(rows[0].id_usuario);
+    edit: async function(req, res) {
+      administrativem.edit(req.con, req.body, async function(err, rows){
         if(err){
-          res.status(409).send({
+          res.status(500).send({
             status: false,
-            msj: 'Error al enviar correo.',
+            data: [],
+            msj: 'Error al eliminar estadio',
             error: err.toString()
           });
         } else {
-          if(rows.length > 0){
-            administrativem.send_email({email: req.body.email, id: rows[0].id_usuario});
-            res.status(200).send({
-              status: true,
-              msj: 'Se envio el correo exitosamente'
-            });
-          } else {
-            res.status(409).send({
-              status: true,
-              msj: 'Error al enviar correo, usuario no registrado.'
-            });
-          }
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msj: 'Estadio eliminado',
+            error: err.toString()
+          });
+        }
+      });  
+    },
+
+    delete: async function(req, res) {
+      administrativem.delete(req.con, req.query.id, async function(err, rows){
+        if(err){
+          res.status(409).send(
+            
+          );
+        } else {
+          res.status(200).send(
+            
+          );
         }
       });  
     },

@@ -145,11 +145,9 @@ CREATE TABLE Estadio (
     direccion VARCHAR(300) NOT NULL,
     foto VARCHAR(300) NOT NULL,
     id_pais INTEGER NOT NULL,
-    id_estado INTEGER NOT NULL,
+    state VARCHAR(250) NOT NULL,
     CONSTRAINT FK_Estadio_Pais FOREIGN KEY (id_pais)
-        REFERENCES Pais(id_pais),
-    CONSTRAINT FK_Estadio_Estado FOREIGN KEY (id_estado)
-        REFERENCES Estado(id_estado)
+        REFERENCES Pais(id_pais)
 );
 
 CREATE TABLE Arbitro (

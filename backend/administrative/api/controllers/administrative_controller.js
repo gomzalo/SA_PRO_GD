@@ -53,6 +53,26 @@ module.exports = {
           res.status(500).send({
             status: false,
             data: [],
+            msj: 'Error al actualizar estadio',
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msj: 'Estadio actualizado',
+            error: err.toString()
+          });
+        }
+      });  
+    },
+
+    delete: async function(req, res) {
+      administrativem.delete(req.con, req.query.id, async function(err, rows){
+        if(err){
+          res.status(500).send({
+            status: false,
+            data: [],
             msj: 'Error al eliminar estadio',
             error: err.toString()
           });
@@ -63,20 +83,6 @@ module.exports = {
             msj: 'Estadio eliminado',
             error: err.toString()
           });
-        }
-      });  
-    },
-
-    delete: async function(req, res) {
-      administrativem.delete(req.con, req.query.id, async function(err, rows){
-        if(err){
-          res.status(409).send(
-            
-          );
-        } else {
-          res.status(200).send(
-            
-          );
         }
       });  
     },

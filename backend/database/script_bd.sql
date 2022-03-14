@@ -236,7 +236,7 @@ CREATE TABLE Usuario (
     pass  VARCHAR(50)  NOT NULL,
     email VARCHAR(100) NOT NULL,
     phone INTEGER NOT NULL,
-    photo VARCHAR(200) NOT NULL,
+    photo longtext NOT NULL,
     gender CHAR(1) NOT NULL,
     fecha_nac DATE NOT NULL,
     fecha_registro DATE NOT NULL,

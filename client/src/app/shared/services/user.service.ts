@@ -19,6 +19,7 @@ export class UserService {
 
 
   getAllUsers(){
+    
     return this.http.get<any>(environment.apiUser+'all');
   }
 

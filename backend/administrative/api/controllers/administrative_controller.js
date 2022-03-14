@@ -64,11 +64,20 @@ module.exports = {
             error: err.toString()
           });
         } else {
-          res.status(200).send({
-            status: true,
-            data: [],
-            msj: 'Estadio actualizado'
-          });
+          if(rows.affectedRows < 1){
+            res.status(500).send({
+              status: false,
+              data: [],
+              msj: 'Error al actualizar estadio',
+              error: 'No existe, el ID indicado'
+            });
+          } else {
+            res.status(200).send({
+              status: true,
+              data: [],
+              msj: 'Estadio actualizado'
+            });
+          }
         }
       });  
     },
@@ -83,11 +92,20 @@ module.exports = {
             error: err.toString()
           });
         } else {
-          res.status(200).send({
-            status: true,
-            data: [],
-            msj: 'Estadio eliminado'
-          });
+          if(rows.affectedRows < 1){
+            res.status(500).send({
+              status: false,
+              data: [],
+              msj: 'Error al eliminar estadio',
+              error: 'No existe, el ID indicado'
+            });
+          } else {
+            res.status(200).send({
+              status: true,
+              data: rows,
+              msj: 'Estadio eliminado'
+            });
+          }
         }
       });  
     },

@@ -188,7 +188,7 @@ PUT http://localhost:5001/administrative/stadium HTTP/1.1
 content-type: application/json
 
 {
-    "id": 1,
+    "id": 5,
     "name": "Santiago Bernaleo",
     "fundation_date": "1940-02-05",
     "capacity": "5566224",
@@ -202,7 +202,7 @@ content-type: application/json
 
 # ----------    Get   ----------
 
-GET http://localhost:5001/administrative/stadium/?id=2 HTTP/1.1
+GET http://localhost:5001/administrative/stadium/?id=5 HTTP/1.1
 content-type: application/json
 
 ###
@@ -214,5 +214,5 @@ content-type: application/json
 
 # ----------    Delete   ----------
 
-DELETE http://localhost:5001/administrative/stadium/?id=2 HTTP/1.1
+DELETE http://localhost:5001/administrative/stadium/?id=3 HTTP/1.1
 content-type: application/json

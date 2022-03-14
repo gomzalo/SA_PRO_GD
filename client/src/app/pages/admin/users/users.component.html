@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Usuarios</h1>
+      </div>
+      
+    </div>
+
+    <div class="row">
+        
+            <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;">Agregar Usuario</button>
+        
+        
+    </div>
+    <br/>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Status</th>
+              <th scope="col">Editar</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users">
+              <th scope="row">{{ country.id }}</th>
+              <td>
+                <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px">
+                {{ country.name }}
+              </td>
+              <td>{{ country.area | number}}</td>
+              <td>{{ country.population | number }}</td>
+              <td> <button type="button" class="btn btn-secondary">Editar</button></td>
+            </tr>
+            </tbody>
+          </table>
+          
+          <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+            </ngb-pagination>
+          
+            <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+              <option [ngValue]="2">2 items per page</option>
+              <option [ngValue]="4">4 items per page</option>
+              <option [ngValue]="6">6 items per page</option>
+            </select>
+          </div>
+    </div>
+  </div>

@@ -64,6 +64,11 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['./admin']);
   }
 
+  
+  registro() {
+    this.router.navigate(['/users/registro']);
+  }
+
    handleLogin() {
   //   let session = this.authService.login({"email" : this.email,"password" : (this.password)});
 

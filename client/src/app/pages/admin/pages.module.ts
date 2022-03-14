@@ -10,9 +10,13 @@ import { SharedModule } from "../../shared/shared.module";
 import { CountToModule } from 'angular-count-to';
 import { MatSelectModule } from '@angular/material/select';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
+import { UsersComponent } from './users/users.component';
+import { MaterialModule } from 'src/material.module';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [],
+  declarations: [UsersComponent],
   imports: [
     AngularDualListBoxModule,
     MatSelectModule,
@@ -20,6 +24,9 @@ import { AngularDualListBoxModule } from 'angular-dual-listbox';
     PagesRoutingModule,
     SharedModule,
     CountToModule,
+    MaterialModule,
+    FormsModule,
+    NgbModule
   ]
 })
 export class PagesModule { }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { PaisService } from '../../../shared/services/pais.service'
 import { UserService } from '../../../shared/services/user.service'
+
 
 
 @Component({
@@ -11,8 +12,12 @@ import { UserService } from '../../../shared/services/user.service'
 })
 export class RegistroComponent implements OnInit {
   genero = [{ id: 'M', value: 'Masculino' }, { id: 'F', value: 'Femenino' }, { id: 'a', value: 'Lo que sea' },]
+  @Input() editData: any;
+  editcomplete:any;
   paises = []
   photo64 = null
+  rol='Admin'
+  estados=[{id:1,Estado:'Activo'},{id:2,Estado:'Congelado'},{id:3,Estado:'Eliminado'}]
   RegistroForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
@@ -37,9 +42,21 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.getcountries();
+    this.editcomplete=this.editData;
+    if (this.editData) {
+      this.photo64= this.editData.photo;
+      delete this.editData['photo'];
+      this.editData.name = this.editData.first_name;
+      this.editData.lastname= this.editData.last_name;
+      this.editData.birth_date=this.editData.fecha_nac;
+      this.editData.address=this.editData.direccion;
+      console.log(this.editData);
+
+      this.RegistroForm.patchValue(this.editData)
+    }
   }
 
-  formatDate(date:Date) {
+  formatDate(date: Date) {
     const isoDateString = date.toISOString();
     const isoDate = new Date(isoDateString);
     const mySQLDateString = isoDate.toJSON().slice(0, 19).replace('T', ' ');

@@ -37,14 +37,12 @@
         </mat-select>
       </mat-form-field>
 
-
       <mat-form-field appearance="outline" class="center">
         <mat-label>Fecha Nacimiento </mat-label>
         <input matInput [matDatepicker]="picker" formControlName="birth_date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Dirección </mat-label>
@@ -61,6 +59,16 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
+      <mat-form-field appearance="outline" class="center" *ngIf="rol=='Admin'">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="id_estado" id="pais">
+          <mat-option *ngFor="let estado of estados" [value]="estado.id">
+            {{estado.Estado}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <mat-form-field appearance="outline" class="center">
         <mat-label>Teléfono </mat-label>
         <input matInput type="tel" placeholder="Teléfono" formControlName="phone" id="phone">
@@ -79,7 +87,6 @@
       class="form-control margenes"
       (change)="onFileChange($event)">
      
-
       <br />
 
       <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>

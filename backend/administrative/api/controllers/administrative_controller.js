@@ -27,7 +27,7 @@ module.exports = {
         } else {
           res.status(200).send({
             status: true,
-            data: rows,
+            data: [],
             msj: 'Estadio creado con exito'
           });
         }
@@ -35,7 +35,8 @@ module.exports = {
     },
 
     get: function(req, res)   {
-      administrativem.get(req.con, req.query.id, function(err, rows){
+      administrativem.get(req.con, req.query, function(err, rows){
+        console.log(req.query);
         if(err){
           res.status(500).send({
             status: false,
@@ -47,8 +48,7 @@ module.exports = {
           res.status(200).send({
             status: true,
             data: rows,
-            msj: 'Información de estadio(s)',
-            error: err.toString()
+            msj: 'Información de estadio(s)'
           });
         }
       });
@@ -66,9 +66,8 @@ module.exports = {
         } else {
           res.status(200).send({
             status: true,
-            data: rows,
-            msj: 'Estadio actualizado',
-            error: err.toString()
+            data: [],
+            msj: 'Estadio actualizado'
           });
         }
       });  
@@ -86,9 +85,8 @@ module.exports = {
         } else {
           res.status(200).send({
             status: true,
-            data: rows,
-            msj: 'Estadio eliminado',
-            error: err.toString()
+            data: [],
+            msj: 'Estadio eliminado'
           });
         }
       });  

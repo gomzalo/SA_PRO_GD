@@ -16,7 +16,7 @@ module.exports = {
     },
 
     create: async function(con, data, callback) {
-      const {name, fundation, capacity, id_country, address, state, photo} = data;
+      const {name, fundation_date, capacity, id_country, address, state, photo} = data;
       await con.query(
         `
         INSERT INTO Estadio ( 
@@ -30,7 +30,7 @@ module.exports = {
           )
         VALUES (
           '${name}',
-          '${fundation}',
+          '${fundation_date}',
           '${capacity}',
           '${address}',
           '${photo}',
@@ -43,12 +43,12 @@ module.exports = {
     },
 
     get: async function(con, data, callback) {
-      const id = data;
+      const id = data.id;
       if(id != null){
         await con.query(
           `
           SELECT * FROM Estadio
-          WHERE id = '${id}';
+          WHERE id_estadio = '${id}';
           `,
           callback)
       } else {
@@ -71,7 +71,7 @@ module.exports = {
           direccion = '${address}',
           foto = '${photo}',
           id_pais = '${id_country}',
-          state = '${state}'
+          estado = '${state}'
         WHERE id_estadio = ${id};
           ;
         `,

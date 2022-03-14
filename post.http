@@ -1,10 +1,11 @@
-# *******************************************
-# ************** USER SERVER ************** 
-# *******************************************
+
 
 GET http://localhost:5003/user/all HTTP/1.1
 
 ###
+
+# ----------    Crear   ----------
+
 # POST http://localhost:5003/user/add HTTP/1.1
 # content-type: application/json
 
@@ -75,6 +76,9 @@ content-type: application/json
 GET http://localhost:5003/user/email_confirmation?id=1 HTTP/1.1
 
 ###
+
+# ----------    Login   ----------
+
 POST http://localhost:5003/user/login HTTP/1.1
 content-type: application/json
 
@@ -111,6 +115,9 @@ GET http://localhost:5003/user/all_countries HTTP/1.1
 GET http://localhost:5000/client/all HTTP/1.1
 
 ###
+
+# ----------    Crear   ----------
+
 POST http://localhost:5000/client/add HTTP/1.1
 content-type: application/json
 
@@ -148,3 +155,64 @@ GET http://localhost:5000/client/email_confirmation?id=4 HTTP/1.1
 ###
 
 GET http://localhost:5000/client/all_countries HTTP/1.1
+
+
+###
+
+# *******************************************
+# ************** ADMINISTRATIVE SERVER ************** 
+# *******************************************
+
+# :::::::::::::::::     STADIUM     :::::::::::::::::
+
+# ----------    Crear   ----------
+
+POST http://localhost:5001/administrative/stadium HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Spotify Camp Nou",
+    "fundation_date": "1985-02-05",
+    "capacity": "5566224",
+    "id_country": "100",
+    "address": "Cumeada, Portugal",
+    "state": "Catalunya",
+    "photo": "Masdkfjasdlkjfkmasdcmkjlasdnijfnasdlkfj"
+}
+
+###
+
+# ----------    Editar   ----------
+
+PUT http://localhost:5001/administrative/stadium HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "Santiago Bernaleo",
+    "fundation_date": "1940-02-05",
+    "capacity": "5566224",
+    "id_country": "100",
+    "address": "Chamartin, Madrid",
+    "state": "Chamartin",
+    "photo": "Masdkfjasdlkjfkmasdcmkjlasdnijfnasdlkfj"
+}
+
+###
+
+# ----------    Get   ----------
+
+GET http://localhost:5001/administrative/stadium/?id=2 HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://localhost:5001/administrative/stadium/ HTTP/1.1
+content-type: application/json
+
+###
+
+# ----------    Delete   ----------
+
+DELETE http://localhost:5001/administrative/stadium/?id=2 HTTP/1.1
+content-type: application/json

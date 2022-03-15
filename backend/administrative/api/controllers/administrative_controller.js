@@ -166,23 +166,79 @@ module.exports = {
       });  
     },
 
-    create_league: async function(req, res) {
-      administrativem.create_league(req.con, req.body, async function(err, rows){
+    create_competition: async function(req, res) {
+      administrativem.create_competition(req.con, req.body, async function(err, rows){
         if(err){
           res.status(500).send({
             status: false,
             data: [],
-            msj: 'Error al crear estadio',
+            msj: 'Error al crear competencia',
             error: err.toString()
           });
         } else {
           res.status(200).send({
             status: true,
             data: [],
-            msj: 'Estadio creado con exito'
+            msj: 'Competition created succesfully',
+            id_competition: rows.insertId
           });
         }
       });  
     },
 
+    edit_competition: async function(req, res) {
+      administrativem.edit_competition(req.con, req.body, async function(err, rows){
+        if(err){
+          res.status(500).send({
+            status: false,
+            data: [],
+            msj: 'Error al actualizar competencia',
+            error: err.toString()
+          });
+        } else {
+          if(rows.affectedRows < 1){
+            res.status(500).send({
+              status: false,
+              data: [],
+              msj: 'Error al actualizar competencia',
+              error: 'No existe, el ID indicado'
+            });
+          } else {
+            res.status(200).send({
+              status: true,
+              data: [],
+              msj: 'Competition updated succesfully'
+            });
+          }
+        }
+      });
+    },
+
+    delete_competition: async function(req, res) {
+      administrativem.delete_competition(req.con, req.query.id, async function(err, rows){
+        if(err){
+          res.status(500).send({
+            status: false,
+            data: [],
+            msj: 'Error al eliminar competencia',
+            error: err.toString()
+          });
+        } else {
+          if(rows.affectedRows < 1){
+            res.status(500).send({
+              status: false,
+              data: [],
+              msj: 'Error al eliminar competencia',
+              error: 'No existe, el ID indicado'
+            });
+          } else {
+            res.status(200).send({
+              status: true,
+              idChampionship: req.query.id,
+              msj: 'Operation completed successfully'
+            });
+          }
+        }
+      });  
+    }
   }

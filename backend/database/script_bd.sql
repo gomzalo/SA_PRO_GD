@@ -128,10 +128,9 @@ CREATE TABLE Tipo_Competencia (
 
 CREATE TABLE Competencia (
     id_competencia INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    anio INTEGER NOT NULL,
     nombre VARCHAR(150) NOT NULL,
-    descripcion VARCHAR(300) NULL,
     id_tipo_competencia INTEGER NOT NULL,
+    anio INTEGER NOT NULL,
     id_campeon INTEGER NOT NULL,
     id_country INTEGER NOT NULL,
     CONSTRAINT FK_Competencia_Pais FOREIGN KEY (id_country)
@@ -502,11 +501,23 @@ INSERT INTO `Pais` (`id_pais`, `iso`, `name`, `nicename`, `iso3`, `numcode`, `ph
 (238, 'ZM', 'ZAMBIA', 'Zambia', 'ZMB', 894, 260),
 (239, 'ZW', 'ZIMBABWE', 'Zimbabwe', 'ZWE', 716, 263);
 
-insert into Rol values(1,'Admin');
-insert into Rol values(2,'Empleado');
-insert into Rol values(3,'Cliente');
+-- Roles de usuarios
 
-insert into Estado values(1,'Activo');
-insert into Estado values (0,'Congelado');
-insert into Estado values(3,'Eliminado');
+INSERT INTO Rol VALUES(1,'Admin');
+INSERT INTO Rol VALUES(2,'Empleado');
+INSERT INTO Rol VALUES(3,'Cliente');
 
+-- Estados de usuarios
+
+INSERT INTO Estado VALUES(1,'Activo');
+INSERT INTO Estado VALUES (0,'Congelado');
+INSERT INTO Estado VALUES(3,'Eliminado');
+
+-- Tipos de competencias
+
+INSERT INTO Tipo_Competencia (nombre) VALUES ('Liga');
+INSERT INTO Tipo_Competencia (nombre) VALUES ('Eliminatoria');
+INSERT INTO Tipo_Competencia (nombre) VALUES ('Copa');
+INSERT INTO Tipo_Competencia (nombre) VALUES ('Super Copa');
+INSERT INTO Tipo_Competencia (nombre) VALUES ('Cuadrangular');
+INSERT INTO Tipo_Competencia (nombre) VALUES ('Triangular');

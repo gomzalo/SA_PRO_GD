@@ -108,25 +108,72 @@ module.exports = {
       }
     },
 
-    create_league: async function(con, data, callback) {
-      const {name, description, type, id_country} = data;
+    create_competition: async function(con, data, callback) {
+      const {name, type, year, champion_team, country} = data;
+      var tipo_competencia = this.get_id_comp(type);
       await con.query(
         `
-        INSERT INTO Liga ( 
-          name,
-          description,
-          type,
+        INSERT INTO Competencia ( 
+          nombre,
+          id_tipo_competencia,
+          anio,
+          id_campeon,
           id_country
           )
         VALUES (
           '${name}',
-          '${description}',
-          '${type}',
-          '${id_country}'
+          '${tipo_competencia}',
+          '${year}',
+          '${champion_team}',
+          '${country}'
           );
         `,
         callback
       )
     },
 
+    edit_competition: async function(con, data, callback) {
+      const {id_competition, name, type, year, champion_team, country} = data;
+      var tipo_competencia = this.get_id_comp(type);
+      await con.query(
+        `
+        UPDATE Competencia SET
+          nombre = '${name}',
+          id_tipo_competencia = '${tipo_competencia}',
+          anio = '${year}',
+          id_campeon = '${champion_team}',
+          id_country = '${country}'
+        WHERE id_competencia = ${id_competition};
+          ;
+        `,
+        callback)
+    },
+
+    delete_competition: async function(con, data, callback) {
+      await con.query(
+        `
+        DELETE FROM Competencia
+        WHERE
+          id_competencia = '${data}';
+        `,
+        callback
+      )
+    },
+
+    get_id_comp: function(type){
+      if(type == "Liga"){
+        return 1;
+      } else if(type == "Eliminatoria"){
+        return 2;
+      } else if(type == "Copa"){
+        return 3;
+      } else if(type == "Super Copa"){
+        return 4;
+      } else if(type == "Cuadrangular"){
+        return 5;
+      } else if(type == "Triangular"){
+        return 6;
+      }
+    }
+    
   }

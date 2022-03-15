@@ -130,8 +130,12 @@ CREATE TABLE Competencia (
     id_competencia INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     anio INTEGER NOT NULL,
     nombre VARCHAR(150) NOT NULL,
+    descripcion VARCHAR(300) NULL,
     id_tipo_competencia INTEGER NOT NULL,
     id_campeon INTEGER NOT NULL,
+    id_country INTEGER NOT NULL,
+    CONSTRAINT FK_Competencia_Pais FOREIGN KEY (id_country)
+        REFERENCES Pais(id_pais),
     CONSTRAINT FK_Competencia_Tipo_Competencia FOREIGN KEY (id_tipo_competencia)
         REFERENCES Tipo_Competencia(id_tipo_competencia),
     CONSTRAINT FK_Competencia_Equipo FOREIGN KEY (id_campeon)

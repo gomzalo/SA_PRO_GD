@@ -2,21 +2,19 @@ const administrativem = require('../models/administrative_model');
 var cryptoJS = require('crypto-js');
 
 module.exports = {
-    all: function(req, res) {
-      administrativem.all(req.con, function(err, rows) {
-        res.status(200).send(rows);
-      })
-    },
-
-
+    
     all_countries: function(req, res) {
       administrativem.all_countries(req.con, function(err, rows) {
         res.status(200).send(rows);
       })
     },
 
-    create: async function(req, res) {
-      administrativem.create(req.con, req.body, async function(err, rows){
+// *************************************************
+// ****************     ESTADIO     ****************
+// *************************************************
+
+    create_stadium: async function(req, res) {
+      administrativem.create_stadium(req.con, req.body, async function(err, rows){
         if(err){
           res.status(500).send({
             status: false,
@@ -34,8 +32,8 @@ module.exports = {
       });  
     },
 
-    get: function(req, res)   {
-      administrativem.get(req.con, req.query, function(err, rows){
+    get_stadium: function(req, res)   {
+      administrativem.get_stadium(req.con, req.query, function(err, rows){
         console.log(req.query);
         if(err){
           res.status(500).send({
@@ -54,8 +52,8 @@ module.exports = {
       });
     },
 
-    edit: async function(req, res) {
-      administrativem.edit(req.con, req.body, async function(err, rows){
+    edit_stadium: async function(req, res) {
+      administrativem.edit_stadium(req.con, req.body, async function(err, rows){
         if(err){
           res.status(500).send({
             status: false,
@@ -79,11 +77,11 @@ module.exports = {
             });
           }
         }
-      });  
+      });
     },
 
-    delete: async function(req, res) {
-      administrativem.delete(req.con, req.query.id, async function(err, rows){
+    delete_stadium: async function(req, res) {
+      administrativem.delete_stadium(req.con, req.query.id, async function(err, rows){
         if(err){
           res.status(500).send({
             status: false,
@@ -124,5 +122,67 @@ module.exports = {
           }
       }  
       return false;
-    }
+    },
+
+// *****************************************************
+// ****************     COMPETICION     ****************
+// *****************************************************
+
+    get_competition: function(req, res)   {
+      administrativem.get_competition(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(500).send({
+            status: false,
+            data: [],
+            msj: 'Error al obtener competencia(s)',
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msj: 'Información de competencia(s)'
+          });
+        }
+      });
+    },
+
+    create_stadium: async function(req, res) {
+      administrativem.create_stadium(req.con, req.body, async function(err, rows){
+        if(err){
+          res.status(500).send({
+            status: false,
+            data: [],
+            msj: 'Error al crear estadio',
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: [],
+            msj: 'Estadio creado con exito'
+          });
+        }
+      });  
+    },
+
+    create_league: async function(req, res) {
+      administrativem.create_league(req.con, req.body, async function(err, rows){
+        if(err){
+          res.status(500).send({
+            status: false,
+            data: [],
+            msj: 'Error al crear estadio',
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: [],
+            msj: 'Estadio creado con exito'
+          });
+        }
+      });  
+    },
+
   }

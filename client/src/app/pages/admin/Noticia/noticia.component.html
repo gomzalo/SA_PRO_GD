@@ -1,1 +1,69 @@
-<p>noticia works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Noticias</h1>
+      </div>
+      
+    </div>
+
+    <div class="row">
+        
+            <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=true">Agregar Noticia</button>
+            <br/>
+            <br/>
+            <button type="button" class="btn btn-danger col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=false" *ngIf="isOpen">Cerrar formulario</button>
+        
+        
+    </div>
+    <app-registro [editData]="user" *ngIf="isOpen">
+
+    </app-registro>
+    <br/>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Status</th>
+              <th scope="col">Editar</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users">
+              <th scope="row">{{ user.id_usuario }}</th>
+              <td>
+                
+                {{ user.first_name}}
+              </td>
+              <td>{{ user.email}}</td>
+              <td>{{ user.id_estado }}</td>
+              <td> <button type="button" class="btn btn-secondary" (click)="editar(user,content)">Editar</button></td>
+            </tr>
+            </tbody>
+          </table>
+          
+          <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+            </ngb-pagination>
+          
+            <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+              <option [ngValue]="2">2 items per page</option>
+              <option [ngValue]="4">4 items per page</option>
+              <option [ngValue]="6">6 items per page</option>
+            </select>
+          </div>
+    </div>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Usuario</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+   
+     
+  
+  </ng-template>

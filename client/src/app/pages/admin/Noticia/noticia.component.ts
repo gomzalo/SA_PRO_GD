@@ -15,12 +15,12 @@ interface Country {
 
 
 @Component({
-  selector: 'app-notices',
+  selector: 'app-noticias',
   templateUrl: './noticia.component.html',
   styleUrls: ['./noticia.component.scss']
 })
 export class NoticiaComponent implements OnInit {
-  notices = []
+  noticias = []
   closeResult = '';
   page = 1;
   pageSize = 4;
@@ -34,13 +34,13 @@ export class NoticiaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getnotices();
-    this.size = this.notices.length
+    this.getnoticias();
+    this.size = this.noticias.length
 
   }
-  getnotices() {
+  getnoticias() {
     this.noticiaService.getAllNotices()
-      .subscribe((data) => { this.notices = data });
+      .subscribe((data) => { this.noticias = data });
 
   }
 

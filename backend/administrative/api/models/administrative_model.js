@@ -3,19 +3,16 @@ const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-    all: async function(con, callback) {
-      await con.query(
-        `
-        SELECT * FROM Estadio;
-        `,
-        callback)
-    },
 
     all_countries: async function(con, callback){
       await con.query("SELECT * FROM Pais;", callback)
     },
 
-    create: async function(con, data, callback) {
+// *************************************************
+// ****************     ESTADIO     ****************
+// *************************************************
+
+    create_stadium: async function(con, data, callback) {
       const {name, fundation_date, capacity, id_country, address, state, photo} = data;
       await con.query(
         `
@@ -42,7 +39,7 @@ module.exports = {
       )
     },
 
-    get: async function(con, data, callback) {
+    get_stadium: async function(con, data, callback) {
       const id = data.id;
       if(id != null){
         await con.query(
@@ -60,7 +57,7 @@ module.exports = {
       }
     },
 
-    edit: async function(con, data, callback) {
+    edit_stadium: async function(con, data, callback) {
       const {id, name, fundation_date, capacity, id_country, address, state, photo} = data;
       await con.query(
         `
@@ -78,7 +75,7 @@ module.exports = {
         callback)
     },
 
-    delete: async function(con, data, callback) {
+    delete_stadium: async function(con, data, callback) {
       await con.query(
         `
         DELETE FROM Estadio
@@ -87,5 +84,49 @@ module.exports = {
         `,
         callback
       )
-    }
+    },
+
+// *****************************************************
+// ****************     COMPETICION     ****************
+// *****************************************************
+
+    get_competition: async function(con, data, callback) {
+      const id = data.championship;
+      if(id != null){
+        await con.query(
+          `
+          SELECT * FROM Competencia
+          WHERE id_competencia = '${id}';
+          `,
+          callback)
+      } else {
+        await con.query(
+          `
+          SELECT * FROM Competencia;
+          `,
+          callback)
+      }
+    },
+
+    create_league: async function(con, data, callback) {
+      const {name, description, type, id_country} = data;
+      await con.query(
+        `
+        INSERT INTO Liga ( 
+          name,
+          description,
+          type,
+          id_country
+          )
+        VALUES (
+          '${name}',
+          '${description}',
+          '${type}',
+          '${id_country}'
+          );
+        `,
+        callback
+      )
+    },
+
   }

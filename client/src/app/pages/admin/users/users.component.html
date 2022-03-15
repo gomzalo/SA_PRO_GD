@@ -8,10 +8,16 @@
 
     <div class="row">
         
-            <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;">Agregar Usuario</button>
+            <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=true">Agregar Usuario</button>
+            <br/>
+            <br/>
+            <button type="button" class="btn btn-danger col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=false" *ngIf="isOpen">Cerrar formulario</button>
         
         
     </div>
+    <app-registro [editData]="user" *ngIf="isOpen">
+
+    </app-registro>
     <br/>
     <div class="row">
         <table class="table table-striped">
@@ -27,14 +33,14 @@
             </thead>
             <tbody>
             <tr *ngFor="let user of users">
-              <th scope="row">{{ country.id }}</th>
+              <th scope="row">{{ user.id_usuario }}</th>
               <td>
-                <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px">
-                {{ country.name }}
+                
+                {{ user.first_name}}
               </td>
-              <td>{{ country.area | number}}</td>
-              <td>{{ country.population | number }}</td>
-              <td> <button type="button" class="btn btn-secondary">Editar</button></td>
+              <td>{{ user.email}}</td>
+              <td>{{ user.id_estado }}</td>
+              <td> <button type="button" class="btn btn-secondary" (click)="editar(user,content)">Editar</button></td>
             </tr>
             </tbody>
           </table>
@@ -51,3 +57,20 @@
           </div>
     </div>
   </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Usuario</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+   
+     
+   
+
+
+
+
+  </ng-template>
+  
+  
+  

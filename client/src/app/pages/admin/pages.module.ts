@@ -14,9 +14,12 @@ import { UsersComponent } from './users/users.component';
 import { MaterialModule } from 'src/material.module';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {UsersModule} from '../User/users.module';
+import { NoticiaComponent } from './noticia/noticia.component';
+
 
 @NgModule({
-  declarations: [UsersComponent],
+  declarations: [UsersComponent, NoticiaComponent],
   imports: [
     AngularDualListBoxModule,
     MatSelectModule,
@@ -26,7 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CountToModule,
     MaterialModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    UsersModule
   ]
 })
 export class PagesModule { }

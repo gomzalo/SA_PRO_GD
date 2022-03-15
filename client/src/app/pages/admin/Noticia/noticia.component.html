@@ -13,7 +13,6 @@
             <br/>
             <button type="button" class="btn btn-danger col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=false" *ngIf="isOpen">Cerrar formulario</button>
         
-        
     </div>
     <app-registro [editData]="user" *ngIf="isOpen">
 
@@ -24,22 +23,20 @@
             <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Correo</th>
-              <th scope="col">Status</th>
-              <th scope="col">Editar</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">fecha</th>
 
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let user of users">
-              <th scope="row">{{ user.id_usuario }}</th>
+            <tr *ngFor="let noticia of noticias">
+              <th scope="row">{{ noticia.titulo }}</th>
               <td>
                 
-                {{ user.first_name}}
+                {{ noticia.Descripcion}}
               </td>
-              <td>{{ user.email}}</td>
-              <td>{{ user.id_estado }}</td>
+              <td>{{ noticia.fecha}}</td>
               <td> <button type="button" class="btn btn-secondary" (click)="editar(user,content)">Editar</button></td>
             </tr>
             </tbody>

@@ -159,9 +159,9 @@ GET http://localhost:5000/client/all_countries HTTP/1.1
 
 ###
 
-# *******************************************
+# ***************************************************
 # ************** ADMINISTRATIVE SERVER ************** 
-# *******************************************
+# ***************************************************
 
 # :::::::::::::::::     STADIUM     :::::::::::::::::
 
@@ -215,4 +215,18 @@ content-type: application/json
 # ----------    Delete   ----------
 
 DELETE http://localhost:5001/administrative/stadium/?id=3 HTTP/1.1
+content-type: application/json
+
+# :::::::::::::::::     COMPETICION     :::::::::::::::::
+
+###
+
+# ----------    Get   ----------
+
+GET http://localhost:5001/administrative/competition/?championship=1 HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://localhost:5001/administrative/competition/ HTTP/1.1
 content-type: application/json

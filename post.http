@@ -268,3 +268,63 @@ content-type: application/json
 
 DELETE http://localhost:5001/administrative/competition/?id=4 HTTP/1.1
 content-type: application/json
+
+# :::::::::::::::::     PARTIDO     :::::::::::::::::
+
+###
+
+# ----------    Get   ----------
+
+GET http://localhost:5001/administrative/soccer-game/?id=3 HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://localhost:5001/administrative/soccer-game/ HTTP/1.1
+content-type: application/json
+
+###
+
+# ----------    Crear   ----------
+
+POST http://localhost:5001/administrative/soccer-game HTTP/1.1
+content-type: application/json
+
+{
+    "game_date": "2022-03-16",
+    "attendees": 50688,
+    "result_local": 2,
+    "result_visiting": 1,
+    "state": "unstarted",
+    "id_stadium": 1,
+    "id_team_local": 1,
+    "id_team_visiting": 1,
+    "id_competition": 5
+}
+
+###
+
+# ----------    Editar   ----------
+
+PUT http://localhost:5001/administrative/soccer-game HTTP/1.1
+content-type: application/json
+
+{
+    "id_game": 1,
+    "game_date": "2022-03-16",
+    "attendees": 50688,
+    "result_local": 2,
+    "result_visiting": 3,
+    "state": "in-progress",
+    "id_stadium": 1,
+    "id_team_local": 1,
+    "id_team_visiting": 1,
+    "id_competition": 5
+}
+
+###
+
+# ----------    Delete   ----------
+
+DELETE http://localhost:5001/administrative/soccer-game/?id=1 HTTP/1.1
+content-type: application/json

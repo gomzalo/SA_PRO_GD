@@ -230,3 +230,41 @@ content-type: application/json
 
 GET http://localhost:5001/administrative/competition/ HTTP/1.1
 content-type: application/json
+
+###
+
+# ----------    Crear   ----------
+
+POST http://localhost:5001/administrative/competition HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Liga granjera de Guatemala",
+    "type": "Liga",
+    "year": 2020,
+    "champion_team": 1,
+    "country": 21
+}
+
+###
+
+# ----------    Editar   ----------
+
+PUT http://localhost:5001/administrative/competition HTTP/1.1
+content-type: application/json
+
+{
+    "id_competition": 2,
+    "name": "Liga granjera de El Salvador",
+    "type": "Liga",
+    "year": 2021,
+    "champion_team": 1,
+    "country": 22
+}
+
+###
+
+# ----------    Delete   ----------
+
+DELETE http://localhost:5001/administrative/competition/?id=4 HTTP/1.1
+content-type: application/json

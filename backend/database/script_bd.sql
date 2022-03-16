@@ -256,9 +256,15 @@ CREATE TABLE Usuario (
         REFERENCES Rol(id_rol)
 );
 
---
--- Dumping data for table `Pais`
---
+
+create table Noticia(
+    id_equipo int not null,
+    titulo varchar(100) not null,
+    descripcion varchar(300) not null,
+    fecha date not null,
+    constraint pk_noticia primary key (id_equipo,titulo,fecha),
+    CONSTRAINT FK_noticia_equipo FOREIGN KEY (id_equipo) REFERENCES Equipo(id_equipo)
+);
 
 INSERT INTO `Pais` (`id_pais`, `iso`, `name`, `nicename`, `iso3`, `numcode`, `phonecode`) VALUES
 (1, 'AF', 'AFGHANISTAN', 'Afghanistan', 'AFG', 4, 93),

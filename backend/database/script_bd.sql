@@ -170,13 +170,14 @@ CREATE TABLE Arbitro (
 CREATE TABLE Partido (
     id_partido INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     fecha DATE NOT NULL,
-    hora VARCHAR(100) NOT NULL,
     publico INTEGER NOT NULL,
     id_estadio INTEGER NOT NULL,
     id_visitante INTEGER NOT NULL,
     id_local INTEGER NOT NULL,
     id_competencia INTEGER NOT NULL,
     id_estado INTEGER NOT NULL,
+    result_local INTEGER NOT NULL,
+    result_visiting INTEGER NOT NULL,
     CONSTRAINT FK_Partido_Estadio FOREIGN KEY (id_estadio)
         REFERENCES Estadio(id_estadio),
     CONSTRAINT FK_Partido_Equipo_Visitante FOREIGN KEY (id_visitante)
@@ -527,3 +528,10 @@ INSERT INTO Tipo_Competencia (nombre) VALUES ('Copa');
 INSERT INTO Tipo_Competencia (nombre) VALUES ('Super Copa');
 INSERT INTO Tipo_Competencia (nombre) VALUES ('Cuadrangular');
 INSERT INTO Tipo_Competencia (nombre) VALUES ('Triangular');
+
+-- Estados de partido
+
+INSERT INTO Estado (descripcion) VALUES ("unstarted");
+INSERT INTO Estado (descripcion) VALUES ("in-progress");
+INSERT INTO Estado (descripcion) VALUES ("completed");
+INSERT INTO Estado (descripcion) VALUES ("suspended");

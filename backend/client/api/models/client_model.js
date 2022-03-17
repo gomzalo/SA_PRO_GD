@@ -17,6 +17,42 @@ module.exports = {
       await con.query("SELECT * FROM Pais;", callback)
     },
 
+
+    delete: async function(con, data, callback){
+      const id = data.no_id;
+      await con.query(
+        `
+        update Usuario
+        set id_estado = 3
+        WHERE id_usuario = '${id}';
+        `,
+        callback)
+    },
+
+    update: async function(con, data, callback){
+      const {id, name, lastname, password, email, telephone, photo, genre , birthday,address, id_country, age} = data;
+      console.log(data);
+      await con.query(
+        `
+        UPDATE Usuario
+        SET
+        first_name = '${name}',
+        last_name = '${lastname}',
+        pass = '${password}',
+        email = '${email}',
+        phone = '${telephone}',
+        photo =  '${photo}',
+        gender = '${genre}',
+        fecha_nac = '${birthday}',
+        direccion = '${address}',
+        id_pais = '${id_country}',
+        age = '${age}'
+        WHERE id_usuario = ${id};
+        `,
+        callback
+      )
+    },
+
     create: async function(con, data, callback) {
       const {name, lastname, password, email, phone, photo, gender, birth_date, signup_date, address, id_pais, id_estado, id_rol, age, membership} = data;
       let cif_pass = cryptoJS.AES.encrypt(password, 'SiSaleSA_').toString();

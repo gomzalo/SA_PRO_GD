@@ -3,6 +3,9 @@ const { get_last_id, email_confirmation } = require('../models/client_model');
 var cryptoJS = require('crypto-js');
 
 module.exports = {
+
+   // update: async function(req, res) {
+
     all: function(req, res) {
       clientm.all(req.con, function(err, rows) {
         res.status(200).send(rows);
@@ -13,6 +16,42 @@ module.exports = {
       clientm.all_countries(req.con, function(err, rows) {
         res.status(200).send(rows);
       })
+    },
+
+    delete: async function(req, res) {
+      clientm.delete(req.con, req.params, async function(err){
+        if(err){
+          res.status(409).send({
+            status: false,
+            data: [],
+            msj: 'Error al eliminar cliente',
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: [],
+            msj: 'Cliente eliminado con exito'
+          });
+        }
+      });
+    },
+
+    update: async function(req, res) {
+      clientm.update(req.con, req.body, async function(err){
+        if(err){
+          res.status(409).send({
+            status: false,
+            msj: "Error al actualizar los datos",
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            msj: "Datos actualizados con exito"
+          });
+        }
+      });
     },
 
     create: async function(req, res) {

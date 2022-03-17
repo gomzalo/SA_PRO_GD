@@ -8,4 +8,9 @@ router.post('/create', client_controller.create);
 router.get('/email_confirmation', client_controller.email_confirmation);
 router.post('/send_email_confirmation', client_controller.send_email);
 
+// *************************************************
+router.put('/update', client_controller.update);
+router.delete('/delete/:no_id', client_controller.delete);
+
+
 module.exports = router

@@ -14,9 +14,49 @@
             <button type="button" class="btn btn-danger col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=false" *ngIf="isOpen">Cerrar formulario</button>
         
     </div>
-    <app-registro [editData]="user" *ngIf="isOpen">
+   
+    <form [formGroup]="RegistroForm" autocomplete="off" novalidate (ngSubmit)="submit(RegistroForm.value)" class="content">
+      <mat-card-content>
+        <div class="center margin-dark" style="display:flex;flex-flow: column;">
+    
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>titulo: </mat-label>
+            <input matInput type="text" placeholder="Nombre" formControlName="name" id="first-name">
+          </mat-form-field>
+    
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>Descripcion: </mat-label>
+            <input matInput type="text" placeholder="Apellido" formControlName="lastname" id="last-name">
+          </mat-form-field>
+            
+    
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>Equipo </mat-label>
+            <mat-select formControlName="id_pais" id="pais">
+              <mat-option *ngFor="let pais of paises" [value]="pais.id_pais">
+                {{pais.nicename}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    
+    
 
-    </app-registro>
+          <mat-label class="margenes">Foto de perfil </mat-label>
+          <input 
+          formControlName="photo"
+          id="file" 
+          type="file" 
+          class="form-control margenes"
+          (change)="onFileChange($event)">
+         
+          <br />
+    
+          <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>
+    
+        </div>
+      </mat-card-content>
+    </form>
+
     <br/>
     <div class="row">
         <table class="table table-striped">

@@ -15,7 +15,8 @@ import { MaterialModule } from 'src/material.module';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {UsersModule} from '../User/users.module';
-import { NoticiaComponent } from './noticia/noticia.component';
+import { NoticiaComponent } from './Noticia/noticia.component';
+
 
 
 @NgModule({

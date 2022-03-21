@@ -110,6 +110,11 @@ export class SidebarComponent {
           type: 'link'
         },
         {
+          path: './noticias-',
+          title: 'NOTICIAS',
+          type: 'link'
+        },
+        {
           path: '',
           title: 'CERRAR SESIÓN',
           type: 'link'

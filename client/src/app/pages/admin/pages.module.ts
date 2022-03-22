@@ -12,7 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { UsersComponent } from './users/users.component';
 import { MaterialModule } from 'src/material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {UsersModule} from '../User/users.module';
 import { NoticiaComponent } from './Noticia/noticia.component';
@@ -29,6 +29,7 @@ import { NoticiaComponent } from './Noticia/noticia.component';
     SharedModule,
     CountToModule,
     MaterialModule,
+    ReactiveFormsModule,
     FormsModule,
     NgbModule,
     UsersModule

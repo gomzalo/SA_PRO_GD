@@ -22,7 +22,7 @@ interface Country {
 })
 export class NoticiaComponent implements OnInit {
   noticias = []
-  equipos = []
+  equipos = [{id_equipo:1,nombre:'guastapoya',abreviado:'guasta',id_pais:5,is_club:true}]
   closeResult = '';
   page = 1;
   pageSize = 4;
@@ -34,7 +34,7 @@ export class NoticiaComponent implements OnInit {
     id_equipo: new FormControl('', [Validators.required]),
     titulo: new FormControl('', [Validators.required]),
     descripcion: new FormControl('', [Validators.required]),
-    fecha: new FormControl(this.formatDate(new Date()), [Validators.required, Validators.minLength(8)]),
+    fecha: new FormControl(this.formatDate(), [Validators.required, Validators.minLength(8)]),
 
   });
 
@@ -42,8 +42,8 @@ export class NoticiaComponent implements OnInit {
 
   }
   
-  formatDate(date: Date) {
-    const isoDateString = date.toISOString();
+  formatDate() {
+    const isoDateString =  new Date().toISOString();
     const isoDate = new Date(isoDateString);
     const mySQLDateString = isoDate.toJSON().slice(0, 19).replace('T', ' ');
     return mySQLDateString
@@ -60,7 +60,12 @@ export class NoticiaComponent implements OnInit {
   }
 
   submit(form){
-
+    if (this.Form.valid) {
+        console.log(form);
+        this.noticiaService.insertNotice(form)
+          .subscribe(res => console.log(res));
+    
+    }
   }
 
   editar(noticia, content) {

@@ -110,7 +110,7 @@ export class SidebarComponent {
           type: 'link'
         },
         {
-          path: './noticias-',
+          path: './noticias',
           title: 'NOTICIAS',
           type: 'link'
         },

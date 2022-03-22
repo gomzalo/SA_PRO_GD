@@ -13,6 +13,21 @@ router.post('/stadium', administrative_controller.create_stadium);
 router.put('/stadium', administrative_controller.edit_stadium);
 router.delete('/stadium', administrative_controller.delete_stadium);
 
+// *************************************************
+// ****************     EQUIPO     ****************
+// *************************************************
+router.get('/team', administrative_controller.get_team);
+router.post('/team', administrative_controller.create_team);
+router.put('/team', administrative_controller.edit_team);
+router.delete('/team', administrative_controller.delete_team);
+
+// *************************************************
+// ****************     NOTICIA     ****************
+// *************************************************
+
+router.post('/notice', administrative_controller.create_noticia);
+router.get('/notice', administrative_controller.get_noticia);
+
 // *****************************************************
 // ****************     COMPETICION     ****************
 // *****************************************************

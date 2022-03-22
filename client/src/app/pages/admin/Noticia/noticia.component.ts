@@ -1,10 +1,8 @@
 
 import { NoticiaService } from '../../../shared/services/noticia.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
-
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface Country {
   id?: number;
@@ -24,6 +22,7 @@ interface Country {
 })
 export class NoticiaComponent implements OnInit {
   noticias = []
+  equipos = []
   closeResult = '';
   page = 1;
   pageSize = 4;
@@ -31,7 +30,7 @@ export class NoticiaComponent implements OnInit {
   notice: any;
   isOpen=false;
 
-  RegistroForm = new FormGroup({
+  Form = new FormGroup({
     id_equipo: new FormControl('', [Validators.required]),
     titulo: new FormControl('', [Validators.required]),
     descripcion: new FormControl('', [Validators.required]),
@@ -39,11 +38,9 @@ export class NoticiaComponent implements OnInit {
 
   });
 
-
-  constructor(private noticiaService: NoticiaService, private formBuilder: FormBuilder) {
+  constructor(private noticiaService: NoticiaService,) {
 
   }
-
   
   formatDate(date: Date) {
     const isoDateString = date.toISOString();
@@ -61,7 +58,6 @@ export class NoticiaComponent implements OnInit {
       .subscribe((data) => { this.noticias = data });
 
   }
-
 
   submit(form){
 

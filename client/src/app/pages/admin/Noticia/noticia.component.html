@@ -1,106 +1,90 @@
 <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1>Noticias</h1>
-      </div>
-      
+  <div class="row">
+    <div class="col">
+      <h1>Noticias</h1>
     </div>
-
-    <div class="row">
-        
-            <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=true">Agregar Noticia</button>
-            <br/>
-            <br/>
-            <button type="button" class="btn btn-danger col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=false" *ngIf="isOpen">Cerrar formulario</button>
-        
-    </div>
-   
-    <form [formGroup]="RegistroForm" autocomplete="off" novalidate (ngSubmit)="submit(RegistroForm.value)" class="content">
-      <mat-card-content>
-        <div class="center margin-dark" style="display:flex;flex-flow: column;">
     
-          <mat-form-field appearance="outline" class="center">
-            <mat-label>titulo: </mat-label>
-            <input matInput type="text" placeholder="Nombre" formControlName="name" id="first-name">
-          </mat-form-field>
-    
-          <mat-form-field appearance="outline" class="center">
-            <mat-label>Descripcion: </mat-label>
-            <input matInput type="text" placeholder="Apellido" formControlName="lastname" id="last-name">
-          </mat-form-field>
-            
-    
-          <mat-form-field appearance="outline" class="center">
-            <mat-label>Equipo </mat-label>
-            <mat-select formControlName="id_pais" id="pais">
-              <mat-option *ngFor="let pais of paises" [value]="pais.id_pais">
-                {{pais.nicename}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-    
-    
-
-          <mat-label class="margenes">Foto de perfil </mat-label>
-          <input 
-          formControlName="photo"
-          id="file" 
-          type="file" 
-          class="form-control margenes"
-          (change)="onFileChange($event)">
-         
-          <br />
-    
-          <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>
-    
-        </div>
-      </mat-card-content>
-    </form>
-
-    <br/>
-    <div class="row">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Titulo</th>
-              <th scope="col">Descripcion</th>
-              <th scope="col">fecha</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let noticia of noticias">
-              <th scope="row">{{ noticia.titulo }}</th>
-              <td>
-                
-                {{ noticia.Descripcion}}
-              </td>
-              <td>{{ noticia.fecha}}</td>
-              <td> <button type="button" class="btn btn-secondary" (click)="editar(user,content)">Editar</button></td>
-            </tr>
-            </tbody>
-          </table>
-          
-          <div class="d-flex justify-content-between p-2">
-            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
-            </ngb-pagination>
-          
-            <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
-              <option [ngValue]="2">2 items per page</option>
-              <option [ngValue]="4">4 items per page</option>
-              <option [ngValue]="6">6 items per page</option>
-            </select>
-          </div>
-    </div>
   </div>
 
-  <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Usuario</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-   
-     
+  <div class="row">
+      
+          <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=true">Agregar Noticia</button>
+          <br/>
+          <br/>
+          <button type="button" class="btn btn-danger col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=false" *ngIf="isOpen">Cerrar formulario</button>
+      
+  </div>
+ 
+  <form [formGroup]="Form" autocomplete="off" novalidate (ngSubmit)="submit(Form.value)" class="content" *ngIf="isOpen">
+    <mat-card-content>
+      <div class="center margin-dark" style="display:flex;flex-flow: column;">
   
-  </ng-template>
+        <mat-form-field appearance="outline" class="center">
+          <mat-label>titulo: </mat-label>
+          <input matInput type="text" placeholder="Nombre" formControlName="titulo" id="titulo">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="center">
+          <mat-label>Descripcion: </mat-label>
+          <input matInput type="text" placeholder="Apellido" formControlName="descripcion" id="descripcion">
+        </mat-form-field>
+              <mat-form-field appearance="outline" class="center">
+          <mat-label>Descripcion: </mat-label>
+          <input matInput type="text" placeholder="Apellido" formControlName="descripcion" id="descripcion">
+        </mat-form-field>
+          
+
+  
+        <mat-form-field appearance="outline" class="center">
+          <mat-label>Equipo </mat-label>
+          <mat-select formControlName="id_equipo" id="id_equipo">
+            <mat-option *ngFor="let equipo of equipos" [value]="equipo.id_equipo">
+              {{equipo.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+       
+        <br />  
+        <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>
+  
+      </div>
+    </mat-card-content>
+  </form>
+
+  <br/>
+  <div class="row">
+      <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">fecha</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let noticia of noticias">
+            <th scope="row">{{ noticia.titulo }}</th>
+            <td>
+              
+              {{ noticia.Descripcion}}
+            </td>
+            <td>{{ noticia.fecha}}</td>
+            <td> <button type="button" class="btn btn-secondary" (click)="editar(user,content)">Editar</button></td>
+          </tr>
+          </tbody>
+        </table>
+        
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+          </ngb-pagination>
+        
+          <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+          </select>
+        </div>
+  </div>
+</div>

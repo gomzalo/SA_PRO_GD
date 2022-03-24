@@ -70,33 +70,35 @@ export class LoginComponent implements OnInit {
   }
 
    handleLogin() {
-  //   let session = this.authService.login({"email" : this.email,"password" : (this.password)});
+  //  let session = this.authService.login({"email" : this.email,"password" : (this.password)});
 
 
-  //   this.authService.login({"email" : this.email,"password" : (this.password)})
-  //     .subscribe(
-  //       resp=>{
-  //           let respueta:any = resp;
-  //           if(respueta.msj!=""){
-  //             this.errorAlert('Error Login', respueta.msj);
-  //             return;
-  //           }
-  //           if(respueta.data.statusAccount=="Congelada"){
-  //             this.errorAlert('Error Login', "Cuenta congelada");
-  //             return;
-  //           }
-  //           if(respueta.data.statusAccount=="Activa"){
-  //             alert("Cuanta activa");
-  //             this.router.navigate(['./admin']);
-  //           }
+  this.authService.login({"email" : this.email,"password" : (this.password)})
+       .subscribe(
+         resp=>{
+             let respueta:any = resp;
+             
+             if(respueta.status!=true){
+               this.errorAlert('Error Login', respueta.msj);
+               return;
+             }
+             if(respueta.statusAccount=="1"){
+              let user_string = JSON.stringify(respueta);
+              localStorage.setItem('currentUser',user_string); 
+               alert("Cuanta activa");
+               this.router.navigate(['./admin']);
+             }else{
+              this.errorAlert('Error con su cuenta', respueta.msj);
+              return;
+             }
 
-  //       },
-  //       err=> {
-  //         console.log(err);
-  //         this.errorAlert('Error Login', err.message);
-  //       }
+         },
+         err=> {
+           console.log(err);
+           this.errorAlert('Error Login', err.message);
+         }
 
-  //     );
+       );
    }
 
   // async handleCookieAsigned(email) {
@@ -145,15 +147,15 @@ export class LoginComponent implements OnInit {
   //   })
   // }
 
-  // errorAlert(title: string, body: string) {
-  //   Swal.fire(
-  //     title,
-  //     body,
-  //     'error'
-  //   ).then((resp => {
-  //     this.loginButton = false;
-  //   }))
-  // }
+   errorAlert(title: string, body: string) {
+     Swal.fire(
+       title,
+       body,
+       'error'
+     ).then((resp => {
+       this.loginButton = false;
+     }))
+   }
 
   // handleFirebaselogout() {
 

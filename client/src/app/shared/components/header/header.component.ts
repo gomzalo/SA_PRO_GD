@@ -6,7 +6,9 @@ import { NavService, Menu } from '../../services/nav.service';
 var body = document.getElementsByTagName("body")[0];
 
 // Services
-// import { AuthService } from 'src/app/core/services/auth/auth.service';
+import {
+  AuthService
+} from 'src/app/core/services/auth/auth.service';
 
 // Libs
 import { CookieService } from 'ngx-cookie-service';
@@ -29,8 +31,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     public navServices: NavService,
     private router: Router,
-    // private authService: AuthService,
     private cookieService: CookieService,
+    private authService: AuthService
   ) {  }
 
   ngOnInit() {
@@ -44,6 +46,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
+    this.authService.logout();
+    this.router.navigate(['']);
   }
 
   goNotifications(){

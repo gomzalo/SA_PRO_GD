@@ -1,7 +1,7 @@
 var cryptoJS = require('crypto-js');
 const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
-var emailCheck = require('email-check');
+
 
 module.exports = {
     all: async function(con, callback) {

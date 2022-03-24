@@ -1,5 +1,7 @@
 
 import { NoticiaService } from '../../../shared/services/noticia.service';
+
+import { EquipoService } from '../../../shared/services/equipo.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
@@ -22,7 +24,7 @@ interface Country {
 })
 export class NoticiaComponent implements OnInit {
   noticias = []
-  equipos = [{id_equipo:1,nombre:'guastapoya',abreviado:'guasta',id_pais:5,is_club:true}]
+  equipos = [{id_equipo: 1, nombre: 'Guastapoya', abreviado: 'GUA', id_pais: 15, is_club: 0}]
   closeResult = '';
   page = 1;
   pageSize = 4;
@@ -31,14 +33,15 @@ export class NoticiaComponent implements OnInit {
   isOpen=false;
 
   Form = new FormGroup({
-    id_equipo: new FormControl('', [Validators.required]),
-    titulo: new FormControl('', [Validators.required]),
-    descripcion: new FormControl('', [Validators.required]),
-    fecha: new FormControl(this.formatDate(), [Validators.required, Validators.minLength(8)]),
+    id_team: new FormControl('', [Validators.required]),
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    date: new FormControl(this.formatDate(), [Validators.required, Validators.minLength(8)]),
+    id_user:new FormControl(1, [Validators.required]),
 
   });
 
-  constructor(private noticiaService: NoticiaService,) {
+  constructor(private noticiaService: NoticiaService,private equipoService: EquipoService) {
 
   }
   
@@ -50,14 +53,21 @@ export class NoticiaComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getnoticias();
+    this.getequipos();
     this.size = this.noticias.length
 
   }
+
   getnoticias() {
     this.noticiaService.getAllNotices()
-      .subscribe((data) => { this.noticias = data });
-
+      .subscribe((data) => { this.noticias = data.data });
   }
+
+  getequipos() {
+    this.equipoService.getAllteams()
+      .subscribe((data) => { this.equipos = data.data;console.log(this.equipos) });
+  }
+
 
   submit(form){
     if (this.Form.valid) {

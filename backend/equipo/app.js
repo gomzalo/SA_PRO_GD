@@ -24,8 +24,8 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(cors())
 
 //  Rutas
-const news_routes = require('./api/routes/news_route')
+const team_routes = require('./api/routes/team_route')
 // Routing
-app.use('/', news_routes)
+app.use('/', team_routes)
 
 module.exports = app

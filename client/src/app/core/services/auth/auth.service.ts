@@ -23,11 +23,17 @@ export class AuthService {
   }
 
   login(data: any) {
-    return this.http.post(this.url +'esb/user/login', data);
+    return this.http.post(this.url +'login', data);
   }
 
+  getSesion(){
+    let user_string = localStorage.getItem('currentUser');
+    return JSON.parse(user_string);
+  }
+
+
   logout() {
-   // return this.afAuth.signOut();
+   localStorage.removeItem("currentUser");
   }
 
   forgotPassword(email: string) {

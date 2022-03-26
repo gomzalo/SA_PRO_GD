@@ -1,48 +1,48 @@
--- drop table Usuario;
--- drop table  Incidencia;
---  drop table Arbitro_Partido;
---  drop table Jugador_Partido;
---  drop table Partido;
---   drop table Competencia;
---   drop table Estadio;
---  drop table Asignacion_Jugador_Equipo;
---  drop table Asignacion_Tecnico_Equipo;
---   drop table Tecnico;
---   drop table Jugador;
---    drop table Posicion;
---  Drop table Equipo;
---   drop table Tipo_Incidencia;
---  drop table Tipo_Gol;
---  drop table Tipo_Competencia;
---  drop table Arbitro;
---  drop table Rol;
+-- drop TABLE Usuario;
+-- drop TABLE  Incidencia;
+--  drop TABLE Arbitro_Partido;
+--  drop TABLE Jugador_Partido;
+--  drop TABLE Partido;
+--   drop TABLE Competencia;
+--   drop TABLE Estadio;
+--  drop TABLE Asignacion_Jugador_Equipo;
+--  drop TABLE Asignacion_Tecnico_Equipo;
+--   drop TABLE Tecnico;
+--   drop TABLE Jugador;
+--    drop TABLE Posicion;
+--  Drop TABLE Equipo;
+--   drop TABLE Tipo_Incidencia;
+--  drop TABLE Tipo_Gol;
+--  drop TABLE Tipo_Competencia;
+--  drop TABLE Arbitro;
+--  drop TABLE Rol;
 --  DROP TABLE Pais;
 --  DROP TABLE Estado;
 
-create database soccer_stats_db;
-use soccer_stats_db;
+CREATE DATABASE soccer_stats_db;
+USE soccer_stats_db;
 
 CREATE TABLE `Pais` (
-    `id_pais` int(11) NOT NULL AUTO_INCREMENT,
-    `name` varchar(80) NOT NULL,
-    `nicename` varchar(80) NOT NULL,
-    `iso` char(2) NOT NULL,
-    `iso3` char(3) DEFAULT NULL,
-    `numcode` smallint(6) DEFAULT NULL,
-    `phonecode` int(5) NOT NULL,
+    `id_pais` INT(11) AUTO_INCREMENT,
+    `name` VARCHAR(80) NOT NULL,
+    `nicename` VARCHAR(80) NOT NULL,
+    `iso` CHAR(2) NOT NULL,
+    `iso3` CHAR(3) DEFAULT NULL,
+    `numcode` SMALLINT(6) DEFAULT NULL,
+    `phonecode` INT(5) NOT NULL,
     PRIMARY KEY (`id_pais`)
 ) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8;
 
 CREATE TABLE Estado (
-    id_estado INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_estado INT NOT NULL PRIMARY KEY,
     descripcion VARCHAR(300)
 );
 
 CREATE TABLE Equipo (
-    id_equipo INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_equipo INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     abreviado VARCHAR(5),
-    id_pais INTEGER NOT NULL,
+    id_pais INT NOT NULL,
     is_club BOOLEAN NOT NULL,
     CONSTRAINT FK_Equipo_Pais FOREIGN KEY (id_pais)
         REFERENCES Pais(id_pais)
@@ -50,14 +50,14 @@ CREATE TABLE Equipo (
 
 
 CREATE TABLE Tecnico (
-    id_tecnico INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_tecnico INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL ,
     fecha_nac DATE NOT NULL,
     titulo VARCHAR(100) NOT NULL,
     foto VARCHAR(300) NOT NULL,
-	id_pais INTEGER NOT NULL,
-    id_estado INTEGER NOT NULL,
+	id_pais INT NOT NULL,
+    id_estado INT NOT NULL,
     CONSTRAINT FK_Tecnico_Pais FOREIGN KEY (id_pais)
         REFERENCES Pais(id_pais),
     CONSTRAINT FK_Tecnico_Estado FOREIGN KEY (id_estado)
@@ -66,26 +66,26 @@ CREATE TABLE Tecnico (
 
 
 CREATE TABLE Posicion (
-    id_posicion INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_posicion INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100)
 );
 
 CREATE TABLE Jugador (
-    id_jugador INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_jugador INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL ,
     fecha_nac DATE NOT NULL,
-	pais_nacionalidad INTEGER NOT NULL,
-    id_posicion INTEGER NOT NULL,
+	pais_nacionalidad INT NOT NULL,
+    id_posicion INT NOT NULL,
     foto VARCHAR(300) NOT NULL,
-    id_estado INTEGER NOT NULL,
+    id_estado INT NOT NULL,
 	CONSTRAINT FK_Jugador_Posicion FOREIGN KEY (id_posicion)
         REFERENCES Posicion(id_posicion)
 );
 
 CREATE TABLE Asignacion_Jugador_Equipo (
-    id_jugador INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_equipo INTEGER NOT NULL,
+    id_jugador INT AUTO_INCREMENT PRIMARY KEY,
+    id_equipo INT NOT NULL,
     fecha_inicio DATE NOT NULL,
     fecha_fin DATE,
     CONSTRAINT FK_Jugador_Equipo_id_jugador FOREIGN KEY (id_jugador)
@@ -95,8 +95,8 @@ CREATE TABLE Asignacion_Jugador_Equipo (
 );
 
 CREATE TABLE Asignacion_Tecnico_Equipo (
-    id_tecnico INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_equipo INTEGER NOT NULL,
+    id_tecnico INT AUTO_INCREMENT PRIMARY KEY,
+    id_equipo INT NOT NULL,
     fecha_inicio DATE NOT NULL,
     fecha_fin DATE,
     CONSTRAINT FK_Tecnico_Equipo_id_tecnico FOREIGN KEY (id_tecnico)
@@ -107,32 +107,31 @@ CREATE TABLE Asignacion_Tecnico_Equipo (
 
 
 CREATE TABLE Tipo_Gol (
-    id_tipo_gol INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_tipo_gol INT NOT NULL PRIMARY KEY,
 	descripcion VARCHAR(100)
 );
 
 
 CREATE TABLE Tipo_Incidencia (
-    id_tipo_incidencia INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_tipo_incidencia INT AUTO_INCREMENT PRIMARY KEY,
     descripcion VARCHAR(300) NOT NULL,
-    id_tipo_gol INTEGER NOT NULL ,
-    distancia INTEGER NULL,
+    id_tipo_gol INT NULL,
     CONSTRAINT FK_Tipo_Incidencia_Gol FOREIGN KEY (id_tipo_gol)
         REFERENCES Tipo_Gol(id_tipo_gol)
 );
 
 CREATE TABLE Tipo_Competencia (
-    id_tipo_competencia INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_tipo_competencia INT NOT NULL PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL
 );
 
 CREATE TABLE Competencia (
-    id_competencia INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_competencia INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL,
-    id_tipo_competencia INTEGER NOT NULL,
-    anio INTEGER NOT NULL,
-    id_campeon INTEGER NOT NULL,
-    id_country INTEGER NOT NULL,
+    id_tipo_competencia INT NOT NULL,
+    anio INT NOT NULL,
+    id_campeon INT NOT NULL,
+    id_country INT NOT NULL,
     CONSTRAINT FK_Competencia_Pais FOREIGN KEY (id_country)
         REFERENCES Pais(id_pais),
     CONSTRAINT FK_Competencia_Tipo_Competencia FOREIGN KEY (id_tipo_competencia)
@@ -142,25 +141,25 @@ CREATE TABLE Competencia (
 );
 
 CREATE TABLE Estadio (
-    id_estadio INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_estadio INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL,
     fecha_inaguracion DATE NOT NULL,
-    capacidad INTEGER NOT NULL,
+    capacidad INT NOT NULL,
     direccion VARCHAR(300) NOT NULL,
     foto VARCHAR(300) NOT NULL,
-    id_pais INTEGER NOT NULL,
+    id_pais INT NOT NULL,
     state VARCHAR(250) NOT NULL,
     CONSTRAINT FK_Estadio_Pais FOREIGN KEY (id_pais)
         REFERENCES Pais(id_pais)
 );
 
 CREATE TABLE Arbitro (
-    id_arbitro INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_arbitro INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL,
     apellido VARCHAR(150) NOT NULL,
     fecha_nac DATE NOT NULL,
-    id_pais INTEGER NOT NULL,
-    id_estado INTEGER NOT NULL,
+    id_pais INT NOT NULL,
+    id_estado INT NOT NULL,
     CONSTRAINT FK_Arbitro_Pais FOREIGN KEY (id_pais)
         REFERENCES Pais(id_pais),
     CONSTRAINT FK_Arbitro_Estado FOREIGN KEY (id_estado)
@@ -168,16 +167,16 @@ CREATE TABLE Arbitro (
 );
 
 CREATE TABLE Partido (
-    id_partido INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_partido INT AUTO_INCREMENT PRIMARY KEY,
     fecha DATE NOT NULL,
-    publico INTEGER NOT NULL,
-    id_estadio INTEGER NOT NULL,
-    id_visitante INTEGER NOT NULL,
-    id_local INTEGER NOT NULL,
-    id_competencia INTEGER NOT NULL,
-    id_estado INTEGER NOT NULL,
-    result_local INTEGER NOT NULL,
-    result_visiting INTEGER NOT NULL,
+    publico INT NOT NULL,
+    id_estadio INT NOT NULL,
+    id_visitante INT NOT NULL,
+    id_local INT NOT NULL,
+    id_competencia INT NOT NULL,
+    id_estado INT NOT NULL,
+    result_local INT NOT NULL,
+    result_visiting INT NOT NULL,
     CONSTRAINT FK_Partido_Estadio FOREIGN KEY (id_estadio)
         REFERENCES Estadio(id_estadio),
     CONSTRAINT FK_Partido_Equipo_Visitante FOREIGN KEY (id_visitante)
@@ -191,8 +190,8 @@ CREATE TABLE Partido (
 );
 
 CREATE TABLE Arbitro_Partido (
-    id_arbitro INTEGER NOT NULL PRIMARY KEY,
-    id_partido INTEGER NOT NULL,
+    id_arbitro INT NOT NULL PRIMARY KEY,
+    id_partido INT NOT NULL,
     tipo_arbitro VARCHAR(100) NOT NULL,
     CONSTRAINT FK_Arbitro_Partido_id_arbitro FOREIGN KEY (id_arbitro)
         REFERENCES Arbitro(id_arbitro),
@@ -201,9 +200,9 @@ CREATE TABLE Arbitro_Partido (
 );
 
 CREATE TABLE Jugador_Partido (
-    id_jugador INTEGER NOT NULL,
-    id_partido INTEGER NOT NULL,
-    minutos INTEGER NOT NULL,
+    id_jugador INT NOT NULL,
+    id_partido INT NOT NULL,
+    minutos INT NOT NULL,
     CONSTRAINT PK_Jugador_Partido PRIMARY KEY (id_jugador, id_partido),
     CONSTRAINT FK_Jugador_Partido_id_jugador FOREIGN KEY (id_jugador)
         REFERENCES Jugador(id_jugador),
@@ -212,12 +211,13 @@ CREATE TABLE Jugador_Partido (
 );
 
 CREATE TABLE Incidencia (
-    id_incidencia INTEGER NOT NULL AUTO_INCREMENT,
-    id_partido INTEGER NOT NULL,
-    minuto INTEGER NOT NULL,
-    segundo INTEGER NOT NULL,
-    id_jugador INTEGER NOT NULL,
-    id_tipo_incidencia INTEGER NOT NULL,
+    id_incidencia INT AUTO_INCREMENT,
+    id_partido INT NOT NULL,
+    minuto INT NOT NULL,
+    segundo INT NOT NULL,
+    distancia FLOAT NULL,
+    id_jugador INT NOT NULL,
+    id_tipo_incidencia INT NOT NULL,
     CONSTRAINT PK_Incidencia PRIMARY KEY (id_incidencia, id_partido, minuto, segundo),
     CONSTRAINT FK_Incidencia_Partido FOREIGN KEY (id_partido)
         REFERENCES Partido(id_partido),
@@ -227,27 +227,27 @@ CREATE TABLE Incidencia (
         REFERENCES Tipo_Incidencia(id_tipo_incidencia)
 );
 
-create table Rol(
-	id_rol INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Rol(
+	id_rol INT AUTO_INCREMENT PRIMARY KEY,
     descripcion VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Usuario (
-    id_usuario INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL ,
     pass  VARCHAR(50)  NOT NULL,
     email VARCHAR(100) NOT NULL,
-    phone INTEGER NOT NULL,
+    phone INT NOT NULL,
     photo longtext NOT NULL,
     gender CHAR(1) NOT NULL,
     fecha_nac DATE NOT NULL,
     fecha_registro DATE NOT NULL,
     direccion VARCHAR(200) NOT NULL,
-    id_pais INTEGER NOT NULL,
-    id_estado INTEGER NOT NULL,
-    id_rol INTEGER NOT NULL,
-    age INTEGER NOT NULL,
+    id_pais INT NOT NULL,
+    id_estado INT NOT NULL,
+    id_rol INT NOT NULL,
+    age INT NOT NULL,
     membership BOOLEAN NOT NULL,
 	CONSTRAINT FK_Usuario_Pais FOREIGN KEY (id_pais)
         REFERENCES Pais(id_pais),
@@ -258,14 +258,25 @@ CREATE TABLE Usuario (
 );
 
 
-create table Noticia(
-    id_equipo int not null,
-    titulo varchar(100) not null,
-    descripcion varchar(300) not null,
-    fecha date not null,
-    constraint pk_noticia primary key (id_equipo,titulo,fecha),
-    CONSTRAINT FK_noticia_equipo FOREIGN KEY (id_equipo) REFERENCES Equipo(id_equipo)
+CREATE TABLE Noticia(
+    id_noticia INT AUTO_INCREMENT PRIMARY KEY,
+    id_equipo INT NOT NULL,
+    titulo VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(300) NOT NULL,
+    fecha DATE NOT NULL,
+    id_user INT NOT NULL,
+    CONSTRAINT FK_Noticia_Usuario FOREIGN KEY (id_user) REFERENCES Usuario(id_usuario),
+    CONSTRAINT FK_Noticia_Equipo FOREIGN KEY (id_equipo) REFERENCES Equipo(id_equipo)
 );
+
+CREATE TABLE Bitacora (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tipo VARCHAR(100) NOT NULL,
+    fecha DATE NOT NULL,
+    descripcion VARCHAR(300) NOT NULL
+);
+
+-- ::::::::::::::    INSERTS    ::::::::::::::
 
 INSERT INTO `Pais` (`id_pais`, `iso`, `name`, `nicename`, `iso3`, `numcode`, `phonecode`) VALUES
 (1, 'AF', 'AFGHANISTAN', 'Afghanistan', 'AFG', 4, 93),
@@ -510,28 +521,43 @@ INSERT INTO `Pais` (`id_pais`, `iso`, `name`, `nicename`, `iso3`, `numcode`, `ph
 
 -- Roles de usuarios
 
-INSERT INTO Rol VALUES(1,'Admin');
+INSERT INTO Rol VALUES(1,'Administrador');
 INSERT INTO Rol VALUES(2,'Empleado');
 INSERT INTO Rol VALUES(3,'Cliente');
 
 -- Estados de usuarios
 
-INSERT INTO Estado VALUES(1,'Activo');
-INSERT INTO Estado VALUES (0,'Congelado');
-INSERT INTO Estado VALUES(3,'Eliminado');
-
--- Tipos de competencias
-
-INSERT INTO Tipo_Competencia (nombre) VALUES ('Liga');
-INSERT INTO Tipo_Competencia (nombre) VALUES ('Eliminatoria');
-INSERT INTO Tipo_Competencia (nombre) VALUES ('Copa');
-INSERT INTO Tipo_Competencia (nombre) VALUES ('Super Copa');
-INSERT INTO Tipo_Competencia (nombre) VALUES ('Cuadrangular');
-INSERT INTO Tipo_Competencia (nombre) VALUES ('Triangular');
+INSERT INTO Estado VALUES(1,'Activa');
+INSERT INTO Estado VALUES (2,'Congelada');
+INSERT INTO Estado VALUES(3,'Eliminada');
 
 -- Estados de partido
 
-INSERT INTO Estado (descripcion) VALUES ("unstarted");
-INSERT INTO Estado (descripcion) VALUES ("in-progress");
-INSERT INTO Estado (descripcion) VALUES ("completed");
-INSERT INTO Estado (descripcion) VALUES ("suspended");
+-- Se le suma 10 a los estados definidos en el repositorio.
+
+INSERT INTO Estado VALUES(11,'Sin iniciar');
+INSERT INTO Estado VALUES (12,'Iniciado');
+INSERT INTO Estado VALUES(13,'Finalizado');
+INSERT INTO Estado VALUES(14,'Suspendido');
+
+
+-- Tipos de competencias
+
+INSERT INTO Tipo_Competencia VALUES (1, 'Liga');
+INSERT INTO Tipo_Competencia VALUES (2, 'Eliminatoria');
+INSERT INTO Tipo_Competencia VALUES (3, 'Copa');
+INSERT INTO Tipo_Competencia VALUES (4, 'Super Copa');
+INSERT INTO Tipo_Competencia VALUES (5, 'Cuadrangular');
+INSERT INTO Tipo_Competencia VALUES (6, 'Triangular');
+
+-- Tipo gol
+
+INSERT INTO Tipo_Gol VALUES (1, "Tiro libre");
+INSERT INTO Tipo_Gol VALUES (2, "Penal");
+INSERT INTO Tipo_Gol VALUES (3, "Jugada");
+
+-- Tipo incidencia
+
+INSERT INTO Tipo_Incidencia VALUES (1, "Gol", 3);
+INSERT INTO Tipo_Incidencia VALUES (2, "Autogol", 3);
+INSERT INTO Tipo_Incidencia VALUES (3, "Tarjeta", 3);

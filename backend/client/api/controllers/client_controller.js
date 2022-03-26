@@ -6,9 +6,22 @@ module.exports = {
 
    // update: async function(req, res) {
 
-    all: function(req, res) {
-      clientm.all(req.con, function(err, rows) {
-        res.status(200).send(rows);
+    get: function(req, res) {
+      clientm.get(req.con, req.query, function(err, rows) {
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msj: 'Error al obtener equipo(s)',
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msj: 'Información de equipo(s)'
+          });
+        }
       })
     },
 
@@ -19,19 +32,19 @@ module.exports = {
     },
 
     delete: async function(req, res) {
-      clientm.delete(req.con, req.params, async function(err){
+      clientm.delete(req.con, req.body, async function(err){
         if(err){
-          res.status(409).send({
+          res.status(400).send({
             status: false,
             data: [],
-            msj: 'Error al eliminar cliente',
+            msg: 'Error al eliminar usuario',
             error: err.toString()
           });
         } else {
           res.status(200).send({
             status: true,
             data: [],
-            msj: 'Cliente eliminado con exito'
+            msg: 'Usuario eliminado con exito'
           });
         }
       });
@@ -40,15 +53,15 @@ module.exports = {
     update: async function(req, res) {
       clientm.update(req.con, req.body, async function(err){
         if(err){
-          res.status(409).send({
+          res.status(400).send({
             status: false,
-            msj: "Error al actualizar los datos",
+            msg: "Error al actualizar el usuario",
             error: err.toString()
           });
         } else {
           res.status(200).send({
             status: true,
-            msj: "Datos actualizados con exito"
+            msg: "Usuario actualizado con exito"
           });
         }
       });
@@ -57,16 +70,18 @@ module.exports = {
     create: async function(req, res) {
       clientm.create(req.con, req.body, async function(err, rows){
         if(err){
-          res.status(409).send({
+          res.status(400).send({
             status: false,
-            msj: 'Error al crear usuario',
+            msg: 'Error al guardar usuario',
+            data: [],
             error: err.toString()
           });
         } else {
           clientm.send_email({email: req.body.email, id: rows.insertId});
           res.status(200).send({
             status: true,
-            msj: 'Usuario creado con exito'
+            data: [],
+            msg: 'Usuario creado con exito'
           });
         }
       });  
@@ -131,7 +146,7 @@ module.exports = {
         if(err){
           res.status(409).send({
             status: false,
-            msj: 'Error al enviar correo.',
+            msg: 'Error al enviar correo.',
             error: err.toString()
           });
         } else {
@@ -139,12 +154,12 @@ module.exports = {
             clientm.send_email({email: req.body.email, id: rows[0].id_usuario});
             res.status(200).send({
               status: true,
-              msj: 'Se envio el correo exitosamente'
+              msg: 'Se envio el correo exitosamente'
             });
           } else {
             res.status(409).send({
               status: true,
-              msj: 'Error al enviar correo, usuario no registrado.'
+              msg: 'Error al enviar correo, usuario no registrado.'
             });
           }
         }

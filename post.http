@@ -77,14 +77,18 @@ GET http://localhost:5003/user/email_confirmation?id=1 HTTP/1.1
 
 ###
 
+# *******************************************
+# ************** AUTH SERVER ************** 
+# *******************************************
+
 # ----------    Login   ----------
 
-POST http://localhost:5003/user/login HTTP/1.1
+POST http://localhost:5010/auth/ HTTP/1.1
 content-type: application/json
 
 {
-    "email": "gomzalo@outlook.com",
-    "password": "Tepo123/"
+    "email": "gxmzalx@gmail.com",
+    "password": "xLwiXCYQfh"
 }
 
 # POST http://localhost:5003/user/login HTTP/1.1
@@ -97,28 +101,39 @@ content-type: application/json
 
 ###
 
-POST http://localhost:5003/user/send_email_confirmation HTTP/1.1
+POST http://localhost:5010/auth/temporal-password HTTP/1.1
 content-type: application/json
 
 {
-    "email": "gomzalo@outlook.com"
+    "email": "gxmzalx@gmail.com"
+}
+
+###
+
+POST http://localhost:5010/auth/reset-password HTTP/1.1
+content-type: application/json
+
+{
+    "email": "gxmzalx@gmail.com"
 }
 
 ###
 
 GET http://localhost:5003/user/all_countries HTTP/1.1
 
+###
+
 # *******************************************
 # ************** CLIENT SERVER ************** 
 # *******************************************
 
-GET http://localhost:5000/client/all HTTP/1.1
+GET http://localhost:5000/customer/all HTTP/1.1
 
 ###
 
 # ----------    Crear   ----------
 
-POST http://localhost:5000/client/add HTTP/1.1
+POST http://localhost:5000/customer/register HTTP/1.1
 content-type: application/json
 
 {
@@ -141,7 +156,7 @@ content-type: application/json
 
 ###
 
-POST http://localhost:5000/client/send_email_confirmation HTTP/1.1
+POST http://localhost:5000/customer/send_email_confirmation HTTP/1.1
 content-type: application/json
 
 {
@@ -150,11 +165,11 @@ content-type: application/json
 
 ###
 
-GET http://localhost:5000/client/email_confirmation?id=4 HTTP/1.1
+GET http://localhost:5000/customer/email_confirmation?id=4 HTTP/1.1
 
 ###
 
-GET http://localhost:5000/client/all_countries HTTP/1.1
+GET http://localhost:5000/customer/all_countries HTTP/1.1
 
 
 ###

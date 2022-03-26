@@ -10,7 +10,7 @@ const config = require('./config/init')
 app.use(function(req, res, next) {
     req.con = con
     next()
-  })
+})
 
 con.getConnection(function(err) {
     if (err) throw err;
@@ -21,14 +21,12 @@ con.getConnection(function(err) {
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
 app.use(bodyParser.json({limit: '50mb'}));
-
-//app.use(config.cors)
 app.use(cors())
 // app.use(methodOverride("_method"))
 
 //  Rutas
-const client_routes = require('./api/routes/client_route')
+const user_routes = require('./api/routes/autenticacion_route')
 // Routing
-app.use('/customer/', client_routes)
+app.use('/auth/', user_routes)
 
 module.exports = app

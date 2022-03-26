@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UsersComponent } from './users/users.component';
 import { NoticiaComponent } from './Noticia/noticia.component'
+import { AdminGuard } from 'src/app/core/guards/auth/admin.guard';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./dashboard/components/dashboard.module').then(m => m.DashboardModule) },
+  { path: '', 
+    canActivate: [AdminGuard],
+    loadChildren: () => import('./dashboard/components/dashboard.module').then(m => m.DashboardModule) 
+    },
   {
     path: 'users',
     component: UsersComponent

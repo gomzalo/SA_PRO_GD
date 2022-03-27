@@ -9,12 +9,6 @@ module.exports = {
       })
     },
 
-    all_countries: function(req, res) {
-      userm.all_countries(req.con, function(err, rows) {
-        res.status(200).send(rows);
-      })
-    },
-
     login: async function(req, res) {
       userm.login(req.con, req.body, async function(err, rows, fields){
         // console.log(rows);

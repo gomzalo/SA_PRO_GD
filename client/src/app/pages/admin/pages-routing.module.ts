@@ -3,9 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsersComponent } from './users/users.component';
 import { NoticiaComponent } from './Noticia/noticia.component'
 import { AdminGuard } from 'src/app/core/guards/auth/admin.guard';
-import { ProfileComponent } from './profile/profile.component';
-import { AllGuard } from 'src/app/core/guards/auth/all.guard';
-import { UserGuard } from 'src/app/core/guards/auth/user.guard';
 
 const routes: Routes = [
   { path: '', 
@@ -15,6 +12,10 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent
+  },
+  {
+    path: 'reportesadmin',
+    component: ReportesComponent
   },
   {
     path: 'noticias',

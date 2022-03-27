@@ -1,10 +1,9 @@
 const authm = require('../models/autenticacion_model');
-const { get_last_id, email_confirmation } = require('../models/autenticacion_model');
 var cryptoJS = require('crypto-js');
 var generator = require('generate-password');
 const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
-const { port, url } = require('../../config');
+const { url } = require('../../config');
 
 module.exports = {
 // ||||||||||||||||||||   LOGIN   ||||||||||||||||||||
@@ -60,53 +59,17 @@ module.exports = {
 // ||||||||||||||||||||   VALIDAR CUENTA   ||||||||||||||||||||
     validar_cuenta: function(req, res)   {
       authm.validar_cuenta(req.con, req.query.id, function(err, rows){
+        console.log(rows);
         if(err){
-          res.status(409).send(
-            `
-            <!--html-->
-            <!doctype html>
-            <html lang="en">
-              <head>
-                  <title>Soccer Stats SIUUU</title>
-                  <meta name="viewport" content="width=device-width, initial-scale=1">
-                  <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
-                  <meta charset="utf-8" />
-              </head>
-              <body>
-                <center>
-                  <h1>¡No se ha podido confirmar su cuenta!</h1>
-                  <br>
-                  <h3>Puede que ya lo haya hecho.</h3>
-                  <br>
-                  <a type="button" class="btn btn-primary btn-lg" href="http://${url}:4200/login">Iniciar sesión</a>
-                </center>
-              </body>
-            </html>
-            <!--!html-->
-            `
-          );
+          res.status(400).send({
+            msg: "Error al verificar correo.",
+            data: []
+          });
         } else {
-          res.status(200).send(
-            `
-            <!--html-->
-            <!doctype html>
-            <html lang="en">
-              <head>
-                <title>Soccer Stats SIUUU</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
-                <meta charset="utf-8" />
-              </head>
-              <body>
-                <center>
-                  <h1>¡Se ha confirmado su cuenta!</h1>
-                  <a type="button" class="btn btn-primary btn-lg" href="http://${url}:4200/login">Iniciar sesión</a>
-                </center>
-              </body>
-            </html>
-            <!--!html-->
-            `
-          );
+          res.status(200).send({
+            msg: "Correo verificado con éxito.",
+            data: []
+          });
         }
       });
     },
@@ -128,7 +91,7 @@ module.exports = {
               length: 10,
               numbers: true
             });
-            let link = `http://${url}:4200/reset-password?id=`+user_id;
+            let link = `${url}:4200/reset-password?id=${user_id}`;
             let email_data = {
               email: req.body.email,
               id: user_id,
@@ -164,7 +127,7 @@ module.exports = {
               <!--!html-->
               `
             };
-
+            // Enviar correo
             send_email(email_data, async (err, data) => {
               if(err){
                 res.status(400).send({
@@ -188,16 +151,11 @@ module.exports = {
                       data: []
                     });
                   } else {
-                    // res.status(200).send({
-                    //   status: true,
-                    //   msg: "Usuario actualizado con exito"
-                    // });
                     res.status(200).send({
                       status: true,
                       msg: 'Se ha enviado un correo para restablecer la contraseña.',
                       data: []
                     });
-                    // console.log("Contraseña temporal actualizada");
                   }
                 });
               }
@@ -277,14 +235,14 @@ module.exports = {
         }
       });  
     },
-
+// ||||||||||||||||||||   VALIDAR CORREO   ||||||||||||||||||||
     validar_email(correo) {
       if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(correo)) {
         return true;
       }
       return false;
     },
-
+// ||||||||||||||||||||   VALIDAR PASSWORD   ||||||||||||||||||||
     validar_pass(pass, conf){
       if(pass == conf) {
         if(pass.length >= 8) {
@@ -294,7 +252,10 @@ module.exports = {
       return false;
     }
   }
-
+//---------------------------------------------------
+// ---------------  OTHER   -------------------------
+//---------------------------------------------------
+// ||||||||||||||||||||   ENVIAR CORREO   ||||||||||||||||||||
   async function send_email(datos, callback) {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -325,16 +286,15 @@ module.exports = {
     console.log("Email sent: %s", info);
     // return result ;
   }
-
+// ||||||||||||||||||||   GENERAR TOKEN   ||||||||||||||||||||
   function generateAccessToken(id_user_rol){
     return jwt.sign(id_user_rol, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'1d'});
   }
-
+// ||||||||||||||||||||   AUTENTICAR TOKEN   ||||||||||||||||||||
   function authenticate_token(req, res, next){
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     if(token == null) return res.sendStatus(401);
-
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, id_user_rol) => {
         if (err) return res.sendStatus(403);
         req.id_user_rol = id_user_rol;

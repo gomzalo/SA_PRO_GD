@@ -62,6 +62,12 @@ export class SidebarComponent {
           path: '/home',
           title: 'INICIO',
           type: 'link'
+        }
+        ,
+        {
+          path: './reportesadmin',
+          title: 'REPORTES ADMINISTRADOR',
+          type: 'link'
         },
         {
           path: './users',

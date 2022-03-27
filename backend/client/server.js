@@ -2,7 +2,7 @@ const http = require('http');
 const app = require('./app');
 
 
-const { port } = require('./config')
+const { port, url } = require('./config')
 const server = http.createServer(app);
 
 
@@ -30,5 +30,5 @@ app.get('/', function (req, res) {
 
 app.listen(port, (err) => {
     if (err) console.log('Error :c'), process.exit(1);
-    console.log(`Server running on:\n\nhttp://localhost:${port}`);
+    console.log(`Server running on:\n\n${url}:${port}`);
 });

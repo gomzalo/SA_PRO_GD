@@ -180,100 +180,9 @@ module.exports = {
 // ****************     PARTIDO     ********************
 // *****************************************************
 
-    get_game: async function(con, data, callback) {
-      const id = data.id;
-      if(id != null){
-        await con.query(
-          `
-          SELECT * FROM Partido
-          WHERE id_partido = '${id}';
-          `,
-          callback)
-      } else {
-        await con.query(
-          `
-          SELECT * FROM Partido;
-          `,
-          callback)
-      }
-    },
-
-    create_game: async function(con, data, callback) {
-      const {game_date, attendees, result_local, result_visiting, state, id_stadium, id_team_local, id_team_visiting, id_competition} = data;
-      var id_state = this.get_id_estado(state);
-      await con.query(
-        `
-        INSERT INTO Partido ( 
-          fecha,
-          publico,
-          result_local,
-          result_visiting,
-          id_estadio,
-          id_visitante,
-          id_local,
-          id_competencia,
-          id_estado
-          )
-        VALUES (
-          '${game_date}',
-          '${attendees}',
-          '${result_local}',
-          '${result_visiting}',
-          '${id_stadium}',
-          '${id_team_visiting}',
-          '${id_team_local}',
-          '${id_competition}',
-          '${id_state}'
-          );
-        `,
-        callback
-      )
-    },
-
-    edit_game: async function(con, data, callback) {
-      const {id_game, game_date, attendees, result_local, result_visiting, state, id_stadium, id_team_local, id_team_visiting, id_competition} = data;
-      var id_state = this.get_id_estado(state);
-      await con.query(
-        `
-        UPDATE Partido SET
-          fecha = '${game_date}',
-          publico = '${attendees}',
-          result_local = '${result_local}',
-          result_visiting = '${result_visiting}',
-          id_estadio = '${id_stadium}',
-          id_visitante = '${id_team_visiting}',
-          id_local = '${id_team_local}',
-          id_competencia = '${id_competition}',
-          id_estado = '${id_state}'
-        WHERE id_partido = ${id_game};
-          ;
-        `,
-        callback)
-    },
-
-    delete_game: async function(con, data, callback) {
-      await con.query(
-        `
-        DELETE FROM Partido
-        WHERE
-          id_partido = '${data}';
-        `,
-        callback
-      )
-    },
-    
-    // “unstarted”, “in-progress”, “completed” , “suspended”
-    get_id_estado: function(type){
-      if(type == "unstarted"){
-        return 4;
-      } else if(type == "in-progress"){
-        return 5;
-      } else if(type == "completed"){
-        return 6;
-      } else if(type == "suspended"){
-        return 7;
-      }
-    },
+      // *************************************************
+      // ****************     EQUIPO     ****************
+      // *************************************************
     create_team: async function(con, data, callback) {
       const {name, fundation_date, id_country, photo} = data;
       await con.query(
@@ -443,7 +352,7 @@ module.exports = {
       )
     },          
     // *************************************************
-    // ****************     EQUIPO     ****************
+    // ****************     NOTICIA     ****************
     // *************************************************
   
     create_noticia: async function(con, data, callback) {
@@ -510,10 +419,3 @@ module.exports = {
       `,
       callback)
   }
-
-
-  // *************************************************
-  // ****************     EQUIPO     ****************
-  // *************************************************
-
-  

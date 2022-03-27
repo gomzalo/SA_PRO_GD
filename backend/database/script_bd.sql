@@ -43,7 +43,7 @@ CREATE TABLE Equipo (
     nombre VARCHAR(100) NOT NULL,
     abreviado VARCHAR(5),
     id_pais INT NOT NULL,
-    is_club BOOLEAN NOT NULL,
+    is_club BOOLEAN NULL,
     CONSTRAINT FK_Equipo_Pais FOREIGN KEY (id_pais)
         REFERENCES Pais(id_pais)
 );

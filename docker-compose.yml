@@ -12,19 +12,25 @@ services:
     ports:
       - "5003:5003" 
     restart: on-failure
+  server_partido:
+    build: ./backend/partido
+    container_name: match
+    ports:
+      - "5002:5002" 
+    restart: on-failure
   server_auth:
     build: ./backend/autenticacion
     container_name: auth
     ports:
       - "5010:5010"
     restart: on-failure
-
   server_pais:
     build: ./backend/pais
     container_name: pais
     ports:
       - "5013:5013"
     restart: on-failure
+    
   # frontend:
   #   build: ./Frontend
   #   container_name: frontend

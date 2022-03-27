@@ -1,25 +1,21 @@
-const authm = require('../models/pais_model');
-var cryptoJS = require('crypto-js');
-var generator = require('generate-password');
-const nodemailer = require("nodemailer");
+const paism = require('../models/pais_model');
 const jwt = require('jsonwebtoken');
-const { url } = require('../../config');
 
 module.exports = {
 // ||||||||||||||||||||   GET   ||||||||||||||||||||
     get: function(req, res) {
-      clientm.get(req.con, req.query, function(err, rows) {
+      paism.get(req.con, req.query, function(err, rows) {
         if(err){
           res.status(400).send({
             status: false,
-            msj: 'Error al obtener (los) pais(s).',
+            msg: 'Error al obtener (los) pais(s).',
             data: [],
             error: err.toString()
           });
         } else {
           res.status(200).send({
             status: true,
-            msj: 'Se han obtenido (los) pais(es).',
+            msg: 'Se han obtenido (los) pais(es).',
             data: rows
           });
         }

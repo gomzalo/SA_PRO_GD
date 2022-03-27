@@ -41,9 +41,4 @@ router.delete('/competition', administrative_controller.delete_competition);
 // ****************     PARTIDO     ********************
 // *****************************************************
 
-router.get('/soccer-game', administrative_controller.get_game);
-router.post('/soccer-game', administrative_controller.create_game);
-router.put('/soccer-game', administrative_controller.edit_game);
-router.delete('/soccer-game', administrative_controller.delete_game);
-
 module.exports = router

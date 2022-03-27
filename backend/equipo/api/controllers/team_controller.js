@@ -7,14 +7,14 @@ module.exports = {
         res.status(400).send({
           status: false,
           data: [],
-          msj: 'Error al crear equipo',
+          msg: 'Error al crear equipo',
           error: err.toString()
         });
       } else {
         res.status(200).send({
           status: true,
           data: [],
-          msj: 'Equipo creado con exito'
+          msg: 'Equipo creado con exito'
         });
       }
     });  
@@ -27,14 +27,14 @@ module.exports = {
         res.status(400).send({
           status: false,
           data: [],
-          msj: 'Error al obtener equipo(s)',
+          msg: 'Error al obtener equipo(s)',
           error: err.toString()
         });
       } else {
         res.status(200).send({
           status: true,
           data: rows,
-          msj: 'Información de equipo(s)'
+          msg: 'Información de equipo(s)'
         });
       }
     });
@@ -46,7 +46,7 @@ module.exports = {
         res.status(400).send({
           status: false,
           data: [],
-          msj: 'Error al actualizar equipo',
+          msg: 'Error al actualizar equipo',
           error: err.toString()
         });
       } else {
@@ -54,14 +54,14 @@ module.exports = {
           res.status(400).send({
             status: false,
             data: [],
-            msj: 'Error al actualizar equipo',
+            msg: 'Error al actualizar equipo',
             error: 'No existe, el ID indicado'
           });
         } else {
           res.status(200).send({
             status: true,
             data: [],
-            msj: 'Equipo actualizado con exito.'
+            msg: 'Equipo actualizado con exito.'
           });
         }
       }
@@ -74,7 +74,7 @@ module.exports = {
         res.status(400).send({
           status: false,
           data: [],
-          msj: 'Error al eliminar equipo',
+          msg: 'Error al eliminar equipo',
           error: err.toString()
         });
       } else {
@@ -82,14 +82,14 @@ module.exports = {
           res.status(400).send({
             status: false,
             data: [],
-            msj: 'Error al eliminar equipo',
+            msg: 'Error al eliminar equipo',
             error: 'No existe, el ID indicado'
           });
         } else {
           res.status(200).send({
             status: true,
             data: [],
-            msj: 'Equipo eliminado con exito'
+            msg: 'Equipo eliminado con exito'
           });
         }
       }

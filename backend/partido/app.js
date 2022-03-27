@@ -25,8 +25,8 @@ app.use(cors())
 // app.use(methodOverride("_method"))
 
 //  Rutas
-const pais_routes = require('./api/routes/pais_route')
+const partido_routes = require('./api/routes/partido_route')
 // Routing
-app.use('/country/', pais_routes)
+app.use('/match/', partido_routes)
 
 module.exports = app

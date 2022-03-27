@@ -483,9 +483,9 @@ https://docs.google.com/document/d/1uVddjEpHwvCZKaUTgMsjYj9W-MKqSr1Bx_YaoVaCDrU/
 
 | ID   | Estado |
 | ---- | ------ |
-| 0 | Congelado |
-| 1 | Activo    |
-| 2 | xd        |
+| 1 | Congelado |
+| 2 | Activo    |
+| 3 | xd        |
 
 # Roles
 
@@ -497,17 +497,17 @@ https://docs.google.com/document/d/1uVddjEpHwvCZKaUTgMsjYj9W-MKqSr1Bx_YaoVaCDrU/
 
 ## Microservicios
 
-| Microservicio   | Puerto |
-| ---- | ------ |
-| Cliente | 5000     |
-| Equipo | 5001  |
-| Partido | 5002   |
-| Competencia | 5003     |
-| Estadio | 5004  |
-| Director técnico | 5005   |
-| Jugador | 5006     |
-| Noticia | 5007  |
-| Autencicacion | 5010   |
-| Administrador | 5011     |
-| Empleado | 5012  |
-| Pais | 5013   |
+|   Microservicio   | Puerto |      Ruta            |
+| ----------------- | ------ | -------------------- |
+| Cliente           | 5000   |  customer            |
+| Equipo            | 5001   |  team                |
+| Partido           | 5002   |  match               |
+| Competencia       | 5003   |  competition         |
+| Estadio           | 5004   |  stadium             |
+| Director técnico  | 5005   |  technical-director  |
+| Jugador           | 5006   |  player              |
+| Noticia           | 5007   |  post                |
+| Autencicacion     | 5010   |  auth                |
+| Administrador     | 5011   |  administrator       |
+| Empleado          | 5012   |  employee            |
+| Pais              | 5013   |  country             |

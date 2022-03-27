@@ -148,7 +148,7 @@ export class FormProyectsComponent implements OnInit {
     console.log(Info);
     this.firestoreService.createProyects(Info).then(() => {
       this.successAlert('Proyecto Guardado', 'El proyecto fue guardado con éxito.');
-      this.router.navigate(['./admin/proyects'])
+      this.router.navigate(['./home/proyects'])
     });
   }
 
@@ -166,7 +166,7 @@ export class FormProyectsComponent implements OnInit {
     }
     this.firestoreService.updateProyects(Info, this.userEditInfo.uid).then(() => {
       this.successAlert('Proyecto Actualizado', 'El proyecto fue actualizado con exito.');
-      this.router.navigate(['./admin/proyects'])
+      this.router.navigate(['./home/proyects'])
     });
   }
 
@@ -176,12 +176,12 @@ export class FormProyectsComponent implements OnInit {
       body,
       'success'
     ).then((resp => {
-      this.router.navigate(['./admin/proyects'])
+      this.router.navigate(['./home/proyects'])
     }))
   }
 
   goCancel(){
-    this.router.navigate(['./admin/proyects']);
+    this.router.navigate(['./home/proyects']);
   }
 
 }

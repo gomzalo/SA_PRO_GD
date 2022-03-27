@@ -461,7 +461,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addBusiness",
         value: function addBusiness() {
-          this.router.navigate(['./admin/business/new']);
+          this.router.navigate(['./home/business/new']);
         }
       }, {
         key: "getBusiness",
@@ -482,7 +482,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "goEdit",
         value: function goEdit(business) {
-          this.router.navigate(['./admin/business/edit', true], {
+          this.router.navigate(['./home/business/edit', true], {
             state: business
           });
         }
@@ -966,7 +966,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "goCancel",
         value: function goCancel() {
-          this.router.navigate(['./admin/business']);
+          this.router.navigate(['./home/business']);
         }
       }]);
 

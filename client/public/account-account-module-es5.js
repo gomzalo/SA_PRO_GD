@@ -446,7 +446,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "login",
         value: function login() {
-          this.router.navigate(['./admin']);
+          this.router.navigate(['./home']);
         }
       }, {
         key: "handleLogin",
@@ -512,7 +512,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.cookieService.set('name', "".concat(userData.firstName));
           this.cookieService.set('roleType', userData.roleType);
           this.cookieService.set('uid', userData.uid);
-          if (userData.roleType === 1) this.router.navigate(['./admin']); // else if (userData.roleType === 2) this.router.navigate(['./admin']);
+          if (userData.roleType === 1) this.router.navigate(['./home']); // else if (userData.roleType === 2) this.router.navigate(['./home']);
           // else if (userData.roleType === 3) this.router.navigate(['./user']); 
           // else if (userData.roleType === 4) this.router.navigate(['./technical']); 
           else this.handleFirebaselogout();

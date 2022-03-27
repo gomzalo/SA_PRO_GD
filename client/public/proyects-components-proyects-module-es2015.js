@@ -175,7 +175,7 @@ class FormProyectsComponent {
         console.log(Info);
         this.firestoreService.createProyects(Info).then(() => {
             this.successAlert('Proyecto Guardado', 'El proyecto fue guardado con éxito.');
-            this.router.navigate(['./admin/proyects']);
+            this.router.navigate(['./home/proyects']);
         });
     }
     // UPDATE PROYECT
@@ -191,16 +191,16 @@ class FormProyectsComponent {
         };
         this.firestoreService.updateProyects(Info, this.userEditInfo.uid).then(() => {
             this.successAlert('Proyecto Actualizado', 'El proyecto fue actualizado con exito.');
-            this.router.navigate(['./admin/proyects']);
+            this.router.navigate(['./home/proyects']);
         });
     }
     successAlert(title, body) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire(title, body, 'success').then((resp => {
-            this.router.navigate(['./admin/proyects']);
+            this.router.navigate(['./home/proyects']);
         }));
     }
     goCancel() {
-        this.router.navigate(['./admin/proyects']);
+        this.router.navigate(['./home/proyects']);
     }
 }
 FormProyectsComponent.ɵfac = function FormProyectsComponent_Factory(t) { return new (t || FormProyectsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_cookie_service__WEBPACK_IMPORTED_MODULE_4__["CookieService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_core_services_firestore_firestore_service__WEBPACK_IMPORTED_MODULE_6__["FirestoreService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_fire_storage__WEBPACK_IMPORTED_MODULE_7__["AngularFireStorage"])); };
@@ -554,10 +554,10 @@ class ProyectsComponent {
         console.log(this.proyects);
     }
     addProyect() {
-        this.router.navigate(['./admin/proyects/new']);
+        this.router.navigate(['./home/proyects/new']);
     }
     goEdit(proyect) {
-        this.router.navigate(['./admin/proyects/edit', true], {
+        this.router.navigate(['./home/proyects/edit', true], {
             state: proyect
         });
     }
@@ -574,7 +574,7 @@ class ProyectsComponent {
     }
     successAlert(title, body) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.fire(title, body, 'success').then((resp => {
-            this.router.navigate(['./admin/proyects']);
+            this.router.navigate(['./home/proyects']);
         }));
     }
 }

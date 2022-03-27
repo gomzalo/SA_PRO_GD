@@ -22,6 +22,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import {EditorModule} from 'primeng/editor';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MatSelectModule } from '@angular/material/select';
+import {MatTabsModule} from '@angular/material/tabs';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 
 
@@ -31,6 +32,7 @@ import { AngularDualListBoxModule } from 'angular-dual-listbox';
     AppComponent,
   ],
   imports: [
+    MatTabsModule,
     AngularDualListBoxModule,
     MatSelectModule,
     BrowserModule,

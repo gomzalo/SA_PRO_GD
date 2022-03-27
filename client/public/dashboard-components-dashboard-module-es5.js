@@ -261,37 +261,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "goCategories",
         value: function goCategories() {
-          this.router.navigate(['./admin/categories']);
+          this.router.navigate(['./home/categories']);
         }
       }, {
         key: "goProducts",
         value: function goProducts() {
-          this.router.navigate(['./admin/products']);
+          this.router.navigate(['./home/products']);
         }
       }, {
         key: "goSelection",
         value: function goSelection() {
-          this.router.navigate(['./admin/products/new']);
+          this.router.navigate(['./home/products/new']);
         }
       }, {
         key: "goMultimedia",
         value: function goMultimedia() {
-          this.router.navigate(['./admin/multimedia']);
+          this.router.navigate(['./home/multimedia']);
         }
       }, {
         key: "goUsers",
         value: function goUsers() {
-          this.router.navigate(['./admin/users']);
+          this.router.navigate(['./home/users']);
         }
       }, {
         key: "goBackup",
         value: function goBackup() {
-          this.router.navigate(['./admin/backup']);
+          this.router.navigate(['./home/backup']);
         }
       }, {
         key: "goValue",
         value: function goValue() {
-          this.router.navigate(['./admin/value']);
+          this.router.navigate(['./home/value']);
         }
       }]);
 

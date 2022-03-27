@@ -91,7 +91,7 @@ class FormUsersComponent {
         });
     }
     goCancel() {
-        this.router.navigate(['./admin/users']);
+        this.router.navigate(['./home/users']);
     }
     readUrl(event, path) {
         if (path === 0)
@@ -202,7 +202,7 @@ class FormUsersComponent {
         console.log(binnacleInfo);
         this.firestoreService.createUser(binnacleInfo, uidAuth).then(() => {
             this.successAlert('Usuario Registrado', 'Usuario registrado con exito.');
-            this.router.navigate(['./admin/users']);
+            this.router.navigate(['./home/users']);
         });
     }
     successAlert(title, body) {
@@ -807,7 +807,7 @@ class UsersComponent {
         this.getUsers();
     }
     addUser() {
-        this.router.navigate(['./admin/users/new']);
+        this.router.navigate(['./home/users/new']);
     }
     getUsers() {
         this.users = [];
@@ -820,7 +820,7 @@ class UsersComponent {
         console.log(this.users);
     }
     goView(user) {
-        this.router.navigate(['./admin/users/info'], {
+        this.router.navigate(['./home/users/info'], {
             state: user
         });
     }
@@ -838,7 +838,7 @@ class UsersComponent {
     }
     successAlert(title, body) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.fire(title, body, 'success').then((resp => {
-            this.router.navigate(['./admin/users']);
+            this.router.navigate(['./home/users']);
         }));
     }
 }

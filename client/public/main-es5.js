@@ -752,7 +752,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "goNotifications",
         value: function goNotifications() {
-          this.router.navigate(['./admin/notifications']);
+          this.router.navigate(['./home/notifications']);
         }
       }]);
 

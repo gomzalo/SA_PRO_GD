@@ -263,7 +263,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "goCancel",
         value: function goCancel() {
-          this.router.navigate(['./admin/proyects-assign']);
+          this.router.navigate(['./home/proyects-assign']);
         }
       }, {
         key: "getUsersClick",
@@ -889,7 +889,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "goEdit",
         value: function goEdit(proyect) {
-          this.router.navigate(['./admin/proyects-assign/edit', true], {
+          this.router.navigate(['./home/proyects-assign/edit', true], {
             state: proyect
           });
         }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -28,31 +29,31 @@ export class DashboardComponent implements OnInit {
   }
 
   goCategories(){
-    this.router.navigate(['./admin/categories']);
+    this.router.navigate(['./home/categories']);
   }
 
   goProducts(){
-    this.router.navigate(['./admin/products']);
+    this.router.navigate(['./home/products']);
   }
 
   goSelection(){
-    this.router.navigate(['./admin/products/new']);
+    this.router.navigate(['./home/products/new']);
   }
 
   goMultimedia(){
-    this.router.navigate(['./admin/multimedia']);
+    this.router.navigate(['./home/multimedia']);
   }
 
   goUsers(){
-    this.router.navigate(['./admin/users']);
+    this.router.navigate(['./home/users']);
   }
 
   goBackup(){
-    this.router.navigate(['./admin/backup']);
+    this.router.navigate(['./home/backup']);
   }
 
   goValue(){
-    this.router.navigate(['./admin/value']);
+    this.router.navigate(['./home/value']);
   }
 
 }

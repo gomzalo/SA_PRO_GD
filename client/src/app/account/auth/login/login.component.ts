@@ -77,13 +77,13 @@ export class LoginComponent implements OnInit {
        .subscribe(
          resp=>{
              let respueta:any = resp;
-             
+
              if(respueta.status!=true){
                this.errorAlert('Error Login', 'Credenciales invalidas');
                return;
              }
              if(respueta.data.id_status=="1"){
-              let user_string = JSON.stringify(respueta);
+              let user_string = JSON.stringify(respueta.data);
               localStorage.setItem('currentUser',user_string); 
                alert("Cuanta activa");
                this.router.navigate(['./home']);

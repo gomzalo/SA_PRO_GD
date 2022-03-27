@@ -69,7 +69,7 @@ export class RegistroComponent implements OnInit {
 
   getcountries() {
     this.paisService.getpaises()
-      .subscribe((data) => { this.paises = data });
+      .subscribe((data) => { this.paises = data.data });
   }
 
 

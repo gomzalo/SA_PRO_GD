@@ -12,7 +12,8 @@ module.exports = {
         abreviado,
         photo,
         id_pais,
-        is_club
+        is_club,
+        id_estado
         )
       VALUES (
         '${name}',
@@ -20,6 +21,7 @@ module.exports = {
         '${abr}',
         '${photo}',
         '${id_country}',
+        1,
         1
         );
       `,
@@ -28,18 +30,20 @@ module.exports = {
   },
 
   get_team: async function(con, data, callback) {
+    console.log("entro a get_team");
     const id = data.id;
     if(id != null){
       await con.query(
         `
-        select * from Equipo
-        WHERE id_equipo = '${id}';
+        select * from Equipo 
+        where id_equipo = '${id}' and id_estado = 1;
         `,
         callback)
     } else {
       await con.query(
         `
-        SELECT * FROM Equipo;
+        SELECT * FROM Equipo
+        where id_estado = 1;
         `,
         callback)
     }

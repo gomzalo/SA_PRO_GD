@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +21,7 @@ export class UserService {
 
   getAllUsers(){
     
-    return this.http.get<any>(environment.apiUser+'all');
+    return this.http.get<any>(environment.apiClient+'all');
   }
 
 

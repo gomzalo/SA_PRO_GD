@@ -4,9 +4,17 @@
 
 export const environment = {
   production: false,
-  apiUser:"http://localhost:5003/user/",
-  apiClient:"http://localhost:5000/client/",
-  apiAdministrative:"http://localhost:5001/administrative/"
+  apiClient:"http://localhost:5000/customer/",
+  apiAdministrador:"http://localhost:5011/administrator/",
+  apiAuth:"http://localhost:5010/auth/",
+  apiCompetencia:"http://localhost:5003/competition/",
+  apiEquipo:"http://localhost:5001/team/",
+  apiEstadio:"http://localhost:5004/stadium/",
+  apiJugador:"http://localhost:5006/player/",
+  apiNoticia:"http://localhost:5007/post/",
+  apiPais:"http://localhost:5013/country/",
+  apiPartido:"http://localhost:5002/match/",
+  apiTecnico:"http://localhost:5005/technical-director/",
 
 };
 

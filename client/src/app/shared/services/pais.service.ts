@@ -9,7 +9,7 @@ export class PaisService {
   constructor(private http: HttpClient) { }
 
   getpaises(){
-    return this.http.get<any>(environment.apiUser+'all_countries');
+    return this.http.get<any>(environment.apiPais);
   }
 
 }

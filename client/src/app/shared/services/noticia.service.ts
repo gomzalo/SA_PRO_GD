@@ -12,7 +12,7 @@ export class NoticiaService {
   constructor(private http: HttpClient) { }
 
   insertNotice(Notice){
-    return this.http.post<any>(environment.apiAdministrative+'notice/', Notice)
+    return this.http.post<any>(environment.apiNoticia, Notice)
     .pipe(
       catchError(this.handleError)
     );
@@ -21,19 +21,19 @@ export class NoticiaService {
 
   getOneNotice(id:Number){
     
-    return this.http.get<any>(environment.apiAdministrative+'notice/'+'?id='+id);
+    return this.http.get<any>(environment.apiNoticia+'?id='+id);
   }
 
   
   getAllNoticesbyTeam(idequipo:Number){
     
-    return this.http.get<any>(environment.apiAdministrative+'notice/'+'?team='+idequipo);
+    return this.http.get<any>(environment.apiNoticia+'?team='+idequipo);
   }
 
   
   getAllNotices(){
     
-    return this.http.get<any>(environment.apiAdministrative+'notice/');
+    return this.http.get<any>(environment.apiNoticia);
   }
 
 

@@ -496,22 +496,6 @@ module.exports = {
       }
     }  
   }
-  async function asignTeam(con, data) {
-    const {id,name, fundation_date, id_country, photo} = data;;
-    await con.query(
-      `
-      insert into Equipo SET
-        nombre = '${name}',
-        fundation = '${fundation_date}',
-        id_pais = '${id_country}',
-        photo = '${photo}'
-      WHERE id_equipo = ${id};
-        ;
-      `,
-      callback)
-  }
-
-
   // *************************************************
   // ****************     EQUIPO     ****************
   // *************************************************

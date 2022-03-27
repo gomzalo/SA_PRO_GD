@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reportes.component.scss']
 })
 export class ReportesComponent implements OnInit {
-  selectedReporte="";
+  selectedReporte=0;
   reportes = [
     {id:1,val:'Usuarios Suscritos a X equipo'},
     {id:2,val:'Usuario Con o Sin Membresía'},
@@ -22,6 +22,9 @@ export class ReportesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+  print(){
+    console.log(this.selectedReporte)
   }
 
 }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 //Route
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -17,6 +19,7 @@ import { CountToModule } from 'angular-count-to';
 @NgModule({
   declarations: [DashboardComponent],
   imports: [
+    MatTabsModule,
     CommonModule,
     DashboardRoutingModule,
     FormsModule,

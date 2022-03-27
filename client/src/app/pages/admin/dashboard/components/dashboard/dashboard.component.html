@@ -2,20 +2,19 @@
   <!-- <div class="row"> -->
   <img src="assets/imgs/bg.png" alt="login image" class="login-img">
 
-  <div class="row">
-    <img src="assets/img/marketin.png" alt="" class="logo_dash">
-  </div>
-  <br>
-  <br>
-
   <div class="margin">
-
+    <br>
     <div class="row">
-      <div (click)="goUsers()" class="col-2 boxi" (mouseover)="imgUser=true" (mouseout)="imgUser=false">
-        <img *ngIf="!imgUser" src="assets/imgs/home_user.svg" alt="" class="boxes">
-        <img *ngIf="imgUser" src="assets/imgs/home_userRed.svg" alt="" class="boxes">
-      </div>
+      <mat-tab-group>
+        <mat-tab label="Resultados"> Resultados </mat-tab>
+        <mat-tab label="Noticias"> Noticias </mat-tab>
+        <mat-tab label="Consulta Datos Estadisticos"> Consulta Datos Estadisticos </mat-tab>
+      </mat-tab-group>
     </div>
+
+    
+    
+    
 
     <!-- <div class="row">
       <div (click)="goCategories()" class="col-2 boxi" (mouseover)="imgCat=true" (mouseout)="imgCat=false">

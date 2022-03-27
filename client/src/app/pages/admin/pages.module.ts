@@ -21,10 +21,8 @@ import { EquipoComponent } from './equipo/equipo.component';
 
 
 
-
-
 @NgModule({
-  declarations: [UsersComponent, NoticiaComponent, ReportesComponent, EquipoComponent],
+  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent],
   imports: [
     AngularDualListBoxModule,
     MatSelectModule,

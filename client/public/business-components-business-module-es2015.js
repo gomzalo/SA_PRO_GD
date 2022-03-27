@@ -236,7 +236,7 @@ class BusinessComponent {
         this.getBusiness();
     }
     addBusiness() {
-        this.router.navigate(['./admin/business/new']);
+        this.router.navigate(['./home/business/new']);
     }
     getBusiness() {
         this.business = [];
@@ -251,7 +251,7 @@ class BusinessComponent {
         console.log(this.business);
     }
     goEdit(business) {
-        this.router.navigate(['./admin/business/edit', true], {
+        this.router.navigate(['./home/business/edit', true], {
             state: business
         });
     }
@@ -268,7 +268,7 @@ class BusinessComponent {
     }
     successAlert(title, body) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.fire(title, body, 'success').then((resp => {
-            this.router.navigate(['./admin/business']);
+            this.router.navigate(['./home/business']);
         }));
     }
 }
@@ -490,7 +490,7 @@ class FormBusinessComponent {
         console.log(Info);
         this.firestoreService.createBusiness(Info).then(() => {
             this.successAlert('Empresa Guardada', 'La empresa fue guardada con exito.');
-            this.router.navigate(['./admin/business']);
+            this.router.navigate(['./home/business']);
         });
     }
     handleUpdateBusiness(businessInfo) {
@@ -503,16 +503,16 @@ class FormBusinessComponent {
         };
         this.firestoreService.updateBusiness(Info, this.userEditInfo.uid).then(() => {
             this.successAlert('Usuario Actualizado', 'El usuario fue actualizado con exito.');
-            this.router.navigate(['./admin/business']);
+            this.router.navigate(['./home/business']);
         });
     }
     successAlert(title, body) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire(title, body, 'success').then((resp => {
-            this.router.navigate(['./admin/business']);
+            this.router.navigate(['./home/business']);
         }));
     }
     goCancel() {
-        this.router.navigate(['./admin/business']);
+        this.router.navigate(['./home/business']);
     }
 }
 FormBusinessComponent.ɵfac = function FormBusinessComponent_Factory(t) { return new (t || FormBusinessComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_cookie_service__WEBPACK_IMPORTED_MODULE_4__["CookieService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_core_services_firestore_firestore_service__WEBPACK_IMPORTED_MODULE_6__["FirestoreService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_fire_storage__WEBPACK_IMPORTED_MODULE_7__["AngularFireStorage"])); };

@@ -149,7 +149,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "goCancel",
         value: function goCancel() {
-          this.router.navigate(['./admin/users']);
+          this.router.navigate(['./home/users']);
         }
       }, {
         key: "readUrl",
@@ -1541,7 +1541,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "addUser",
         value: function addUser() {
-          this.router.navigate(['./admin/users/new']);
+          this.router.navigate(['./home/users/new']);
         }
       }, {
         key: "getUsers",
@@ -1559,7 +1559,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "goView",
         value: function goView(user) {
-          this.router.navigate(['./admin/users/info'], {
+          this.router.navigate(['./home/users/info'], {
             state: user
           });
         }

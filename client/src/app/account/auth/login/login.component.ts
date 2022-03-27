@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   login() {
-    this.router.navigate(['./admin']);
+    this.router.navigate(['./home']);
   }
 
   
@@ -79,14 +79,14 @@ export class LoginComponent implements OnInit {
              let respueta:any = resp;
              
              if(respueta.status!=true){
-               this.errorAlert('Error Login', respueta.msj);
+               this.errorAlert('Error Login', 'Credenciales invalidas');
                return;
              }
              if(respueta.statusAccount=="1"){
               let user_string = JSON.stringify(respueta);
               localStorage.setItem('currentUser',user_string); 
                alert("Cuanta activa");
-               this.router.navigate(['./admin']);
+               this.router.navigate(['./home']);
              }else{
               this.errorAlert('Error con su cuenta', respueta.msj);
               return;
@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
          },
          err=> {
            console.log(err);
-           this.errorAlert('Error Login', err.message);
+           this.errorAlert('Error Login', 'Credenciales invalidas');
          }
 
        );
@@ -130,8 +130,8 @@ export class LoginComponent implements OnInit {
   //   this.cookieService.set('name', `${userData.firstName}`);
   //   this.cookieService.set('roleType', userData.roleType);
   //   this.cookieService.set('uid', userData.uid);
-  //   if (userData.roleType === 1) this.router.navigate(['./admin']);
-  //   // else if (userData.roleType === 2) this.router.navigate(['./admin']);
+  //   if (userData.roleType === 1) this.router.navigate(['./home']);
+  //   // else if (userData.roleType === 2) this.router.navigate(['./home']);
   //   // else if (userData.roleType === 3) this.router.navigate(['./user']); 
   //   // else if (userData.roleType === 4) this.router.navigate(['./technical']); 
   //   else this.handleFirebaselogout();

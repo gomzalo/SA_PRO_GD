@@ -477,7 +477,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "goEdit",
         value: function goEdit(business) {
-          this.router.navigate(['./admin/branchs/edit', true], {
+          this.router.navigate(['./home/branchs/edit', true], {
             state: business
           });
         }
@@ -500,7 +500,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addBranch",
         value: function addBranch() {
-          this.router.navigate(['./admin/branchs/new']);
+          this.router.navigate(['./home/branchs/new']);
         }
       }, {
         key: "successAlert",
@@ -946,7 +946,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "goCancel",
         value: function goCancel() {
-          this.router.navigate(['./admin/branchs']);
+          this.router.navigate(['./home/branchs']);
         } // CREATE BRANCH
 
       }, {

@@ -59,7 +59,7 @@ export class SidebarComponent {
   getMenus(role) {
     if (role === '2') {
       this.menuList = [{
-          path: '/admin',
+          path: '/home',
           title: 'INICIO',
           type: 'link'
         }
@@ -90,12 +90,7 @@ export class SidebarComponent {
           type: 'link'
         },
         {
-          path: './proyects-assign',
-          title: 'ASIGNACIÓN DE PROYECTOS',
-          type: 'link'
-        },
-        {
-          path: './proyects-assign',
+          path: './equipo',
           title: 'EQUIPOS',
           type: 'link'
         },
@@ -118,6 +113,11 @@ export class SidebarComponent {
         {
           path: './noticias',
           title: 'NOTICIAS',
+          type: 'link'
+        },
+        {
+          path: './profile',
+          title: 'Perfil',
           type: 'link'
         },
         {

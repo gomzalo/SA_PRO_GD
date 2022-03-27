@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   apiUser:"http://localhost:5003/user/",
   apiClient:"http://localhost:5000/client/",
-  apiAdministrative:"http://localhost:5001/"
+  apiAdministrative:"http://localhost:5001/administrative/"
 
 };
 

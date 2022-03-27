@@ -1,8 +1,8 @@
 <mat-form-field appearance="fill">
     <mat-label>Seleccione un reporte</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let reporte of reportes" [value]="reporte.id" [(ngModel)]="selectedReporte">
-        {{reporte}}
+    <mat-select (selectionChange)="print()" [(ngModel)]="selectedReporte" name="reporte" ngDefaultControl>
+      <mat-option *ngFor="let reporte of reportes" [value]="reporte.id"  >
+        {{reporte.val}}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -69,6 +69,7 @@
       </tr>
     </tbody>
   </table>
+  
 
   <table class="table" *ngIf="selectedReporte==3">
     <thead>
@@ -257,7 +258,7 @@
     </tbody>
   </table>
 
-  <table class="table" *ngIf="selectedReporte==9">
+  <table class="table" *ngIf="selectedReporte==9" >
     <thead>
       <tr>
         <th scope="col">#9</th>
@@ -317,4 +318,4 @@
         <td>@twitter</td>
       </tr>
     </tbody>
-  </table>
+  </table> 

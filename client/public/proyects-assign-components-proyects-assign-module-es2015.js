@@ -171,7 +171,7 @@ class FormAssignComponent {
         console.log(this.usersApi);
     }
     goCancel() {
-        this.router.navigate(['./admin/proyects-assign']);
+        this.router.navigate(['./home/proyects-assign']);
     }
     getUsersClick() {
         console.log(this.confirmed);
@@ -193,12 +193,12 @@ class FormAssignComponent {
         console.log(Info);
         this.firestoreService.updateProyects(Info, this.userEditInfo.uid).then(() => {
             this.successAlert('Proyecto Actualizado', 'El proyecto fue actualizado con exito.');
-            this.router.navigate(['./admin/proyects-assign']);
+            this.router.navigate(['./home/proyects-assign']);
         });
     }
     successAlert(title, body) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire(title, body, 'success').then((resp => {
-            this.router.navigate(['./admin/proyects-assign']);
+            this.router.navigate(['./home/proyects-assign']);
         }));
     }
 }
@@ -506,7 +506,7 @@ class ProyectsAssignComponent {
         console.log(this.proyects);
     }
     goEdit(proyect) {
-        this.router.navigate(['./admin/proyects-assign/edit', true], {
+        this.router.navigate(['./home/proyects-assign/edit', true], {
             state: proyect
         });
     }

@@ -4,13 +4,22 @@ const jwt = require('jsonwebtoken');
 
 
 module.exports = {
-    all: async function(con, callback) {
-      await con.query(
-        `
-        SELECT * FROM Usuario
-        WHERE id_rol = 3;
-        `,
-        callback)
+    get: async function(con, data, callback) {
+      const id = data.id;
+      if(id != null){
+        await con.query(
+          `
+          SELECT * FROM Usuario
+          WHERE id_usuario = '${id}';
+          `,
+          callback)
+      } else {
+        await con.query(
+          `
+          SELECT * FROM Usuario;
+          `,
+          callback)
+      }
     },
 
     all_countries: async function(con, callback){
@@ -19,7 +28,7 @@ module.exports = {
 
 
     delete: async function(con, data, callback){
-      const id = data.no_id;
+      const id = data.id;
       await con.query(
         `
         update Usuario
@@ -54,7 +63,13 @@ module.exports = {
     },
 
     create: async function(con, data, callback) {
-      const {name, lastname, password, email, phone, photo, gender, birth_date, signup_date, address, id_pais, id_estado, id_rol, age, membership} = data;
+      const {name, lastname, password, email, phone, photo, gender, birth_date, address, id_pais} = data;
+      // let signup_date = Date.now().toString();
+      let id_estado = 2;
+      let id_rol = 3;
+      let age = this.getAge(birth_date);
+      // console.log(age);
+      let membership = 0;
       let cif_pass = cryptoJS.AES.encrypt(password, 'SiSaleSA_').toString();
       await con.query(
         `
@@ -84,7 +99,7 @@ module.exports = {
           '${photo}',
           '${gender}',
           '${birth_date}',
-          '${signup_date}',
+          now(),
           '${address}',
           '${id_pais}',
           '${id_estado}',
@@ -205,5 +220,17 @@ module.exports = {
           return false;
         }
       });
+    },
+
+    getAge: function(dateString) {
+      var today = new Date();
+      var birthDate = new Date(dateString);
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
     }
+    
   }

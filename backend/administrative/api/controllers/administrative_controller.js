@@ -134,7 +134,7 @@ create_team: async function(req, res) {
 
 get_team: function(req, res)   {
   administrativem.get_team(req.con, req.query, function(err, rows){
-    console.log(req.query);
+    // console.log(req.query);
     if(err){
       res.status(500).send({
         status: false,

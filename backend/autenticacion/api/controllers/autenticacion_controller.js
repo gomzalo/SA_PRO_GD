@@ -1,0 +1,343 @@
+const authm = require('../models/autenticacion_model');
+const { get_last_id, email_confirmation } = require('../models/autenticacion_model');
+var cryptoJS = require('crypto-js');
+var generator = require('generate-password');
+const nodemailer = require("nodemailer");
+const jwt = require('jsonwebtoken');
+const { port, url } = require('../../config');
+
+module.exports = {
+// ||||||||||||||||||||   LOGIN   ||||||||||||||||||||
+    login: async function(req, res) {
+      authm.login(req.con, req.body, async function(err, rows){
+        // console.log(rows);
+        let datos = rows[0];
+        let pass = req.body.password;
+        let id_user_rol;
+        if(!err){
+          if(rows.length > 0){
+            let pass_bytes = cryptoJS.AES.decrypt(datos.pass, 'SiSaleSA_');
+            let uncif_pass = pass_bytes.toString(cryptoJS.enc.Utf8);
+            if(uncif_pass == pass){
+              if(datos.id_estado != 1){
+                res.status(400).send({
+                  status: false,
+                  msg: 'Error de autenticacion, correo no confirmado.'
+                });
+              }
+              id_user_rol = {id_usuario: datos.id_usuario, id_rol: datos.id_rol};
+              const accessToken = generateAccessToken(id_user_rol);
+              res.status(200).send({
+                datos: datos,
+                data:{
+                  token: accessToken,
+                  id_status: datos.id_estado
+                },
+                status: true,
+                msg: 'Logueado correctamente'
+              });
+            } else {
+              res.status(400).send({
+                status: false,
+                msg: 'Error de autenticacion, contraseña incorrecta.'
+              });
+            }
+          } else {
+            res.status(400).send({
+              status: false,
+              msg: 'Error de autenticacion, usuario no encontrado'
+            });
+          }
+        } else {
+          res.status(400).send({
+            status: false,
+            msg: 'Error al autenticacion',
+            error: err.toString()
+          });
+        }
+      });  
+    },
+// ||||||||||||||||||||   VALIDAR CUENTA   ||||||||||||||||||||
+    validar_cuenta: function(req, res)   {
+      authm.validar_cuenta(req.con, req.query.id, function(err, rows){
+        if(err){
+          res.status(409).send(
+            `
+            <!--html-->
+            <!doctype html>
+            <html lang="en">
+              <head>
+                  <title>Soccer Stats SIUUU</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                  <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
+                  <meta charset="utf-8" />
+              </head>
+              <body>
+                <center>
+                  <h1>¡No se ha podido confirmar su cuenta!</h1>
+                  <br>
+                  <h3>Puede que ya lo haya hecho.</h3>
+                  <br>
+                  <a type="button" class="btn btn-primary btn-lg" href="http://${url}:4200/login">Iniciar sesión</a>
+                </center>
+              </body>
+            </html>
+            <!--!html-->
+            `
+          );
+        } else {
+          res.status(200).send(
+            `
+            <!--html-->
+            <!doctype html>
+            <html lang="en">
+              <head>
+                <title>Soccer Stats SIUUU</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
+                <meta charset="utf-8" />
+              </head>
+              <body>
+                <center>
+                  <h1>¡Se ha confirmado su cuenta!</h1>
+                  <a type="button" class="btn btn-primary btn-lg" href="http://${url}:4200/login">Iniciar sesión</a>
+                </center>
+              </body>
+            </html>
+            <!--!html-->
+            `
+          );
+        }
+      });
+    },
+// ||||||||||||||||||||   PASS TEMPORAL   ||||||||||||||||||||
+    temp_pass: async function(req, res) {
+      authm.get_id(req.con, req.body, async function(err, rows){
+        // console.log(rows[0].id_usuario);
+        var user_id = rows[0].id_usuario;
+        if(err){
+          res.status(400).send({
+            status: false,
+            msg: 'Error al enviar contraseña temporal.',
+            error: err.toString(),
+            data: []
+          });
+        } else {
+          if(rows.length > 0){
+            var temp_password = generator.generate({
+              length: 10,
+              numbers: true
+            });
+            let link = `http://${url}:4200/reset-password?id=`+user_id;
+            let email_data = {
+              email: req.body.email,
+              id: user_id,
+              subject: 'Contraseña temporal',
+              content: `
+              <!--html-->
+                <!doctype html>
+                <html lang="en">
+                  <head>
+                    <title>Soccer Stats SIUUU</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
+                    <meta charset="utf-8" />
+                  </head>
+                  <body>
+                      <h1><b>¡Contraseña temporal, Soccer Stats!</b></h1>
+                      Tu contraseña temporal es: 
+                      <h3><b>${temp_password}</b></h3>
+                      <br>
+                      Para restablecer tu contraseña ingresa al siguiente enlace:
+                      <br>
+                      <h2><a type="button" class="btn btn-primary btn-lg" href="${link}">Restablecer contraseña</a></h2>
+                      <br>
+                      Si el botón de arriba no funciona, copia y pega el siguiente enlace en tu navegador:
+                      <br>
+                      <br>
+                      ${link}
+                      <br>
+                      <br>
+                      <b>Nota: </b> ¡Si no restableces tu contraseña por una nueva, en los siguientes 2 minutos no podras iniciar sesión!
+                  </body>
+                </html>
+              <!--!html-->
+              `
+            };
+
+            send_email(email_data, async (err, data) => {
+              if(err){
+                res.status(400).send({
+                  status: true,
+                  msg: 'Error al enviar la contraseña temporal.',
+                  data: []
+                });
+              }else{
+                console.log(data);
+                let cif_pass = cryptoJS.AES.encrypt(temp_password, 'SiSaleSA_').toString();
+                let pass_data = {
+                  id: user_id,
+                  password: cif_pass
+                }
+                authm.update_password(req.con, pass_data, async function(err, rows){
+                  if(err){
+                    res.status(400).send({
+                      status: false,
+                      msg: "Error al actualizar contraseña temporal",
+                      error: err.toString(),
+                      data: []
+                    });
+                  } else {
+                    // res.status(200).send({
+                    //   status: true,
+                    //   msg: "Usuario actualizado con exito"
+                    // });
+                    res.status(200).send({
+                      status: true,
+                      msg: 'Se ha enviado un correo para restablecer la contraseña.',
+                      data: []
+                    });
+                    // console.log("Contraseña temporal actualizada");
+                  }
+                });
+              }
+            });
+          } else {
+            res.status(400).send({
+              status: true,
+              msg: 'Error al enviar la contraseña temporal, correo no encontrado.',
+              data: []
+            });
+          }
+        }
+      });
+    },
+// ||||||||||||||||||||   RESETEAR PASS   ||||||||||||||||||||
+    reset_pass: async function(req, res) {
+      authm.login(req.con, req.body, async function(err, rows){
+        let datos = rows[0];
+        let pass = req.body.temporal_password;
+        let id_user_rol;
+        if(!err){
+          if(rows.length > 0){
+            let pass_bytes = cryptoJS.AES.decrypt(datos.pass, 'SiSaleSA_');
+            let uncif_pass = pass_bytes.toString(cryptoJS.enc.Utf8);
+            if(uncif_pass == pass){
+              if(datos.id_estado != 1){
+                res.status(400).send({
+                  status: false,
+                  msg: 'Error de autenticacion, correo no confirmado.'
+                });
+              }
+              id_user_rol = {id_usuario: datos.id_usuario, id_rol: datos.id_rol};
+              const accessToken = generateAccessToken(id_user_rol);
+              let cif_pass = cryptoJS.AES.encrypt(req.body.new_password, 'SiSaleSA_').toString();
+              let pass_data = {
+                id: datos.id_usuario,
+                password: cif_pass
+              }
+              authm.update_password(req.con, pass_data, async function(err, rows){
+                if(err){
+                  res.status(400).send({
+                    status: false,
+                    msg: "Error al restablecer contraseña",
+                    error: err.toString(),
+                    data: []
+                  });
+                } else {
+                  res.status(200).send({
+                    datos: datos,
+                    data:{
+                      token: accessToken,
+                      id_status: datos.id_estado
+                    },
+                    status: true,
+                    msg: 'Se ha restablecido la contraseña'
+                  });
+                }
+              });
+            } else {
+              res.status(400).send({
+                status: false,
+                msg: 'Error de autenticacion, contraseña incorrecta.'
+              });
+            }
+          } else {
+            res.status(400).send({
+              status: false,
+              msg: 'Error de autenticacion, usuario no encontrado'
+            });
+          }
+        } else {
+          res.status(400).send({
+            status: false,
+            msg: 'Error de autenticacion',
+            error: err.toString()
+          });
+        }
+      });  
+    },
+
+    validar_email(correo) {
+      if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(correo)) {
+        return true;
+      }
+      return false;
+    },
+
+    validar_pass(pass, conf){
+      if(pass == conf) {
+        if(pass.length >= 8) {
+            return true;
+          }
+      }  
+      return false;
+    }
+  }
+
+  async function send_email(datos, callback) {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+          type: "OAuth",
+          user: 'pweb.g16@gmail.com' , // email you are using with nodemailer
+          pass: 'gnchlbutqguzbdyh', // email password 'ENLASnubes'
+          clientId: '186197231924-s2nvbq03jgaror4mvtrqhvpdakgv8r6m.apps.googleusercontent.com',
+          clientSecrect:'p10IojeHKOfBDsBeRybMjpwd',
+          refreshToken: '1//04hTgndkMZcVGCgYIARAAGAQSNwF-L9IrYMeRCk5A7Dq69R82j5COXaAZv85q2ZbcZG1gNWhEoaRRh-Jz8UCsl4TS7dleFLT2D68',
+          accessToken: 'ya29.a0AfH6SMBVEg9A29cbaiH-KafFOyNk48PnZ5FDYRz3g4I6gl-7uTvWajfl-yAv_jug7RH3y2a85RdZGPapbBq9T7RHcyyL6BK1_x2wU5Y7mLukqZCXk2hNvE9p0LjfkNMApOPn4vLVKrygPpDcmjCRVbfJHjyK-uVUhX0',
+      },
+      tls:{
+        rejectUnauthorized:false
+      }
+    });
+    const info = await transporter.sendMail(
+      {
+      from:'Soccer Stats <pweb.g16@gmail.com>',
+      to: datos.email,
+      subject: datos.subject,
+      html: datos.content
+    },
+    callback
+    );
+    console.log("Email sent: %s", info);
+    // return result ;
+  }
+
+  function generateAccessToken(id_user_rol){
+    return jwt.sign(id_user_rol, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'1d'});
+  }
+
+  function authenticate_token(req, res, next){
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if(token == null) return res.sendStatus(401);
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, id_user_rol) => {
+        if (err) return res.sendStatus(403);
+        req.id_user_rol = id_user_rol;
+        next();
+    });
+  }

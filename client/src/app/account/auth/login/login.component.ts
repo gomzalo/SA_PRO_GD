@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
              let respueta:any = resp;
              
              if(respueta.status!=true){
-               this.errorAlert('Error Login', respueta.msj);
+               this.errorAlert('Error Login', 'Credenciales invalidas');
                return;
              }
              if(respueta.statusAccount=="1"){
@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
          },
          err=> {
            console.log(err);
-           this.errorAlert('Error Login', err.message);
+           this.errorAlert('Error Login', 'Credenciales invalidas');
          }
 
        );

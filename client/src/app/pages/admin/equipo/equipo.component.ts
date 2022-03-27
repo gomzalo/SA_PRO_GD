@@ -18,11 +18,10 @@ export class EquipoComponent implements OnInit {
   equipo={}
   photo64 = null
   Form = new FormGroup({
-    id_team: new FormControl('', [Validators.required]),
     nombre: new FormControl('', [Validators.required]),
     abreviado: new FormControl('', [Validators.required]),
     id_pais: new FormControl('', [Validators.required]),
-    is_club:new FormControl('', [Validators.required]),
+    is_club:new FormControl(1, [Validators.required]),
     foundation_date:new FormControl('', [Validators.required]),
     photo:new FormControl('', [Validators.required]),
 
@@ -32,10 +31,14 @@ export class EquipoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getequipos();
+    this.getcountries();
     this.size = this.equipos.length
   }
 
-
+  getcountries() {
+    this.paisService.getpaises()
+      .subscribe((data) => { this.paises = data });
+  }
 
   formatDate(fecha:Date) {
     const isoDateString =  fecha.toISOString();
@@ -46,7 +49,7 @@ export class EquipoComponent implements OnInit {
 
   getequipos() {
     this.equipoService.getAllteams()
-      .subscribe((data) => { this.equipos = data });
+      .subscribe((data) => { this.equipos = data.data;console.log(this.equipos)});
 
   }
 
@@ -62,13 +65,12 @@ export class EquipoComponent implements OnInit {
   submit(form) {
 
     if (this.Form.valid) {
-      if (form.password == form.confirmpass) {
+  
         form.photo = this.photo64
-        form.birth_date = this.formatDate(form.birth_date)
+        form.foundation_date = this.formatDate(form.foundation_date)
         console.log(form);
         this.equipoService.insertteam(form)
           .subscribe(res => console.log(res));
-      }
     }
   }
 

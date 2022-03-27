@@ -1,5 +1,4 @@
 const userm = require('../models/user_model');
-const { get_last_id, email_confirmation } = require('../models/user_model');
 var cryptoJS = require('crypto-js');
 
 module.exports = {

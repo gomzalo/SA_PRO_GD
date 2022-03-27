@@ -1,10 +1,7 @@
 const http = require('http');
 const app = require('./app');
-
-
 const { port } = require('./config')
 const server = http.createServer(app);
-
 
 //TEST
 app.get('/', function (req, res) {

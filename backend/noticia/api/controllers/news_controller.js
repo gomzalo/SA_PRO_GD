@@ -7,14 +7,14 @@ module.exports = {
         res.status(400).send({
           status: false,
           data: [],
-          msj: 'Error al crear noticia',
+          msg: 'Error al crear noticia',
           error: err.toString()
         });
       } else {
         res.status(200).send({
           status: true,
           data: [],
-          msj: 'Noticia creada con exito'
+          msg: 'Noticia creada con exito'
         });
       }
     });  
@@ -26,14 +26,14 @@ module.exports = {
         res.status(400).send({
           status: false,
           data: [],
-          msj: 'Error al obtener noticia(s)',
+          msg: 'Error al obtener noticia(s)',
           error: err.toString()
         });
       } else {
         res.status(200).send({
           status: true,
           data: rows,
-          msj: 'Información de noticia(s)'
+          msg: 'Información de noticia(s)'
         });
       }
     });

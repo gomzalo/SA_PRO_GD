@@ -11,14 +11,14 @@ module.exports = {
           res.status(400).send({
             status: false,
             data: [],
-            msj: 'Error al obtener el usuario(s).',
+            msg: 'Error al obtener el usuario(s).',
             error: err.toString()
           });
         } else {
           res.status(200).send({
             status: true,
             data: rows,
-            msj: 'Usuario(s) obtenido(s) con exito.'
+            msg: 'Usuario(s) obtenido(s) con exito.'
           });
         }
       })

@@ -9,14 +9,14 @@ app.get('/', function (req, res) {
     <!doctype html>
     <html lang="en">
     <head>
-        <title>Soccer Stats Partido Server</title>
+        <title>Soccer Stats Competencia Server</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
         <meta charset="utf-8" />
     </head>
     <body>
         <center>
-        <h1>Partido server running!</h1>
+        <h1>Competencia server running!</h1>
         </center>
     </body>
     </html>

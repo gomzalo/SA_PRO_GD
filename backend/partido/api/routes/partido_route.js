@@ -19,9 +19,9 @@ Estados (campo status):
     Suspendido = 4
 */
 
-router.get('/match', partido_controller.get_game);
-router.post('/match', partido_controller.create_game);
-router.put('/match', partido_controller.edit_game);
-router.delete('/match', partido_controller.delete_game);
+router.get('/', partido_controller.get_game);
+router.post('/', partido_controller.create_game);
+router.put('/', partido_controller.edit_game);
+router.delete('/', partido_controller.delete_game);
 
 module.exports = router

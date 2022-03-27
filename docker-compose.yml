@@ -6,17 +6,18 @@ services:
     ports:
       - "5000:5000"
     restart: on-failure
-  server_user:
-    build: ./backend/user
-    container_name: user
-    ports:
-      - "5003:5003" 
-    restart: on-failure
   server_partido:
     build: ./backend/partido
     container_name: match
     ports:
       - "5002:5002" 
+    restart: on-failure
+
+  server_competition:
+    build: ./backend/competicion
+    container_name: comp
+    ports:
+      - "5003:5003" 
     restart: on-failure
   server_auth:
     build: ./backend/autenticacion

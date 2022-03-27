@@ -127,7 +127,7 @@ CREATE TABLE Competencia (
     nombre VARCHAR(150) NOT NULL,
     id_tipo_competencia INT NOT NULL,
     anio INT NOT NULL,
-    id_campeon INT NOT NULL,
+    id_campeon INT NULL,
     id_country INT NOT NULL,
     CONSTRAINT FK_Competencia_Pais FOREIGN KEY (id_country)
         REFERENCES Pais(id_pais),

@@ -8,10 +8,6 @@ module.exports = {
       await con.query("SELECT * FROM Usuario;", callback)
     },
 
-    all_countries: async function(con, callback){
-      await con.query("SELECT * FROM Pais;", callback)
-    },
-
     login: async function(con, data, callback) {
       const {password, email} = data;
       await con.query(

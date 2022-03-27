@@ -177,8 +177,4 @@ module.exports = {
         `,
         callback)
     },
-// ||||||||||||||||||||   OBTENER PAISES   ||||||||||||||||||||
-    all_countries: async function(con, callback){
-      await con.query("SELECT * FROM Pais;", callback)
-    },
   }

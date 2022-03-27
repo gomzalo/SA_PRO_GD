@@ -131,12 +131,6 @@ module.exports = {
         }
       });
     },
-// ||||||||||||||||||||   OBTENER PAISES   ||||||||||||||||||||
-    all_countries: function(req, res) {
-      clientm.all_countries(req.con, function(err, rows) {
-        res.status(200).send(rows);
-      })
-    },
 // ||||||||||||||||||||   COMPRAR MEMBRESIA   ||||||||||||||||||||
     buy_membership: async function(req, res) {
       clientm.buy_membership(req.con, req.body, async function(err){

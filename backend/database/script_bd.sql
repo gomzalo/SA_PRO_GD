@@ -1,23 +1,23 @@
--- drop TABLE Usuario;
--- drop TABLE  Incidencia;
---  drop TABLE Arbitro_Partido;
---  drop TABLE Jugador_Partido;
---  drop TABLE Partido;
---   drop TABLE Competencia;
---   drop TABLE Estadio;
---  drop TABLE Asignacion_Jugador_Equipo;
---  drop TABLE Asignacion_Tecnico_Equipo;
---   drop TABLE Tecnico;
---   drop TABLE Jugador;
---    drop TABLE Posicion;
---  Drop TABLE Equipo;
---   drop TABLE Tipo_Incidencia;
---  drop TABLE Tipo_Gol;
---  drop TABLE Tipo_Competencia;
---  drop TABLE Arbitro;
---  drop TABLE Rol;
---  DROP TABLE Pais;
---  DROP TABLE Estado;
+-- DROP TABLE Usuario;
+-- DROP TABLE Incidencia;
+-- DROP TABLE Arbitro_Partido;
+-- DROP TABLE Jugador_Partido;
+-- DROP TABLE Partido;
+-- DROP TABLE Competencia;
+-- DROP TABLE Estadio;
+-- DROP TABLE Asignacion_Jugador_Equipo;
+-- DROP TABLE Asignacion_Tecnico_Equipo;
+-- DROP TABLE Tecnico;
+-- DROP TABLE Jugador;
+-- DROP TABLE Posicion;
+-- DROP TABLE Equipo;
+-- DROP TABLE Tipo_Incidencia;
+-- DROP TABLE Tipo_Gol;
+-- DROP TABLE Tipo_Competencia;
+-- DROP TABLE Arbitro;
+-- DROP TABLE Rol;
+-- DROP TABLE Pais;
+-- DROP TABLE Estado;
 
 CREATE DATABASE soccer_stats_db;
 USE soccer_stats_db;
@@ -48,7 +48,6 @@ CREATE TABLE Equipo (
         REFERENCES Pais(id_pais)
 );
 
-
 CREATE TABLE Tecnico (
     id_tecnico INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -63,7 +62,6 @@ CREATE TABLE Tecnico (
     CONSTRAINT FK_Tecnico_Estado FOREIGN KEY (id_estado)
         REFERENCES Estado(id_estado)
 );
-
 
 CREATE TABLE Posicion (
     id_posicion INT AUTO_INCREMENT PRIMARY KEY,
@@ -110,7 +108,6 @@ CREATE TABLE Tipo_Gol (
     id_tipo_gol INT NOT NULL PRIMARY KEY,
 	descripcion VARCHAR(100)
 );
-
 
 CREATE TABLE Tipo_Incidencia (
     id_tipo_incidencia INT AUTO_INCREMENT PRIMARY KEY,
@@ -257,6 +254,15 @@ CREATE TABLE Usuario (
         REFERENCES Rol(id_rol)
 );
 
+CREATE TABLE Usuario_Equipo(
+    id_usuario INT NOT NULL,
+    id_equipo INT NOT NULL,
+    CONSTRAINT PK_Usuario_Equipo PRIMARY KEY (id_usuario, id_equipo),
+    CONSTRAINT FK_Usuario_Equipo_id_usuario FOREIGN KEY (id_usuario)
+        REFERENCES Usuario(id_usuario),
+    CONSTRAINT FK_Usuario_Equipo_id_equipo FOREIGN KEY (id_equipo)
+        REFERENCES Equipo(id_equipo)
+);
 
 CREATE TABLE Noticia(
     id_noticia INT AUTO_INCREMENT PRIMARY KEY,
@@ -265,8 +271,10 @@ CREATE TABLE Noticia(
     descripcion VARCHAR(300) NOT NULL,
     fecha DATE NOT NULL,
     id_user INT NOT NULL,
-    CONSTRAINT FK_Noticia_Usuario FOREIGN KEY (id_user) REFERENCES Usuario(id_usuario),
-    CONSTRAINT FK_Noticia_Equipo FOREIGN KEY (id_equipo) REFERENCES Equipo(id_equipo)
+    CONSTRAINT FK_Noticia_Usuario FOREIGN KEY (id_user)
+        REFERENCES Usuario(id_usuario),
+    CONSTRAINT FK_Noticia_Equipo FOREIGN KEY (id_equipo)
+        REFERENCES Equipo(id_equipo)
 );
 
 CREATE TABLE Bitacora (

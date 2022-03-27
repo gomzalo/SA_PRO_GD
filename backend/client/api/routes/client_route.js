@@ -3,14 +3,11 @@ const router = new express.Router();
 const client_controller = require('../controllers/client_controller');
 
 router.get('/', client_controller.get);
-router.get('/all_countries', client_controller.all_countries);
 router.post('/register', client_controller.create);
-router.get('/email_confirmation', client_controller.email_confirmation);
-router.post('/send_email_confirmation', client_controller.send_email);
-
-// *************************************************
 router.put('/', client_controller.update);
-router.delete('/:no_id', client_controller.delete);
-
+router.delete('/:id', client_controller.delete);
+router.post('/membership', client_controller.buy_membership);
+router.put('/membership', client_controller.cancel_membership);
+router.put('/follow', client_controller.follow_team);
 
 module.exports = router

@@ -1,7 +1,5 @@
-var cryptoJS = require('crypto-js');
-
 module.exports = {
-
+// ||||||||||||||||||||   LOGIN   ||||||||||||||||||||
     login: async function(con, data, callback) {
       const { email } = data;
       await con.query(
@@ -12,7 +10,7 @@ module.exports = {
         callback
       )
     },
-
+// ||||||||||||||||||||   ACTUALIZAR CONTRASEÑA   ||||||||||||||||||||
     update_password: async function(con, data, callback) {
       const { id, password } = data;
       await con.query(
@@ -25,7 +23,7 @@ module.exports = {
         callback
       )
     },
-
+// ||||||||||||||||||||   OBTENER ID   ||||||||||||||||||||
     get_id: async function(con, data, callback) {
       await con.query(
         `
@@ -34,20 +32,7 @@ module.exports = {
         `,
         callback)
     },
-
-    email_confirmation: async function(con, data, callback) {
-      await con.query(
-        `
-        UPDATE Usuario
-        SET
-          id_estado = IF (id_estado != 1, 1, null)
-        WHERE
-          id_usuario = '${data}';
-        `,
-        callback
-      )
-    },
-
+// ||||||||||||||||||||   VALIDAR CUENTA   ||||||||||||||||||||
     validar_cuenta: async function(con, data, callback) {
       await con.query(
         `

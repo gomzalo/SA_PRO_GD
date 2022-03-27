@@ -1,11 +1,11 @@
 {
-  "name": "auth_service",
+  "name": "pais_service",
   "version": "1.0.0",
-  "description": "Auth microservice",
+  "description": "Pais microservice",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon ./server.js localhost 5010",
+    "dev": "nodemon ./server.js localhost 5013",
     "test": "jest --coverage"
   },
   "author": "g",

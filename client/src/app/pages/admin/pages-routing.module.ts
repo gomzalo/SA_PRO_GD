@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsersComponent } from './users/users.component';
 import { NoticiaComponent } from './Noticia/noticia.component'
 import { AdminGuard } from 'src/app/core/guards/auth/admin.guard';
+import { ReportesComponent } from './reportes/reportes.component';
 
 const routes: Routes = [
   { path: '', 
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent
+  },
+  {
+    path: 'reportesadmin',
+    component: ReportesComponent
   },
   {
     path: 'noticias',

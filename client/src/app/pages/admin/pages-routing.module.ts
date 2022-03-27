@@ -6,10 +6,11 @@ import { AdminGuard } from 'src/app/core/guards/auth/admin.guard';
 import { ReportesComponent } from './reportes/reportes.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EquipoComponent } from './equipo/equipo.component';
+import { AmbosGuard } from 'src/app/core/guards/ambos.guard';
 
 const routes: Routes = [
   { path: '', 
-    canActivate: [AdminGuard],
+    canActivate: [AmbosGuard],
     loadChildren: () => import('./dashboard/components/dashboard.module').then(m => m.DashboardModule) 
     },
   {

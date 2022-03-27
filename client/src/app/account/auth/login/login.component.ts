@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
                this.errorAlert('Error Login', 'Credenciales invalidas');
                return;
              }
-             if(respueta.statusAccount=="1"){
+             if(respueta.data.id_status=="1"){
               let user_string = JSON.stringify(respueta);
               localStorage.setItem('currentUser',user_string); 
                alert("Cuanta activa");

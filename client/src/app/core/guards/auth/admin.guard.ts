@@ -16,7 +16,7 @@ export class AdminGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const infoAuth = this.authService.getSesion();
-      if(infoAuth.data.id_rol == '1'){
+      if(infoAuth.datos.id_rol == '1'){
         return true;
       }else{
         this.router.navigate(['']);

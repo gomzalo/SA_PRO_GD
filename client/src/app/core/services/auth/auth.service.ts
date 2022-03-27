@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class AuthService {
-  url=environment.apiUser;
+  url=environment.apiAuth;
   constructor(
     private cookieService: CookieService,
     private http:HttpClient
@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   login(data: any) {
-    return this.http.post(this.url +'login', data);
+    return this.http.post(this.url, data);
   }
 
   getSesion(){

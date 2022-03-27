@@ -11,7 +11,7 @@ export class EquipoService {
   constructor(private http: HttpClient) { }
 
   insertteam(team){
-    return this.http.post<any>(environment.apiAdministrative+'team/', team)
+    return this.http.post<any>(environment.apiEquipo, team)
     .pipe(
       catchError(this.handleError)
     );
@@ -20,19 +20,19 @@ export class EquipoService {
 
   getOneteam(id:Number){
     
-    return this.http.get<any>(environment.apiAdministrative+'team/'+'?id='+id);
+    return this.http.get<any>(environment.apiEquipo+'?id='+id);
   }
 
   
   getAllteamsbyteam(idequipo:Number){
     
-    return this.http.get<any>(environment.apiAdministrative+'team/'+'?team='+idequipo);
+    return this.http.get<any>(environment.apiEquipo+'?team='+idequipo);
   }
 
   
   getAllteams(){
     
-    return this.http.get<any>(environment.apiAdministrative+'team/');
+    return this.http.get<any>(environment.apiEquipo);
   }
 
 

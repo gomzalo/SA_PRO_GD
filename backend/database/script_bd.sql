@@ -41,6 +41,8 @@ CREATE TABLE Estado (
 CREATE TABLE Equipo (
     id_equipo INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
+    foundation_date DATE NOT NULL,
+    photo longtext NOT NULL,
     abreviado VARCHAR(5),
     id_pais INT NOT NULL,
     is_club BOOLEAN NULL,
@@ -145,7 +147,7 @@ CREATE TABLE Estadio (
     direccion VARCHAR(300) NOT NULL,
     foto VARCHAR(300) NOT NULL,
     id_pais INT NOT NULL,
-    state VARCHAR(250) NOT NULL,
+    status INT NOT NULL,
     CONSTRAINT FK_Estadio_Pais FOREIGN KEY (id_pais)
         REFERENCES Pais(id_pais)
 );
@@ -233,7 +235,7 @@ CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL ,
-    pass  VARCHAR(50)  NOT NULL,
+    pass  VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     phone INT NOT NULL,
     photo longtext NOT NULL,
@@ -283,6 +285,50 @@ CREATE TABLE Bitacora (
     fecha DATE NOT NULL,
     descripcion VARCHAR(300) NOT NULL
 );
+
+CREATE TABLE Temp_Pass (
+    id_usuario INT PRIMARY KEY NOT NULL,
+    original_pass VARCHAR(50) NOT NULL,
+    temporal_pass VARCHAR(50) NOT NULL,
+    hora DATE NOT NULL,
+    CONSTRAINT FK_Temp_Pass FOREIGN KEY (id_usuario)
+        REFERENCES Usuario(id_usuario)
+);
+
+-- ::::::::::::::    PROCEDURES    ::::::::::::::
+
+CREATE PROCEDURE Set_Temp_Pass (IN temp_pass VARCHAR(50), id INT, OUT original_pass VARCHAR(50))
+BEGIN
+    SELECT
+        pass INTO original_pass
+    FROM Usuario
+        WHERE id_usuario = id;
+    
+    UPDATE Usuario
+    SET
+        pass = temp_pass
+        WHERE id_usuario = id;
+
+    REPLACE INTO Temp_Pass (id_usuario, original_pass, temporal_pass, hora)
+    VALUES (id, original_pass, temp_pass, NOW());
+END;
+
+
+CREATE PROCEDURE Reset_Pass (IN temp_pass VARCHAR(50), new_pass VARCHAR(50), id INT, OUT original_pass VARCHAR(50))
+BEGIN
+    SELECT
+        pass INTO original_pass
+    FROM Usuario
+        WHERE id_usuario = id;
+    
+    UPDATE Usuario
+    SET
+        pass = new_pass
+        WHERE id_usuario = id;
+
+    REPLACE INTO Temp_Pass (id_usuario, original_pass, temporal_pass, hora)
+    VALUES (id, original_pass, temp_pass, NOW());
+END;
 
 -- ::::::::::::::    INSERTS    ::::::::::::::
 

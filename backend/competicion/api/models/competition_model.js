@@ -1,4 +1,3 @@
-const compc = require('../controllers/competition_controller');
 module.exports = {
 // ||||||||||||||||||||   GET   ||||||||||||||||||||
     get_competition: async function(con, data, callback) {

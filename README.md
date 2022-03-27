@@ -71,6 +71,7 @@
 - [Endpoints](#endpoints)
 - [Estados](#estados)
 - [Roles](#roles)
+  - [Microservicios](#microservicios)
 
 # **Descripción**
 
@@ -493,3 +494,20 @@ https://docs.google.com/document/d/1uVddjEpHwvCZKaUTgMsjYj9W-MKqSr1Bx_YaoVaCDrU/
 | 1 | Admin     |
 | 2 | Empleado  |
 | 3 | Cliente   |
+
+## Microservicios
+
+| Microservicio   | Puerto |
+| ---- | ------ |
+| Cliente | 5000     |
+| Equipo | 5001  |
+| Partido | 5002   |
+| Competencia | 5003     |
+| Estadio | 5004  |
+| Director técnico | 5005   |
+| Jugador | 5006     |
+| Noticia | 5007  |
+| Autencicacion | 5010   |
+| Administrador | 5011     |
+| Empleado | 5012  |
+| Pais | 5013   |

@@ -20,7 +20,7 @@ module.exports = {
           });
         }
       })
-    },
+    }
   }
 // ||||||||||||||||||||   AUTENTICAR TOKEN   ||||||||||||||||||||
   function authenticate_token(req, res, next){

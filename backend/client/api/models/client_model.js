@@ -1,6 +1,7 @@
 const clientc = require('../controllers/client_controller');
 var cryptoJS = require('crypto-js');
 
+
 module.exports = {
 // ||||||||||||||||||||   GET   ||||||||||||||||||||
     get: async function(con, data, callback) {

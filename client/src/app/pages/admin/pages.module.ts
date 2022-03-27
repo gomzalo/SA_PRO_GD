@@ -16,11 +16,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {UsersModule} from '../User/users.module';
 import { NoticiaComponent } from './Noticia/noticia.component';
+import { ReportesComponent } from './reportes/reportes.component';
+import { EquipoComponent } from './equipo/equipo.component';
 
 
 
 @NgModule({
-  declarations: [UsersComponent, NoticiaComponent],
+  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent],
   imports: [
     AngularDualListBoxModule,
     MatSelectModule,

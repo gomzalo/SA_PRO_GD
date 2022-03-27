@@ -21,19 +21,19 @@
   
         <mat-form-field appearance="outline" class="center">
           <mat-label>titulo: </mat-label>
-          <input matInput type="text" placeholder="Nombre" formControlName="titulo" id="titulo">
+          <input matInput type="text" placeholder="titulo" formControlName="title" id="titulo">
         </mat-form-field>
   
         <mat-form-field appearance="outline" class="center">
           <mat-label>Descripcion: </mat-label>
-          <input matInput type="text" placeholder="Apellido" formControlName="descripcion" id="descripcion">
+          <input matInput type="text" placeholder="Descripcion" formControlName="description" id="descripcion">
         </mat-form-field>
 
 
   
         <mat-form-field appearance="outline" class="center">
           <mat-label>Equipo </mat-label>
-          <mat-select formControlName="id_equipo" id="id_equipo">
+          <mat-select formControlName="id_team" id="id_teams">
             <mat-option *ngFor="let equipo of equipos" [value]="equipo.id_equipo">
               {{equipo.nombre}}
             </mat-option>
@@ -52,7 +52,7 @@
       <table class="table table-striped">
           <thead>
           <tr>
-            <th scope="col">#</th>
+
             <th scope="col">Titulo</th>
             <th scope="col">Descripcion</th>
             <th scope="col">fecha</th>
@@ -61,10 +61,10 @@
           </thead>
           <tbody>
           <tr *ngFor="let noticia of noticias">
+            
             <th scope="row">{{ noticia.titulo }}</th>
             <td>
-              
-              {{ noticia.Descripcion}}
+              {{ noticia.descripcion}}
             </td>
             <td>{{ noticia.fecha}}</td>
             <td> <button type="button" class="btn btn-secondary" (click)="editar(user,content)">Editar</button></td>
@@ -75,12 +75,7 @@
         <div class="d-flex justify-content-between p-2">
           <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
           </ngb-pagination>
-        
-          <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
-            <option [ngValue]="2">2 items per page</option>
-            <option [ngValue]="4">4 items per page</option>
-            <option [ngValue]="6">6 items per page</option>
-          </select>
+       
         </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { NoticiaComponent } from './Noticia/noticia.component'
 import { AdminGuard } from 'src/app/core/guards/auth/admin.guard';
 import { ReportesComponent } from './reportes/reportes.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EquipoComponent } from './equipo/equipo.component';
 
 const routes: Routes = [
   { path: '', 
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'noticias',
     component: NoticiaComponent
+  },
+  {
+    path: 'equipo',
+    component: EquipoComponent
   },
   {
     path: 'profile',

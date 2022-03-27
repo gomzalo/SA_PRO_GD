@@ -90,12 +90,7 @@ export class SidebarComponent {
           type: 'link'
         },
         {
-          path: './proyects-assign',
-          title: 'ASIGNACIÓN DE PROYECTOS',
-          type: 'link'
-        },
-        {
-          path: './proyects-assign',
+          path: './equipo',
           title: 'EQUIPOS',
           type: 'link'
         },

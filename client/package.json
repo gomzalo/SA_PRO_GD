@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^9.0.7",
     "@angular/router": "^9.0.7",
     "@angular/service-worker": "^9.0.7",
+    "@angular/youtube-player": "^13.3.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "@swimlane/ngx-datatable": "^17.0.0",
     "angular-count-to": "0.0.3",

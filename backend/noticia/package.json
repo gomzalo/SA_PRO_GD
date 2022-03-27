@@ -4,7 +4,8 @@
   "description": "Microservicio noticia",
   "main": "server.js",
   "scripts": {
-    "test": "jest --collect-coverage"
+    "dev": "nodemon ./server.js localhost 5007",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "grupo_d",
   "license": "ISC",

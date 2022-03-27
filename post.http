@@ -1,5 +1,4 @@
 
-
 GET http://localhost:5003/user/all HTTP/1.1
 
 ###
@@ -88,7 +87,7 @@ content-type: application/json
 
 {
     "email": "gxmzalx@gmail.com",
-    "password": "xLwiXCYQfh"
+    "password": "Jy2NZxgvBd"
 }
 
 # POST http://localhost:5003/user/login HTTP/1.1
@@ -124,14 +123,10 @@ POST http://localhost:5010/auth/reset-password HTTP/1.1
 content-type: application/json
 
 {
-    "email": "gxmzalx@gmail.com"
+    "email": "gxmzalx@gmail.com",
+    "temporal_password": "gxmzalx@gmail.com",
+    "new_password": "gxmzalx@gmail.com"
 }
-
-###
-
-# ----------    Obtener paises   ----------
-
-GET http://localhost:5003/user/all_countries HTTP/1.1
 
 ###
 
@@ -139,7 +134,11 @@ GET http://localhost:5003/user/all_countries HTTP/1.1
 # ************** CLIENT SERVER ************** 
 # *******************************************
 
-GET http://localhost:5000/customer/all HTTP/1.1
+GET http://localhost:5000/customer/?id=3 HTTP/1.1
+
+###
+
+GET http://localhost:5000/customer HTTP/1.1
 
 ###
 
@@ -152,49 +151,126 @@ content-type: application/json
     "name": "Ay mi madre",
     "lastname": "El bicho",
     "password": "Bicho123/",
-    "email": "gxmzalx@gmail.com",
+    "email": "gomzalo@outlook.com",
     "phone": 5668998,
     "photo": "asdkfhjkasdljfklasdj",
     "gender": "M",
     "birth_date": "1985-02-05",
-    "signup_date": "2022-03-01",
     "address": "Funchal, Portugal",
-    "id_pais": 172,
-    "id_estado": 2,
-    "id_rol": 3,
-    "age": 37,
-    "membership": 0
+    "id_pais": 172
 }
 
 ###
 
-POST http://localhost:5000/customer/send_email_confirmation HTTP/1.1
+# ----------    Editar   ----------
+
+PUT http://localhost:5000/customer/ HTTP/1.1
 content-type: application/json
 
 {
-    "email": "gomzalo@outlook.com"
+    "id": 3,
+    "name": "Martha",
+    "lastname": "Debaile",
+    "password": "Marta123/",
+    "email": "gomzalo@outlook.com",
+    "phone": 5668998,
+    "photo": "asdkfhjkasdljfklasdj",
+    "gender": "F",
+    "birth_date": "1998-02-27",
+    "address": "Zona 14",
+    "id_country": 88
 }
 
 ###
 
-GET http://localhost:5000/customer/email_confirmation?id=4 HTTP/1.1
+POST http://localhost:5000/customer/membership HTTP/1.1
+content-type: application/json
+
+{
+    "id_client": 3
+}
 
 ###
 
-GET http://localhost:5000/customer/all_countries HTTP/1.1
+PUT http://localhost:5000/customer/membership HTTP/1.1
+content-type: application/json
 
+{
+    "id_client": 3
+}
 
 ###
 
+POST http://localhost:5000/customer/follow HTTP/1.1
+content-type: application/json
+
+{
+    "id_client": 3,
+    "id_team": 5
+}
+###
+
 # ***************************************************
-# ************** ADMINISTRATIVE SERVER ************** 
+# ************** TEAM SERVER ************** 
 # ***************************************************
 
-# :::::::::::::::::     STADIUM     :::::::::::::::::
+###
+
+# ----------    Get   ----------
+
+GET http://localhost:5001/team/?id=1 HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://localhost:5001/team/ HTTP/1.1
+content-type: application/json
+
+###
 
 # ----------    Crear   ----------
 
-POST http://localhost:5001/administrative/stadium HTTP/1.1
+POST http://localhost:5001/team HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Spotify FC",
+    "foundation_date": "1905-02-15",
+    "photo": "dsf4545asdf",
+    "id_country": 21
+}
+
+###
+
+# ----------    Editar   ----------
+
+PUT http://localhost:5001/team HTTP/1.1
+content-type: application/json
+
+{
+    "id": 7,
+    "name": "Spotify FC",
+    "foundation_date": "1905-02-15",
+    "photo": "a5sd5s55",
+    "id_country": 100
+}
+
+
+###
+
+# ----------    Delete   ----------
+
+DELETE http://localhost:5001/team/?id=7 HTTP/1.1
+
+###
+
+# ***************************************************
+# ************** STADIUM SERVER ************** 
+# ***************************************************
+
+# ----------    Crear   ----------
+
+POST http://localhost:5004/stadium HTTP/1.1
 content-type: application/json
 
 {
@@ -203,7 +279,7 @@ content-type: application/json
     "capacity": "5566224",
     "id_country": "100",
     "address": "Cumeada, Portugal",
-    "state": "Catalunya",
+    "status": 1,
     "photo": "Masdkfjasdlkjfkmasdcmkjlasdnijfnasdlkfj"
 }
 
@@ -211,17 +287,17 @@ content-type: application/json
 
 # ----------    Editar   ----------
 
-PUT http://localhost:5001/administrative/stadium HTTP/1.1
+PUT http://localhost:5004/stadium HTTP/1.1
 content-type: application/json
 
 {
-    "id": 5,
+    "id": 1,
     "name": "Santiago Bernaleo",
     "fundation_date": "1940-02-05",
     "capacity": "5566224",
     "id_country": "100",
     "address": "Chamartin, Madrid",
-    "state": "Chamartin",
+    "status": 2,
     "photo": "Masdkfjasdlkjfkmasdcmkjlasdnijfnasdlkfj"
 }
 
@@ -229,129 +305,173 @@ content-type: application/json
 
 # ----------    Get   ----------
 
-GET http://localhost:5001/administrative/stadium/?id=5 HTTP/1.1
+GET http://localhost:5004/stadium/?id=1 HTTP/1.1
 content-type: application/json
 
 ###
 
-GET http://localhost:5001/administrative/stadium/ HTTP/1.1
+GET http://localhost:5004/stadium/ HTTP/1.1
 content-type: application/json
 
 ###
 
 # ----------    Delete   ----------
 
-DELETE http://localhost:5001/administrative/stadium/?id=3 HTTP/1.1
+DELETE http://localhost:5004/stadium/?id=1 HTTP/1.1
 content-type: application/json
 
-# :::::::::::::::::     COMPETICION     :::::::::::::::::
+# ***************************************************
+# ************** COMPETICION SERVER ************** 
+# ***************************************************
 
 ###
 
 # ----------    Get   ----------
 
-GET http://localhost:5001/administrative/competition/?championship=1 HTTP/1.1
+GET http://localhost:5003/competition/?id=1 HTTP/1.1
 content-type: application/json
 
 ###
 
-GET http://localhost:5001/administrative/competition/ HTTP/1.1
+GET http://localhost:5003/competition/ HTTP/1.1
 content-type: application/json
 
 ###
 
 # ----------    Crear   ----------
 
-POST http://localhost:5001/administrative/competition HTTP/1.1
+POST http://localhost:5003/competition/ HTTP/1.1
 content-type: application/json
 
 {
     "name": "Liga granjera de Guatemala",
-    "type": "Liga",
+    "type": 1,
     "year": 2020,
-    "champion_team": 1,
-    "country": 21
+    "id_country": 21
 }
 
 ###
 
 # ----------    Editar   ----------
 
-PUT http://localhost:5001/administrative/competition HTTP/1.1
+PUT http://localhost:5003/competition/ HTTP/1.1
 content-type: application/json
 
 {
-    "id_competition": 2,
+    "id": 1,
     "name": "Liga granjera de El Salvador",
-    "type": "Liga",
+    "type": 2,
     "year": 2021,
-    "champion_team": 1,
-    "country": 22
+    "id_champion_team": 1,
+    "id_country": 22
 }
 
 ###
 
 # ----------    Delete   ----------
 
-DELETE http://localhost:5001/administrative/competition/?id=4 HTTP/1.1
+DELETE http://localhost:5003/competition/?id=1 HTTP/1.1
 content-type: application/json
 
-# :::::::::::::::::     PARTIDO     :::::::::::::::::
+# ***************************************************
+# ************** PARTIDO SERVER ************** 
+# ***************************************************
 
 ###
 
 # ----------    Get   ----------
 
-GET http://localhost:5001/administrative/soccer-game/?id=3 HTTP/1.1
+GET http://localhost:5002/match/?id=11 HTTP/1.1
 content-type: application/json
 
 ###
 
-GET http://localhost:5001/administrative/soccer-game/ HTTP/1.1
+GET http://localhost:5002/match/ HTTP/1.1
 content-type: application/json
 
 ###
 
 # ----------    Crear   ----------
 
-POST http://localhost:5001/administrative/soccer-game HTTP/1.1
+POST http://localhost:5002/match HTTP/1.1
 content-type: application/json
 
 {
-    "game_date": "2022-03-16",
-    "attendees": 50688,
+    "game_date": "2022-03-26",
+    "attendees": 56988,
     "result_local": 2,
     "result_visiting": 1,
-    "state": "unstarted",
-    "id_stadium": 1,
+    "status": 1,
+    "id_stadium": 2,
     "id_team_local": 1,
     "id_team_visiting": 1,
-    "id_competition": 5
+    "id_competition": 2
 }
 
 ###
 
 # ----------    Editar   ----------
 
-PUT http://localhost:5001/administrative/soccer-game HTTP/1.1
+PUT http://localhost:5002/match HTTP/1.1
 content-type: application/json
 
 {
-    "id_game": 1,
+    "id_game": 11,
     "game_date": "2022-03-16",
     "attendees": 50688,
     "result_local": 2,
     "result_visiting": 3,
-    "state": "in-progress",
-    "id_stadium": 1,
+    "status": 1,
+    "id_stadium": 2,
     "id_team_local": 1,
     "id_team_visiting": 1,
-    "id_competition": 5
+    "id_competition": 2
 }
 
 ###
 
 # ----------    Delete   ----------
 
-DELETE http://localhost:5001/administrative/soccer-game/?id=1 HTTP/1.1
+DELETE http://localhost:5002/match/?id=10 HTTP/1.1
 content-type: application/json
+
+
+# ***************************************************
+# ************** COUNTRY SERVER ********************* 
+# ***************************************************
+
+###
+
+# ----------    Obtener pais   ----------
+
+GET http://localhost:5013/country/?id=1 HTTP/1.1
+
+###
+
+# ----------    Obtener paises   ----------
+
+GET http://localhost:5013/country HTTP/1.1
+
+# *******************************************
+# ************** NEWS SERVER ************** 
+# *******************************************
+
+# ----------    Crear   ----------
+
+###
+POST http://localhost:5007/post HTTP/1.1
+content-type: application/json
+
+{
+    "id_team": 3,
+    "id_user": 1,
+    "title": "F por el barsita",
+    "description": "ay caramba dijo el bar sinso",
+    "date": "2022-03-27"
+}
+
+###
+
+# ----------    Obtener     ----------
+
+GET http://localhost:5007/post/?id=3 HTTP/1.1

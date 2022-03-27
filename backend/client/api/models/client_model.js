@@ -40,7 +40,7 @@ module.exports = {
       */
       let id_estado = 2;
       let id_rol = 3;
-      let age = clientc.getAge(birth_date);
+      let age = this.getAge(birth_date);
       // console.log(age);
       let membership = 0;
       let cif_pass = cryptoJS.AES.encrypt(password, 'SiSaleSA_').toString();
@@ -87,7 +87,7 @@ module.exports = {
 // ||||||||||||||||||||   ACTUALIZAR   ||||||||||||||||||||
     update: async function(con, data, callback){
       const {id, name, lastname, password, email, phone, photo, gender , birth_date, address, id_country} = data;
-      let age = clientc.getAge(birth_date);
+      let age = this.getAge(birth_date);
       console.log(data);
       await con.query(
         `
@@ -170,12 +170,20 @@ module.exports = {
       const { id_client, id_team } = data;
       await con.query(
         `
-        UPDATE Usuario_Equipo
-        SET
-          id_usuario = ${id_client},
-          id_equipo = ${id_team}
-          ;
+        INSERT INTO Usuario_Equipo (id_usuario, id_equipo)
+        VALUES (${id_client}, ${id_team});
         `,
         callback)
     },
+// ||||||||||||||||||||   OBTENER EDAD   ||||||||||||||||||||
+    getAge(dateString){
+      var today = new Date();
+      var birthDate = new Date(dateString);
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
+    }
   }

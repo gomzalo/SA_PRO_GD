@@ -40,7 +40,7 @@ export class UsersComponent implements OnInit {
   }
   getusers() {
     this.userService.getAllUsers()
-      .subscribe((data) => { this.users = data;console.log(this.users) });
+      .subscribe((data) => { this.users = data });
 
   }
 

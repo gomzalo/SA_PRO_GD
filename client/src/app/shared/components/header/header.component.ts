@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goNotifications(){
-    this.router.navigate(['./admin/notifications']);
+    this.router.navigate(['./home/notifications']);
   }
 
 }

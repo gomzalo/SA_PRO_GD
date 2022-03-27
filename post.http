@@ -101,6 +101,14 @@ content-type: application/json
 
 ###
 
+# ----------    Validar cuenta   ----------
+
+GET http://localhost:5010/auth?id=1 HTTP/1.1
+
+###
+
+# ----------    Contraseña temporal   ----------
+
 POST http://localhost:5010/auth/temporal-password HTTP/1.1
 content-type: application/json
 
@@ -110,6 +118,8 @@ content-type: application/json
 
 ###
 
+# ----------    Resetear contraseña   ----------
+
 POST http://localhost:5010/auth/reset-password HTTP/1.1
 content-type: application/json
 
@@ -118,6 +128,8 @@ content-type: application/json
 }
 
 ###
+
+# ----------    Obtener paises   ----------
 
 GET http://localhost:5003/user/all_countries HTTP/1.1
 

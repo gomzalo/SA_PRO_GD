@@ -212,7 +212,7 @@ export class FormAssignComponent implements OnInit {
 	}
 
 	goCancel() {
-		this.router.navigate(['./admin/proyects-assign']);
+		this.router.navigate(['./home/proyects-assign']);
 	}
 
 	getUsersClick() {
@@ -239,7 +239,7 @@ export class FormAssignComponent implements OnInit {
 		console.log(Info);
 		this.firestoreService.updateProyects(Info, this.userEditInfo.uid).then(() => {
 			this.successAlert('Proyecto Actualizado', 'El proyecto fue actualizado con exito.');
-			this.router.navigate(['./admin/proyects-assign'])
+			this.router.navigate(['./home/proyects-assign'])
 		});
 	}
 
@@ -249,7 +249,7 @@ export class FormAssignComponent implements OnInit {
 			body,
 			'success'
 		).then((resp => {
-			this.router.navigate(['./admin/proyects-assign'])
+			this.router.navigate(['./home/proyects-assign'])
 		}))
 	}
 

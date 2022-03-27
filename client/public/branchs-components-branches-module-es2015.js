@@ -248,7 +248,7 @@ class BranchsComponent {
         console.log(this.branchs);
     }
     goEdit(business) {
-        this.router.navigate(['./admin/branchs/edit', true], {
+        this.router.navigate(['./home/branchs/edit', true], {
             state: business
         });
     }
@@ -264,11 +264,11 @@ class BranchsComponent {
         });
     }
     addBranch() {
-        this.router.navigate(['./admin/branchs/new']);
+        this.router.navigate(['./home/branchs/new']);
     }
     successAlert(title, body) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.fire(title, body, 'success').then((resp => {
-            this.router.navigate(['./admin/branchs']);
+            this.router.navigate(['./home/branchs']);
         }));
     }
 }
@@ -486,11 +486,11 @@ class FormBranchsComponent {
     }
     successAlert(title, body) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire(title, body, 'success').then((resp => {
-            this.router.navigate(['./admin/branchs']);
+            this.router.navigate(['./home/branchs']);
         }));
     }
     goCancel() {
-        this.router.navigate(['./admin/branchs']);
+        this.router.navigate(['./home/branchs']);
     }
     // CREATE BRANCH
     createbranch() {
@@ -521,7 +521,7 @@ class FormBranchsComponent {
         console.log(Info);
         this.firestoreService.createBranchs(Info).then(() => {
             this.successAlert('Sucursal Guardada', 'La sucursal fue guardado con éxito.');
-            this.router.navigate(['./admin/branchs']);
+            this.router.navigate(['./home/branchs']);
         });
     }
     handleUpdateBranch(InfoBranch) {
@@ -533,7 +533,7 @@ class FormBranchsComponent {
         };
         this.firestoreService.updateBranchs(Info, this.userEditInfo.uid).then(() => {
             this.successAlert('Sucursal Actualizada', 'El usuario fue actualizado con exito.');
-            this.router.navigate(['./admin/branchs']);
+            this.router.navigate(['./home/branchs']);
         });
     }
 }

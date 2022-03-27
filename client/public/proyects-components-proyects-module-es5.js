@@ -342,7 +342,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "goCancel",
         value: function goCancel() {
-          this.router.navigate(['./admin/proyects']);
+          this.router.navigate(['./home/proyects']);
         }
       }]);
 
@@ -1051,12 +1051,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "addProyect",
         value: function addProyect() {
-          this.router.navigate(['./admin/proyects/new']);
+          this.router.navigate(['./home/proyects/new']);
         }
       }, {
         key: "goEdit",
         value: function goEdit(proyect) {
-          this.router.navigate(['./admin/proyects/edit', true], {
+          this.router.navigate(['./home/proyects/edit', true], {
             state: proyect
           });
         }

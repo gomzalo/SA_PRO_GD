@@ -146,25 +146,25 @@ class DashboardComponent {
     ngOnInit() {
     }
     goCategories() {
-        this.router.navigate(['./admin/categories']);
+        this.router.navigate(['./home/categories']);
     }
     goProducts() {
-        this.router.navigate(['./admin/products']);
+        this.router.navigate(['./home/products']);
     }
     goSelection() {
-        this.router.navigate(['./admin/products/new']);
+        this.router.navigate(['./home/products/new']);
     }
     goMultimedia() {
-        this.router.navigate(['./admin/multimedia']);
+        this.router.navigate(['./home/multimedia']);
     }
     goUsers() {
-        this.router.navigate(['./admin/users']);
+        this.router.navigate(['./home/users']);
     }
     goBackup() {
-        this.router.navigate(['./admin/backup']);
+        this.router.navigate(['./home/backup']);
     }
     goValue() {
-        this.router.navigate(['./admin/value']);
+        this.router.navigate(['./home/value']);
     }
 }
 DashboardComponent.ɵfac = function DashboardComponent_Factory(t) { return new (t || DashboardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"])); };

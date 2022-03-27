@@ -56,7 +56,7 @@ export class ProyectsAssignComponent implements OnInit {
   }
 
   goEdit(proyect){
-    this.router.navigate(['./admin/proyects-assign/edit', true], {
+    this.router.navigate(['./home/proyects-assign/edit', true], {
       state: proyect
     });
   }

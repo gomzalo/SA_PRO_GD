@@ -5,5 +5,5 @@ WORKDIR .
 COPY ["package.json", "package-lock.json", "./"]
 RUN npm install
 COPY . .
-EXPOSE 5003
+EXPOSE 5010
 CMD ["npm", "start"]

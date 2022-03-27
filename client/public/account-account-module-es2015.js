@@ -242,7 +242,7 @@ class LoginComponent {
     }
     ngOnInit() { }
     login() {
-        this.router.navigate(['./admin']);
+        this.router.navigate(['./home']);
     }
     handleLogin() {
         this.authService.login(this.email, this.password)
@@ -286,8 +286,8 @@ class LoginComponent {
         this.cookieService.set('roleType', userData.roleType);
         this.cookieService.set('uid', userData.uid);
         if (userData.roleType === 1)
-            this.router.navigate(['./admin']);
-        // else if (userData.roleType === 2) this.router.navigate(['./admin']);
+            this.router.navigate(['./home']);
+        // else if (userData.roleType === 2) this.router.navigate(['./home']);
         // else if (userData.roleType === 3) this.router.navigate(['./user']); 
         // else if (userData.roleType === 4) this.router.navigate(['./technical']); 
         else

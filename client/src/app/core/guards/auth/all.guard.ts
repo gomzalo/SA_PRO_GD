@@ -19,7 +19,7 @@ export class AllGuard implements CanActivate {
         if(infoAuth==null){
         return true;
       }else{
-        this.router.navigate(['']);
+        this.router.navigate(['/home']);
         return false;
       }
   }

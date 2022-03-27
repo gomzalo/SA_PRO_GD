@@ -55,11 +55,11 @@ export class ProyectsComponent implements OnInit {
   }
 
   addProyect(){
-    this.router.navigate(['./admin/proyects/new']);
+    this.router.navigate(['./home/proyects/new']);
   }
 
   goEdit(proyect){
-    this.router.navigate(['./admin/proyects/edit', true], {
+    this.router.navigate(['./home/proyects/edit', true], {
       state: proyect
     });
   }
@@ -82,7 +82,7 @@ export class ProyectsComponent implements OnInit {
       body,
       'success'
     ).then((resp => {
-      this.router.navigate(['./admin/proyects'])
+      this.router.navigate(['./home/proyects'])
     }))
   }
 

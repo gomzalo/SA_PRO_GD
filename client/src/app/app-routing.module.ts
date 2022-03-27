@@ -9,7 +9,7 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 
 const routes: Routes = [
   {
-    path: 'admin',
+    path: 'home',
     component: ContentLayoutComponent,
     loadChildren: () => import('./pages/admin/pages.module').then(m => m.PagesModule),
     // canActivate: [AdminGuard]

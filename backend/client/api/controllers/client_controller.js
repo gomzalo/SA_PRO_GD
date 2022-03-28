@@ -15,9 +15,14 @@ module.exports = {
             error: err.toString()
           });
         } else {
+          let newRows = rows.map(item => {
+            item.id_country = item.id_pais;
+            delete item["id_pais"];
+            return item;
+          })
           res.status(200).send({
             status: true,
-            data: rows,
+            data: newRows,
             msg: 'Usuario(s) obtenido(s) con exito.'
           });
         }

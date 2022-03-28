@@ -23,7 +23,7 @@ module.exports = {
     },
 // ||||||||||||||||||||   REGISTRO   ||||||||||||||||||||
     create: async function(con, data, callback) {
-      const {name, lastname, password, email, phone, photo, gender, birth_date, address, id_pais} = data;
+      const {name, lastname, password, email, phone, photo, gender, birth_date, address, id_country} = data;
       /*
       Roles (campo id_rol):
         Administrador = 1
@@ -74,7 +74,7 @@ module.exports = {
           '${birth_date}',
           now(),
           '${address}',
-          '${id_pais}',
+          '${id_country}',
           '${id_estado}',
           '${id_rol}',
           '${age}',

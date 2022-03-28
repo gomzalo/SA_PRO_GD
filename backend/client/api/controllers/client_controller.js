@@ -19,7 +19,7 @@ module.exports = {
             item.id_country = item.id_pais;
             delete item["id_pais"];
             return item;
-          })
+          });
           res.status(200).send({
             status: true,
             data: newRows,

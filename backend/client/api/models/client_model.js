@@ -88,6 +88,7 @@ module.exports = {
     update: async function(con, data, callback){
       const {id, name, lastname, password, email, phone, photo, gender , birth_date, address, id_country} = data;
       let age = this.getAge(birth_date);
+      let cif_pass = cryptoJS.AES.encrypt(password, 'SiSaleSA_').toString();
       console.log(data);
       await con.query(
         `
@@ -95,7 +96,7 @@ module.exports = {
         SET
         first_name = '${name}',
         last_name = '${lastname}',
-        pass = '${password}',
+        pass = '${cif_pass}',
         email = '${email}',
         phone = '${phone}',
         photo =  '${photo}',

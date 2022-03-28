@@ -13,10 +13,15 @@ module.exports = {
             error: err.toString()
           });
         } else {
+          let newRows = rows.map(item => {
+            item.id = item.id_pais;
+            delete item["id_pais"];
+            return item;
+          });
           res.status(200).send({
             status: true,
             msg: 'Se han obtenido (los) pais(es).',
-            data: rows
+            data: newRows
           });
         }
       })

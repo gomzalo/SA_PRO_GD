@@ -25,6 +25,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { InicioComponent } from './pages/inicio/inicio.component';
+import { VerifyComponent } from './pages/admin/verify/verify.component';
+import { VerifyAcountComponent } from './pages/verify-acount/verify-acount.component';
 
 
 
@@ -32,6 +34,8 @@ import { InicioComponent } from './pages/inicio/inicio.component';
   declarations: [
     AppComponent,
     InicioComponent,
+    VerifyComponent,
+    VerifyAcountComponent,
   ],
   imports: [
     MatTabsModule,

@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   insertUser(user){
-    return this.http.post<any>(environment.apiClient+'create', user)
+    return this.http.post<any>(environment.apiClient+'register', user)
     .pipe(
       catchError(this.handleError)
     );
@@ -21,7 +21,7 @@ export class UserService {
 
   getAllUsers(){
     
-    return this.http.get<any>(environment.apiClient+'all');
+    return this.http.get<any>(environment.apiClient);
   }
 
 

@@ -3,13 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 // Layout
 import { ContentLayoutComponent } from './shared/components/layout/content-layout/content-layout.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
+import { VerifyAcountComponent } from './pages/verify-acount/verify-acount.component';
 // Guards
 // import { AdminGuard } from './core/guards/auth/admin.guard';
 // import { UserGuard } from './core/guards/auth/user.guard';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: ContentLayoutComponent,
     loadChildren: () => import('./pages/admin/pages.module').then(m => m.PagesModule),
     // canActivate: [AdminGuard]
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: '',
     component: InicioComponent,
+  },
+  {
+    path: 'verify/:id',
+    component: VerifyAcountComponent,
   },
   {
     path: '**',

@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from "../../../../environments/environment"
-
+import jwt_decode from 'jwt-decode';
 // Libs
 import { CookieService } from 'ngx-cookie-service';
+import { decode } from 'punycode';
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +28,23 @@ export class AuthService {
   }
 
   getSesion(){
-    let user_string = localStorage.getItem('currentUser');
-    return JSON.parse(user_string);
+    let user_string = JSON.parse(localStorage.getItem('currentUser'));
+    let token=user_string.token;
+    try {
+      let decoded:string=jwt_decode(token);
+      
+      return decoded
+    } catch(Error) {
+      return null;
+    }
+   
   }
+
+  getValidar(id:any){
+    return this.http.get(this.url+`?id=${id}`);
+  }
+
+
 
 
   logout() {

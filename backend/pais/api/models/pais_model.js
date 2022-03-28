@@ -5,14 +5,14 @@ module.exports = {
       if(id != null){
         await con.query(
           `
-          SELECT * FROM Pais
+          SELECT id_pais, name FROM Pais
           WHERE id_pais = '${id}';
           `,
           callback)
       } else {
         await con.query(
           `
-          SELECT * FROM Pais;
+          SELECT id_pais, name FROM Pais;
           `,
           callback)
       }

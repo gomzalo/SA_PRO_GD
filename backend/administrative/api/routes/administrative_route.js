@@ -2,6 +2,11 @@ const express = require('express');
 const router = new express.Router();
 const administrative_controller = require('../controllers/administrative_controller');
 
+router.get('/report/1', administrative_controller.get_report_6);
+router.get('/report/2', administrative_controller.get_report_6);
+router.get('/report/3', administrative_controller.get_report_6);
+router.get('/report/4', administrative_controller.get_report_6);
+router.get('/report/5', administrative_controller.get_report_6);
 router.get('/report/6', administrative_controller.get_report_6);
 router.get('/report/7', administrative_controller.get_report_7);
 router.get('/report/8', administrative_controller.get_report_8);

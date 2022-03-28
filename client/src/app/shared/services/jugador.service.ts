@@ -7,28 +7,48 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-
+export class JugadorService {
   constructor(private http: HttpClient) { }
 
-  insertUser(user){
-    return this.http.post<any>(environment.apiClient+'register', user)
+  insertTeam(jugador){
+    return this.http.post<any>(environment.apiJugador, jugador)
     .pipe(
       catchError(this.handleError)
     );
   }
 
 
-  getAllUsers(){
+  updateTeam(jugador){
+    return this.http.put<any>(environment.apiJugador, jugador)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteTeam(_id:string){
+    return this.http.delete<any>(environment.apiJugador+'?id='+_id)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+
+
+  getOnejugador(id:Number){
     
-    return this.http.get<any>(environment.apiClient);
+    return this.http.get<any>(environment.apiJugador+'?id='+id);
   }
 
-  updateUser(user){
-    return this.http.put<any>(environment.apiClient, user)
-    .pipe(
-      catchError(this.handleError)
-    );
+  
+  getAlljugadorsbyjugador(idjugador:Number){
+    
+    return this.http.get<any>(environment.apiJugador+'?jugador='+idjugador);
+  }
+
+  
+  getAlljugadors(){
+    
+    return this.http.get<any>(environment.apiJugador);
   }
 
 
@@ -42,9 +62,7 @@ export class UserService {
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
-    // Return an observable with a user-facing error message.
+    // Return an observable with a jugador-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }
-
-

@@ -28,7 +28,7 @@ export class RegistroComponent implements OnInit {
     birth_date: new FormControl('', [Validators.required]),
     signup_date: new FormControl(this.formatDate(new Date()), [Validators.required]),
     address: new FormControl('', [Validators.required]),
-    id_pais: new FormControl('', [Validators.required]),
+    id_country: new FormControl('', [Validators.required]),
     id_estado: new FormControl(2, [Validators.required]),
     id_rol: new FormControl(3, [Validators.required]),
     phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
@@ -44,13 +44,14 @@ export class RegistroComponent implements OnInit {
     this.getcountries();
     this.editcomplete=this.editData;
     if (this.editData) {
+   
       this.photo64= this.editData.photo;
       delete this.editData['photo'];
+
       this.editData.name = this.editData.first_name;
       this.editData.lastname= this.editData.last_name;
       this.editData.birth_date=this.editData.fecha_nac;
       this.editData.address=this.editData.direccion;
-      console.log(this.editData);
 
       this.RegistroForm.patchValue(this.editData)
     }
@@ -69,7 +70,7 @@ export class RegistroComponent implements OnInit {
 
   getcountries() {
     this.paisService.getpaises()
-      .subscribe((data) => { this.paises = data.data });
+      .subscribe((data) => { this.paises = data.data;console.log(this.paises); });
   }
 
 
@@ -78,14 +79,29 @@ export class RegistroComponent implements OnInit {
     if (this.RegistroForm.valid) {
 
       if (form.password == form.confirmpass) {
-        form.photo = this.photo64
-        form.birth_date = this.formatDate(form.birth_date)
-        console.log(form);
-        this.userService.insertUser(form)
-          .subscribe(res => console.log(res));
+        console.log('coinciden pass')
+        if(!this.editData){
+          console.log('inserrcion')
+          form.photo = this.photo64
+          form.birth_date = this.formatDate(form.birth_date)
+          this.userService.insertUser(form)
+            .subscribe(res => console.log(res));
+        }else{
+         
+          form.photo = this.photo64
+          form.birth_date = this.formatDate(new Date(form.birth_date))
+          form.id=this.editData.id_usuario;
+          console.log(form)
+          this.userService.updateUser(form)
+
+            .subscribe(res => console.log(res));
+
+        }
+
       }
     }
   }
+
 
   onFileChange(event) {
 

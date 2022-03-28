@@ -10,12 +10,28 @@ import { catchError, retry } from 'rxjs/operators';
 export class EquipoService {
   constructor(private http: HttpClient) { }
 
-  insertteam(team){
+  insertTeam(team){
     return this.http.post<any>(environment.apiEquipo, team)
     .pipe(
       catchError(this.handleError)
     );
   }
+
+
+  updateTeam(team){
+    return this.http.put<any>(environment.apiEquipo, team)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteTeam(_id:string){
+    return this.http.delete<any>(environment.apiEquipo+'?id='+_id)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
 
 
   getOneteam(id:Number){

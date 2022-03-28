@@ -95,7 +95,7 @@ export class SidebarComponent {
           type: 'link'
         },
         {
-          path: '/proyects-assign',
+          path: '/jugadores',
           title: 'JUGADOR',
           type: 'link'
         },

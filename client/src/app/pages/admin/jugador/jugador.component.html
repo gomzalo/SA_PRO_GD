@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row">
       <div class="col">
-        <h1>Equipos</h1>
+        <h1>Jugadores</h1>
       </div>
       
     </div>
   
     <div class="row">
         
-            <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=true">Agregar Equipo</button>
+            <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=true">Agregar Jugador</button>
             <br/>
             <br/>
             <button type="button" class="btn btn-danger col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=false" *ngIf="isOpen">Cerrar formulario</button>
@@ -21,27 +21,48 @@
     
           <mat-form-field appearance="outline" class="center">
             <mat-label>Nombre: </mat-label>
-            <input matInput type="text" placeholder="titulo" formControlName="name" id="nombre">
+            <input matInput type="text" placeholder="titulo" formControlName="name" id="noombre">
           </mat-form-field>
+
+
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>Apellido: </mat-label>
+            <input matInput type="text" placeholder="titulo" formControlName="lastname" id="nombre">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>Fecha Nacimiento </mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birth_date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        
   
     
           <mat-form-field appearance="outline" class="center">
             <mat-label>Pais </mat-label>
-            <mat-select formControlName="id_country" id="pais">
-              <mat-option *ngFor="let pais of paises" [value]="pais.id_pais">
-                {{pais.nicename}}
+            <mat-select formControlName="id_nationality" id="pais">
+              <mat-option *ngFor="let pais of paises" [value]="pais.id_country">
+                {{pais.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
+          
           <mat-form-field appearance="outline" class="center">
-            <mat-label>Fecha Fundación </mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="foundation_date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-label>Posición </mat-label>
+            <mat-select formControlName="position" id="position">
+              <mat-option *ngFor="let pos of posiciones" [value]="pos.id">
+                {{pos.val}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
-    
-          <mat-label class="margenes">Foto del equipo </mat-label>
+
+
+
+
+          <mat-label class="margenes">Foto del Jugador </mat-label>
           <input 
           formControlName="photo"
           id="file" 
@@ -70,16 +91,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let equipo of equipos">
+            <tr *ngFor="let Jugador of Jugadors">
               
-              <th scope="row">{{ equipo.name}}</th>
+              <th scope="row">{{ Jugador.name}}</th>
               <td>
-                {{ equipo.country}}
+                {{ Jugador.country}}
               </td>
-              <td>{{ equipo.foundation_date}}</td>
-              <td>{{ equipo.status}}</td>
-              <td> <button type="button" class="btn btn-secondary" (click)="editar(equipo)">Editar</button></td>
-              <td> <button type="button" class="btn btn-danger" (click)="eliminar(equipo.id)">Eliminar</button></td>
+              <td>{{ Jugador.foundation_date}}</td>
+              <td>{{ Jugador.status}}</td>
+              <td> <button type="button" class="btn btn-secondary" (click)="editar(Jugador)">Editar</button></td>
+              <td> <button type="button" class="btn btn-danger" (click)="eliminar(Jugador.id)">Eliminar</button></td>
             </tr>
             </tbody>
           </table>

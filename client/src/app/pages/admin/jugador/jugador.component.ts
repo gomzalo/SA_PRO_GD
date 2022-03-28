@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { JugadorService } from 'src/app/shared/services/jugador.service';
 import { PaisService } from 'src/app/shared/services/pais.service';
-import { EquipoService } from 'src/app/shared/services/equipo.service';
 
 @Component({
-  selector: 'app-equipo',
-  templateUrl: './equipo.component.html',
-  styleUrls: ['./equipo.component.scss']
+  selector: 'app-jugador',
+  templateUrl: './jugador.component.html',
+  styleUrls: ['./jugador.component.scss']
 })
-export class EquipoComponent implements OnInit {
+export class JugadorComponent implements OnInit {
+
   paises = []
   equipos = []
+  posiciones=[{id:1,val:'Portero'},{id:2,val:'Defensa'},{id:3,val:'Medio'},{id:1,val:'Delantero'}]
   page = 1;
   pageSize = 4;
   size = 0;
@@ -19,16 +21,18 @@ export class EquipoComponent implements OnInit {
   photo64 = null
   Form = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    id_country: new FormControl('', [Validators.required]),
-    foundation_date:new FormControl('', [Validators.required]),
-    photo:new FormControl('', ),
+    lastname: new FormControl('', [Validators.required]),
+    birth_date:new FormControl('', [Validators.required]),
+    position:new FormControl('', [Validators.required]),
+    status:new FormControl('', [Validators.required]),
+    photo:new FormControl(this.photo64, [Validators.required]),
+    id_nationality:new FormControl('',[Validators.required] ),
 
   });
-  
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private equipoService:EquipoService) { }
+
+  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private equipoService:JugadorService) { }
 
   ngOnInit(): void {
-    this.getequipos();
     this.getcountries();
     this.size = this.equipos.length
   }
@@ -46,7 +50,7 @@ export class EquipoComponent implements OnInit {
   }
 
   getequipos() {
-    this.equipoService.getAllteams()
+    this.equipoService.getAlljugadors()
       .subscribe((data) => { this.equipos = data.data;console.log(this.equipos)});
 
   }

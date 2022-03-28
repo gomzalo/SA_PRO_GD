@@ -130,7 +130,7 @@ export class SidebarComponent {
   }
 
   logout() {
-
+    this.router.navigate(['./login']);
   }
 
   // Active Nave state

@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode';
 // Libs
 import { CookieService } from 'ngx-cookie-service';
 import { decode } from 'punycode';
+import { AnyNaptrRecord } from 'dns';
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +28,11 @@ export class AuthService {
     return this.http.post(this.url, data);
   }
 
-  getSesion(){
+  getSesion():any{
     let user_string = JSON.parse(localStorage.getItem('currentUser'));
     let token=user_string.token;
     try {
-      let decoded:string=jwt_decode(token);
+      let decoded:any=jwt_decode(token);
       
       return decoded
     } catch(Error) {

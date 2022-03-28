@@ -53,8 +53,8 @@
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Pais </mat-label>
-        <mat-select formControlName="id_pais" id="pais">
-          <mat-option *ngFor="let pais of paises" [value]="pais.id_pais">
+        <mat-select formControlName="id_country" id="pais">
+          <mat-option *ngFor="let pais of paises" [value]="pais.id_country">
             {{pais.nicename}}
           </mat-option>
         </mat-select>

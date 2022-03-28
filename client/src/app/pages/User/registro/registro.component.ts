@@ -28,11 +28,11 @@ export class RegistroComponent implements OnInit {
     birth_date: new FormControl('', [Validators.required]),
     signup_date: new FormControl(this.formatDate(new Date()), [Validators.required]),
     address: new FormControl('', [Validators.required]),
-    id_pais: new FormControl('', [Validators.required]),
+    id_country: new FormControl('', [Validators.required]),
     id_estado: new FormControl(2, [Validators.required]),
     id_rol: new FormControl(3, [Validators.required]),
     phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    photo: new FormControl('', [Validators.required]),
+    photo: new FormControl('photo', ),
     age: new FormControl('', [Validators.required, Validators.min(1)]),
     membership: new FormControl(0, [Validators.required]),
 
@@ -76,15 +76,31 @@ export class RegistroComponent implements OnInit {
   submit(form) {
 
     if (this.RegistroForm.valid) {
+      console.log('valido');
       if (form.password == form.confirmpass) {
-        form.photo = this.photo64
-        form.birth_date = this.formatDate(form.birth_date)
-        console.log(form);
-        this.userService.insertUser(form)
-          .subscribe(res => console.log(res));
+        console.log('coinciden pass')
+        if(!this.editData){
+          console.log('inserrcion')
+          form.photo = this.photo64
+          form.birth_date = this.formatDate(form.birth_date)
+          this.userService.insertUser(form)
+            .subscribe(res => console.log(res));
+        }else{
+         
+          form.photo = this.photo64
+          form.birth_date = this.formatDate(new Date(form.birth_date))
+          form.id=this.editData.id_usuario;
+          console.log(form)
+          this.userService.updateUser(form)
+
+            .subscribe(res => console.log(res));
+
+        }
+
       }
     }
   }
+
 
   onFileChange(event) {
 

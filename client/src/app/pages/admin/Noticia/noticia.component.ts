@@ -4,7 +4,7 @@ import { NoticiaService } from '../../../shared/services/noticia.service';
 import { EquipoService } from '../../../shared/services/equipo.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 interface Country {
   id?: number;
@@ -37,11 +37,11 @@ export class NoticiaComponent implements OnInit {
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     date: new FormControl(this.formatDate(), [Validators.required, Validators.minLength(8)]),
-    id_user:new FormControl(1, [Validators.required]),
+    id_user:new FormControl(this.authService.getSesion().id_usuario, [Validators.required]),
 
   });
 
-  constructor(private noticiaService: NoticiaService,private equipoService: EquipoService) {
+  constructor(private noticiaService: NoticiaService,private equipoService: EquipoService,private authService:AuthService) {
 
   }
   

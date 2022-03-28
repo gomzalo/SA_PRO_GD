@@ -21,19 +21,13 @@
     
           <mat-form-field appearance="outline" class="center">
             <mat-label>Nombre: </mat-label>
-            <input matInput type="text" placeholder="titulo" formControlName="nombre" id="nombre">
+            <input matInput type="text" placeholder="titulo" formControlName="name" id="nombre">
           </mat-form-field>
-    
-          <mat-form-field appearance="outline" class="center">
-            <mat-label>Abreviado: </mat-label>
-            <input matInput type="text" placeholder="Descripcion" formControlName="abreviado" id="abreviado">
-          </mat-form-field>
-  
   
     
           <mat-form-field appearance="outline" class="center">
             <mat-label>Pais </mat-label>
-            <mat-select formControlName="id_pais" id="pais">
+            <mat-select formControlName="id_country" id="pais">
               <mat-option *ngFor="let pais of paises" [value]="pais.id_pais">
                 {{pais.nicename}}
               </mat-option>
@@ -82,7 +76,7 @@
                 {{ equipo.id_pais}}
               </td>
               <td>{{ equipo.foundation_date}}</td>
-              <td> <button type="button" class="btn btn-secondary" (click)="editar(user,content)">Editar</button></td>
+              <td> <button type="button" class="btn btn-secondary" (click)="editar(equipo,content)">Editar</button></td>
             </tr>
             </tbody>
           </table>

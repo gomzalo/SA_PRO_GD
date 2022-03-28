@@ -24,6 +24,13 @@ export class UserService {
     return this.http.get<any>(environment.apiClient);
   }
 
+  updateUser(user){
+    return this.http.put<any>(environment.apiClient, user)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

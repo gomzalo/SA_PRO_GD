@@ -15,13 +15,11 @@ export class EquipoComponent implements OnInit {
   pageSize = 4;
   size = 0;
   isOpen=false;
-  equipo={}
+  equipo:any={}
   photo64 = null
   Form = new FormGroup({
-    nombre: new FormControl('', [Validators.required]),
-    abreviado: new FormControl('', [Validators.required]),
-    id_pais: new FormControl('', [Validators.required]),
-    is_club:new FormControl(1, [Validators.required]),
+    name: new FormControl('', [Validators.required]),
+    id_country: new FormControl('', [Validators.required]),
     foundation_date:new FormControl('', [Validators.required]),
     photo:new FormControl('', [Validators.required]),
 
@@ -37,7 +35,7 @@ export class EquipoComponent implements OnInit {
 
   getcountries() {
     this.paisService.getpaises()
-      .subscribe((data) => { this.paises = data });
+      .subscribe((data) => { this.paises = data.data });
   }
 
   formatDate(fecha:Date) {
@@ -57,8 +55,12 @@ export class EquipoComponent implements OnInit {
   editar(equipo, content) {
  
     this.equipo = equipo;
+    console.log(equipo);
+    this.photo64= equipo.photo;
+    delete equipo['photo'];
+    this.Form.patchValue(this.equipo)
+    
     this.isOpen=true;
-
   }
 
 

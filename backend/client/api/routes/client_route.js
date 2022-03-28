@@ -12,7 +12,7 @@ router.post('/follow', client_controller.follow_team);
 //  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 //  :::::::::::::::::::   REPORTES    :::::::::::::::::::
 //  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-/**
+/** -----------------   1 - 
  * Query Params: ?id_team=number&player=boolean 
  * 
  * player es un booleano representado por los valores 0 y 1
@@ -20,7 +20,7 @@ router.post('/follow', client_controller.follow_team);
  *  1: Técnico
  * 
  */
-router.get('/report/1/?id&player')
+router.get('/report/1/')
 
 
 module.exports = router

@@ -27,10 +27,10 @@ module.exports = {
               id_user_rol = {id_usuario: datos.id_usuario, id_rol: datos.id_rol};
               const accessToken = generateAccessToken(id_user_rol);
               res.status(200).send({
-                datos: datos,
                 data:{
                   token: accessToken,
-                  id_status: datos.id_estado
+                  id_status: datos.id_estado,
+                  id_rol: datos.id_rol
                 },
                 status: true,
                 msg: 'Logueado correctamente'

@@ -85,9 +85,14 @@ GET http://localhost:5003/user/email_confirmation?id=1 HTTP/1.1
 POST http://localhost:5010/auth/ HTTP/1.1
 content-type: application/json
 
+# {
+#     "email": "gxmzalx@gmail.com",
+#     "password": "GQfilmIIaf"
+# }
+
 {
-    "email": "gxmzalx@gmail.com",
-    "password": "Jy2NZxgvBd"
+    "email": "wjosuep13@gmail.com",
+    "password": "123"
 }
 
 # POST http://localhost:5003/user/login HTTP/1.1
@@ -151,7 +156,7 @@ content-type: application/json
     "name": "Ay mi madre",
     "lastname": "El bicho",
     "password": "Bicho123/",
-    "email": "gomzalo@outlook.com",
+    "email": "gonzalo-garcia@outlook.com",
     "phone": 5668998,
     "photo": "asdkfhjkasdljfklasdj",
     "gender": "M",

@@ -32,7 +32,7 @@ export class RegistroComponent implements OnInit {
     id_estado: new FormControl(2, [Validators.required]),
     id_rol: new FormControl(3, [Validators.required]),
     phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    photo: new FormControl('', [Validators.required]),
+    photo: new FormControl('photo', ),
     age: new FormControl('', [Validators.required, Validators.min(1)]),
     membership: new FormControl(0, [Validators.required]),
 
@@ -76,6 +76,7 @@ export class RegistroComponent implements OnInit {
   submit(form) {
 
     if (this.RegistroForm.valid) {
+
       if (form.password == form.confirmpass) {
         form.photo = this.photo64
         form.birth_date = this.formatDate(form.birth_date)

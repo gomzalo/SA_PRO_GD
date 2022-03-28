@@ -65,58 +65,58 @@ export class SidebarComponent {
         }
         ,
         {
-          path: './reportesadmin',
+          path: '/reportesadmin',
           title: 'REPORTES ADMINISTRADOR',
           type: 'link'
         },
         {
-          path: './users',
+          path: '/users',
           title: 'ADMINISTRACION USUARIOS',
           type: 'link'
         },
         {
-          path: './business',
+          path: '/business',
           title: 'ESTADIO',
           type: 'link'
         },
         {
-          path: './branchs',
+          path: '/branchs',
           title: 'PARTIDO',
           type: 'link'
         },
         {
-          path: './proyects',
+          path: '/proyects',
           title: 'ARBITROS',
           type: 'link'
         },
         {
-          path: './equipo',
+          path: '/equipo',
           title: 'EQUIPOS',
           type: 'link'
         },
         {
-          path: './proyects-assign',
+          path: '/proyects-assign',
           title: 'JUGADOR',
           type: 'link'
         },
         {
-          path: './proyects-assign',
+          path: '/proyects-assign',
           title: 'INCIDENCIA',
           type: 'link'
         },
         
         {
-          path: './proyects-assign',
+          path: '/proyects-assign',
           title: 'COMPETENCIA',
           type: 'link'
         },
         {
-          path: './noticias',
+          path: '/noticias',
           title: 'NOTICIAS',
           type: 'link'
         },
         {
-          path: './profile',
+          path: '/profile',
           title: 'Perfil',
           type: 'link'
         },

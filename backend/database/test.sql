@@ -41,3 +41,12 @@ SELECT * FROM Usuario
 WHERE id_usuario = 2;
 
 SELECT * FROM Temp_Pass;
+
+-- Reportes
+
+SELECT t1.id_usuario as id, t1.first_name as name, t1.last_name as lastname, t1.photo as photo
+    t2.name as nationality FROM Usuario t1
+    INNER JOIN Pais t2 ON t1.id_pais = t2.id_pais
+    INNER JOIN Equipo t2 ON 1
+    WHERE t1.id_usuario = Usuario_Empleado.id_usuario
+    AND t2.id_pais = Usuario_Empleado.id_pais

@@ -40,63 +40,63 @@ module.exports = {
           });
         } else {
           let link = `${url}:4200/verify/${rows.insertId}`;
-            let email_data = {
-              email: req.body.email,
-              id: rows.insertId,
-              subject: 'Confirmación de correo electrónico',
-              content: `
-              <!--html-->
-                <!doctype html>
-                <html lang="en">
-                  <head>
-                    <title>Soccer Stats SIUUU</title>
-                    <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
-                    <meta charset="utf-8" />
-                  </head>
-                  <body>
-                      <h1><b>¡Bienvenido a Soccer Stats!</b></h1>
-                      <br>
-                      Para confirmar su registro, haga click en el siguiente enlace:
-                      <br>
-                      <h2><a type="button" class="btn btn-primary btn-lg" href="${link}">Confirmar registro</a></h2>
-                      <br>
-                      Si el botón de arriba no funciona, copia y pega el siguiente enlace en tu navegador:
-                      <br>
-                      <br>
-                      ${link}
-                      <br>
-                      <br>
-                      Si usted no se registro en Soccer Stats, puede ignorar este mensaje.
-                      <br>
-                      <b>Nota: </b> ¡No podra iniciar sesión hasta confirmar su registro!
-                  </body>
-                </html>
-              <!--!html-->
-              `
-            };
-            // Enviar correo
-            send_email(email_data, async (err, data) => {
-              if(err){
-                res.status(400).send({
-                  status: true,
-                  msg: 'Error al enviar correo.',
-                  err: err.toString(),
-                  data: []
-                });
-              }else{
-                // res.status(200).send({
-                //   status: true,
-                //   msg: 'Correo verificado con exito.',
-                //   data: []
-                // });
-                res.status(200).send({
-                  status: true,
-                  data: [],
-                  msg: 'Usuario creado con exito'
-                });
-              }
-            });
+          let email_data = {
+            email: req.body.email,
+            id: rows.insertId,
+            subject: 'Confirmación de correo electrónico',
+            content: `
+            <!--html-->
+              <!doctype html>
+              <html lang="en">
+                <head>
+                  <title>Soccer Stats SIUUU</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                  <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
+                  <meta charset="utf-8" />
+                </head>
+                <body>
+                    <h1><b>¡Bienvenido a Soccer Stats!</b></h1>
+                    <br>
+                    Para confirmar su registro, haga click en el siguiente enlace:
+                    <br>
+                    <h2><a type="button" class="btn btn-primary btn-lg" href="${link}">Confirmar registro</a></h2>
+                    <br>
+                    Si el botón de arriba no funciona, copia y pega el siguiente enlace en tu navegador:
+                    <br>
+                    <br>
+                    ${link}
+                    <br>
+                    <br>
+                    Si usted no se registro en Soccer Stats, puede ignorar este mensaje.
+                    <br>
+                    <b>Nota: </b> ¡No podra iniciar sesión hasta confirmar su registro!
+                </body>
+              </html>
+            <!--!html-->
+            `
+          };
+          // Enviar correo
+          send_email(email_data, async (err, data) => {
+            if(err){
+              res.status(400).send({
+                status: true,
+                msg: 'Error al enviar correo.',
+                err: err.toString(),
+                data: []
+              });
+            }else{
+              // res.status(200).send({
+              //   status: true,
+              //   msg: 'Correo verificado con exito.',
+              //   data: []
+              // });
+              res.status(200).send({
+                status: true,
+                data: [],
+                msg: 'Usuario creado con exito'
+              });
+            }
+          });
         }
       });  
     },

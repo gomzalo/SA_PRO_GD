@@ -7,6 +7,7 @@ import { ReportesComponent } from './reportes/reportes.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { AmbosGuard } from 'src/app/core/guards/ambos.guard';
+import { JugadorComponent } from './jugador/jugador.component';
 
 const routes: Routes = [
   { path: 'home', 
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'noticias',
     component: NoticiaComponent
+  },
+  {
+    path: 'jugadores',
+    component: JugadorComponent
   },
   {
     path: 'equipo',

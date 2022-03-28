@@ -53,16 +53,16 @@
 
       <mat-form-field appearance="outline" class="center">
         <mat-label>Pais </mat-label>
-        <mat-select formControlName="id_country" id="pais">
-          <mat-option *ngFor="let pais of paises" [value]="pais.id_country">
-            {{pais.nicename}}
+        <mat-select formControlName="id_country" id="id_country">
+          <mat-option *ngFor="let pais of paises" [value]="pais.id_pais">
+            {{pais.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="center" *ngIf="rol=='Admin'">
+      <mat-form-field appearance="outline" class="center" *ngIf="rol=='1'">
         <mat-label>Estado</mat-label>
-        <mat-select formControlName="id_estado" id="pais">
+        <mat-select formControlName="id_estado" id="id_estado">
           <mat-option *ngFor="let estado of estados" [value]="estado.id">
             {{estado.Estado}}
           </mat-option>

@@ -44,13 +44,14 @@ export class RegistroComponent implements OnInit {
     this.getcountries();
     this.editcomplete=this.editData;
     if (this.editData) {
+   
       this.photo64= this.editData.photo;
       delete this.editData['photo'];
+
       this.editData.name = this.editData.first_name;
       this.editData.lastname= this.editData.last_name;
       this.editData.birth_date=this.editData.fecha_nac;
       this.editData.address=this.editData.direccion;
-      console.log(this.editData);
 
       this.RegistroForm.patchValue(this.editData)
     }
@@ -69,7 +70,7 @@ export class RegistroComponent implements OnInit {
 
   getcountries() {
     this.paisService.getpaises()
-      .subscribe((data) => { this.paises = data.data });
+      .subscribe((data) => { this.paises = data.data;console.log(this.paises); });
   }
 
 

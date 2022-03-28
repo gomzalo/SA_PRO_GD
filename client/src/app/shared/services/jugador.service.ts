@@ -7,26 +7,26 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class EquipoService {
+export class JugadorService {
   constructor(private http: HttpClient) { }
 
-  insertTeam(team){
-    return this.http.post<any>(environment.apiEquipo, team)
+  insertTeam(jugador){
+    return this.http.post<any>(environment.apiJugador, jugador)
     .pipe(
       catchError(this.handleError)
     );
   }
 
 
-  updateTeam(team){
-    return this.http.put<any>(environment.apiEquipo, team)
+  updateTeam(jugador){
+    return this.http.put<any>(environment.apiJugador, jugador)
     .pipe(
       catchError(this.handleError)
     );
   }
 
   deleteTeam(_id:string){
-    return this.http.delete<any>(environment.apiEquipo+'?id='+_id)
+    return this.http.delete<any>(environment.apiJugador+'?id='+_id)
     .pipe(
       catchError(this.handleError)
     );
@@ -34,21 +34,21 @@ export class EquipoService {
 
 
 
-  getOneteam(id:Number){
+  getOnejugador(id:Number){
     
-    return this.http.get<any>(environment.apiEquipo+'?id='+id);
+    return this.http.get<any>(environment.apiJugador+'?id='+id);
   }
 
   
-  getAllteamsbyteam(idequipo:Number){
+  getAlljugadorsbyjugador(idjugador:Number){
     
-    return this.http.get<any>(environment.apiEquipo+'?team='+idequipo);
+    return this.http.get<any>(environment.apiJugador+'?jugador='+idjugador);
   }
 
   
-  getAllteams(){
+  getAlljugadors(){
     
-    return this.http.get<any>(environment.apiEquipo);
+    return this.http.get<any>(environment.apiJugador);
   }
 
 
@@ -62,7 +62,7 @@ export class EquipoService {
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
-    // Return an observable with a team-facing error message.
+    // Return an observable with a jugador-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }

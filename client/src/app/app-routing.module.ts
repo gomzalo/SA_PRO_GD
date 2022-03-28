@@ -11,6 +11,10 @@ import { VerifyAcountComponent } from './pages/verify-acount/verify-acount.compo
 const routes: Routes = [
   {
     path: '',
+    component: InicioComponent,
+  },
+  {
+    path: '',
     component: ContentLayoutComponent,
     loadChildren: () => import('./pages/admin/pages.module').then(m => m.PagesModule),
     // canActivate: [AdminGuard]
@@ -19,11 +23,6 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
-  },
-
-  {
-    path: '',
-    component: InicioComponent,
   },
   {
     path: 'verify/:id',

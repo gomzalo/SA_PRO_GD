@@ -27,10 +27,10 @@ module.exports = {
               id_user_rol = {id_usuario: datos.id_usuario, id_rol: datos.id_rol};
               const accessToken = generateAccessToken(id_user_rol);
               res.status(200).send({
-                datos: datos,
                 data:{
                   token: accessToken,
-                  id_status: datos.id_estado
+                  id_status: datos.id_estado,
+                  id_rol: datos.id_rol
                 },
                 status: true,
                 msg: 'Logueado correctamente'
@@ -57,7 +57,7 @@ module.exports = {
       });  
     },
 // ||||||||||||||||||||   VALIDAR CUENTA   ||||||||||||||||||||
-    validar_cuenta: function(req, res)   {
+    validar_cuenta: function(req, res) {
       authm.validar_cuenta(req.con, req.query.id, function(err, rows){
         console.log(rows);
         if(err){
@@ -66,10 +66,17 @@ module.exports = {
             data: []
           });
         } else {
-          res.status(200).send({
-            msg: "Correo verificado con éxito.",
-            data: []
-          });
+          if(rows.changedRows != 0){
+            res.status(200).send({
+              msg: "Correo verificado con éxito.",
+              data: []
+            });
+          } else {
+            res.status(400).send({
+              msg: "Error al verificar correo.",
+              data: []
+            });
+          }
         }
       });
     },

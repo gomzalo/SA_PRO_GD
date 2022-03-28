@@ -15,5 +15,7 @@ router.post('/', autenticacion_controller.login);
 router.get('/', autenticacion_controller.validar_cuenta);
 router.post('/temporal-password', autenticacion_controller.temp_pass);
 router.post('/reset-password', autenticacion_controller.reset_pass);
+// ::::::::::::::::::::::::     REPORTES    ::::::::::::::::::::::::
+
 
 module.exports = router

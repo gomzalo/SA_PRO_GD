@@ -15,9 +15,14 @@ module.exports = {
             error: err.toString()
           });
         } else {
+          let newRows = rows.map(item => {
+            item.id_country = item.id_pais;
+            delete item["id_pais"];
+            return item;
+          })
           res.status(200).send({
             status: true,
-            data: rows,
+            data: newRows,
             msg: 'Usuario(s) obtenido(s) con exito.'
           });
         }
@@ -34,7 +39,7 @@ module.exports = {
             error: err.toString()
           });
         } else {
-          let link = `http://${url}:4200/confirmar-correo`;
+          let link = `${url}:4200/verify/${rows.insertId}`;
             let email_data = {
               email: req.body.email,
               id: rows.insertId,

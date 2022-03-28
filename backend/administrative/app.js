@@ -29,6 +29,6 @@ app.use(cors())
 //  Rutas
 const administrative_routes = require('./api/routes/administrative_route')
 // Routing
-app.use('/administrative/', administrative_routes)
+app.use('/administrator/', administrative_routes)
 
 module.exports = app

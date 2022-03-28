@@ -35,14 +35,26 @@ module.exports = {
     if(id != null){
       await con.query(
         `
-        select * from Equipo 
-        where id_equipo = '${id}' and id_estado = 1;
+        select 
+        t1.id_equipo as id,
+        t1.nombre as name,
+        t1.abreviado,is_club,foundation_date,photo,
+        t1.id_pais as id_country,
+        t2.name as country
+        from Equipo t1 inner join Pais t2 on t1.id_pais = t2.id_pais
+        where t1.id_equipo = '${id}' and t1.id_estado = 1;
         `,
         callback)
     } else {
       await con.query(
         `
-        SELECT * FROM Equipo
+        select 
+        t1.id_equipo as id,
+        t1.nombre as name,
+        t1.abreviado,is_club,foundation_date,photo,
+        t1.id_pais as id_country,
+        t2.name as country
+        from Equipo t1 inner join Pais t2 on t1.id_pais = t2.id_pais
         where id_estado = 1;
         `,
         callback)
@@ -67,9 +79,9 @@ module.exports = {
   delete_team: async function(con, data, callback) {
     await con.query(
       `
-      DELETE FROM Equipo
-      WHERE
-        id_equipo = '${data}';
+      update Equipo set
+      id_estado = 3
+      where id_equipo = ${data};
       `,
       callback
     )

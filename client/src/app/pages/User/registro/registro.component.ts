@@ -76,7 +76,7 @@ export class RegistroComponent implements OnInit {
   submit(form) {
 
     if (this.RegistroForm.valid) {
-      console.log('valido');
+
       if (form.password == form.confirmpass) {
         console.log('coinciden pass')
         if(!this.editData){

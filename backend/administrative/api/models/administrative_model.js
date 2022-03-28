@@ -95,8 +95,8 @@ module.exports = {
         age,
         membership
         )
-      VALUES ('
-      ${name}', 
+      VALUES (
+      '${name}', 
       '${lastname}', 
       '${password}', 
       '${email}', 

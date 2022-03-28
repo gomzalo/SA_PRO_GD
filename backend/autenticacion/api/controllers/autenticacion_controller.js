@@ -57,7 +57,7 @@ module.exports = {
       });  
     },
 // ||||||||||||||||||||   VALIDAR CUENTA   ||||||||||||||||||||
-    validar_cuenta: function(req, res)   {
+    validar_cuenta: function(req, res) {
       authm.validar_cuenta(req.con, req.query.id, function(err, rows){
         console.log(rows);
         if(err){
@@ -66,10 +66,17 @@ module.exports = {
             data: []
           });
         } else {
-          res.status(200).send({
-            msg: "Correo verificado con éxito.",
-            data: []
-          });
+          if(rows.changedRows != 0){
+            res.status(200).send({
+              msg: "Correo verificado con éxito.",
+              data: []
+            });
+          } else {
+            res.status(400).send({
+              msg: "Error al verificar correo.",
+              data: []
+            });
+          }
         }
       });
     },

@@ -41,7 +41,7 @@ export class AuthService {
   }
 
   getValidar(id:any){
-    return this.http.get(this.url+`?id=${id}`);
+    return this.http.get(this.url+`?id=${id.id}`);
   }
 
 

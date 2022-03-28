@@ -95,6 +95,10 @@ content-type: application/json
     "password": "123"
 }
 
+{
+
+}
+
 # POST http://localhost:5003/user/login HTTP/1.1
 # content-type: application/json
 
@@ -107,7 +111,7 @@ content-type: application/json
 
 # ----------    Validar cuenta   ----------
 
-GET http://localhost:5010/auth?id=1 HTTP/1.1
+GET http://localhost:5010/auth/?id=44 HTTP/1.1
 
 ###
 

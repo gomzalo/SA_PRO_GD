@@ -34,7 +34,7 @@ module.exports = {
             error: err.toString()
           });
         } else {
-          let link = `http://${url}:4200/confirmar-correo`;
+          let link = `${url}:4200/verify/${rows.insertId}`;
             let email_data = {
               email: req.body.email,
               id: rows.insertId,

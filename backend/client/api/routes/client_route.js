@@ -9,5 +9,18 @@ router.delete('/:id', client_controller.delete);
 router.post('/membership', client_controller.buy_membership);
 router.put('/membership', client_controller.cancel_membership);
 router.post('/follow', client_controller.follow_team);
+//  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//  :::::::::::::::::::   REPORTES    :::::::::::::::::::
+//  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+/**
+ * Query Params: ?id_team=number&player=boolean 
+ * 
+ * player es un booleano representado por los valores 0 y 1
+ *  0: Jugadores
+ *  1: Técnico
+ * 
+ */
+router.get('/report/1/?id&player')
+
 
 module.exports = router

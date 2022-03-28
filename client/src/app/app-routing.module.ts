@@ -9,6 +9,7 @@ import { VerifyAcountComponent } from './pages/verify-acount/verify-acount.compo
 // import { UserGuard } from './core/guards/auth/user.guard';
 
 const routes: Routes = [
+ 
   {
     path: '',
     component: InicioComponent,

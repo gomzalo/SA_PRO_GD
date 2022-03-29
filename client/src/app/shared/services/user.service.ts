@@ -24,6 +24,13 @@ export class UserService {
     return this.http.get<any>(environment.apiClient);
   }
 
+
+  getUser(id:Number){
+    
+    return this.http.get<any>(environment.apiClient+'?id='+id);
+  }
+
+
   updateUser(user){
     return this.http.put<any>(environment.apiClient, user)
     .pipe(

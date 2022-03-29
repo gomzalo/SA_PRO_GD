@@ -19,11 +19,12 @@ import { NoticiaComponent } from './Noticia/noticia.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { JugadorComponent } from './jugador/jugador.component';
+import { TecnicoComponent } from './tecnico/tecnico.component';
 
 
 
 @NgModule({
-  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent, JugadorComponent],
+  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent, JugadorComponent, TecnicoComponent],
   imports: [
     AngularDualListBoxModule,
     MatSelectModule,

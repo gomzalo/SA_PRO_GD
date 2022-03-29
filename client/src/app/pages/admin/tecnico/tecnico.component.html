@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row">
       <div class="col">
-        <h1>Jugadores</h1>
+        <h1>Tecnicos</h1>
       </div>
       
     </div>
   
     <div class="row">
         
-            <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=true">Agregar Jugador</button>
+            <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=true">Agregar Tecnico</button>
             <br/>
             <br/>
             <button type="button" class="btn btn-danger col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=false" *ngIf="isOpen">Cerrar formulario</button>
@@ -42,27 +42,16 @@
     
           <mat-form-field appearance="outline" class="center">
             <mat-label>Pais </mat-label>
-            <mat-select formControlName="id_nationality" id="pais">
+            <mat-select formControlName="id_country" id="pais">
               <mat-option *ngFor="let pais of paises" [value]="pais.id">
                 {{pais.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
-          
-          <mat-form-field appearance="outline" class="center">
-            <mat-label>Posición </mat-label>
-            <mat-select formControlName="position" id="position">
-              <mat-option *ngFor="let pos of posiciones" [value]="pos.id">
-                {{pos.val}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
 
 
-
-
-          <mat-label class="margenes">Foto del Jugador </mat-label>
+          <mat-label class="margenes">Foto del Tecnico </mat-label>
           <input 
           formControlName="photo"
           id="file" 
@@ -90,15 +79,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let Jugador of jugadores">
+            <tr *ngFor="let Tecnico of tecnicos">
               
-              <th scope="row">{{ Jugador.name}}</th>
+              <th scope="row">{{ Tecnico.name}}</th>
               <td>
-                {{ Jugador.lastname}}
+                {{ Tecnico.lastname}}
               </td>
-              <td>{{ Jugador.nationality}}</td>
-              <td> <button type="button" class="btn btn-secondary" (click)="editar(Jugador)">Editar</button></td>
-              <td> <button type="button" class="btn btn-danger" (click)="eliminar(Jugador.id)">Eliminar</button></td>
+              <td>{{ Tecnico.nationality}}</td>
+              <td> <button type="button" class="btn btn-secondary" (click)="editar(Tecnico)">Editar</button></td>
+              <td> <button type="button" class="btn btn-danger" (click)="eliminar(Tecnico.id)">Eliminar</button></td>
             </tr>
             </tbody>
           </table>

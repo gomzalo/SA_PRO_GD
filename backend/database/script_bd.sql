@@ -56,7 +56,7 @@ CREATE TABLE Tecnico (
     apellido VARCHAR(100) NOT NULL ,
     fecha_nac DATE NOT NULL,
     titulo VARCHAR(100) NOT NULL,
-    foto VARCHAR(300) NOT NULL,
+    foto longtext NOT NULL,
 	id_pais INT NOT NULL,
     id_estado INT NOT NULL,
     CONSTRAINT FK_Tecnico_Pais FOREIGN KEY (id_pais)
@@ -77,7 +77,7 @@ CREATE TABLE Jugador (
     fecha_nac DATE NOT NULL,
 	pais_nacionalidad INT NOT NULL,
     id_posicion INT NOT NULL,
-    foto VARCHAR(300) NOT NULL,
+    foto longtext NOT NULL,
     id_estado INT NOT NULL,
 	CONSTRAINT FK_Jugador_Posicion FOREIGN KEY (id_posicion)
         REFERENCES Posicion(id_posicion)

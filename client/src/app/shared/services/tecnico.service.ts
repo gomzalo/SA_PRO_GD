@@ -7,26 +7,26 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class JugadorService {
+export class TecnicoService {
   constructor(private http: HttpClient) { }
 
-  insertJugador(jugador){
-    return this.http.post<any>(environment.apiJugador, jugador)
+  insertTecnico(Tecnico){
+    return this.http.post<any>(environment.apiTecnico, Tecnico)
     .pipe(
       catchError(this.handleError)
     );
   }
 
 
-  updateJugador(jugador){
-    return this.http.put<any>(environment.apiJugador, jugador)
+  updateTecnico(Tecnico){
+    return this.http.put<any>(environment.apiTecnico, Tecnico)
     .pipe(
       catchError(this.handleError)
     );
   }
 
-  deleteJugador(_id:string){
-    return this.http.delete<any>(environment.apiJugador+'?id='+_id)
+  deleteTecnico(_id:string){
+    return this.http.delete<any>(environment.apiTecnico+'?id='+_id)
     .pipe(
       catchError(this.handleError)
     );
@@ -34,21 +34,21 @@ export class JugadorService {
 
 
 
-  getOnejugador(id:Number){
+  getOneTecnico(id:Number){
     
-    return this.http.get<any>(environment.apiJugador+'?id='+id);
+    return this.http.get<any>(environment.apiTecnico+'?id='+id);
   }
 
   
-  getAlljugadorsbyjugador(idjugador:Number){
+  getAllTecnicosbyTecnico(idTecnico:Number){
     
-    return this.http.get<any>(environment.apiJugador+'?jugador='+idjugador);
+    return this.http.get<any>(environment.apiTecnico+'?Tecnico='+idTecnico);
   }
 
   
-  getAlljugadors(){
+  getAllTecnicos(){
     
-    return this.http.get<any>(environment.apiJugador);
+    return this.http.get<any>(environment.apiTecnico);
   }
 
 
@@ -62,7 +62,7 @@ export class JugadorService {
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
-    // Return an observable with a jugador-facing error message.
+    // Return an observable with a Tecnico-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }

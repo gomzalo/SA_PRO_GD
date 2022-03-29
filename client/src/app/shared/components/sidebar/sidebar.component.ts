@@ -100,6 +100,11 @@ export class SidebarComponent {
           type: 'link'
         },
         {
+          path: '/tecnico',
+          title: 'TECNICO',
+          type: 'link'
+        },
+        {
           path: '/proyects-assign',
           title: 'INCIDENCIA',
           type: 'link'

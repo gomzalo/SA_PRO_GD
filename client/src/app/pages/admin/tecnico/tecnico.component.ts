@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { JugadorService } from 'src/app/shared/services/jugador.service';
+import { TecnicoService } from 'src/app/shared/services/tecnico.service';
 import { PaisService } from 'src/app/shared/services/pais.service';
 
 @Component({
-  selector: 'app-jugador',
-  templateUrl: './jugador.component.html',
-  styleUrls: ['./jugador.component.scss']
+  selector: 'app-tecnico',
+  templateUrl: './tecnico.component.html',
+  styleUrls: ['./tecnico.component.scss']
 })
-export class JugadorComponent implements OnInit {
+export class TecnicoComponent implements OnInit {
 
   paises = []
-  jugadores = []
-  posiciones=[{id:1,val:'Portero'},{id:2,val:'Defensa'},{id:3,val:'Medio'},{id:4,val:'Delantero'}]
+  tecnicos = []
   page = 1;
   pageSize = 4;
   size = 0;
@@ -23,19 +22,18 @@ export class JugadorComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
     birth_date:new FormControl('', [Validators.required]),
-    position:new FormControl('', [Validators.required]),
     status:new FormControl(1, [Validators.required]),
     photo:new FormControl(this.photo64, ),
-    id_nationality:new FormControl('',[Validators.required] ),
+    id_country:new FormControl('',[Validators.required] ),
 
   });
 
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private jugadorService:JugadorService) { }
+  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private tecnicoService:TecnicoService) { }
 
   ngOnInit(): void {
     this.getcountries();
-    this.getJugadores();
-    this.size = this.jugadores.length
+    this.getTecnicos();
+    this.size = this.tecnicos.length
   }
 
   getcountries() {
@@ -43,9 +41,9 @@ export class JugadorComponent implements OnInit {
       .subscribe((data) => { this.paises = data.data });
   }
 
-  getJugadores() {
-    this.jugadorService.getAlljugadors()
-      .subscribe((data) => { this.jugadores = data.data;console.log(this.jugadores); });
+  getTecnicos() {
+    this.tecnicoService.getAllTecnicos()
+      .subscribe((data) => { this.tecnicos = data.data;console.log(this.tecnicos); });
   }
 
   formatDate(fecha:Date) {
@@ -76,20 +74,20 @@ export class JugadorComponent implements OnInit {
         form.photo = this.photo64
         form.birth_date = this.formatDate(form.birth_date)
         console.log(form);
-        this.jugadorService.insertJugador(form)
+        this.tecnicoService.insertTecnico(form)
           .subscribe(res => console.log(res));
       }else{
         form.photo = this.photo64
         form.birth_date = this.formatDate(form.birth_date)
         console.log(form);
         form.id=this.equipo.id;
-        this.jugadorService.updateJugador(form)
+        this.tecnicoService.updateTecnico(form)
           .subscribe(res => console.log(res));
       }
     }
   }
   eliminar(id_equipo){
-    this.jugadorService.deleteJugador(id_equipo)
+    this.tecnicoService.deleteTecnico(id_equipo)
     .subscribe(res => console.log(res));
   }
 

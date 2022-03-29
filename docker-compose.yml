@@ -31,18 +31,18 @@ services:
     ports:
       - "5004:5004"
     restart: on-failure
-  # server_tecnico:
-  #   build: ./backend/tecnico
-  #   container_name: coach
-  #   ports:
-  #     - "5005:5005"
-  #   restart: on-failure
-  # server_jugador:
-  #   build: ./backend/jugador
-  #   container_name: player
-  #   ports:
-  #     - "5006:5006"
-  #   restart: on-failure
+  server_tecnico:
+    build: ./backend/tecnico
+    container_name: coach
+    ports:
+      - "5005:5005"
+    restart: on-failure
+  server_jugador:
+    build: ./backend/jugador
+    container_name: player
+    ports:
+      - "5006:5006"
+    restart: on-failure
   server_news:
     build: ./backend/noticia
     container_name: news

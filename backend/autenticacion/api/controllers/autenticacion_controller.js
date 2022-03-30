@@ -84,7 +84,6 @@ module.exports = {
     temp_pass: async function(req, res) {
       authm.get_id(req.con, req.body, async function(err, rows){
         // console.log(rows[0].id_usuario);
-        var user_id = rows[0].id_usuario;
         if(err){
           res.status(400).send({
             status: false,
@@ -94,6 +93,7 @@ module.exports = {
           });
         } else {
           if(rows.length > 0){
+            var user_id = rows[0].id_usuario;
             var temp_password = generator.generate({
               length: 10,
               numbers: true
@@ -196,29 +196,84 @@ module.exports = {
               }
               id_user_rol = {id_usuario: datos.id_usuario, id_rol: datos.id_rol};
               const accessToken = generateAccessToken(id_user_rol);
-              let cif_pass = cryptoJS.AES.encrypt(req.body.new_password, 'SiSaleSA_').toString();
-              let pass_data = {
-                id: datos.id_usuario,
-                password: cif_pass
-              }
-              authm.update_password(req.con, pass_data, async function(err, rows){
+              authm.verify_temp_pass(req.con, datos.id_usuario, async function(err, rows_verify){
                 if(err){
                   res.status(400).send({
                     status: false,
-                    msg: "Error al restablecer contraseña",
+                    msg: "Error al restablecer contraseña, verificacion password.",
                     error: err.toString(),
                     data: []
                   });
                 } else {
-                  res.status(200).send({
-                    datos: datos,
-                    data:{
-                      token: accessToken,
-                      id_status: datos.id_estado
-                    },
-                    status: true,
-                    msg: 'Se ha restablecido la contraseña'
-                  });
+                  if(rows_verify.length > 0){
+                    let datos_ver = rows_verify[0];
+                    let fecha_antigua = new Date(datos_ver.hora);
+                    let MINx2Mil = 120000;
+                    let hora = fecha_antigua.getMinutes();
+                    let now_min = new Date().getMinutes();
+                    console.log(hora);
+                    console.log(now_min);
+                    let now = new Date();
+                    let dif = hora - now_min;
+                    if(dif >= 2){
+                      let pass_data = {
+                        id: datos.id_usuario,
+                        password: datos_ver.original_pass
+                      }
+                      authm.update_pass(req.con, pass_data, async function(err, rows){
+                        if(err){
+                          res.status(400).send({
+                            status: false,
+                            msg: "Error al restablecer contraseña antigua.",
+                            error: err.toString(),
+                            data: []
+                          });
+                        } else {
+                          res.status(200).send({
+                            datos: datos,
+                            data:{
+                              token: accessToken,
+                              id_status: datos.id_estado
+                            },
+                            status: true,
+                            msg: 'Se ha restablecido la contraseña antigua'
+                          });
+                        }
+                      });
+                    }else{
+                      let cif_pass_on_time = cryptoJS.AES.encrypt(req.body.new_password, 'SiSaleSA_').toString();
+                      let pass_data = {
+                        id: datos.id_usuario,
+                        password: cif_pass_on_time
+                      }
+                      authm.update_pass(req.con, pass_data, async function(err, rows){
+                        if(err){
+                          res.status(400).send({
+                            status: false,
+                            msg: "Error al restablecer contraseña nueva",
+                            error: err.toString(),
+                            data: []
+                          });
+                        } else {
+                          res.status(200).send({
+                            datos: datos,
+                            data:{
+                              token: accessToken,
+                              id_status: datos.id_estado
+                            },
+                            status: true,
+                            msg: 'Se ha restablecido la contraseña nueva.'
+                          });
+                        }
+                      });
+                    }
+                    
+                  } else {
+                    res.status(400).send({
+                      status: false,
+                      msg: 'Error de autenticacion, usuario no encontrado'
+                    });
+                  }
                 }
               });
             } else {

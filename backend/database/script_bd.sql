@@ -298,7 +298,7 @@ CREATE TABLE Temp_Pass (
     id_usuario INT PRIMARY KEY NOT NULL,
     original_pass VARCHAR(50) NOT NULL,
     temporal_pass VARCHAR(50) NOT NULL,
-    hora DATE NOT NULL,
+    hora DATETIME NOT NULL,
     CONSTRAINT FK_Temp_Pass FOREIGN KEY (id_usuario)
         REFERENCES Usuario(id_usuario)
 );

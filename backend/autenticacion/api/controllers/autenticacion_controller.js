@@ -208,12 +208,11 @@ module.exports = {
                   if(rows_verify.length > 0){
                     let datos_ver = rows_verify[0];
                     let fecha_antigua = new Date(datos_ver.hora);
-                    let MINx2Mil = 120000;
                     let hora = fecha_antigua.getMinutes();
                     let now_min = new Date().getMinutes();
                     console.log(hora);
                     console.log(now_min);
-                    let now = new Date();
+                    console.log(dif);
                     let dif = hora - now_min;
                     if(dif >= 2){
                       let pass_data = {
@@ -229,13 +228,10 @@ module.exports = {
                             data: []
                           });
                         } else {
-                          res.status(200).send({
+                          res.status(400).send({
                             datos: datos,
-                            data:{
-                              token: accessToken,
-                              id_status: datos.id_estado
-                            },
-                            status: true,
+                            data:[],
+                            status: false,
                             msg: 'Se ha restablecido la contraseña antigua'
                           });
                         }

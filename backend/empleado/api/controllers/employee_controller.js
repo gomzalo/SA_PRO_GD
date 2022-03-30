@@ -21,79 +21,62 @@ module.exports = {
     });  
   },
   
-  get_employee: function(req, res)   {
-    employee_model.get_employee(req.con, req.query, function(err, rows){
+  get_player_transfers: function(req, res)   {
+    employee_model.get_player_transfers(req.con, req.query, function(err, rows){
       console.log(req.query);
       if(err){
         res.status(400).send({
           status: false,
           data: [],
-          msj: 'Error al obtener jugador(es)',
+          msj: 'Error al obtener el log de transferencias.',
           error: err.toString()
         });
       } else {
         res.status(200).send({
           status: true,
           data: rows,
-          msj: 'Jugador(es) obtenido(s) con éxito.'
+          msj: 'Log de transferencias obtenido con éxito.'
         });
       }
     });
   },
-  
-  edit_employee: async function(req, res) {
-    employee_model.edit_employee(req.con, req.body, async function(err, rows){
+  dt_transfer: async function(req, res) {
+    employee_model.dt_transfer(req.con, req.body, async function(err, rows){
       if(err){
         res.status(400).send({
           status: false,
           data: [],
-          msj: 'Error al actualizar jugador',
+          msj: 'Error al transferir director técnico.',
           error: err.toString()
         });
       } else {
-        if(rows.affectedRows < 1){
-          res.status(400).send({
-            status: false,
-            data: [],
-            msj: 'Error al actualizar equipo',
-            error: 'No existe, el ID indicado'
-          });
-        } else {
-          res.status(200).send({
-            status: true,
-            data: [],
-            msj: 'Jugador actualizado con exito.'
-          });
-        }
-      }
-    });
-  },
-  
-  delete_employee: async function(req, res) {
-    employee_model.delete_employee(req.con, req.query.id, async function(err, rows){
-      if(err){
-        res.status(400).send({
-          status: false,
-          data: [],
-          msj: 'Error al eliminar Jugador',
-          error: err.toString()
+        console.log(rows.length)
+        res.status(200).send({
+          status: true,
+          data: rows,
+          msj: 'Director técnico transferido con éxito.'
         });
-      } else {
-        if(rows.affectedRows < 1){
-          res.status(400).send({
-            status: false,
-            data: [],
-            msj: 'Error al eliminar equipo',
-            error: 'No existe, el ID indicado'
-          });
-        } else {
-          res.status(200).send({
-            status: true,
-            data: [],
-            msj: 'Jugador eliminado con exito'
-          });
-        }
       }
     });  
-  }
+  },
+  
+  get_dt_transfers: function(req, res)   {
+    employee_model.get_dt_transfers(req.con, req.query, function(err, rows){
+      console.log(req.query);
+      if(err){
+        res.status(400).send({
+          status: false,
+          data: [],
+          msj: 'Error al obtener el log de transferencias.',
+          error: err.toString()
+        });
+      } else {
+        res.status(200).send({
+          status: true,
+          data: rows,
+          msj: 'Log de transferencias obtenido con éxito.'
+        });
+      }
+    });
+  },
 }

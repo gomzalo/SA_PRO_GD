@@ -5,6 +5,103 @@ const jwt = require('jsonwebtoken');
 const { url } = require('../../config');
 
 module.exports = {
+  // ::::::::::::::::::::   REPORTES    ::::::::::::::::::::
+  // ***************    1. Usuarios Suscritos a X equipo   ***************
+  get_report_1: function(req, res)   {
+    administrativem.get_report_1(req.con, req.query, function(err, rows){
+      if(err){
+        res.status(400).send({
+          status: false,
+          data: [],
+          msg: `Error al obtener usuarios suscritos al equipo ${req.query.id_team}.`,
+          error: err.toString()
+        });
+      } else {
+        res.status(200).send({
+          status: true,
+          data: rows,
+          msg: `Usuarios suscritos al equipo ${req.query.id_team} obtenidos con exito.`
+        });
+      }
+    });
+  },
+  // ***************    2. Usuario Con o Sin Membresía   ***************
+  get_report_2: function(req, res)   {
+    administrativem.get_report_2(req.con, req.query, function(err, rows){
+      if(err){
+        res.status(400).send({
+          status: false,
+          data: [],
+          msg: 'Error al obtener usuarios con o sin membresía.',
+          error: err.toString()
+        });
+      } else {
+        res.status(200).send({
+          status: true,
+          data: rows,
+          msg: 'Usuarios con o sin membresía obtenidos con éxito.'
+        });
+      }
+    });
+  },
+  // ***************    3. Usuarios que Mas membresías han adquirido   ***************
+  get_report_3: function(req, res)   {
+    administrativem.get_report_3(req.con, req.query, function(err, rows){
+      if(err){
+        res.status(400).send({
+          status: false,
+          data: [],
+          msg: 'Error al obtener usuarios con mas membresías.',
+          error: err.toString()
+        });
+      } else {
+        res.status(200).send({
+          status: true,
+          data: rows,
+          msg: 'Usuarios con mas membresías obtenidos con éxito.'
+        });
+      }
+    });
+  },
+  // ***************    4. Usuarios que mas dinero han gastado   ***************
+  get_report_4: function(req, res)   {
+    administrativem.get_report_4(req.con, req.query, function(err, rows){
+      if(err){
+        res.status(400).send({
+          status: false,
+          data: [],
+          msg: 'Error al obtener usuarios con mas dinero gastado.',
+          error: err.toString()
+        });
+      } else {
+        res.status(200).send({
+          status: true,
+          data: rows,
+          msg: 'Usuarios con mas dinero gastado obtenidos con éxito.'
+        });
+      }
+    });
+  },
+  // ***************    5. Usuarios de X País   ***************
+  get_report_5: function(req, res)   {
+    administrativem.get_report_5(req.con, req.query, function(err, rows){
+      if(err){
+        res.status(400).send({
+          status: false,
+          data: [],
+          msg: `Error al obtener usuarios de x país.`,
+          error: err.toString()
+        });
+      } else {
+        res.status(200).send({
+          status: true,
+          data: rows,
+          msg: `Usuarios de x país obtenidos con éxito.`
+        });
+      }
+    });
+  },
+  // ***************    6. Usuarios que Mas membresías han adquirido   ***************
   get_report_6: function(req, res)   {
     administrativem.get_report_6(req.con, req.query, function(err, rows){
       if(err){
@@ -95,6 +192,7 @@ module.exports = {
       }
     });
   },
+  // ::::::::::::::::::::   CRUD USUARIOS    ::::::::::::::::::::
   create_user: function(req, res)   {
     administrativem.create_user(req.con, req.body, function(err, rows){
       // console.log(req.body);

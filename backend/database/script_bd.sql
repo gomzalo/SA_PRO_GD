@@ -256,6 +256,14 @@ CREATE TABLE Usuario (
         REFERENCES Rol(id_rol)
 );
 
+CREATE TABLE Usuario_Membresia(
+    id_usuario INT NOT NULL,
+    fecha DATE NOT NULL,
+    estado INT NOT NULL,
+    CONSTRAINT FK_Usuario_Membresia FOREIGN KEY (id_usuario)
+        REFERENCES Usuario(id_usuario)
+);
+
 CREATE TABLE Usuario_Equipo(
     id_usuario INT NOT NULL,
     id_equipo INT NOT NULL,

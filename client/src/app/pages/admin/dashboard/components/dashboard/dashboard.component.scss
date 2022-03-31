@@ -89,3 +89,9 @@
     align-items: center;
     justify-content: flex-end;
 }
+
+
+::ng-deep.mat-tab-body-content{
+    min-width: 300!important;
+    width: auto;
+   }

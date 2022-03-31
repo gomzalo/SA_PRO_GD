@@ -214,13 +214,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let Jugador of report_data">
+      <tr *ngFor="let usuario of report_data">
         
-        <th scope="row">{{ Jugador.first_name}}</th>
+        <th scope="row">{{usuario.first_name}}</th>
         <td>
-          {{ Jugador.last_name}}
+          {{ usuario.last_name}}
         </td>
-        <td>{{ Jugador.email}}</td>
+        <td>{{ usuario.email}}</td>
       </tr>
       </tbody>
   </table>
@@ -250,63 +250,45 @@
   <table class="table" *ngIf="selectedReporte==8">
     <thead>
       <tr>
-        <th scope="col">#8</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Nacionalidad</th>
+        <th scope="col"></th>
       </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+      </thead>
+      <tbody>
+      <tr *ngFor="let usuario of report_data">
+        
+        <th scope="row">{{ usuario.name}}</th>
+        <td>
+          {{ usuario.lastname}}
+        </td>
+        <td>{{ usuario.nationality}}</td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
+      </tbody>
   </table>
 
   <table class="table" *ngIf="selectedReporte==9" >
     <thead>
       <tr>
-        <th scope="col">#9</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Nacionalidad</th>
+        <th scope="col"></th>
       </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+      </thead>
+      <tbody>
+      <tr *ngFor="let usuario of report_data">
+        
+        <th scope="row">{{ usuario.name}}</th>
+        <td>
+          {{ usuario.lastname}}
+        </td>
+        <td>{{ usuario.nationality}}</td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
+      </tbody>
   </table>
 
   <table class="table" *ngIf="selectedReporte==10">

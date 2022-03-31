@@ -22,17 +22,17 @@ POST http://localhost:5011/administrator/user HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Tepo",
-    "lastname": "Kun",
+    "name": "Uvuvwevwevwe Onyetenyevwe",
+    "lastname": "Ugwemubwem Ossas",
     "password": "Tepo123/",
-    "email": "mclwithmusic@gmail.com",
+    "email": "gxmzalx@gmail.com",
     "phone": 5668998,
     "photo": "asdkfhjkasdljfklasdj",
     "gender": "M",
-    "birth_date": "1997-02-27",
-    "address": "Patcizia",
-    "id_country": 88,
-    "id_rol": 3
+    "birth_date": "0-01-27",
+    "address": "Barrio Albo",
+    "id_country": 156,
+    "id_rol": 1
 }
 
 ###
@@ -228,11 +228,30 @@ GET http://localhost:5000/customer/report/3/?age=1&player=0
 # Tecnico
 ###
 GET http://localhost:5000/customer/report/3/?age=3&player=1
+
+# **************    4. Equipos que participaron en X competición  **************
+# Jugador
+###
+GET http://localhost:5000/customer/report/4/?id_competition=2
+
 // ********************       5. Equipos de X pais      ******************
 ###
 GET http://localhost:5000/customer/report/5/?id_country=88
+// ********************       6. Equipos con X años de antigüedad      ******************
+###
+GET http://localhost:5000/customer/report/6/?age=85
 
+// ********************       7. Estadios en X pais      ******************
+###
+GET http://localhost:5000/customer/report/7/?id_country=100
 
+// ********************       8. Estadios con capacidad menor o igual a X      ******************
+###
+GET http://localhost:5000/customer/report/8/?capacity=5888888888
+
+// ********************       9. Histórico de partidos de X equipo      ******************
+###
+GET http://localhost:5000/customer/report/9/?id_team=2
 # ***************************************************
 # ************** TEAM SERVER ************** 
 # ***************************************************
@@ -298,10 +317,10 @@ content-type: application/json
 
 {
     "name": "Spotify Camp Nou",
-    "fundation_date": "1985-02-05",
+    "fundation_date": "1889-02-05",
     "capacity": "5566224",
     "id_country": "100",
-    "address": "Cumeada, Portugal",
+    "address": "Barcelona, Catalunya",
     "status": 1,
     "photo": "Masdkfjasdlkjfkmasdcmkjlasdnijfnasdlkfj"
 }
@@ -314,7 +333,7 @@ PUT http://localhost:5004/stadium HTTP/1.1
 content-type: application/json
 
 {
-    "id": 1,
+    "id": 2,
     "name": "Santiago Bernaleo",
     "fundation_date": "1940-02-05",
     "capacity": "5566224",
@@ -497,4 +516,4 @@ content-type: application/json
 
 # ----------    Obtener     ----------
 
-GET http://localhost:5007/post/?id=3 HTTP/1.1
+GET http://localhost:5007/post/?team=5 HTTP/1.1

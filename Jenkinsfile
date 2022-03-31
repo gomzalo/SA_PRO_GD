@@ -13,7 +13,7 @@ pipeline{
 
         stage("test"){
             steps{
-                dir("Practica5"){
+                dir("ProyectoFase3"){
                     bat 'npm test'
                 }
             }
@@ -21,7 +21,7 @@ pipeline{
 
         stage("Upload Image"){
             steps{
-                dir("Practica5"){
+                dir("ProyectoFase3"){
                     bat 'docker login -u "bitochepe" -p "Zar45sGu:a7Vf2U"'
                     bat 'docker build -t bitochepe/dev .'
                     bat 'docker push bitochepe/dev'
@@ -31,7 +31,7 @@ pipeline{
 
         stage("Deploy Ansible"){
             steps{
-                dir("Practica5"){
+                dir("ProyectoFase3"){
                     bat 'wsl ansible-playbook playbook-production.yml'
                 }
             }

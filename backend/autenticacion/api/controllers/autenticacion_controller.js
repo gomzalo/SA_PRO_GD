@@ -98,7 +98,7 @@ module.exports = {
               length: 10,
               numbers: true
             });
-            let link = `${url}:4200/reset-password?id=${user_id}`;
+            let link = `${url}:4200/login/reset-password`;
             let email_data = {
               email: req.body.email,
               id: user_id,
@@ -232,7 +232,7 @@ module.exports = {
                             datos: datos,
                             data:[],
                             status: false,
-                            msg: 'Se ha restablecido la contraseña antigua'
+                            msg: 'Se ha restablecido la contraseña antigua, pasaron los 2 minutos'
                           });
                         }
                       });

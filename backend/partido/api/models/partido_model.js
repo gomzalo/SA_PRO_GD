@@ -24,29 +24,10 @@ module.exports = {
       var id_state = status + 10;
       await con.query(
         `
-        INSERT INTO Partido ( 
-          fecha,
-          publico,
-          result_local,
-          result_visiting,
-          id_estadio,
-          id_visitante,
-          id_local,
-          id_competencia,
-          id_estado
-          )
-        VALUES (
-          '${game_date}',
-          '${attendees}',
-          '${result_local}',
-          '${result_visiting}',
-          '${id_stadium}',
-          '${id_team_visiting}',
-          '${id_team_local}',
-          '${id_competition}',
-          '${id_state}'
-          );
+        CALL Insert_Partido_Proc(?,?,?,?,?,?,?,?,?)
         `,
+        [game_date, attendees, result_local, result_visiting, id_stadium, id_team_visiting, id_team_local, id_competition, id_state]
+        ,
         callback
       )
     },

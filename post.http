@@ -201,7 +201,37 @@ content-type: application/json
     "id_client": 3,
     "id_team": 5
 }
+
 ###
+
+GET http://localhost:5000/customer/follow/?id_client=3 HTTP/1.1
+
+# --------------------------   Reportes  --------------------------
+# **************    1. Jugadores o tecnico en X equipo  **************
+# Jugador
+###
+GET http://localhost:5000/customer/report/1/?id_team=1&player=0
+# Tecnico
+###
+GET http://localhost:5000/customer/report/1/?id_team=3&player=1
+# **************    2. Jugadores o tecnicos mayores de X años  **************
+# Jugador
+###
+GET http://localhost:5000/customer/report/2/?age=1&player=0
+# Tecnico
+###
+GET http://localhost:5000/customer/report/2/?age=3&player=1
+# **************    3. Jugadores o tecnicos menores de X años  **************
+# Jugador
+###
+GET http://localhost:5000/customer/report/3/?age=1&player=0
+# Tecnico
+###
+GET http://localhost:5000/customer/report/3/?age=3&player=1
+// ********************       5. Equipos de X pais      ******************
+###
+GET http://localhost:5000/customer/report/5/?id_country=88
+
 
 # ***************************************************
 # ************** TEAM SERVER ************** 
@@ -390,14 +420,14 @@ POST http://localhost:5002/match HTTP/1.1
 content-type: application/json
 
 {
-    "game_date": "2022-03-26",
+    "game_date": "2022-03-01",
     "attendees": 56988,
-    "result_local": 2,
+    "result_local": 5,
     "result_visiting": 1,
     "status": 1,
     "id_stadium": 2,
-    "id_team_local": 1,
-    "id_team_visiting": 1,
+    "id_team_local": 8,id_competencia
+    "id_team_visiting": 3,
     "id_competition": 2
 }
 

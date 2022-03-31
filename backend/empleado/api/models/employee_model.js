@@ -90,5 +90,15 @@ module.exports = {
         callback
       )
     }
+  },
+  incidencia: async function(con, data, callback) {
+    const {id_player,id_game ,id_type ,description,minute} = data;
+    await con.query(
+      `
+      insert into Incidencia (id_partido,minuto,id_jugador,id_tipo_incidencia,description)
+      values(${id_game},${minute},${id_player},${id_type},${description});
+      `,
+      callback
+    )
   }
 }

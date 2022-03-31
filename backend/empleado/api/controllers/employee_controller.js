@@ -79,4 +79,23 @@ module.exports = {
       }
     });
   },
+  incidencia: async function(req, res) {
+    employee_model.incidencia(req.con, req.body, async function(err, rows){
+      if(err){
+        res.status(400).send({
+          status: false,
+          data: [],
+          msj: 'Error al agregar incidencia.',
+          error: err.toString()
+        });
+      } else {
+        console.log(rows.length)
+        res.status(200).send({
+          status: true,
+          data: rows,
+          msj: 'Incidencia agregada con éxito.'
+        });
+      }
+    });  
+  },
 }

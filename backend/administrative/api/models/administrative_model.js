@@ -44,7 +44,7 @@ module.exports = {
         t3.name as nationality,t1.photo, count(*) as count from Usuario t1
         inner join Noticia t2 on t1.id_usuario = t2.id_user
         inner join Pais t3 on t1.id_pais = t3.id_pais
-        where id_rol < 3
+        where id_rol = 2
         group by id_usuario
         order by count ${order}
         limit 5;

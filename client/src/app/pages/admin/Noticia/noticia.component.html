@@ -34,8 +34,8 @@
         <mat-form-field appearance="outline" class="center">
           <mat-label>Equipo </mat-label>
           <mat-select formControlName="id_team" id="id_teams">
-            <mat-option *ngFor="let equipo of equipos" [value]="equipo.id_equipo">
-              {{equipo.nombre}}
+            <mat-option *ngFor="let equipo of equipos" [value]="equipo.id">
+              {{equipo.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>

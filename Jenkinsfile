@@ -5,7 +5,7 @@ pipeline{
         stage("Prueba"){
             steps{
                 dir("build"){
-                    sh 'echo "Hello World 3"'
+                    sh 'echo "Hello World 4"'
                 }
             }
         }

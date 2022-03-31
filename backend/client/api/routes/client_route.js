@@ -9,6 +9,8 @@ router.delete('/:id', client_controller.delete);
 router.post('/membership', client_controller.buy_membership);
 router.put('/membership', client_controller.cancel_membership);
 router.post('/follow', client_controller.follow_team);
+
+
 //  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 //  :::::::::::::::::::   REPORTES    :::::::::::::::::::
 //  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::

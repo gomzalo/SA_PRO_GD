@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { UserService } from 'src/app/shared/services/user.service';
+import {NoticiaService} from 'src/app/shared/services/noticia.service';
 
 
 @Component({
@@ -9,51 +11,38 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  imgCat : boolean;
-  imgProd : boolean;
-  imgImport : boolean;
-  imgSel : boolean;
-  imgBrand : boolean;
-  imgValor : boolean;
-  imgUser : boolean;
-  imgBack : boolean;
-
-
+ user={}
+ noticias=[]
   constructor(
     private router: Router,
     private authService: AuthService,
+    private userService:UserService,
+    private noticiaService:NoticiaService,
   ) { }
 
   ngOnInit(): void {
-    
+    this.getUser()
   }
 
-  goCategories(){
-    this.router.navigate(['./home/categories']);
+
+  
+  getUser() {
+    let user_id = this.authService.getSesion().id_usuario;
+    this.userService.getUser(user_id)
+      .subscribe((data) => {
+        this.user = data.data[0];
+      });
   }
 
-  goProducts(){
-    this.router.navigate(['./home/products']);
+  getNoticias(team:Number) {
+    this.noticiaService.getAllNoticesbyTeam(team)
+      .subscribe((data) => {
+        this.noticias += data.data;
+        console.log(this.noticias);
+      });
+
   }
 
-  goSelection(){
-    this.router.navigate(['./home/products/new']);
-  }
 
-  goMultimedia(){
-    this.router.navigate(['./home/multimedia']);
-  }
-
-  goUsers(){
-    this.router.navigate(['./home/users']);
-  }
-
-  goBackup(){
-    this.router.navigate(['./home/backup']);
-  }
-
-  goValue(){
-    this.router.navigate(['./home/value']);
-  }
 
 }

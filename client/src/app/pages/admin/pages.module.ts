@@ -15,17 +15,17 @@ import { MaterialModule } from 'src/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {UsersModule} from '../User/users.module';
+import {EstadioModule} from '../estadio/estadio.module';
 import { NoticiaComponent } from './Noticia/noticia.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { JugadorComponent } from './jugador/jugador.component';
 import { TecnicoComponent } from './tecnico/tecnico.component';
 import { ProfileComponent } from './profile/profile.component';
-
-
+import { EstadioComponent } from './estadio/estadio.component';
 
 @NgModule({
-  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent, JugadorComponent, TecnicoComponent,ProfileComponent],
+  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent, JugadorComponent, TecnicoComponent,ProfileComponent, EstadioComponent],
   imports: [
     AngularDualListBoxModule,
     MatSelectModule,
@@ -37,7 +37,8 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    UsersModule
-  ]
+    UsersModule,
+    EstadioModule
+    ]
 })
 export class PagesModule { }

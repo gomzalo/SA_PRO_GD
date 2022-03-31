@@ -75,7 +75,7 @@ export class SidebarComponent {
           type: 'link'
         },
         {
-          path: '/business',
+          path: '/estadio',
           title: 'ESTADIO',
           type: 'link'
         },

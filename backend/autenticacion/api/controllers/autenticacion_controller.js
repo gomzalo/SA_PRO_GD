@@ -98,7 +98,7 @@ module.exports = {
               length: 10,
               numbers: true
             });
-            let link = `${url}:4200/reset-password`;
+            let link = `${url}:4200/login/reset-password`;
             let email_data = {
               email: req.body.email,
               id: user_id,

@@ -9,9 +9,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ForgotEmailComponent } from './forgot-email/forgot-email.component';
+import { RestarPasswordComponent } from './restar-password/restar-password.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent,ForgotEmailComponent,RestarPasswordComponent],
   imports: [
     HttpClientModule,
     FormsModule,

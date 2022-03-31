@@ -1,25 +1,83 @@
 var cryptoJS = require('crypto-js');
 
 module.exports = {
-  
-
-  get_report_6: async function(con, data, callback) {
-    const gender = data.gender;
+  // ::::::::::::::::::::   REPORTES    ::::::::::::::::::::
+  // ***************    1. Usuarios Suscritos a X equipo   ***************
+  get_report_1: async function(con, data, callback) {
+    const id = data.id_team;
       await con.query(
         `
-        SELECT * from Usuario where gender = '${gender}' and id_rol = 3;
+        SELECT u.id_usuario AS id, u.first_name AS name, u.last_name AS lastname,
+          p.nicename AS nationality, u.photo AS photo FROM Usuario u
+          INNER JOIN Pais p ON u.id_pais = p.id_pais
+          INNER JOIN Usuario_Equipo ue ON ue.id_usuario = u.id_usuario
+            WHERE ue.id_equipo = ${id}
+            GROUP BY u.id_usuario
+        ;
         `,
         callback)
   },
-  
-  get_report_7: async function(con, data, callback) {
-    const gender = data.gender;
+  // ***************    2. Usuario Con o Sin Membresía   ***************
+  /*
+    0: No posee membresía
+    1: Posee membresía
+  **/
+  get_report_2: async function(con, data, callback) {
+    const membership = data.membership;
       await con.query(
         `
-        SELECT * from Usuario where gender = '${gender}' and id_rol = 3;
+        SELECT u.id_usuario AS id, u.first_name AS name, u.last_name AS lastname,
+        p.nicename AS nationality, u.photo AS photo FROM Usuario u
+          INNER JOIN Pais p ON u.id_pais = p.id_pais
+          WHERE membership = '${membership}';
         `,
         callback)
   },
+  // ***************    3. Usuarios que Mas membresías han adquirido   ***************
+  get_report_3: async function(con, data, callback) {
+      await con.query(
+        `
+        SELECT u.id_usuario AS id, u.first_name AS name, u.last_name AS lastname,
+          p.nicename AS nationality, u.photo AS photo, count(*) as count FROM Usuario u
+          INNER JOIN Pais p ON u.id_pais = p.id_pais
+          INNER JOIN Usuario_Membresia um ON um.id_usuario = u.id_usuario
+            WHERE um.estado = 1
+            GROUP BY u.id_usuario
+            ORDER BY count ASC
+            LIMIT 10
+        ;
+        `,
+        callback)
+  },
+  // ***************    4. Usuarios que mas dinero han gastado   ***************
+  get_report_4: async function(con, data, callback) {
+      await con.query(
+        `
+        SELECT u.id_usuario AS id, u.first_name AS name, u.last_name AS lastname,
+          p.nicename AS nationality, u.photo AS photo, count(*)*15 as amount FROM Usuario u
+          INNER JOIN Pais p ON u.id_pais = p.id_pais
+          INNER JOIN Usuario_Membresia um ON um.id_usuario = u.id_usuario
+            WHERE um.estado = 1
+            GROUP BY u.id_usuario
+            ORDER BY amount ASC
+            LIMIT 10
+        ;
+        `,
+        callback)
+  },
+  // ***************    5. Usuarios de X País   ***************
+  get_report_5: async function(con, data, callback) {
+    const id = data.id_country;
+      await con.query(
+        `
+        SELECT u.id_usuario AS id, u.first_name AS name, u.last_name AS lastname, u.photo AS photo
+        FROM Usuario u
+          WHERE u.id_pais = ${id}
+        ;
+        `,
+        callback)
+  },
+  // ***************    6. Usuarios que Mas membresías han adquirido   ***************
   get_report_6: async function(con, data, callback) {
     const gender = data.gender;
       await con.query(
@@ -74,6 +132,7 @@ module.exports = {
         `,
         callback)
   },
+  // ::::::::::::::::::::   CRUD USUARIOS    ::::::::::::::::::::
   create_user: async function(con, data, callback) {
     const {name, lastname, password, email, phone, photo,gender,birth_date,address,id_country,id_rol}= data;
     /*

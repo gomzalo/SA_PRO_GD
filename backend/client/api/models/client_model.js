@@ -149,10 +149,9 @@ module.exports = {
       const id = data.id_client;
       await con.query(
         `
-        UPDATE Usuario
-        SET membership = 1
-        WHERE id_usuario = '${id}';
+        CALL Update_Membership(?,?);
         `,
+        [id, 1],
         callback)
     },
 // ||||||||||||||||||||   DAR DE BAJA MEMBRESIA   ||||||||||||||||||||
@@ -160,10 +159,9 @@ module.exports = {
       const id = data.id_client;
       await con.query(
         `
-        UPDATE Usuario
-        SET membership = 0
-        WHERE id_usuario = '${id}';
+        CALL Update_Membership(?,?);
         `,
+        [id, 0],
         callback)
     },
 // ||||||||||||||||||||   SEGUIR EQUIPO   ||||||||||||||||||||

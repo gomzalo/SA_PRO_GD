@@ -69,6 +69,14 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/users/registro']);
   }
 
+  olvidepass() {
+    this.router.navigate(['/login/forgot']);
+  }
+
+  resetPass() {
+    this.router.navigate(['/login/reset-password']);
+  }
+
    handleLogin() {
   //  let session = this.authService.login({"email" : this.email,"password" : (this.password)});
 

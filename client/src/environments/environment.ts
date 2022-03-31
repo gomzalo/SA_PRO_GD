@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiClient:"http://localhost:5000/customer/",
+  apiCliente:"http://localhost:5000/customer/",
   apiAdministrador:"http://localhost:5011/administrator/",
   apiAuth:"http://localhost:5010/auth/",
   apiCompetencia:"http://localhost:5003/competition/",

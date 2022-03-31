@@ -193,9 +193,199 @@ module.exports = {
         }
       });
     },
+// ||||||||||||||||||||   SEGUIR EQUIPO   ||||||||||||||||||||
+    favorite_teams: async function(req, res) {
+      clientm.favorite_teams(req.con, req.query, async function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: 'Error al obtener los equipos favoritos.',
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: 'Equipos favoritos obtenidos con éxito.'
+          });
+        }
+      });
+    },
 //  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 //  :::::::::::::::::::   REPORTES    :::::::::::::::::::
 //  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// ********************       1. Jugadores o Técnico de X equipo      ******************
+    get_report_1: function(req, res)   {
+      clientm.get_report_1(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los jugadores o técnico del equipo.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Jugadores o técnico del equipo obtenidos con éxito.`
+          });
+        }
+      });
+    },
+// ********************       2. Jugadores o Técnicos mayores de X años      ******************
+    get_report_2: function(req, res)   {
+      clientm.get_report_2(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los jugadores o técnicos mayores a ${req.query.age} años.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Jugadores o técnicos mayores a ${req.query.age} años obtenidos con éxito.`
+          });
+        }
+      });
+    },
+// ********************       3. Jugadores o Técnicos menores a X años      ******************
+    get_report_3: function(req, res)   {
+      clientm.get_report_3(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los jugadores o técnicos menores a ${req.query.age} años.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Jugadores o técnicos menores a ${req.query.age} años obtenidos con éxito.`
+          });
+        }
+      });
+    },
+// ********************       4. Equipos que participaron en X competición      ******************
+    get_report_4: function(req, res)   {
+      clientm.get_report_4(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los equipos que participaron en una competición.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Equipos que participaron en una competición obtenidos con éxito.`
+          });
+        }
+      });
+    },
+// ********************       5. Equipos de X pais      ******************
+    get_report_5: function(req, res)   {
+      clientm.get_report_5(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los equipos de un pais.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Equipos de un país obtenidos con éxito.`
+          });
+        }
+      });
+    },
+// ********************      6. Equipos con X años de antigüedad      ******************
+    get_report_6: function(req, res)   {
+      clientm.get_report_6(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los equipos con ${req.query.age} años de antigüedad.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Equipos con ${req.query.age} años de antigüedad obtenidos con éxito..`
+          });
+        }
+      });
+    },
+// ********************      7. Estadios en X país      ******************
+    get_report_7: function(req, res)   {
+      clientm.get_report_7(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los estadios de un país.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Estadios de un país obtenidos con éxito.`
+          });
+        }
+      });
+    },
+// ********************      8. Estadios con capacidad menor o igual a X      ******************
+    get_report_8: function(req, res)   {
+      clientm.get_report_8(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los estadios con capacidad menor o igual a x.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Estadios con capacidad menor o igual a x obtenidos con éxito.`
+          });
+        }
+      });
+    },
+// ********************      9. Histórico de partidos de X equipo      ******************
+    get_report_9: function(req, res)   {
+      clientm.get_report_9(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener el histórico de partidos del equipo ${req.query.id_team}.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Histórico de partidos del equipo ${req.query.id_team} obtenidos con éxito.`
+          });
+        }
+      });
+    },
 // ........................................................................
 // ||||||||||||||||||||   VALIDAR CORREO   ||||||||||||||||||||
     validar_email(correo) {

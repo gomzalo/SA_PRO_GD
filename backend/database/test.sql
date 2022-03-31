@@ -57,3 +57,45 @@ END;
 SET @id := 2;
 SET @status := 1;
 CALL Update_Membership(@id, @status);
+
+-- Insert partido y competicion
+CREATE PROCEDURE Insert_Partido_Proc (
+    IN fecha DATETIME,
+    IN publico INT,
+    IN result_local INT,
+    IN result_visiting INT,
+    IN id_estadio INT,
+    IN id_visitante INT,
+    IN id_local INT,
+    IN id_competencia INT,
+    IN id_estado INT
+    )
+BEGIN
+    INSERT INTO Partido ( 
+        fecha,
+        publico,
+        result_local,
+        result_visiting,
+        id_estadio,
+        id_visitante,
+        id_local,
+        id_competencia,
+        id_estado
+        )
+    VALUES (
+        fecha,
+        publico,
+        result_local,
+        result_visiting,
+        id_estadio,
+        id_visitante,
+        id_local,
+        id_competencia,
+        id_estado
+        );
+
+    INSERT INTO Equipo_Competencia (id_competencia, id_equipo)
+    VALUES (id_local, id_competencia);
+    INSERT INTO Equipo_Competencia (id_competencia, id_equipo)
+    VALUES (id_visitante, id_competencia);
+END;

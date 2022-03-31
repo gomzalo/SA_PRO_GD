@@ -193,9 +193,104 @@ module.exports = {
         }
       });
     },
+// ||||||||||||||||||||   SEGUIR EQUIPO   ||||||||||||||||||||
+    favorite_teams: async function(req, res) {
+      clientm.favorite_teams(req.con, req.query, async function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: 'Error al obtener los equipos favoritos.',
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: 'Equipos favoritos obtenidos con éxito.'
+          });
+        }
+      });
+    },
 //  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 //  :::::::::::::::::::   REPORTES    :::::::::::::::::::
 //  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// ********************       1. Jugadores o Técnico de X equipo      ******************
+    get_report_1: function(req, res)   {
+      clientm.get_report_1(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los jugadores o técnico del equipo.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Jugadores o técnico del equipo obtenidos con éxito.`
+          });
+        }
+      });
+    },
+// ********************       2. Jugadores o Técnicos mayores de X años      ******************
+    get_report_2: function(req, res)   {
+      clientm.get_report_2(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los jugadores o técnicos mayores a ${req.query.age} años.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Jugadores o técnicos mayores a ${req.query.age} años obtenidos con éxito.`
+          });
+        }
+      });
+    },
+// ********************       3. Jugadores o Técnicos menores a X años      ******************
+    get_report_3: function(req, res)   {
+      clientm.get_report_3(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los jugadores o técnicos menores a ${req.query.age} años.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Jugadores o técnicos menores a ${req.query.age} años obtenidos con éxito.`
+          });
+        }
+      });
+    },
+// ********************       5. Equipos de X pais      ******************
+    get_report_5: function(req, res)   {
+      clientm.get_report_5(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los equipos de un pais.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Equipos de un país obtenidos con éxito.`
+          });
+        }
+      });
+    },
 // ........................................................................
 // ||||||||||||||||||||   VALIDAR CORREO   ||||||||||||||||||||
     validar_email(correo) {

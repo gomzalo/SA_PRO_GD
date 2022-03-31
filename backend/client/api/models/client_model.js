@@ -246,7 +246,7 @@ module.exports = {
       }
       await con.query(query, callback)
     },
-    // ********************       2. Jugadores o Técnicos mayores de X años      ******************
+  // ********************       2. Jugadores o Técnicos mayores de X años      ******************
     /**
      * Query Params: ?age=number&player=boolean
      * age es el numero de años a buscar sin incluir
@@ -336,6 +336,23 @@ module.exports = {
       }
       await con.query(query, callback)
     },
+  // ********************       4. Equipos que participaron en X competición      ******************
+    /**
+     * Query Params: ?id_competition=number
+     * Prefijo: /report/4/<<Query Params>>
+    */
+    get_report_4: async function(con, data, callback) {
+      const id = data.id_competition;
+      let query = `
+        SELECT e.id_equipo AS id_team, e.nombre AS team, e.photo
+          FROM Equipo e
+          INNER JOIN Equipo_Competencia ec ON ec.id_equipo = e.id_equipo
+            WHERE ec.id_competencia = ${id}
+            GROUP BY e.id_equipo
+        ;
+      `;
+      await con.query(query, callback)
+    },
   // ********************       5. Equipos de X país      ******************
     /**
      * Query Params: ?id_country=number
@@ -348,6 +365,81 @@ module.exports = {
           FROM Equipo e
             WHERE e.id_pais = ${id}
             GROUP BY e.id_equipo
+        ;
+      `;
+      await con.query(query, callback)
+    },
+  // ********************       6. Equipos con X años de antigüedad      ******************
+    /**
+     * Query Params: ?age=number
+     * age es el numero de años exactos a buscar
+    */
+    get_report_6: async function(con, data, callback) {
+      const age = data.age;
+      let query = `
+        SELECT e.id_equipo AS id_team, e.nombre AS team, e.photo,
+          e.foundation_date, p.nicename AS country
+          FROM Equipo e
+          INNER JOIN Pais p ON e.id_pais = p.id_pais
+            WHERE TIMESTAMPDIFF (YEAR, e.foundation_date, CURDATE()) = ${age}
+            GROUP BY e.id_equipo
+        ;
+      `;
+      await con.query(query, callback)
+    },
+  // ********************       7. Estadios en X país      ******************
+    /**
+     * Query Params: ?id_country=number
+    */
+    get_report_7: async function(con, data, callback) {
+      const id = data.id_country;
+      let query = `
+        SELECT e.id_estadio AS id_stadium, e.nombre AS stadium, e.foto AS photo,
+          e.id_pais AS id_country
+          FROM Estadio e
+            WHERE e.id_pais = ${id}
+            GROUP BY e.id_estadio
+        ;
+      `;
+      await con.query(query, callback)
+    },
+    // ********************       8. Estadios con capacidad menor o igual a X      ******************
+    /**
+     * Query Params: ?capacity=number
+     * capacity es el numero de la capacidad a buscar (inclusive)
+    */
+    get_report_8: async function(con, data, callback) {
+      const capacity = data.capacity;
+      let query = `
+        SELECT e.id_estadio AS id_stadium, e.nombre AS stadium, e.foto AS photo,
+          p.nicename AS country, e.capacidad AS capacity
+          FROM Estadio e
+          INNER JOIN Pais p ON e.id_pais = p.id_pais
+            WHERE e.capacidad >= ${capacity}
+            GROUP BY e.id_estadio
+        ;
+      `;
+      await con.query(query, callback)
+    },
+    // ********************       9. Histórico de partidos de X equipo      ******************
+    /**
+     * Query Params: ?id_team=number
+    */
+    get_report_9: async function(con, data, callback) {
+      const id = data.id_team;
+      let query = `
+        SELECT p.id_partido AS id, p.fecha AS game_date, p.publico AS attendees,
+        p.result_local, p.result_visiting AS result_visiting, p.id_estado AS status,
+        p.id_estadio AS id_stadium, es.nombre AS stadium, p.id_local AS id_team_local,
+        e.nombre AS team_local, e.photo AS photo_local, p.id_visitante AS id_team_visiting,
+        e1.nombre AS team_visiting, e1.photo AS photo_visiting, p.id_competencia AS id_competition,
+        c.nombre AS competition
+        FROM Partido p
+        INNER JOIN Estadio es ON es.id_estadio = p.id_estadio
+        INNER JOIN Equipo e ON e.id_equipo = p.id_local
+        INNER JOIN Equipo e1 ON e1.id_equipo = p.id_visitante
+        INNER JOIN Competencia c ON c.id_competencia = p.id_competencia
+            WHERE e.id_equipo = ${id}
         ;
       `;
       await con.query(query, callback)

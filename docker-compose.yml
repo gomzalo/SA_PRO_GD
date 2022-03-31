@@ -56,12 +56,12 @@ services:
       - "5010:5010"
     restart: on-failure
 
-  # server_administrador:
-  #   build: ./backend/administrador
-  #   container_name: admin
-  #   ports:
-  #     - "5011:5011"
-  #   restart: on-failure
+  server_administrador:
+    build: ./backend/administrative
+    container_name: admin
+    ports:
+      - "5011:5011"
+    restart: on-failure
   # server_empleado:
   #   build: ./backend/empleado
   #   container_name: empleado

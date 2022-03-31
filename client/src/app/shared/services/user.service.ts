@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   insertUser(user){
-    return this.http.post<any>(environment.apiClient+'register', user)
+    return this.http.post<any>(environment.apiAdministrador+'user', user)
     .pipe(
       catchError(this.handleError)
     );
@@ -24,8 +24,15 @@ export class UserService {
     return this.http.get<any>(environment.apiClient);
   }
 
+
+  getUser(id:Number){
+    
+    return this.http.get<any>(environment.apiClient+'?id='+id);
+  }
+
+
   updateUser(user){
-    return this.http.put<any>(environment.apiClient, user)
+    return this.http.put<any>(environment.apiAdministrador+'user', user)
     .pipe(
       catchError(this.handleError)
     );

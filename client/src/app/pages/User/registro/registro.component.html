@@ -69,6 +69,16 @@
         </mat-select>
       </mat-form-field>
 
+      <mat-form-field appearance="outline" class="center" *ngIf="rol=='1'">
+        <mat-label>Rol</mat-label>
+        <mat-select formControlName="id_rol" id="id_rol">
+          <mat-option *ngFor="let rol of roles" [value]="rol.id">
+            {{rol.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
       <mat-form-field appearance="outline" class="center">
         <mat-label>Teléfono </mat-label>
         <input matInput type="tel" placeholder="Teléfono" formControlName="phone" id="phone">

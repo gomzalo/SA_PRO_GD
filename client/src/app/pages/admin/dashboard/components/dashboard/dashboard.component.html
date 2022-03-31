@@ -9,36 +9,45 @@
         <mat-tab label="Resultados"> Resultados </mat-tab>
 
 
-        <mat-tab label="Noticias" *ngIf="user.membership==1"> Noticias
-          <div class="row">
+        <mat-tab label="Noticias" *ngIf="user.membership==1"> 
+
+          <mat-form-field appearance="fill" style="width: 300PX;">
+            <mat-label>Desea ver todas o de equipos favoritos?</mat-label>
+            <mat-select [(ngModel)]="filtro" name="reporte" ngDefaultControl (selectionChange)="getdata()">
+              <mat-option  value="0"  >
+                Todos
+              </mat-option>
+              <mat-option  value="1"  >
+                Favoritos
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
             <table class="table table-striped">
               <thead>
-                <tr>
-
-                  <th scope="col">Titulo</th>
-                  <th scope="col">Descripcion</th>
-                  <th scope="col">Fecha</th>
-                  <th scope="col">Equipo</th>
-
-                </tr>
+              <tr>
+    
+                <th scope="col">Titulo</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">fecha</th>
+                <th scope="col">Equipo</th>
+    
+              </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let noticia of noticias">
-
-                  <th scope="row">{{ noticia.titulo }}</th>
-                  <td>
-                    {{ noticia.descripcion}}
-                  </td>
-                  <td>{{ noticia.fecha}}</td>
-                  <td>{{ noticia.fecha}}</td>
-
-                </tr>
+              <tr *ngFor="let noticia of noticias">
+                
+                <th scope="row">{{ noticia.title }}</th>
+                <td>
+                  {{ noticia.description}}
+                </td>
+                <td>{{ noticia.date}}</td>
+                <td>{{ noticia.team}}</td>
+    
+              </tr>
               </tbody>
             </table>
-     
 
-
-          </div>
         </mat-tab>
         <mat-tab label="Consulta Datos Estadisticos" *ngIf="user.membership==1"> Consulta Datos Estadisticos </mat-tab>
       </mat-tab-group>

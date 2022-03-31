@@ -7,35 +7,48 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-
+export class ClienteService {
   constructor(private http: HttpClient) { }
 
-  insertUser(user){
-    return this.http.post<any>(environment.apiAdministrador+'user', user)
+  insertCliente(cliente){
+    return this.http.post<any>(environment.apiCliente, cliente)
     .pipe(
       catchError(this.handleError)
     );
   }
 
 
-  getAllUsers(){
-    
-    return this.http.get<any>(environment.apiCliente);
+  updateCliente(cliente){
+    return this.http.put<any>(environment.apiCliente, cliente)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteCliente(_id:string){
+    return this.http.delete<any>(environment.apiCliente+'?id='+_id)
+    .pipe(
+      catchError(this.handleError)
+    );
   }
 
 
-  getUser(id:Number){
+
+  getOnecliente(id:Number){
     
     return this.http.get<any>(environment.apiCliente+'?id='+id);
   }
 
+  
+  getFavoritosCliente(idcliente:Number){
+    
+    return this.http.get<any>(environment.apiCliente+'follow?id_client='+idcliente);
+  }
 
-  updateUser(user){
-    return this.http.put<any>(environment.apiAdministrador+'user', user)
-    .pipe(
-      catchError(this.handleError)
-    );
+  
+  getAllclientes(){
+    
+    return this.http.get<any>(environment.apiCliente);
   }
 
 
@@ -49,9 +62,7 @@ export class UserService {
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
-    // Return an observable with a user-facing error message.
+    // Return an observable with a cliente-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }
-
-

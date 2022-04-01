@@ -3,13 +3,15 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import {environment} from '../../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class ReportesService {
 
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
+    private router: Router
   ) { }
 
   headerDict = {
@@ -22,7 +24,7 @@ export class ReportesService {
   reporte5() { }
 
   reporte6(genero:string) {
-    return this.http.get<any>(environment.apiAdministrador+'report/6?gender='+genero,{headers: new HttpHeaders(this.headerDict)});
+    return this.http.get<any>(environment.apiAdministrador+'report/6?gender='+genero,{headers: new HttpHeaders(this.headerDict)})
    }
 
   reporte7(age:Number) {
@@ -39,5 +41,18 @@ export class ReportesService {
     return this.http.get<any>(environment.apiAdministrador+'report/10',{headers: new HttpHeaders(this.headerDict)});
   }
    
-
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+    } else {
+      if(error.status==401){
+        this.router.navigate(['unauthorized']);
+      }
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a cliente-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
+  }
 }

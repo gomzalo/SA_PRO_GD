@@ -18,23 +18,17 @@ export class PartidoService {
 
   insertMatch(match){
     return this.http.post<any>(environment.apiPartido, match, {headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
   updateMatch(match){
     return this.http.put<any>(environment.apiPartido, match, {headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
   deleteMatch(_id:string){
     return this.http.delete<any>(environment.apiPartido+'?id='+_id, {headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
   getOnematch(id:Number){

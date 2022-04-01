@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { withLatestFrom } from 'rxjs/operators';
 import { EquipoService } from 'src/app/shared/services/equipo.service';
 import { ReportesService } from 'src/app/shared/services/reportes.service';
 
 @Component({
-  selector: 'app-reportes',
-  templateUrl: './reportes.component.html',
-  styleUrls: ['./reportes.component.scss']
+  selector: 'app-datos-estadisticos',
+  templateUrl: './datos-estadisticos.component.html',
+  styleUrls: ['./datos-estadisticos.component.scss']
 })
-export class ReportesComponent implements OnInit {
+export class DatosEstadisticosComponent implements OnInit {
+
   selectedReporte = 0;
   equipos
   equipo = 0
-  edad = 0
+  edad=0
   gender = ''
   orden = -1
   report_data = {}
@@ -35,7 +35,7 @@ export class ReportesComponent implements OnInit {
     this.equipoService.getAllteams()
       .subscribe((data) => { this.equipos = data.data; console.log(this.equipos) });
   }
-  constructor(private equipoService: EquipoService, private reportesService: ReportesService, private router: Router) {
+  constructor(private equipoService: EquipoService, private reportesService: ReportesService) {
 
   }
 
@@ -83,54 +83,26 @@ export class ReportesComponent implements OnInit {
 
   getReporte6() {
     this.reportesService.reporte6(this.gender)
-      .subscribe(
-        (data) => { this.report_data = data.data; console.log(this.report_data); }, 
-        error => {
-          console.log(error)
-          if (error.status== 401) {
-            this.router.navigate(['unauthorized']);
-          }
-        })
-      ;
+      .subscribe((data) => { this.report_data = data.data; console.log(this.report_data); });
   }
   getReporte7() {
     this.reportesService.reporte7(this.edad)
-      .subscribe((data) => { this.report_data = data.data; console.log(this.report_data); },
-      error => {
-        if (error.status == 401) {
-          this.router.navigate(['unauthorized']);
-        }
-      });
+    .subscribe((data) => { this.report_data = data.data; console.log(this.report_data); });
   }
 
   getReporte8() {
     this.reportesService.reporte8(this.orden)
-      .subscribe((data) => { this.report_data = data.data; console.log(this.report_data); },
-      error => {
-        if (error.status == 401) {
-          this.router.navigate(['unauthorized']);
-        }
-      });
+    .subscribe((data) => { this.report_data = data.data; console.log(this.report_data); });
   }
 
   getReporte9() {
-    this.reportesService.reporte9(this.orden, this.equipo)
-      .subscribe((data) => { this.report_data = data.data; console.log(this.report_data); },
-      error => {
-        if (error.status == 401) {
-          this.router.navigate(['unauthorized']);
-        }
-      });
+    this.reportesService.reporte9(this.orden,this.equipo)
+    .subscribe((data) => { this.report_data = data.data; console.log(this.report_data); });
   }
 
   getReporte10() {
     this.reportesService.reporte10()
-      .subscribe((data) => { this.report_data = data.data; console.log(this.report_data); }),
-      error => {
-        if (error.status == 401) {
-          this.router.navigate(['unauthorized']);
-        }
-      };
+    .subscribe((data) => { this.report_data = data.data; console.log(this.report_data); });
   }
 
 

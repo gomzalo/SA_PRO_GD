@@ -14,24 +14,18 @@ export class TecnicoService {
   }
   insertTecnico(Tecnico){
     return this.http.post<any>(environment.apiTecnico, Tecnico,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
 
   updateTecnico(Tecnico){
     return this.http.put<any>(environment.apiTecnico, Tecnico,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
   deleteTecnico(_id:string){
     return this.http.delete<any>(environment.apiTecnico+'?id='+_id,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
 

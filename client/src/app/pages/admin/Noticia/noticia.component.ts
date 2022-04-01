@@ -5,6 +5,7 @@ import { EquipoService } from '../../../shared/services/equipo.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 interface Country {
   id?: number;
@@ -41,7 +42,7 @@ export class NoticiaComponent implements OnInit {
 
   });
 
-  constructor(private noticiaService: NoticiaService,private equipoService: EquipoService,private authService:AuthService) {
+  constructor(private noticiaService: NoticiaService,private equipoService: EquipoService,private authService:AuthService, private router: Router) {
 
   }
   
@@ -60,12 +61,20 @@ export class NoticiaComponent implements OnInit {
 
   getnoticias() {
     this.noticiaService.getAllNotices()
-      .subscribe((data) => { this.noticias = data.data });
+      .subscribe((data) => { this.noticias = data.data },  error => {
+        if (error.status == 401) {
+          this.router.navigate(['unauthorized']);
+        }
+      });
   }
 
   getequipos() {
     this.equipoService.getAllteams()
-      .subscribe((data) => { this.equipos = data.data;console.log(this.equipos) });
+      .subscribe((data) => { this.equipos = data.data;console.log(this.equipos) },  error => {
+        if (error.status == 401) {
+          this.router.navigate(['unauthorized']);
+        }
+      });
   }
 
 

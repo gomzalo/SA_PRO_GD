@@ -83,7 +83,8 @@ pipeline{
         }
         stage('Build') {  
             steps{
-                    sh 'cat docker-compose.yml'
+                    sh 'sudo docker login -u "bitochepe" -p "a596b343-ee91-47c8-a5c3-f49d76f8982c"'
+                    sh 'sudo docker-compose -f docker-compose.yml push'
                 }
             }
         stage('deploy'){

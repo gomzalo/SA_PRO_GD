@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -10,7 +10,9 @@ import { catchError, retry } from 'rxjs/operators';
 export class UserService {
 
   constructor(private http: HttpClient) { }
-
+  headerDict = {
+    'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token,
+  }
   insertUser(user){
     return this.http.post<any>(environment.apiAdministrador+'user', user)
     .pipe(
@@ -21,18 +23,18 @@ export class UserService {
 
   getAllUsers(){
     
-    return this.http.get<any>(environment.apiCliente);
+    return this.http.get<any>(environment.apiCliente,{headers: new HttpHeaders(this.headerDict)});
   }
 
 
   getUser(id:Number){
     
-    return this.http.get<any>(environment.apiCliente+'?id='+id);
+    return this.http.get<any>(environment.apiCliente+'?id='+id,{headers: new HttpHeaders(this.headerDict)});
   }
 
 
   updateUser(user){
-    return this.http.put<any>(environment.apiAdministrador+'user', user)
+    return this.http.put<any>(environment.apiAdministrador+'user', user,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );

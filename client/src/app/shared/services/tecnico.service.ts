@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -9,9 +9,11 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class TecnicoService {
   constructor(private http: HttpClient) { }
-
+  headerDict = {
+    'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token,
+  }
   insertTecnico(Tecnico){
-    return this.http.post<any>(environment.apiTecnico, Tecnico)
+    return this.http.post<any>(environment.apiTecnico, Tecnico,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );
@@ -19,14 +21,14 @@ export class TecnicoService {
 
 
   updateTecnico(Tecnico){
-    return this.http.put<any>(environment.apiTecnico, Tecnico)
+    return this.http.put<any>(environment.apiTecnico, Tecnico,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );
   }
 
   deleteTecnico(_id:string){
-    return this.http.delete<any>(environment.apiTecnico+'?id='+_id)
+    return this.http.delete<any>(environment.apiTecnico+'?id='+_id,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );

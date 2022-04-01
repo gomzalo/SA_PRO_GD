@@ -13,4 +13,8 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  navigateLogin(){
+    this.router.navigate(['login']);
+  }
 }

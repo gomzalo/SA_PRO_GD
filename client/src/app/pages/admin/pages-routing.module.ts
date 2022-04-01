@@ -10,6 +10,7 @@ import { AmbosGuard } from 'src/app/core/guards/ambos.guard';
 import { JugadorComponent } from './jugador/jugador.component';
 import { TecnicoComponent } from './tecnico/tecnico.component';
 import { EstadioComponent } from './estadio/estadio.component';
+import { UnauthorizedComponent } from '../unauthorized/unauthorized.component';
 
 const routes: Routes = [
   { path: 'home', 
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'noticias',
     component: NoticiaComponent
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent
   },
   {
     path: 'jugadores',
@@ -48,9 +53,7 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AmbosGuard]
   },
-  { path: 'proyects', loadChildren: () => import('./proyects/components/proyects.module').then(m => m.ProyectsModule) },
-  { path: 'proyects-assign', loadChildren: () => import('./proyects-assign/components/proyects-assign.module').then(m => m.ProyectsAssignModule) },
-
+ 
 ];
 
 @NgModule({

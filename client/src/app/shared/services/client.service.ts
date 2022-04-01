@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -9,9 +9,11 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class ClienteService {
   constructor(private http: HttpClient) { }
-
+  headerDict = {
+    'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token,
+  }
   insertCliente(cliente){
-    return this.http.post<any>(environment.apiCliente, cliente)
+    return this.http.post<any>(environment.apiCliente, cliente,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );
@@ -19,14 +21,14 @@ export class ClienteService {
 
 
   updateCliente(cliente){
-    return this.http.put<any>(environment.apiCliente, cliente)
+    return this.http.put<any>(environment.apiCliente, cliente,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );
   }
 
   deleteCliente(_id:string){
-    return this.http.delete<any>(environment.apiCliente+'?id='+_id)
+    return this.http.delete<any>(environment.apiCliente+'?id='+_id,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );
@@ -36,19 +38,19 @@ export class ClienteService {
 
   getOnecliente(id:Number){
     
-    return this.http.get<any>(environment.apiCliente+'?id='+id);
+    return this.http.get<any>(environment.apiCliente+'?id='+id,{headers: new HttpHeaders(this.headerDict)});
   }
 
   
   getFavoritosCliente(idcliente:Number){
     
-    return this.http.get<any>(environment.apiCliente+'follow?id_client='+idcliente);
+    return this.http.get<any>(environment.apiCliente+'follow?id_client='+idcliente,{headers: new HttpHeaders(this.headerDict)});
   }
 
   
   getAllclientes(){
     
-    return this.http.get<any>(environment.apiCliente);
+    return this.http.get<any>(environment.apiCliente,{headers: new HttpHeaders(this.headerDict)});
   }
 
 

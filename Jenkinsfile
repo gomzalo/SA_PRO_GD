@@ -87,7 +87,9 @@ pipeline{
                     when{ expression { return administrative } }
                     steps{
                         dir("backend/administrative"){
-                            sh 'cat .env'
+                            sh 'docker login -u bitochepe -p a596b343-ee91-47c8-a5c3-f49d76f8982c'
+                            sh 'docker build -t bitochepe/administrative-sa'
+                            sh 'docker push bitochepe/administrative-sa'
                         }
                     }
                 }
@@ -195,7 +197,7 @@ pipeline{
                     when{ expression { return administrative } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy administrador"'
+                            sh 'echo "deploy administrador"'
                         }
                     }
                 }
@@ -203,7 +205,7 @@ pipeline{
                     when{ expression { return auth } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy auth"'
+                            sh 'echo "deploy auth"'
                         }
                     }
                 }
@@ -211,7 +213,7 @@ pipeline{
                     when{ expression { return cliente } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy cliente"'
+                            sh 'echo "deploy cliente"'
                         }
                     }
                 }
@@ -219,7 +221,7 @@ pipeline{
                     when{ expression { return comp } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy competicion"'
+                            sh 'echo "deploy competicion"'
                         }
                     }
                 }
@@ -227,7 +229,7 @@ pipeline{
                     when{ expression { return empleado } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy empleado"'
+                            sh 'echo "deploy empleado"'
                         }
                     }
                 }
@@ -235,7 +237,7 @@ pipeline{
                     when{ expression { return equipo } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy equipo"'
+                            sh 'echo "deploy equipo"'
                         }
                     }
                 }
@@ -243,7 +245,7 @@ pipeline{
                     when{ expression { return estadio } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy estadio"'
+                            sh 'echo "deploy estadio"'
                         }
                     }
                 }
@@ -251,7 +253,7 @@ pipeline{
                     when{ expression { return jugador } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy jugador"'
+                            sh 'echo "deploy jugador"'
                         }
                     }
                 }
@@ -259,7 +261,7 @@ pipeline{
                     when{ expression { return noticia } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy noticia"'
+                            sh 'echo "deploy noticia"'
                         }
                     }
                 }
@@ -267,7 +269,7 @@ pipeline{
                     when{ expression { return pais } }                   
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy pais"'
+                            sh 'echo "deploy pais"'
                         }
                     }
                 }
@@ -275,7 +277,7 @@ pipeline{
                     when{ expression { return partido } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy partido"'
+                            sh 'echo "deploy partido"'
                         }
                     }
                 }
@@ -283,7 +285,7 @@ pipeline{
                     when{ expression { return prediccion } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy prediccion"'
+                            sh 'echo "deploy prediccion"'
                         }
                     }
                 }
@@ -291,7 +293,7 @@ pipeline{
                     when{ expression { return tecnico } }
                     steps{
                         dir("SoccerStats"){
-                            sh 'deploy tecnico"'
+                            sh 'echo "deploy tecnico"'
                         }
                     }
                 }

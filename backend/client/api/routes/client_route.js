@@ -7,8 +7,8 @@ router.get('/', authenticate_token, client_controller.get);
 router.post('/register', client_controller.create);
 router.put('/', authenticate_token, client_controller.update);
 router.delete('/:id', authenticate_token, client_controller.delete);
-router.post('/membership', authenticate_token, client_controller.buy_membership);
-router.put('/membership', authenticate_token, client_controller.cancel_membership);
+router.post('/membership', authenticate_token_membership, client_controller.buy_membership);
+router.put('/membership', authenticate_token_membership, client_controller.cancel_membership);
 router.post('/follow', authenticate_token, authenticate_token, client_controller.follow_team);
 router.get('/follow', authenticate_token, client_controller.favorite_teams);
 //  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -41,6 +41,18 @@ function authenticate_token(req, res, next){
         if (err) return res.sendStatus(403);
         req.id_user_rol = id_user_rol;
         if (!(id_user_rol.id_rol === 3)) return res.status(401).send({msg: 'Solamente los clientes pueden acceder a esta direccion.'});
+        next();
+    });
+}
+
+function authenticate_token_membership(req, res, next){
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if(token == null) return res.sendStatus(401);
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, id_user_rol) => {
+        if (err) return res.sendStatus(403);
+        req.id_user_rol = id_user_rol;
+        if (!(id_user_rol.id_rol === 3 || id_user_rol.id_rol === 1)) return res.status(401).send({msg: 'Solamente los clientes pueden acceder a esta direccion.'});
         next();
     });
 }

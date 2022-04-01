@@ -86,8 +86,8 @@ pipeline{
                 stage("build administrative"){
                     when{ expression { return administrative } }
                     steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en administrador"'
+                        dir("backend/administrative"){
+                            sh 'cat .env'
                         }
                     }
                 }

@@ -1,0 +1,16 @@
+name: Deployment-Servers
+  hosts: SERVERS
+  tasks: 
+
+    - name: Detener contenedores existentes
+      shell: sudo docker stop $(sudo docker ps -aq)
+
+    - name: Eliminar contenedores existentes
+      shell: sudo docker rm $(sudo docker ps -aq) -f
+
+    - name: Eliminar imagenes existentes
+      shell: sudo docker rmi $(sudo docker images -a -q)
+      
+    - name: Levantar todos los microservicios
+      shell: docker-compose up --build -d
+

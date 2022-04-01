@@ -18,7 +18,9 @@ pipeline{
     }
     stages {
         stage("Start"){
-            script {
+            steps{
+                dir("SoccerStats"){
+                    script {
                     def changeLogSets = currentBuild.changeSets
                     for (int i = 0; i < changeLogSets.size(); i++) {
                         def entries = changeLogSets[i].items
@@ -69,12 +71,10 @@ pipeline{
                             }
                         }
                     }
-                }   
-            steps{
-                dir("SoccerStats"){
+                } 
                     sh 'echo "${params.CLIENTE_SA}"'
                 }
-            }
+            }          
         }
         stage("build client"){
             when{ expression { return params.CLIENTE_SA } }
@@ -180,6 +180,6 @@ pipeline{
                 }
             }
         }
-        
+
     }
 }

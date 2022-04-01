@@ -81,116 +81,11 @@ pipeline{
                 }
             }
         }
-        stage('Build') {
-            stages{
-                stage("build administrative"){
-                    when{ expression { return administrative } }
-                    steps{
-                        dir("backend/administrative"){
-                            sh 'docker login -u bitochepe -p a596b343-ee91-47c8-a5c3-f49d76f8982c'
-                            sh 'docker build -t bitochepe/administrative-sa'
-                            sh 'docker push bitochepe/administrative-sa'
-                        }
-                    }
-                }
-                stage("build auth"){
-                    when{ expression { return auth } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en auth"'
-                        }
-                    }
-                }
-                stage("build cliente"){
-                    when{ expression { return cliente } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en cliente"'
-                        }
-                    }
-                }
-                stage("build competicion"){
-                    when{ expression { return comp } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en competicion"'
-                        }
-                    }
-                }
-                stage("build empleado"){
-                    when{ expression { return empleado } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en empleado"'
-                        }
-                    }
-                }
-                stage("build equipo"){
-                    when{ expression { return equipo } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en equipo"'
-                        }
-                    }
-                }
-                stage("build estadio"){
-                    when{ expression { return estadio } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en estadio"'
-                        }
-                    }
-                }
-                stage("build jugador"){
-                    when{ expression { return jugador } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en jugador"'
-                        }
-                    }
-                }
-                stage("build noticia"){
-                    when{ expression { return noticia } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en noticia"'
-                        }
-                    }
-                }
-                stage("build pais"){
-                    when{ expression { return pais } }                   
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en pais"'
-                        }
-                    }
-                }
-                stage("build partido"){
-                    when{ expression { return partido } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en partido"'
-                        }
-                    }
-                }
-                stage("build prediccion"){
-                    when{ expression { return prediccion } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en prediccion"'
-                        }
-                    }
-                }
-                stage("build tecnico"){
-                    when{ expression { return tecnico } }
-                    steps{
-                        dir("SoccerStats"){
-                            sh 'echo "Hubo cambios en tecnico"'
-                        }
-                    }
+        stage('Build') {  
+            steps{
+                    sh 'cat docker-compose.yml'
                 }
             }
-        }
         stage('deploy'){
             stages{
                 stage("deploy administrative"){

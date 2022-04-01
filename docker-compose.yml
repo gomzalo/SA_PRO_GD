@@ -1,0 +1,47 @@
+version: '3'
+services:
+  server_client:
+    build: ./backend/client
+    image: bitochepe/sa_server_client
+  server_equipo:
+    build: ./backend/equipo
+    image: bitochepe/sa_server_equipo
+  server_partido:
+    build: ./backend/partido
+    image: bitochepe/sa_server_partido
+  server_competition:
+    build: ./backend/competicion
+    image: bitochepe/sa_server_competition
+  server_stadium:
+    build: ./backend/estadio
+    image: bitochepe/sa_server_stadium
+  server_tecnico:
+    build: ./backend/tecnico
+    image: bitochepe/sa_server_tecnico
+  server_jugador:
+    build: ./backend/jugador
+    image: bitochepe/sa_server_jugador
+  server_news:
+    build: ./backend/noticia
+    image: bitochepe/sa_server_news
+  # server_predict:
+  #   build: ./backend/prediccion
+  #   container_name: predict
+  #   ports:
+  #     - "5009:5009"
+  #   restart: on-failure
+  server_auth:
+    build: ./backend/autenticacion
+    image: bitochepe/sa_server_auth
+  server_admin:
+    build: ./backend/administrative
+    image: bitochepe/sa_server_admin
+  server_empleado:
+    build: ./backend/empleado
+    image: bitochepe/sa_server_empleado
+  server_pais:
+    build: ./backend/pais
+    image: bitochepe/sa_server_pais
+  frontend:
+    build: ./client
+    image: bitochepe/sa_frontend

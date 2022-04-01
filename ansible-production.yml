@@ -1,5 +1,5 @@
-name: Deployment-WebSite
-  hosts: DEVELOP
+name: Deployment-Servers
+  hosts: SERVERS
   tasks: 
 
     - name: Detener Contenedores Existentes

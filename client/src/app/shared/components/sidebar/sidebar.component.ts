@@ -80,7 +80,7 @@ export class SidebarComponent {
           type: 'link'
         },
         {
-          path: '/branchs',
+          path: '/partido',
           title: 'PARTIDO',
           type: 'link'
         },

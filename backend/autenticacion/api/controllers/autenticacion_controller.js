@@ -348,14 +348,3 @@ module.exports = {
   function generateAccessToken(id_user_rol){
     return jwt.sign(id_user_rol, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'1d'});
   }
-// ||||||||||||||||||||   AUTENTICAR TOKEN   ||||||||||||||||||||
-  function authenticate_token(req, res, next){
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if(token == null) return res.sendStatus(401);
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, id_user_rol) => {
-        if (err) return res.sendStatus(403);
-        req.id_user_rol = id_user_rol;
-        next();
-    });
-  }

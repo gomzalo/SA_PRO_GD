@@ -23,9 +23,10 @@ import { JugadorComponent } from './jugador/jugador.component';
 import { TecnicoComponent } from './tecnico/tecnico.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EstadioComponent } from './estadio/estadio.component';
+import { PartidoComponent } from './partido/partido.component';
 
 @NgModule({
-  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent, JugadorComponent, TecnicoComponent,ProfileComponent, EstadioComponent],
+  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent, JugadorComponent, TecnicoComponent,ProfileComponent, EstadioComponent, PartidoComponent],
   imports: [
     AngularDualListBoxModule,
     MatSelectModule,

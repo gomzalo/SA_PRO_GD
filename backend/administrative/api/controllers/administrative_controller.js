@@ -1,8 +1,5 @@
 const administrativem = require('../models/administrative_model');
-var cryptoJS = require('crypto-js');
 const nodemailer = require("nodemailer");
-const jwt = require('jsonwebtoken');
-const { url } = require('../../config');
 
 module.exports = {
   // ::::::::::::::::::::   REPORTES    ::::::::::::::::::::
@@ -370,15 +367,4 @@ async function send_email(datos, callback) {
   );
   console.log("Email sent: %s", info);
   // return result ;
-}
-// ||||||||||||||||||||   AUTENTICAR TOKEN   ||||||||||||||||||||
-function authenticate_token(req, res, next){
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  if(token == null) return res.sendStatus(401);
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, id_user_rol) => {
-      if (err) return res.sendStatus(403);
-      req.id_user_rol = id_user_rol;
-      next();
-  });
 }

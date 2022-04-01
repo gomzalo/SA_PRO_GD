@@ -55,4 +55,9 @@ export class EstadioComponent implements OnInit {
 
   }
 
+  cerrar(){
+    this.isOpen=false;
+    this.estadio=null
+  }
+
 }

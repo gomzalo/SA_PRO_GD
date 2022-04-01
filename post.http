@@ -70,18 +70,23 @@ content-type: application/json
 
 # {
 #     "email": "gxmzalx@gmail.com",
-#     "password": "GQfilmIIaf"
+#     "password": "123"
 # }
+
+{
+    "email": "eduardoajsivinacccc@gmail.com",
+    "password": "123"
+}
 
 # {
 #     "email": "wjosuep13@gmail.com",
 #     "password": "123"
 # }
 
-{
-    "email": "gomzalo@outlook.com",
-    "password": "mam12"
-}
+# {
+#     "email": "gomzalo@outlook.com",
+#     "password": "mam12"
+# }
 
 # POST http://localhost:5003/user/login HTTP/1.1
 # content-type: application/json
@@ -158,6 +163,7 @@ content-type: application/json
 # ----------    Editar   ----------
 
 PUT http://localhost:5000/customer/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoxNSwiaWRfcm9sIjoxLCJpYXQiOjE2NDg3NzM0NDYsImV4cCI6MTY0ODg1OTg0Nn0.or-dIwi1HaYL2P_4hGChh5PyC1ueT3wd_zD1lS5M94s
 content-type: application/json
 
 {
@@ -330,6 +336,7 @@ content-type: application/json
 # ----------    Editar   ----------
 
 PUT http://localhost:5004/stadium HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoxNSwiaWRfcm9sIjoxLCJpYXQiOjE2NDg3NzM0NDYsImV4cCI6MTY0ODg1OTg0Nn0.or-dIwi1HaYL2P_4hGChh5PyC1ueT3wd_zD1lS5M94s
 content-type: application/json
 
 {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EquipoService } from 'src/app/shared/services/equipo.service';
 import { PartidoService } from 'src/app/shared/services/partido.service';
+import { EstadioService } from 'src/app/core/services/estadio.service';
 
 @Component({
   selector: 'app-partido',
@@ -11,6 +12,7 @@ import { PartidoService } from 'src/app/shared/services/partido.service';
 export class PartidoComponent implements OnInit {
 
   equipos = []
+  estadios = []
   partidos = []
   estados=[{id:1,Estado:'Sin iniciar'},{id:2,Estado:'Inciado'},{id:3,Estado:'Finalizado'}, {id:4,Estado:'Suspendido'}]
   page = 1;
@@ -31,17 +33,23 @@ export class PartidoComponent implements OnInit {
     id_competition: new FormControl('', [Validators.required]),
   });
   
-  constructor(private formBuilder: FormBuilder, private equipoService: EquipoService,private partidoService:PartidoService) { }
+  constructor(private formBuilder: FormBuilder, private equipoService: EquipoService, private partidoService:PartidoService, private estadioService:EstadioService) { }
 
   ngOnInit(): void {
     this.getpartidos();
     this.getTeams();
+    this.getStadiums();
     this.size = this.partidos.length
   }
 
   getTeams() {
     this.equipoService.getAllteams()
       .subscribe((data) => { this.equipos = data.data });
+  }
+
+  getStadiums() {
+    this.estadioService.getEstadios()
+      .subscribe((data) => { this.estadios = data.data });
   }
 
   formatDate(fecha:Date) {
@@ -54,33 +62,24 @@ export class PartidoComponent implements OnInit {
   getpartidos() {
     this.partidoService.getAllmatchs()
       .subscribe((data) => { this.partidos = data.data;console.log(this.partidos)});
-
   }
-
 
   editar(partido) {
     this.partido = partido;
     console.log(partido);
-    this.photo64= partido.photo;
-    delete partido['photo'];
     this.Form.patchValue(this.partido)
-    
     this.isOpen=true;
   }
 
-
   submit(form) {
-
     if (this.Form.valid) {
       if(!this.partido){
-        form.photo = this.photo64
-        form.foundation_date = this.formatDate(form.foundation_date)
+        form.game_date = this.formatDate(form.game_date)
         console.log(form);
         this.partidoService.insertMatch(form)
           .subscribe(res => console.log(res));
-      }else{
-        form.photo = this.photo64
-        form.foundation_date = this.formatDate(form.foundation_date)
+      }else{        
+        form.game_date = this.formatDate(form.game_date)
         console.log(form);
         form.id=this.partido.id;
         this.partidoService.updateMatch(form)
@@ -88,21 +87,10 @@ export class PartidoComponent implements OnInit {
       }
     }
   }
+  
   eliminar(id_partido){
     this.partidoService.deleteMatch(id_partido)
     .subscribe(res => console.log(res));
-  }
-
-  onFileChange(event) {
-
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      console.log(reader.result);
-      this.photo64 = reader.result;
-
-    };
   }
 
 }

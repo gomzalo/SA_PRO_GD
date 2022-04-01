@@ -16,10 +16,10 @@ export class EstadioService {
     private http:HttpClient
   ) {
     
-   }
+  }
 
-   getEstadios(){
+  getEstadios(){
     //return this.http.get(this.url+`?id=${id.id}`);
-    return this.http.get(this.url);
+    return this.http.get<any>(this.url);
   }
 }

@@ -27,6 +27,7 @@ const routes: Routes = [
   },
   { path: 'users',  loadChildren: () => import('./pages/User/users.module').then(m => m.UsersModule) },
   { path: 'estadio',  loadChildren: () => import('./pages/estadio/estadio.module').then(m => m.EstadioModule) },
+  { path: 'competencia',  loadChildren: () => import('./pages/competencia/competencia.module').then(m => m.CompetenciaModule) },
   {
     path: 'login',
     loadChildren: () => import('./account/account.module').then(m => m.AccountModule),

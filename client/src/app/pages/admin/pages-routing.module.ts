@@ -12,6 +12,7 @@ import { TecnicoComponent } from './tecnico/tecnico.component';
 import { EstadioComponent } from './estadio/estadio.component';
 import { UnauthorizedComponent } from '../unauthorized/unauthorized.component';
 import { PartidoComponent } from './partido/partido.component';
+import { ComptenciaComponent } from './comptencia/comptencia.component';
 
 const routes: Routes = [
   { path: 'home', 
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: 'partido',
     component: PartidoComponent
+  },
+  {
+    path: 'competencia',
+    component: ComptenciaComponent
   },
 
 ];

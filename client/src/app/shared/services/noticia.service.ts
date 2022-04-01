@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoticiaService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
+
+  headerDict = {
+    'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token,
+  }
+  
+  requestOptions:any = {                                                                                                                                                                                 
+    headers: new Headers(this.headerDict), 
+  };
 
   insertNotice(Notice){
-    return this.http.post<any>(environment.apiNoticia, Notice)
+    return this.http.post<any>(environment.apiNoticia, Notice,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );
@@ -21,19 +30,19 @@ export class NoticiaService {
 
   getOneNotice(id:Number){
     
-    return this.http.get<any>(environment.apiNoticia+'?id='+id);
+    return this.http.get<any>(environment.apiNoticia+'?id='+id,{headers: new HttpHeaders(this.headerDict)});
   }
 
   
   getAllNoticesbyTeam(idequipo:Number){
     
-    return this.http.get<any>(environment.apiNoticia+'?team='+idequipo);
+    return this.http.get<any>(environment.apiNoticia+'?team='+idequipo,{headers: new HttpHeaders(this.headerDict)});
   }
 
   
   getAllNotices(){
     
-    return this.http.get<any>(environment.apiNoticia);
+    return this.http.get<any>(environment.apiNoticia,{headers: new HttpHeaders(this.headerDict)});
   }
 
 

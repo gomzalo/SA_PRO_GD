@@ -11,8 +11,8 @@ import { PaisService } from 'src/app/shared/services/pais.service';
 export class JugadorComponent implements OnInit {
 
   paises = []
-  equipos = []
-  posiciones=[{id:1,val:'Portero'},{id:2,val:'Defensa'},{id:3,val:'Medio'},{id:1,val:'Delantero'}]
+  jugadores = []
+  posiciones=[{id:1,val:'Portero'},{id:2,val:'Defensa'},{id:3,val:'Medio'},{id:4,val:'Delantero'}]
   page = 1;
   pageSize = 4;
   size = 0;
@@ -24,22 +24,28 @@ export class JugadorComponent implements OnInit {
     lastname: new FormControl('', [Validators.required]),
     birth_date:new FormControl('', [Validators.required]),
     position:new FormControl('', [Validators.required]),
-    status:new FormControl('', [Validators.required]),
-    photo:new FormControl(this.photo64, [Validators.required]),
+    status:new FormControl(1, [Validators.required]),
+    photo:new FormControl(this.photo64, ),
     id_nationality:new FormControl('',[Validators.required] ),
 
   });
 
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private equipoService:JugadorService) { }
+  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private jugadorService:JugadorService) { }
 
   ngOnInit(): void {
     this.getcountries();
-    this.size = this.equipos.length
+    this.getJugadores();
+    this.size = this.jugadores.length
   }
 
   getcountries() {
     this.paisService.getpaises()
       .subscribe((data) => { this.paises = data.data });
+  }
+
+  getJugadores() {
+    this.jugadorService.getAlljugadors()
+      .subscribe((data) => { this.jugadores = data.data;console.log(this.jugadores); });
   }
 
   formatDate(fecha:Date) {
@@ -49,11 +55,6 @@ export class JugadorComponent implements OnInit {
     return mySQLDateString
   }
 
-  getequipos() {
-    this.equipoService.getAlljugadors()
-      .subscribe((data) => { this.equipos = data.data;console.log(this.equipos)});
-
-  }
 
 
   editar(equipo) {
@@ -73,22 +74,22 @@ export class JugadorComponent implements OnInit {
     if (this.Form.valid) {
       if(!this.equipo){
         form.photo = this.photo64
-        form.foundation_date = this.formatDate(form.foundation_date)
+        form.birth_date = this.formatDate(form.birth_date)
         console.log(form);
-        this.equipoService.insertTeam(form)
+        this.jugadorService.insertJugador(form)
           .subscribe(res => console.log(res));
       }else{
         form.photo = this.photo64
-        form.foundation_date = this.formatDate(form.foundation_date)
+        form.birth_date = this.formatDate(form.birth_date)
         console.log(form);
         form.id=this.equipo.id;
-        this.equipoService.updateTeam(form)
+        this.jugadorService.updateJugador(form)
           .subscribe(res => console.log(res));
       }
     }
   }
   eliminar(id_equipo){
-    this.equipoService.deleteTeam(id_equipo)
+    this.jugadorService.deleteJugador(id_equipo)
     .subscribe(res => console.log(res));
   }
 

@@ -27,6 +27,14 @@ export class AuthService {
     return this.http.post(this.url, data);
   }
 
+  envioPass(data: any) {
+    return this.http.post(this.url+`temporal-password`, data);
+  }
+
+  resetPass(data: any) {
+    return this.http.post(this.url+`reset-password`, data);
+  }
+
   getSesion():any{
     let user_string = JSON.parse(localStorage.getItem('currentUser'));
     let token=user_string.token;

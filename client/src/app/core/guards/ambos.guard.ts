@@ -16,7 +16,7 @@ export class AmbosGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         const infoAuth:any = this.authService.getSesion();
-        if(infoAuth.id_rol == '3' || infoAuth.id_rol == '1' ){
+        if(infoAuth.id_rol == '3' || infoAuth.id_rol == '1' || infoAuth.id_rol == '2' ){
         return true;
       }else{
         this.router.navigate(['']);

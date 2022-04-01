@@ -14,6 +14,8 @@ SELECT * FROM `soccer_stats_db`.`Competencia` LIMIT 1000;
 
 -- Procedures
 
+-- Contraseña temporal
+
 DROP PROCEDURE Set_Temp_Pass;
 
 CREATE PROCEDURE Set_Temp_Pass (IN temp_pass VARCHAR(50), id INT, OUT original_pass VARCHAR(50))
@@ -42,11 +44,58 @@ WHERE id_usuario = 2;
 
 SELECT * FROM Temp_Pass;
 
--- Reportes
+-- Actualizar membresia
+CREATE PROCEDURE Update_Membership (IN id INT, status INT)
+BEGIN
+    UPDATE Usuario
+        SET membership = status
+        WHERE id_usuario = id;
+    INSERT INTO Usuario_Membresia (id_usuario, fecha, estado)
+    VALUES (id, NOW(), status);
+END;
 
-SELECT t1.id_usuario as id, t1.first_name as name, t1.last_name as lastname, t1.photo as photo
-    t2.name as nationality FROM Usuario t1
-    INNER JOIN Pais t2 ON t1.id_pais = t2.id_pais
-    INNER JOIN Equipo t2 ON 1
-    WHERE t1.id_usuario = Usuario_Empleado.id_usuario
-    AND t2.id_pais = Usuario_Empleado.id_pais
+SET @id := 2;
+SET @status := 1;
+CALL Update_Membership(@id, @status);
+
+-- Insert partido y competicion
+CREATE PROCEDURE Insert_Partido_Proc (
+    IN fecha DATETIME,
+    IN publico INT,
+    IN result_local INT,
+    IN result_visiting INT,
+    IN id_estadio INT,
+    IN id_visitante INT,
+    IN id_local INT,
+    IN id_competencia INT,
+    IN id_estado INT
+    )
+BEGIN
+    INSERT INTO Partido ( 
+        fecha,
+        publico,
+        result_local,
+        result_visiting,
+        id_estadio,
+        id_visitante,
+        id_local,
+        id_competencia,
+        id_estado
+        )
+    VALUES (
+        fecha,
+        publico,
+        result_local,
+        result_visiting,
+        id_estadio,
+        id_visitante,
+        id_local,
+        id_competencia,
+        id_estado
+        );
+
+    INSERT INTO Equipo_Competencia (id_competencia, id_equipo)
+    VALUES (id_local, id_competencia);
+    INSERT INTO Equipo_Competencia (id_competencia, id_equipo)
+    VALUES (id_visitante, id_competencia);
+END;

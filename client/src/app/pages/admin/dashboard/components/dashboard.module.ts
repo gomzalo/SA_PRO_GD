@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MaterialModule } from 'src/material.module';
 
 
 //Route
@@ -27,7 +28,8 @@ import { CountToModule } from 'angular-count-to';
     NgbModule,
     NgxDatatableModule,
     SharedModule,
-    CountToModule
+    CountToModule,
+    MaterialModule
   ]
 })
 export class DashboardModule { }

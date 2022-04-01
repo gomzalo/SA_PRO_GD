@@ -1,32 +1,41 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JugadorService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
-  insertTeam(jugador){
-    return this.http.post<any>(environment.apiJugador, jugador)
+  headerDict = {
+    'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token,
+  }
+  
+  requestOptions:any = {                                                                                                                                                                                 
+    headers: new Headers(this.headerDict), 
+  };
+
+  insertJugador(jugador){
+    return this.http.post<any>(environment.apiJugador, jugador,this.requestOptions)
     .pipe(
       catchError(this.handleError)
     );
   }
 
 
-  updateTeam(jugador){
-    return this.http.put<any>(environment.apiJugador, jugador)
+  updateJugador(jugador){
+    return this.http.put<any>(environment.apiJugador, jugador,this.requestOptions)
     .pipe(
       catchError(this.handleError)
     );
   }
 
-  deleteTeam(_id:string){
-    return this.http.delete<any>(environment.apiJugador+'?id='+_id)
+  deleteJugador(_id:string){
+    return this.http.delete<any>(environment.apiJugador+'?id='+_id,this.requestOptions)
     .pipe(
       catchError(this.handleError)
     );
@@ -36,19 +45,19 @@ export class JugadorService {
 
   getOnejugador(id:Number){
     
-    return this.http.get<any>(environment.apiJugador+'?id='+id);
+    return this.http.get<any>(environment.apiJugador+'?id='+id,this.requestOptions);
   }
 
   
   getAlljugadorsbyjugador(idjugador:Number){
     
-    return this.http.get<any>(environment.apiJugador+'?jugador='+idjugador);
+    return this.http.get<any>(environment.apiJugador+'?jugador='+idjugador,{headers: new HttpHeaders(this.headerDict)});
   }
 
   
   getAlljugadors(){
     
-    return this.http.get<any>(environment.apiJugador);
+    return this.http.get<any>(environment.apiJugador,{headers: new HttpHeaders(this.headerDict)});
   }
 
 

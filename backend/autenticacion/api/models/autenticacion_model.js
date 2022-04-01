@@ -10,10 +10,23 @@ module.exports = {
         callback
       )
     },
-// ||||||||||||||||||||   ACTUALIZAR CONTRASEÑA   ||||||||||||||||||||
+    // ||||||||||||||||||||   ACTUALIZAR CONTRASEÑA  ||||||||||||||||||||
+    update_pass: async function(con, data, callback) {
+      const { id, password } = data;
+      await con.query(
+        `
+        UPDATE Usuario
+        SET
+        pass = '${password}'
+        WHERE id_usuario = '${id}';
+        `,
+        callback
+      )
+    },
+    // ||||||||||||||||||||   ACTUALIZAR CONTRASEÑA PROC  ||||||||||||||||||||
     update_password: async function(con, data, callback) {
       const { id, password } = data;
-      const original_pass = 'sdafdas';
+      let original_pass = 'aad'
       await con.query(
         `
         -- UPDATE Usuario
@@ -47,6 +60,16 @@ module.exports = {
           id_estado = IF (id_estado != 1, 1, null)
         WHERE
           id_usuario = '${data}';
+        `,
+        callback
+      )
+    },
+// ||||||||||||||||||||   RESETEAR CONTRASEÑA   ||||||||||||||||||||
+    verify_temp_pass: async function(con, data, callback) {
+      await con.query(
+        `
+        SELECT * FROM Temp_Pass
+        WHERE id_usuario = '${data}';
         `,
         callback
       )

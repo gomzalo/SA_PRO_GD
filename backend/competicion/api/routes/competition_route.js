@@ -1,16 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const competition_controller = require('../controllers/competition_controller');
-const app = express();
-
-app.use((req, res, next) => {
-    if(req.headers.referer && req.headers.referer == `http://${url}:${port}/competition`){
-        next();
-    } else { 
-        res.json({err: "Unauthorized access"});
-    }
-});
-
+const jwt = require('jsonwebtoken');
 /*
 Tipo (campo type):
     Liga = 1
@@ -20,10 +11,20 @@ Tipo (campo type):
     Cuadrangular = 5
     Triangular = 6
 */
-
 router.get('/', competition_controller.get_competition);
-router.post('/', competition_controller.create_competition);
-router.put('/', competition_controller.edit_competition);
-router.delete('/', competition_controller.delete_competition);
-
+router.post('/', authenticate_token, competition_controller.create_competition);
+router.put('/', authenticate_token, competition_controller.edit_competition);
+router.delete('/', authenticate_token, competition_controller.delete_competition);
+// ||||||||||||||||||||   AUTENTICAR TOKEN   ||||||||||||||||||||
+function authenticate_token(req, res, next){
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if(token == null) return res.sendStatus(401);
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, id_user_rol) => {
+        if (err) return res.sendStatus(403);
+        req.id_user_rol = id_user_rol;
+        if (id_user_rol.id_rol != 1 || id_user_rol.id_rol != 2) return res.status(401).send({msg: 'Solamente los empleados o administradores pueden acceder a esta direccion.'});
+        next();
+    });
+}
 module.exports = router

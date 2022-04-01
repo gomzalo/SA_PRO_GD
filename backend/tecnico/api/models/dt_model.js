@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 
 module.exports = {
   create_dt: async function(con, data, callback) {
@@ -26,7 +25,7 @@ module.exports = {
     const id = data.id;
     if(id != null){
       await con.query(
-        `
+        /*`
         select
         t1.id_tecnico as id,
         t1.nombre as name,
@@ -43,11 +42,45 @@ module.exports = {
         inner join Pais t2 on t1.id_pais = t2.id_pais
         left join Equipo t4 on t4.id_equipo = t3.id_equipo 
         where t1.id_estado = 1 and isnull(t3.fecha_fin) and t1.id_tecnico = ${id};
+        `*/
+        `
+        select 
+        t1.id_tecnico as id,
+        t1.nombre as name,
+        t1.apellido as lastname,
+        t1.fecha_nac as birth_date,
+        t1.id_pais as id_nationality,
+        t2.name as nationality,
+        t1.id_status as status,
+        t1.foto as photo
+        ,0 as id_equipo, "Ninguno" as id_team from Tecnico t1
+        inner join Pais t2 on t1.id_pais = t2.id_pais
+        where id_tecnico not in (select distinct id_tecnico from Asignacion_Tecnico_Equipo)
+        and id_estado = 1 and id_tecnico = ${id}
+        union
+        (select
+        t1.id_tecnico as id,
+        t1.nombre as name,
+        t1.apellido as lastname,
+        t1.fecha_nac as birth_date,
+        t1.id_pais as id_nationality,
+        t2.name as nationality,
+        t1.id_status as status,
+        t1.foto as photo,
+        t3.id_equipo as id_team,
+        t4.nombre as name_team
+        from Asignacion_Tecnico_Equipo t3
+        right join Tecnico t1 on t1.id_tecnico = t3.id_tecnico
+        inner join Pais t2 on t1.id_pais = t2.id_pais
+        left join Equipo t4 on t4.id_equipo = t3.id_equipo 
+        where t1.id_estado = 1 and t3.actual = 1 and t1.id_tecnico = ${id});
+        
+
         `,
         callback)
     } else {
       await con.query(
-        `
+       /* `
         select
         t1.id_tecnico as id,
         t1.nombre as name,
@@ -64,6 +97,38 @@ module.exports = {
         inner join Pais t2 on t1.id_pais = t2.id_pais
         left join Equipo t4 on t4.id_equipo = t3.id_equipo 
         where t1.id_estado = 1 and isnull(t3.fecha_fin);
+        `*/
+        `
+        select 
+        t1.id_tecnico as id,
+        t1.nombre as name,
+        t1.apellido as lastname,
+        t1.fecha_nac as birth_date,
+        t1.id_pais as id_nationality,
+        t2.name as nationality,
+        t1.id_status as status,
+        t1.foto as photo
+        ,0 as id_equipo, "Ninguno" as id_team from Tecnico t1
+        inner join Pais t2 on t1.id_pais = t2.id_pais
+        where id_tecnico not in (select distinct id_tecnico from Asignacion_Tecnico_Equipo)
+        and id_estado = 1
+        union
+        (select
+        t1.id_tecnico as id,
+        t1.nombre as name,
+        t1.apellido as lastname,
+        t1.fecha_nac as birth_date,
+        t1.id_pais as id_nationality,
+        t2.name as nationality,
+        t1.id_status as status,
+        t1.foto as photo,
+        t3.id_equipo as id_team,
+        t4.nombre as name_team
+        from Asignacion_Tecnico_Equipo t3
+        right join Tecnico t1 on t1.id_tecnico = t3.id_tecnico
+        inner join Pais t2 on t1.id_pais = t2.id_pais
+        left join Equipo t4 on t4.id_equipo = t3.id_equipo 
+        where t1.id_estado = 1 and t3.actual = 1);
         `,
         callback)
     }

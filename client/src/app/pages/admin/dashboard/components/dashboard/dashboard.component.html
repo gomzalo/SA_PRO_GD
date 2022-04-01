@@ -7,14 +7,55 @@
     <div class="row">
       <mat-tab-group>
         <mat-tab label="Resultados"> Resultados </mat-tab>
-        <mat-tab label="Noticias"> Noticias </mat-tab>
-        <mat-tab label="Consulta Datos Estadisticos"> Consulta Datos Estadisticos </mat-tab>
+
+
+        <mat-tab label="Noticias" *ngIf="user.membership==1"> 
+
+          <mat-form-field appearance="fill" style="width: 300PX;">
+            <mat-label>Desea ver todas o de equipos favoritos?</mat-label>
+            <mat-select [(ngModel)]="filtro" name="reporte" ngDefaultControl (selectionChange)="getdata()">
+              <mat-option  value="0"  >
+                Todos
+              </mat-option>
+              <mat-option  value="1"  >
+                Favoritos
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+            <table class="table table-striped">
+              <thead>
+              <tr>
+    
+                <th scope="col">Titulo</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">fecha</th>
+                <th scope="col">Equipo</th>
+    
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let noticia of noticias">
+                
+                <th scope="row">{{ noticia.title }}</th>
+                <td>
+                  {{ noticia.description}}
+                </td>
+                <td>{{ noticia.date}}</td>
+                <td>{{ noticia.team}}</td>
+    
+              </tr>
+              </tbody>
+            </table>
+
+        </mat-tab>
+        <mat-tab label="Consulta Datos Estadisticos" *ngIf="user.membership==1"> Consulta Datos Estadisticos </mat-tab>
       </mat-tab-group>
     </div>
 
-    
-    
-    
+
+
+
 
     <!-- <div class="row">
       <div (click)="goCategories()" class="col-2 boxi" (mouseover)="imgCat=true" (mouseout)="imgCat=false">
@@ -37,7 +78,7 @@
 
 
     <!-- <div class="row"> -->
-      <!-- <div (click)="goSelection()" class="col-2 boxi" (mouseover)="imgSel=true" (mouseout)="imgSel=false">
+    <!-- <div (click)="goSelection()" class="col-2 boxi" (mouseover)="imgSel=true" (mouseout)="imgSel=false">
         <img *ngIf="!imgSel" src="assets/imgs/home_sel.svg" alt="" class="boxes2">
         <img *ngIf="imgSel" src="assets/imgs/home_selRed.svg" alt="" class="boxes2">
       </div>
@@ -45,11 +86,11 @@
         <img *ngIf="!imgValor" src="assets/imgs/home_valor.svg" alt="" class="boxes2">
         <img *ngIf="imgValor" src="assets/imgs/home_valorRed.svg" alt="" class="boxes2">
       </div> -->
-      <!-- <div (click)="goUsers()" class="col-2 boxi" (mouseover)="imgUser=true" (mouseout)="imgUser=false">
+    <!-- <div (click)="goUsers()" class="col-2 boxi" (mouseover)="imgUser=true" (mouseout)="imgUser=false">
         <img *ngIf="!imgUser" src="assets/imgs/home_user.svg" alt="" class="boxes2">
         <img *ngIf="imgUser" src="assets/imgs/home_userRed.svg" alt="" class="boxes2">
       </div> -->
-      <!-- <div (click)="goBackup()" class="col-2 boxi" (mouseover)="imgBack=true" (mouseout)="imgBack=false">
+    <!-- <div (click)="goBackup()" class="col-2 boxi" (mouseover)="imgBack=true" (mouseout)="imgBack=false">
         <img *ngIf="!imgBack" src="assets/imgs/home_back.svg" alt="" class="boxes2">
         <img *ngIf="imgBack" src="assets/imgs/home_backRed.svg" alt="" class="boxes2">
       </div> -->

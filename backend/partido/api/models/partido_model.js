@@ -1,4 +1,3 @@
-const matchc = require('../controllers/partido_controller');
 module.exports = {
 // ||||||||||||||||||||   GET   ||||||||||||||||||||
     get_game: async function(con, data, callback) {

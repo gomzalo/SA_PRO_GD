@@ -332,6 +332,23 @@ module.exports = {
         });
       }
     });
+  },
+  // ........................................................................
+  // ||||||||||||||||||||   VALIDAR CORREO   ||||||||||||||||||||
+  validar_email(correo) {
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(correo)) {
+      return true;
+    }
+    return false;
+  },
+  // ||||||||||||||||||||   VALIDAR PASSWORD   ||||||||||||||||||||
+  validar_pass(pass, conf){
+    if(pass == conf) {
+      if(pass.length >= 8) {
+          return true;
+        }
+    }  
+    return false;
   }
 }
 //---------------------------------------------------

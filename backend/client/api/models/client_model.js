@@ -444,4 +444,210 @@ module.exports = {
       `;
       await con.query(query, callback)
     },
+    get_report_10: async function(con, data, callback) {
+      const {id, player} = data;
+      let query = "";
+      if(player == 0){
+        query = `
+        select
+        t1.id_equipo as id_team,
+        t2.nombre as team,
+        t2.photo as photo,
+        t3.name as country
+        from Asignacion_Tecnico_Equipo t1
+        inner join Equipo t2 on t1.id_equipo = t2.id_equipo
+        inner join Pais t3 on t2.id_pais = t3.id_pais
+        where t1.id_tecnico = ${id};
+      `;
+      }else{
+        query = `
+        select
+        t1.id_equipo as id_team,
+        t2.nombre as team,
+        t2.photo as photo,
+        t3.name as country
+        from Asignacion_Jugador_Equipo t1
+        inner join Equipo t2 on t1.id_equipo = t2.id_equipo
+        inner join Pais t3 on t2.id_pais = t3.id_pais
+        where t1.id_jugador = ${id};
+        `;
+      }
+      await con.query(query, callback)
+    },
+    get_report_11: async function(con, data, callback) {
+      const goals = data.id_team;
+      let query = `
+      select
+      t1.id_partido as id,
+      t1.fecha as game_date,
+      t1.publico as attendees,
+      t1.result_local,t1.result_visiting,
+      t1.id_estado as status,
+      t1.id_estadio as id_stadium,
+      t2.nombre as stadium,
+      t1.id_local as id_team_local,
+      t3.nombre as team_local,
+      t3.photo as photo_local,
+      t1.id_visitante as id_team_visiting,
+      t4.nombre as team_visiting,
+      t4.photo as photo_visiting,
+      t1.id_competencia as id_competition,
+      t5.nombre as competition
+      from Partido t1 
+      inner join Estadio t2 on t1.id_estadio = t2.id_estadio
+      inner join Equipo t3 on t1.id_local = t3.id_equipo
+      inner join Equipo t4 on t1.id_visitante = t4.id_equipo
+      inner join Competencia t5 on t1.id_competencia = t5.id_competencia
+      where t1.result_local + t1.result_visiting >= ${goals};
+      `;
+      await con.query(query, callback)
+    },
+    get_report_12: async function(con, data, callback) {
+      const {incidence, id_competition} = data;
+      let query = `
+      select
+      t4.id_jugador as id,
+      t1.nombre as name,
+      t1.apellido as lastname,
+      t2.name as nationality,
+      t1.foto as photo,
+      t3.nombre as position,
+      count(*) as "count"
+      from Incidencia t4
+      inner join Jugador t1 on t1.id_jugador = t4.id_jugador
+      inner join Pais t2 on t1.pais_nacionalidad = t2.id_pais
+      inner join Posicion t3 on t1.id_posicion = t3.id_posicion
+      where t4.id_incidencia = ${incidence} and t4.id_partido = ${id_competition};
+        ;
+      `;
+      await con.query(query, callback)
+    },
+    get_report_13: async function(con, params,body, callback) {
+      const {incidence,year} = params;
+      let conditions = body.competitions.map(competition => `id_competencia = ${competition}`).join(" OR ");
+      let query = `
+      select
+      t4.id_jugador as id,
+      t1.nombre as name,
+      t1.apellido as lastname,
+      t2.name as nationality,
+      t1.foto as photo,
+      t3.nombre as position,
+      count(*) as "count"
+      from Incidencia t4
+      inner join Jugador t1 on t1.id_jugador = t4.id_jugador
+      inner join Pais t2 on t1.pais_nacionalidad = t2.id_pais
+      inner join Posicion t3 on t1.id_posicion = t3.id_posicion
+      where t4.id_incidencia = ${incidence} and t4.id_partido in
+      (select t1.id_partido from Partido_Competencia t1
+      inner join Competencia t2 on t1.id_competencia = t2.id_competencia
+      where t1.id_competencia = ${conditions} and t2.anio = ${year});
+      
+      `;
+      await con.query(query, callback)
+    },
+    get_report_14: async function(con, params, body, callback) {
+      const id = params.id_team;
+      let conditions = body.competitions.map(competition => `t2.id_tipo_competencia = ${competition}`).join(" OR ");
+      let query = `
+      select
+      t1.nombre as "type",
+      t2.id_campeon as id_team,
+      t3.nombre as team,
+      t3.photo as photo,
+      t2.id_competencia as id_competition,
+      t2.nombre as competition,
+       count(*) as "count"
+      from Competencia t2
+      inner join Tipo_Competencia t1 on t1.id_tipo_competencia = t2.id_tipo_competencia
+      inner join Equipo t3 on t3.id_equipo = t2.id_campeon
+      where t2.id_campeon = 3 and (${conditions})
+      group by t2.id_campeon;
+      `;
+      await con.query(query, callback)
+    },
+    get_report_15: async function(con, data, callback) {
+      const year = data.year;
+      let query = `
+      select
+      t1.id_partido as id,
+      t1.fecha as game_date,
+      t1.publico as attendees,
+      t1.result_local,t1.result_visiting,
+      t1.id_estado as status,
+      t1.id_estadio as id_stadium,
+      t2.nombre as stadium,
+      t1.id_local as id_team_local,
+      t3.nombre as team_local,
+      t3.photo as photo_local,
+      t1.id_visitante as id_team_visiting,
+      t4.nombre as team_visiting,
+      t4.photo as photo_visiting,
+      t1.id_competencia as id_competition,
+      t5.nombre as competition
+      from Partido t1 
+      inner join Estadio t2 on t1.id_estadio = t2.id_estadio
+      inner join Equipo t3 on t1.id_local = t3.id_equipo
+      inner join Equipo t4 on t1.id_visitante = t4.id_equipo
+      inner join Competencia t5 on t1.id_competencia = t5.id_competencia
+      where year(t1.fecha) = ${year};
+      `;
+      await con.query(query, callback)
+    },
+    get_report_16: async function(con, data, callback) {
+      const {id_team,id_opposing_team} = data;
+      let query = `
+      select
+      t1.id_partido as id,
+      t1.fecha as game_date,
+      t1.publico as attendees,
+      t1.result_local,t1.result_visiting,
+      t1.id_estado as status,
+      t1.id_estadio as id_stadium,
+      t2.nombre as stadium,
+      t1.id_local as id_team_local,
+      t3.nombre as team_local,
+      t3.photo as photo_local,
+      t1.id_visitante as id_team_visiting,
+      t4.nombre as team_visiting,
+      t4.photo as photo_visiting,
+      t1.id_competencia as id_competition,
+      t5.nombre as competition
+      from Partido t1 
+      inner join Estadio t2 on t1.id_estadio = t2.id_estadio
+      inner join Equipo t3 on t1.id_local = t3.id_equipo
+      inner join Equipo t4 on t1.id_visitante = t4.id_equipo
+      inner join Competencia t5 on t1.id_competencia = t5.id_competencia
+      where (t1.id_visitante = ${id_opposing_team} and t1.id_local = ${id_team} ) or (t1.id_visitante = ${id_team} and t1.id_local = ${id_opposing_team});
+      `;
+      await con.query(query, callback)
+    },
+    get_report_17: async function(con, data, callback) {
+      const id = data.id_team;
+      let query = `
+      select
+      t1.id_partido as id,
+      t1.fecha as game_date,
+      t1.publico as attendees,
+      t1.result_local,t1.result_visiting,
+      t1.id_estado as status,
+      t1.id_estadio as id_stadium,
+      t2.nombre as stadium,
+      t1.id_local as id_team_local,
+      t3.nombre as team_local,
+      t3.photo as photo_local,
+      t1.id_visitante as id_team_visiting,
+      t4.nombre as team_visiting,
+      t4.photo as photo_visiting,
+      t1.id_competencia as id_competition,
+      t5.nombre as competition
+      from Partido t1 
+      inner join Estadio t2 on t1.id_estadio = t2.id_estadio
+      inner join Equipo t3 on t1.id_local = t3.id_equipo
+      inner join Equipo t4 on t1.id_visitante = t4.id_equipo
+      inner join Competencia t5 on t1.id_competencia = t5.id_competencia
+      where t1.id_visitante = ${id} or id_local = ${id};
+      `;
+      await con.query(query, callback)
+    }
   }

@@ -1,5 +1,3 @@
-const jwt = require('jsonwebtoken');
-
 module.exports = {
   create_team: async function(con, data, callback) {
     const {name, foundation_date, id_country, photo} = data;

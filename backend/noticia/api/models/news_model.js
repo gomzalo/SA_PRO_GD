@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 
 module.exports = {
   create_noticia: async function(con, data, callback) {

@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 
 module.exports = {
   create_dt: async function(con, data, callback) {

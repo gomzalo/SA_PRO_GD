@@ -30,15 +30,6 @@
           </mat-select>
         </mat-form-field>
   
-        <mat-form-field appearance="outline" class="center" *ngIf="rol=='1'">
-          <mat-label>Estado</mat-label>
-          <mat-select formControlName="id_estado" id="id_estado">
-            <mat-option *ngFor="let estado of estados" [value]="estado.id">
-              {{estado.Estado}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-  
         <mat-form-field appearance="outline" class="center">
           <mat-label>Capacity </mat-label>
           <input matInput type="number" placeholder="Edad" formControlName="capacity" id="capacity">
@@ -53,6 +44,8 @@
         (change)="onFileChange($event)">
        
         <br />
+
+        <img src="" alt="">
   
         <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>
   

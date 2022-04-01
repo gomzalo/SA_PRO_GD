@@ -12,6 +12,7 @@ export class RegistarestadioComponent implements OnInit {
   @Input() editData: any;
   paises = [];
   photo64 = null;
+  editcomplete:any;
   RegistroForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     foundation_date: new FormControl('', [Validators.required]),
@@ -30,6 +31,7 @@ export class RegistarestadioComponent implements OnInit {
     this.getcountries();
     this.RegistroForm.patchValue(this.editData);
     console.log(this.editData);
+    this.editcomplete=this.editData;
     if (this.editData) {
    
       this.photo64= this.editData.photo;
@@ -38,6 +40,7 @@ export class RegistarestadioComponent implements OnInit {
       this.editData.name = this.editData.nombre;
       this.editData.foundation_date=this.editData.fecha_inaguracion;
       this.editData.address=this.editData.direccion;
+      this.editData.id_country = this.editData.id_pais;
       this.editData.capacity = this.editData.capacidad;
       this.RegistroForm.patchValue(this.editData)
     }
@@ -57,6 +60,22 @@ export class RegistarestadioComponent implements OnInit {
   getcountries() {
     this.paisService.getpaises()
       .subscribe((data) => { this.paises = data.data;console.log(this.paises); });
+  }
+
+  onFileChange(event) {
+
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      console.log(reader.result);
+      this.photo64 = reader.result;
+
+    };
+  }
+
+  submit(form) {
+      alert('Jala');
   }
 
 }

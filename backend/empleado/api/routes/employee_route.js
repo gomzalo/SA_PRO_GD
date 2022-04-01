@@ -16,7 +16,7 @@ function authenticate_token(req, res, next){
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, id_user_rol) => {
         if (err) return res.sendStatus(403);
         req.id_user_rol = id_user_rol;
-        if (id_user_rol.id_rol != 1 || id_user_rol.id_rol != 2) return res.status(400).send({msg: 'Solamente los clientes pueden acceder a esta direccion.'});
+        if (id_user_rol.id_rol != 1 || id_user_rol.id_rol != 2) return res.status(401).send({msg: 'Solamente los empleados o administradores pueden acceder a esta direccion.'});
         next();
     });
 }

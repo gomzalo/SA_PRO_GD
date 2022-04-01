@@ -14,6 +14,6 @@ RUN /bin/bash -c "pip3 install --no-cache-dir -r requirements.txt"
 
 ADD /app/ /app/
 
-EXPOSE 5000
+EXPOSE 5009
 
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "wsgi:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:5009", "wsgi:app"]

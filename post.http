@@ -336,6 +336,7 @@ content-type: application/json
 # ----------    Editar   ----------
 
 PUT http://localhost:5004/stadium HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoxNSwiaWRfcm9sIjoxLCJpYXQiOjE2NDg3NzM0NDYsImV4cCI6MTY0ODg1OTg0Nn0.or-dIwi1HaYL2P_4hGChh5PyC1ueT3wd_zD1lS5M94s
 content-type: application/json
 
 {

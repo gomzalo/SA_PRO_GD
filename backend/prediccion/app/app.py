@@ -1,7 +1,6 @@
 from flask import render_template, jsonify, request, Flask
 # from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS, cross_origin
-from api.FormatFile import get_file
 from api.SetParams import set_params
 # from fastai.text import *
 
@@ -11,7 +10,6 @@ app = Flask(__name__)
 CORS(app) # Comment on deploy
 # api = Api(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-app.register_blueprint(get_file)
 app.register_blueprint(set_params)
 
 @app.route('/')
@@ -23,7 +21,7 @@ def covicho():
 #     return send_from_directory(app.static_folder, 'index.html')
     return {
         'resultStatus': 'SUCCESS',
-        'message': 'Servidor Flask corriendo en puerto 5000.'
+        'message': 'Servidor Flask corriendo en puerto 5009.'
         }
 
 # @app.route('/reporte1', methods=["POST", "GET"])

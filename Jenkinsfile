@@ -6,7 +6,7 @@ pipeline{
     stages {
         stage('Setup') {
             steps {
-                when{ expression {
+                script {
                             def changeLogSets = currentBuild.changeSets
                             for (int i = 0; i < changeLogSets.size(); i++) {
                                 def entries = changeLogSets[i].items
@@ -25,7 +25,7 @@ pipeline{
                                 }
                             }
                         } 
-                    }
+                    
                 sh 'echo "Hello World"'
             }
         }
@@ -48,7 +48,7 @@ pipeline{
                     }
                 }
                 stage("build pais"){
-                    when{ expression {return bandera}}
+                    when{ expression {return bandera} }
                     steps{
                         dir("SoccerStats"){
                             sh 'echo "Hubo cambios en pais"'

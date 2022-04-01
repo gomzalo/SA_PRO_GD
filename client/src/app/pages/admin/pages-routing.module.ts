@@ -9,6 +9,7 @@ import { EquipoComponent } from './equipo/equipo.component';
 import { AmbosGuard } from 'src/app/core/guards/ambos.guard';
 import { JugadorComponent } from './jugador/jugador.component';
 import { TecnicoComponent } from './tecnico/tecnico.component';
+import { EstadioComponent } from './estadio/estadio.component';
 
 const routes: Routes = [
   { path: 'home', 
@@ -38,6 +39,9 @@ const routes: Routes = [
   {
     path: 'tecnico',
     component: TecnicoComponent
+  },{
+    path: 'estadio',
+    component: EstadioComponent
   },
   {
     path: 'profile',

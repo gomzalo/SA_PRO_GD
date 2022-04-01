@@ -16,6 +16,15 @@
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field appearance="outline" class="center" *ngIf="isEdit">
+          <mat-label>Champion Team </mat-label>
+          <mat-select formControlName="id_campeon" id="id_campeon">
+            <mat-option *ngFor="let equipo of equipos" [value]="equipo.id">
+              {{equipo.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-form-field appearance="outline" class="center">
           <mat-label>Tipo</mat-label>
           <mat-select formControlName="id_tipo_competencia" id="id_tipo_competencia">
@@ -33,6 +42,7 @@
         
   
         <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>
+        <button mat-flat-button color="danger" (click)="deleteCompetencia()" class="form-control">delete </button>
   
       </div>
     </mat-card-content>

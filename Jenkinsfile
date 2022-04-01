@@ -31,13 +31,11 @@ pipeline{
                 }
             }
         stage('deploy'){
-            stages{
-                steps{
-                    dir("ansible"){
-                        sh 'ansible-playbook deploy-playbook.yml'
-                    }
+            steps{
+                dir("ansible"){
+                    sh 'ansible-playbook deploy-playbook.yml'
                 }
-            }
+            }   
         }
     }
 }

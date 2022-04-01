@@ -1,0 +1,143 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Partido</h1>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;"
+            (click)="isOpen=true">Agregar Partido</button>
+        <br />
+        <br />
+        <button type="button" class="btn btn-danger col-md-2 offset-md-10" style="display: block;float: right;"
+            (click)="isOpen=false" *ngIf="isOpen">Cerrar formulario</button>
+
+    </div>
+
+    <form [formGroup]="Form" autocomplete="off" novalidate (ngSubmit)="submit(Form.value)" class="content"
+        *ngIf="isOpen">
+        <mat-card-content>
+            <div class="center margin-dark" style="display:flex;flex-flow: column;">
+
+                <mat-form-field appearance="outline" class="center">
+                    <mat-label>Fecha: </mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="game_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="center">
+                    <mat-label>Publico </mat-label>
+                    <input matInput type="number" placeholder="titulo" formControlName="attendees" id="attendees">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="center">
+                    <mat-label>Resultado local </mat-label>
+                    <input matInput type="number" placeholder="titulo" formControlName="result_local" id="result_local">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="center">
+                    <mat-label>Resultado Visitante </mat-label>
+                    <input matInput type="number" placeholder="titulo" formControlName="result_visiting" id="result_visiting">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="center" *ngIf="rol=='1'">
+                    <mat-label>Estado </mat-label>
+                    <mat-select formControlName="status" id="status">
+                        <mat-option *ngFor="let estado of estados" [value]="estado.id">
+                        {{estado.Estado}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="center">
+                    <mat-label>ID Estadio </mat-label>
+                    <input matInput type="number" placeholder="titulo" formControlName="id_stadium" id="id_stadium">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="center">
+                    <mat-label>Equipo local</mat-label>
+                    <mat-select formControlName="id_team_local" id="id_team_local">
+                        <mat-option *ngFor="let equipo of equipos" [value]="equipo.id">
+                            {{ equipo.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="center">
+                    <mat-label>Equipo visitante</mat-label>
+                    <mat-select formControlName="id_team_visiting" id="id_team_visiting">
+                        <mat-option *ngFor="let equipo of equipos" [value]="equipo.id">
+                            {{ equipo.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="center">
+                    <mat-label>ID Competicion </mat-label>
+                    <input matInput type="number" placeholder="titulo" formControlName="id_competition" id="id_competition">
+                </mat-form-field>
+
+                <br />
+                <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>
+
+            </div>
+        </mat-card-content>
+    </form>
+
+    <br />
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID Competencia</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Publico</th>
+                    <th scope="col">Resultado local</th>
+                    <th scope="col">Resultado visitante</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">ID Estadio</th>
+                    <th scope="col">Estadio</th>
+                    <th scope="col">ID Local</th>
+                    <th scope="col">Equipo Local</th>
+                    <th scope="col">ID Visitante</th>
+                    <th scope="col">Equipo Visitante</th>
+                    <th scope="col">ID Competicion</th>
+                    <th scope="col">Competicion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let partido of partidos">
+                    <th scope="row">{{ partido.id }}</th>
+                    <td>{{ partido.game_date }}</td>
+                    <td>{{ partido.attendees }}</td>
+                    <td>{{ partido.result_local }}</td>
+                    <td>{{ partido.result_visiting }}</td>
+                    <td>{{ partido.status }}</td>
+                    <td>{{ partido.id_stadium }}</td>
+                    <td>{{ partido.stadium }}</td>
+                    <td>{{ partido.id_team_local }}</td>
+                    <td>{{ partido.team_local }}</td>
+                    <td>{{ partido.id_team_visiting }}</td>
+                    <td>{{ partido.team_visiting }}</td>
+                    <td>{{ partido.id_competition }}</td>
+                    <td>{{ partido.competition }}</td>
+                    <td> <button type="button" class="btn btn-secondary" (click)="editar(partido)">Editar</button></td>
+                    <td> <button type="button" class="btn btn-danger" (click)="eliminar(partido.id)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+                (pageChange)="refreshCountries()">
+            </ngb-pagination>
+
+
+        </div>
+    </div>
+</div>

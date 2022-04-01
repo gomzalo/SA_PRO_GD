@@ -385,6 +385,159 @@ module.exports = {
         }
       });
     },
+    // *******  10. Equipos en los que ha estado o dirigido X técnico o jugador. ******************
+    get_report_10: function(req, res)   {
+      clientm.get_report_10(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Equipos en los que ha estado o dirigido ${req.query.id} técnico o jugador.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Equipos en los que ha estado o dirigido ${req.query.id} obtenidos con éxito`
+          });
+        }
+      });
+    },
+     // ********************   11. Partidos donde hubo al menos X goles  ******************
+     get_report_11: function(req, res)   {
+      clientm.get_report_11(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los partidos donde hubo ${re.query.goals} cantidad de goles.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Error al obtener los partidos donde hubo ${re.query.goals} cantidad de goles.`
+          });
+        }
+      });
+    },
+     // ********************      12. Jugadores con más X incidencias en Y competición      ******************
+     get_report_12: function(req, res)   {
+      clientm.get_report_12(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los jugadores con x incidencias en ${req.query.id_competition} competición.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Jugadores con x incidencias en y competición obtenidos con éxito.`
+          });
+        }
+      });
+    },
+     // *********   13. Jugadores con más X incidencias y Y competiciones de Z año  **************
+     get_report_13: function(req, res)   {
+      clientm.get_report_13(req.con, req.query,req.body, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener los jugadores con x incidencias en y competiciones de z año.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Jugadores con x incidencias en y competiciones de z año obtenidos con éxito.`
+          });
+        }
+      });
+    },
+     // ************  14. Cantidad de X competiciones que ha ganado Y equipo  ***************
+     get_report_14: function(req, res)   {
+      clientm.get_report_14(req.con, req.query,req.body, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener las competiciones que ha ganado x equipo.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Competencias que ha ganado x equipo obtenidas con éxito.`
+          });
+        }
+      });
+    },
+     // ********************      15. Listado de partidos en X año      ******************
+     get_report_15: function(req, res)   {
+      clientm.get_report_15(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener el listado de partidos de un año especifico.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Listado de partidos de un año especifico obtenidos con éxito.`
+          });
+        }
+      });
+    },
+     // *************    16. Listado de partidos entre X equipo contra Y equipo     **************
+     get_report_16: function(req, res)   {
+      clientm.get_report_16(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener el listado de partidos entre x equipo y y equipo.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Listado de partidos entre x equipo y y equipo obtenidos con éxito.`
+          });
+        }
+      });
+    },
+     // ********************      17 Listado de partidos de X equipo      ******************
+     get_report_17: function(req, res)   {
+      clientm.get_report_17(req.con, req.query, function(err, rows){
+        if(err){
+          res.status(400).send({
+            status: false,
+            data: [],
+            msg: `Error al obtener el listado de partidos del equipo x.`,
+            error: err.toString()
+          });
+        } else {
+          res.status(200).send({
+            status: true,
+            data: rows,
+            msg: `Listado de partidos del equipo x obtenidos con éxito.`
+          });
+        }
+      });
+    },
+
 // ........................................................................
 // ||||||||||||||||||||   VALIDAR CORREO   ||||||||||||||||||||
     validar_email(correo) {

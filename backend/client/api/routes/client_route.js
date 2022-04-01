@@ -23,6 +23,15 @@ router.get('/report/6/', authenticate_token, client_controller.get_report_6);
 router.get('/report/7/', authenticate_token, client_controller.get_report_7);
 router.get('/report/8/', authenticate_token, client_controller.get_report_8);
 router.get('/report/9/', authenticate_token, client_controller.get_report_9);
+router.get('/report/10/', authenticate_token, client_controller.get_report_10);
+router.get('/report/11/', authenticate_token, client_controller.get_report_11);
+router.get('/report/12/', authenticate_token, client_controller.get_report_12);
+router.post('/report/13/', authenticate_token, client_controller.get_report_13);
+router.post('/report/14/', authenticate_token, client_controller.get_report_14);
+router.get('/report/15/', authenticate_token, client_controller.get_report_15);
+router.get('/report/16/', authenticate_token, client_controller.get_report_16);
+router.get('/report/17/', authenticate_token, client_controller.get_report_17);
+
 // ||||||||||||||||||||   AUTENTICAR TOKEN   ||||||||||||||||||||
 function authenticate_token(req, res, next){
     const authHeader = req.headers['authorization'];

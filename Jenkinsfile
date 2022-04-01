@@ -19,7 +19,6 @@ pipeline{
     stages {
         stage("Start"){
             steps{
-                dir("SoccerStats"){
                     script {
                     def changeLogSets = currentBuild.changeSets
                     for (int i = 0; i < changeLogSets.size(); i++) {
@@ -73,7 +72,6 @@ pipeline{
                     }
                 } 
                     sh 'echo "${params.CLIENTE_SA}"'
-                }
             }          
         }
         stage("build client"){

@@ -18,8 +18,7 @@ pipeline{
     }
     stages {
         stage("Start"){
-            steps{
-                    script {
+            script {
                     def changeLogSets = currentBuild.changeSets
                     for (int i = 0; i < changeLogSets.size(); i++) {
                         def entries = changeLogSets[i].items
@@ -71,6 +70,7 @@ pipeline{
                         }
                     }
                 } 
+            steps{
                     sh 'echo "${params.CLIENTE_SA}"'
             }          
         }

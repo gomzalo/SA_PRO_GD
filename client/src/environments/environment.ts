@@ -15,6 +15,7 @@ export const environment = {
   apiPais:"http://34.132.83.87:5013/country/",
   apiPartido:"http://34.132.83.87:5002/match/",
   apiTecnico:"http://34.132.83.87:5005/technical-director/",
+  
 
 };
 

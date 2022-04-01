@@ -5,26 +5,32 @@ const { response } = require('express');
 const chaiHttp = require('chai-http');
 const app = require('../app');
 chai.use(chaiHttp);
-const jsons = require('./testJSON');
 
 const url = app;
 
-describe('****** Competicion Tests ******', () => {
+describe('****** Tecnico tests ******', () => {
 
-    it('GET Competicion', (done) => {
+    it('GET Tecnico', (done) => {
         chai.request(url)
-            .get("/competition/")
+            .get("/technical-director")
             .end(function (err, res) {
-                console.log(res.body)
+                // console.log(res.body)
                 expect(res).to.have.status(200);
                 done();
             });
     });
     
-    it('POST Crear competicion', (done) => {
+    it('POST Tecnico', (done) => {
         chai.request(url)
-            .post("/competition")
-            .send(jsons.competicion)
+            .post("/technical-director")
+            .send({
+                "name": "string",
+                "lastname": "string",
+                "birth_date": "string",
+                "status": 2,
+                "photo": "string base64",
+                "id_country": 154
+            })
             .end(function (err, res) {
                 console.log(res.body)
                 expect(res).to.have.status(401);

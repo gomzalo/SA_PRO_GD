@@ -9,11 +9,11 @@ const jsons = require('./testJSON');
 
 const url = app;
 
-describe('****** Competicion Tests ******', () => {
+describe('****** Empleado Tests ******', () => {
 
-    it('GET Competicion', (done) => {
+    it('GET DTs Transferidos', (done) => {
         chai.request(url)
-            .get("/competition/")
+            .get("/technical-director-transfer")
             .end(function (err, res) {
                 console.log(res.body)
                 expect(res).to.have.status(200);
@@ -21,10 +21,10 @@ describe('****** Competicion Tests ******', () => {
             });
     });
     
-    it('POST Crear competicion', (done) => {
+    it('POST Transferir DT', (done) => {
         chai.request(url)
-            .post("/competition")
-            .send(jsons.competicion)
+            .post("/technical-director-transfer")
+            .send(jsons.dt)
             .end(function (err, res) {
                 console.log(res.body)
                 expect(res).to.have.status(401);

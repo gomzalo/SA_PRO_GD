@@ -9,22 +9,22 @@ const jsons = require('./testJSON');
 
 const url = app;
 
-describe('****** Competicion Tests ******', () => {
+describe('****** Estadio Tests ******', () => {
 
-    it('GET Competicion', (done) => {
+    it('GET Estadio', (done) => {
         chai.request(url)
-            .get("/competition/")
+            .get("/stadium")
             .end(function (err, res) {
-                console.log(res.body)
+                // console.log(res.body)
                 expect(res).to.have.status(200);
                 done();
             });
     });
     
-    it('POST Crear competicion', (done) => {
+    it('POST Crear estadio', (done) => {
         chai.request(url)
-            .post("/competition")
-            .send(jsons.competicion)
+            .post("/stadium")
+            .send(jsons.estadio)
             .end(function (err, res) {
                 console.log(res.body)
                 expect(res).to.have.status(401);

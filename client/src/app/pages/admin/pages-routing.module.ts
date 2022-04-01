@@ -58,8 +58,6 @@ const routes: Routes = [
     path: 'partido',
     component: PartidoComponent
   },
-  { path: 'proyects', loadChildren: () => import('./proyects/components/proyects.module').then(m => m.ProyectsModule) },
-  { path: 'proyects-assign', loadChildren: () => import('./proyects-assign/components/proyects-assign.module').then(m => m.ProyectsAssignModule) },
 
 ];
 

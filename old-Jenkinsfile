@@ -1,6 +1,20 @@
 pipeline{
     agent any
-
+parameters {
+        booleanParam(name: 'CLIENTE_SA', defaultValue: false, description: 'Cliente flag')
+        booleanParam(name: 'EQUIPO_SA', defaultValue: false, description: 'Equipo flag')
+        booleanParam(name: 'PARTIDO_SA', defaultValue: false, description: 'Partido flag')
+        booleanParam(name: 'COMPETENCIA_SA', defaultValue: false, description: 'Competencia flag')
+        booleanParam(name: 'ESTADIO_SA', defaultValue: false, description: 'Estadio flag')
+        booleanParam(name: 'DIRECTOR_SA', defaultValue: false, description: 'Director flag')
+        booleanParam(name: 'JUGADOR_SA', defaultValue: false, description: 'Jugador flag')
+        booleanParam(name: 'NOTICIA_SA', defaultValue: false, description: 'Noticia flag')
+        booleanParam(name: 'PREDICCION_SA', defaultValue: false, description: 'Prediccion flag')
+        booleanParam(name: 'AUTENTICACION_SA', defaultValue: false, description: 'Autenticacion flag')
+        booleanParam(name: 'ADMINISTRADOR_SA', defaultValue: false, description: 'Administrador flag')
+        booleanParam(name: 'EMPLEADO_SA', defaultValue: false, description: 'Empleado flag')
+        booleanParam(name: 'PAIS_SA', defaultValue: false, description: 'Pais flag')
+    }
     stages {
         stage("build"){
             steps{

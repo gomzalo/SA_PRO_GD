@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
         </head>
         <body>
             <center>
-            <h1>DT server running!</h1>
+            <h1>Technical Director server running!</h1>
             </center>
         </body>
         </html>

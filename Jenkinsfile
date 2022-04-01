@@ -2,37 +2,28 @@ pipeline{
     agent any
 
     stages {
-        stage("build"){
-            steps{
-                dir("build"){
-                    bat 'npm install'
-                    bat 'npm run build'
-                }
+        stage("Prueba"){
+            when{ expression {
+                    def changeLogSets = currentBuild.changeSets
+                    for (int i = 0; i < changeLogSets.size(); i++) {
+                        def entries = changeLogSets[i].items
+                        for (int j = 0; j < entries.length; j++) {
+                            def entry = entries[j]
+                            def files = new ArrayList(entry.affectedFiles)
+                            for (int k = 0; k < files.size(); k++) {
+                                def file = files[k]
+                                if(file.path.contains("backend")){
+                                    return true
+                                }
+                            }
+                        }
+                    }
+                    return false
+                }   
             }
-        }
-
-        stage("test"){
             steps{
-                dir("ProyectoFase3"){
-                    bat 'npm test'
-                }
-            }
-        }
-
-        stage("Upload Image"){
-            steps{
-                dir("ProyectoFase3"){
-                    bat 'docker login -u "bitochepe" -p "Zar45sGu:a7Vf2U"'
-                    bat 'docker build -t bitochepe/dev .'
-                    bat 'docker push bitochepe/dev'
-                }
-            }
-        }
-
-        stage("Deploy Ansible"){
-            steps{
-                dir("ProyectoFase3"){
-                    bat 'wsl ansible-playbook playbook-production.yml'
+                dir("SoccerStats"){
+                    sh 'echo "Hello World "'
                 }
             }
         }

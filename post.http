@@ -453,7 +453,7 @@ content-type: application/json
     "result_visiting": 1,
     "status": 1,
     "id_stadium": 2,
-    "id_team_local": 8,id_competencia
+    "id_team_local": 8,
     "id_team_visiting": 3,
     "id_competition": 2
 }

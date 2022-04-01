@@ -6,7 +6,6 @@ services:
     ports:
       - "5000:5000"
     restart: on-failure
-  
   server_equipo:
     build: ./backend/equipo
     container_name: team
@@ -31,54 +30,57 @@ services:
     ports:
       - "5004:5004"
     restart: on-failure
-  # server_tecnico:
-  #   build: ./backend/tecnico
-  #   container_name: coach
-  #   ports:
-  #     - "5005:5005"
-  #   restart: on-failure
-  # server_jugador:
-  #   build: ./backend/jugador
-  #   container_name: player
-  #   ports:
-  #     - "5006:5006"
-  #   restart: on-failure
+  server_tecnico:
+    build: ./backend/tecnico
+    container_name: coach
+    ports:
+      - "5005:5005"
+    restart: on-failure
+  server_jugador:
+    build: ./backend/jugador
+    container_name: player
+    ports:
+      - "5006:5006"
+    restart: on-failure
   server_news:
     build: ./backend/noticia
     container_name: news
     ports:
       - "5007:5007"
     restart: on-failure
+  # server_predict:
+  #   build: ./backend/prediccion
+  #   container_name: predict
+  #   ports:
+  #     - "5009:5009"
+  #   restart: on-failure
   server_auth:
     build: ./backend/autenticacion
     container_name: auth
     ports:
       - "5010:5010"
     restart: on-failure
-
-  # server_administrador:
-  #   build: ./backend/administrador
-  #   container_name: admin
-  #   ports:
-  #     - "5011:5011"
-  #   restart: on-failure
-  # server_empleado:
-  #   build: ./backend/empleado
-  #   container_name: empleado
-  #   ports:
-  #     - "5012:5012"
-  #   restart: on-failure
+  server_admin:
+    build: ./backend/administrative
+    container_name: admin
+    ports:
+      - "5011:5011"
+    restart: on-failure
+  server_empleado:
+    build: ./backend/empleado
+    container_name: empleado
+    ports:
+      - "5012:5012"
+    restart: on-failure
   server_pais:
     build: ./backend/pais
     container_name: pais
     ports:
       - "5013:5013"
     restart: on-failure
-  # frontend:
-  #   build: ./Frontend
-  #   container_name: frontend
-  #   ports:
-  #     - 80:80
-  #   depends_on:
-  #     - server_client
-  #   restart: on-failure
+  frontend:
+    build: ./client
+    container_name: frontend
+    ports:
+      - 80:80
+    restart: on-failure

@@ -24,7 +24,7 @@ interface Country {
 })
 export class NoticiaComponent implements OnInit {
   noticias = []
-  equipos = [{id_equipo: 1, nombre: 'Guastapoya', abreviado: 'GUA', id_pais: 15, is_club: 0}]
+  equipos = []
   closeResult = '';
   page = 1;
   pageSize = 4;

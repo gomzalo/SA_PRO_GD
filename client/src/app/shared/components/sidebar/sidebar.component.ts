@@ -75,12 +75,12 @@ export class SidebarComponent {
           type: 'link'
         },
         {
-          path: '/business',
+          path: '/estadio',
           title: 'ESTADIO',
           type: 'link'
         },
         {
-          path: '/branchs',
+          path: '/partido',
           title: 'PARTIDO',
           type: 'link'
         },
@@ -97,6 +97,11 @@ export class SidebarComponent {
         {
           path: '/jugadores',
           title: 'JUGADOR',
+          type: 'link'
+        },
+        {
+          path: '/tecnico',
+          title: 'TECNICO',
           type: 'link'
         },
         {

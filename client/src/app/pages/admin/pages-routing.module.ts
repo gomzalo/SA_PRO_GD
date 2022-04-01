@@ -8,6 +8,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { AmbosGuard } from 'src/app/core/guards/ambos.guard';
 import { JugadorComponent } from './jugador/jugador.component';
+import { TecnicoComponent } from './tecnico/tecnico.component';
+import { EstadioComponent } from './estadio/estadio.component';
+import { UnauthorizedComponent } from '../unauthorized/unauthorized.component';
+import { PartidoComponent } from './partido/partido.component';
 
 const routes: Routes = [
   { path: 'home', 
@@ -27,6 +31,10 @@ const routes: Routes = [
     component: NoticiaComponent
   },
   {
+    path: 'unauthorized',
+    component: UnauthorizedComponent
+  },
+  {
     path: 'jugadores',
     component: JugadorComponent
   },
@@ -35,9 +43,20 @@ const routes: Routes = [
     component: EquipoComponent
   },
   {
+    path: 'tecnico',
+    component: TecnicoComponent
+  },{
+    path: 'estadio',
+    component: EstadioComponent
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AmbosGuard]
+  },
+  {
+    path: 'partido',
+    component: PartidoComponent
   },
   { path: 'proyects', loadChildren: () => import('./proyects/components/proyects.module').then(m => m.ProyectsModule) },
   { path: 'proyects-assign', loadChildren: () => import('./proyects-assign/components/proyects-assign.module').then(m => m.ProyectsAssignModule) },

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -7,11 +7,19 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class EquipoService {
+  headerDict = {
+    'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token,
+  }
+  
+
   constructor(private http: HttpClient) { }
 
   insertTeam(team){
-    return this.http.post<any>(environment.apiEquipo, team)
+    return this.http.post<any>(environment.apiEquipo, team,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );
@@ -19,14 +27,14 @@ export class EquipoService {
 
 
   updateTeam(team){
-    return this.http.put<any>(environment.apiEquipo, team)
+    return this.http.put<any>(environment.apiEquipo, team,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );
   }
 
   deleteTeam(_id:string){
-    return this.http.delete<any>(environment.apiEquipo+'?id='+_id)
+    return this.http.delete<any>(environment.apiEquipo+'?id='+_id,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );
@@ -36,19 +44,19 @@ export class EquipoService {
 
   getOneteam(id:Number){
     
-    return this.http.get<any>(environment.apiEquipo+'?id='+id);
+    return this.http.get<any>(environment.apiEquipo+'?id='+id,{headers: new HttpHeaders(this.headerDict)});
   }
 
   
   getAllteamsbyteam(idequipo:Number){
     
-    return this.http.get<any>(environment.apiEquipo+'?team='+idequipo);
+    return this.http.get<any>(environment.apiEquipo+'?team='+idequipo,{headers: new HttpHeaders(this.headerDict)});
   }
 
   
   getAllteams(){
     
-    return this.http.get<any>(environment.apiEquipo);
+    return this.http.get<any>(environment.apiEquipo,{headers: new HttpHeaders(this.headerDict)});
   }
 
 

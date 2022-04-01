@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Tecnicos</h1>
+      </div>
+      
+    </div>
+  
+    <div class="row">
+        
+            <button type="button" class="btn btn-primary col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=true">Agregar Tecnico</button>
+            <br/>
+            <br/>
+            <button type="button" class="btn btn-danger col-md-2 offset-md-10" style="display: block;float: right;" (click)="isOpen=false" *ngIf="isOpen">Cerrar formulario</button>
+        
+    </div>
+   
+    <form [formGroup]="Form" autocomplete="off" novalidate (ngSubmit)="submit(Form.value)" class="content" *ngIf="isOpen">
+      <mat-card-content>
+        <div class="center margin-dark" style="display:flex;flex-flow: column;">
+    
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>Nombre: </mat-label>
+            <input matInput type="text" placeholder="titulo" formControlName="name" id="noombre">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>Apellido: </mat-label>
+            <input matInput type="text" placeholder="titulo" formControlName="lastname" id="nombre">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>Fecha Nacimiento </mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birth_date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        
+  
+    
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>Pais </mat-label>
+            <mat-select formControlName="id_country" id="pais">
+              <mat-option *ngFor="let pais of paises" [value]="pais.id">
+                {{pais.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+          <mat-label class="margenes">Foto del Tecnico </mat-label>
+          <input 
+          formControlName="photo"
+          id="file" 
+          type="file" 
+          class="form-control margenes"
+          (change)="onFileChange($event)">
+          
+          <br />  
+          <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>
+    
+        </div>
+      </mat-card-content>
+    </form>
+  
+    <br/>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+  
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Pais</th>
+              <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let Tecnico of tecnicos">
+              
+              <th scope="row">{{ Tecnico.name}}</th>
+              <td>
+                {{ Tecnico.lastname}}
+              </td>
+              <td>{{ Tecnico.nationality}}</td>
+              <td> <button type="button" class="btn btn-secondary" (click)="editar(Tecnico)">Editar</button></td>
+              <td> <button type="button" class="btn btn-danger" (click)="eliminar(Tecnico.id)">Eliminar</button></td>
+            </tr>
+            </tbody>
+          </table>
+          
+          <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
+            </ngb-pagination>
+          
+           
+          </div>
+    </div>
+  </div>
+  

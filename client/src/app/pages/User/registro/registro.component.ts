@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { PaisService } from '../../../shared/services/pais.service'
 import { UserService } from '../../../shared/services/user.service'
+
 
 
 
@@ -11,12 +13,13 @@ import { UserService } from '../../../shared/services/user.service'
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-  genero = [{ id: 'M', value: 'Masculino' }, { id: 'F', value: 'Femenino' }, { id: 'a', value: 'Lo que sea' },]
+  genero = [{ id: 'M', value: 'Masculino' }, { id: 'F', value: 'Femenino' }, { id: 'U', value: 'Lo que sea' },]
+  roles = [{ id: 1, value: 'Administrador' }, { id: 2, value: 'Empleado' }, { id: 3, value: 'Cliente' },]
   @Input() editData: any;
   editcomplete:any;
   paises = []
   photo64 = null
-  rol='Admin'
+  rol=-1
   estados=[{id:1,Estado:'Activo'},{id:2,Estado:'Congelado'},{id:3,Estado:'Eliminado'}]
   RegistroForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -38,9 +41,10 @@ export class RegistroComponent implements OnInit {
 
   });
 
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private paisService: PaisService, private userService: UserService,private authService:AuthService ) { }
 
   ngOnInit(): void {
+    this.rol = this.authService.getSesion().id_rol;
     this.getcountries();
     this.editcomplete=this.editData;
     if (this.editData) {

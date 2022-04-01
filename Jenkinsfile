@@ -1,5 +1,5 @@
 def bandera = false
-def bandera2 = true
+def bandera2 = false
 pipeline{
     agent any
     

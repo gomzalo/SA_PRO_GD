@@ -1,54 +1,198 @@
+def administrative = false
+def auth = false
+def cliente = false
+def comp = false
+def empleado = false
+def equipo = false
+def estadio = false
+def jugador = false
+def noticia = false
+def pais = false
+def partido = false
+def prediccion = false
+def tecnico = false
+
 pipeline{
     agent any
-parameters {
-        booleanParam(name: 'CLIENTE_SA', defaultValue: false, description: 'Cliente flag')
-        booleanParam(name: 'EQUIPO_SA', defaultValue: false, description: 'Equipo flag')
-        booleanParam(name: 'PARTIDO_SA', defaultValue: false, description: 'Partido flag')
-        booleanParam(name: 'COMPETENCIA_SA', defaultValue: false, description: 'Competencia flag')
-        booleanParam(name: 'ESTADIO_SA', defaultValue: false, description: 'Estadio flag')
-        booleanParam(name: 'DIRECTOR_SA', defaultValue: false, description: 'Director flag')
-        booleanParam(name: 'JUGADOR_SA', defaultValue: false, description: 'Jugador flag')
-        booleanParam(name: 'NOTICIA_SA', defaultValue: false, description: 'Noticia flag')
-        booleanParam(name: 'PREDICCION_SA', defaultValue: false, description: 'Prediccion flag')
-        booleanParam(name: 'AUTENTICACION_SA', defaultValue: false, description: 'Autenticacion flag')
-        booleanParam(name: 'ADMINISTRADOR_SA', defaultValue: false, description: 'Administrador flag')
-        booleanParam(name: 'EMPLEADO_SA', defaultValue: false, description: 'Empleado flag')
-        booleanParam(name: 'PAIS_SA', defaultValue: false, description: 'Pais flag')
-    }
+    
     stages {
-        stage("build"){
-            steps{
-                dir("SoccerStats"){
-                    sh 'cd ./backend/administrative'
-                    sh 'docker login -u bitochepe -p a596b343-ee91-47c8-a5c3-f49d76f8982c'
-                    sh 'docker build -t bitochepe/administrative-image-sa'
-                    sh 'docker push bitochepe/administrative-image-sa'
+        stage('Setup') {
+            steps {
+                script {
+                            def changeLogSets = currentBuild.changeSets
+                            for (int i = 0; i < changeLogSets.size(); i++) {
+                                def entries = changeLogSets[i].items
+                                for (int j = 0; j < entries.length; j++) {
+                                    def entry = entries[j]
+                                    def files = new ArrayList(entry.affectedFiles)
+                                    for (int k = 0; k < files.size(); k++) {
+                                        def file = files[k]
+                                        if(file.path.contains("administrative")) {
+                                            administrative = true
+                                        }
+                                        else if(file.path.contains("autenticacion")) {
+                                            auth = true
+                                        }
+                                        else if(file.path.contains("client")) {
+                                            cliente = true
+                                        }
+                                        else if(file.path.contains("competicion")) {
+                                            comp = true
+                                        }
+                                        else if(file.path.contains("empleado")) {
+                                            empleado = true
+                                        }
+                                        else if(file.path.contains("equipo")) {
+                                            equipo = true
+                                        }
+                                        else if(file.path.contains("estadio")) {
+                                            equipo = true
+                                        }
+                                        else if(file.path.contains("jugador")) {
+                                            jugador = true
+                                        }
+                                        else if(file.path.contains("noticia")) {
+                                            noticia = true
+                                        }
+                                        else if(file.path.contains("pais")) {
+                                            pais = true
+                                        }
+                                        else if(file.path.contains("partido")) {
+                                            partido = true
+                                        }
+                                        else if(file.path.contains("prediccion")) {
+                                            prediccion = true
+                                        }
+                                        else if(file.path.contains("tecnico")) {
+                                            tecnico = true
+                                        }
+                                    }
+                                }
+                            }
+                        } 
+                    
+                sh 'echo "Banderas creadas"'
+            }
+        }
+        stage('test'){
+            steps {
+                script {
+                    sh 'echo "Ejecutando tests"'
                 }
             }
         }
-
-        stage("test"){
+        stage('Build') {  
             steps{
-                dir("SoccerStats"){
-                    sh 'npm test'
+                    sh 'sudo docker login -u "bitochepe" -p "a596b343-ee91-47c8-a5c3-f49d76f8982c"'
+                    sh 'sudo docker-compose build'
+                    sh 'sudo docker-compose push'
                 }
             }
-        }
-
-        stage("Upload Images"){
-            steps{
-                dir("SoccerStats"){
-                    sh 'docker login -u "bitochepe" -p "a596b343-ee91-47c8-a5c3-f49d76f8982c"'
-                    sh 'docker build -t bitochepe/pareja4:v1 .'
-                    sh 'docker push bitochepe/pareja4:v1'
+        stage('deploy'){
+            stages{
+                stage("deploy administrative"){
+                    when{ expression { return administrative } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy administrador"'
+                        }
+                    }
                 }
-            }
-        }
-
-        stage("Deploy Ansible"){
-            steps{
-                dir("SoccerStats"){
-                    sh 'ansible-playbook ansible-production.yml'
+                stage("deploy auth"){
+                    when{ expression { return auth } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy auth"'
+                        }
+                    }
+                }
+                stage("deploy cliente"){
+                    when{ expression { return cliente } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy cliente"'
+                        }
+                    }
+                }
+                stage("deploy competicion"){
+                    when{ expression { return comp } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy competicion"'
+                        }
+                    }
+                }
+                stage("deploy empleado"){
+                    when{ expression { return empleado } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy empleado"'
+                        }
+                    }
+                }
+                stage("deploy equipo"){
+                    when{ expression { return equipo } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy equipo"'
+                        }
+                    }
+                }
+                stage("deploy estadio"){
+                    when{ expression { return estadio } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy estadio"'
+                        }
+                    }
+                }
+                stage("deploy jugador"){
+                    when{ expression { return jugador } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy jugador"'
+                        }
+                    }
+                }
+                stage("deploy noticia"){
+                    when{ expression { return noticia } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy noticia"'
+                        }
+                    }
+                }
+                stage("deploy pais"){
+                    when{ expression { return pais } }                   
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy pais"'
+                        }
+                    }
+                }
+                stage("deploy partido"){
+                    when{ expression { return partido } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy partido"'
+                        }
+                    }
+                }
+                stage("deploy prediccion"){
+                    when{ expression { return prediccion } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy prediccion"'
+                        }
+                    }
+                }
+                stage("deploy tecnico"){
+                    when{ expression { return tecnico } }
+                    steps{
+                        dir("SoccerStats"){
+                            sh 'echo "deploy tecnico"'
+                        }
+                    }
                 }
             }
         }

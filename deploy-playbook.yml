@@ -1,0 +1,5 @@
+name: Deployment-Servers
+  hosts: SERVERS
+  tasks:       
+    - name: Levantar todos los microservicios
+      shell: docker-compose up --build -d

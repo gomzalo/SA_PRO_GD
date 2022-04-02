@@ -26,9 +26,10 @@ import { EstadioComponent } from './estadio/estadio.component';
 import { PartidoComponent } from './partido/partido.component';
 import { ComptenciaComponent } from './comptencia/comptencia.component';
 import { CompetenciaModule } from '../competencia/competencia.module';
+import { MembresiaComponent } from './membresia/membresia.component';
 
 @NgModule({
-  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent, JugadorComponent, TecnicoComponent,ProfileComponent, EstadioComponent, PartidoComponent, ComptenciaComponent],
+  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent, JugadorComponent, TecnicoComponent,ProfileComponent, EstadioComponent, PartidoComponent, ComptenciaComponent, MembresiaComponent],
   imports: [
     AngularDualListBoxModule,
     MatSelectModule,

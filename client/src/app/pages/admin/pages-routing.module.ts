@@ -13,6 +13,7 @@ import { EstadioComponent } from './estadio/estadio.component';
 import { UnauthorizedComponent } from '../unauthorized/unauthorized.component';
 import { PartidoComponent } from './partido/partido.component';
 import { ComptenciaComponent } from './comptencia/comptencia.component';
+import { MembresiaComponent } from './membresia/membresia.component';
 
 const routes: Routes = [
   { path: 'home', 
@@ -62,6 +63,10 @@ const routes: Routes = [
   {
     path: 'competencia',
     component: ComptenciaComponent
+  },
+  {
+    path: 'membresia',
+    component: MembresiaComponent
   },
 
 ];

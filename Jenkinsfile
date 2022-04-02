@@ -7,6 +7,7 @@ pipeline{
         stage('test'){
             steps {
                 dir("backend/administrative"){
+                    sh 'npm install'
                     sh 'npm run test'
                 }
                 dir("backend/autenticacion"){

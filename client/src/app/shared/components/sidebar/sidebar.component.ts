@@ -111,7 +111,7 @@ export class SidebarComponent {
         },
         
         {
-          path: '/proyects-assign',
+          path: '/competencia',
           title: 'COMPETENCIA',
           type: 'link'
         },

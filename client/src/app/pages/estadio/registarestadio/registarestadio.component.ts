@@ -13,14 +13,16 @@ export class RegistarestadioComponent implements OnInit {
   paises = [];
   photo64 = null;
   editcomplete:any;
+  estados=[{id:1,Estado:'Disponible'},{id:2,Estado:'Remodelación'}]
   RegistroForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    foundation_date: new FormControl('', [Validators.required]),
-    address: new FormControl('', [Validators.required]),
-    id_country: new FormControl('', [Validators.required]),
+    nombre: new FormControl('', [Validators.required]),
+    fecha_inaguracion: new FormControl('', [Validators.required]),
+    direccion: new FormControl('', [Validators.required]),
+    id_pais: new FormControl('', [Validators.required]),
     id_estado: new FormControl(2, [Validators.required]),
-    photo: new FormControl('photo', ),
-    capacity: new FormControl('', [Validators.required, Validators.min(1)]),
+    foto: new FormControl('photo', ),
+    status: new FormControl('', ),
+    capacidad: new FormControl('', [Validators.required, Validators.min(1)]),
   });
   constructor(private formBuilder: FormBuilder, private estadioService:EstadioService, private paisService: PaisService) { 
     
@@ -30,18 +32,19 @@ export class RegistarestadioComponent implements OnInit {
   ngOnInit(): void {
     this.getcountries();
     this.RegistroForm.patchValue(this.editData);
-    console.log(this.editData);
     this.editcomplete=this.editData;
     if (this.editData) {
    
       this.photo64= this.editData.photo;
       delete this.editData['photo'];
 
-      this.editData.name = this.editData.nombre;
-      this.editData.foundation_date=this.editData.fecha_inaguracion;
-      this.editData.address=this.editData.direccion;
-      this.editData.id_country = this.editData.id_pais;
-      this.editData.capacity = this.editData.capacidad;
+      this.editData.nombre = this.editData.nombre;
+      this.editData.fecha_inaguracion=this.editData.fecha_inaguracion;
+      this.editData.capacidad = this.editData.capacidad;
+      this.editData.id_pais = this.editData.id_pais;
+      this.editData.direccion=this.editData.direccion;
+      this.editData.foto = this.editData.foto;
+      this.editData.status = this.editData.status;
       this.RegistroForm.patchValue(this.editData)
     }
   }
@@ -68,14 +71,46 @@ export class RegistarestadioComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      console.log(reader.result);
       this.photo64 = reader.result;
 
     };
   }
 
   submit(form) {
-      alert('Jala');
+
+    if(!this.editData){
+      this.estadioService.createEstadio(this.RegistroForm.value).subscribe(
+        resp=>{
+                let respueta:any = resp;
+                
+                if(respueta.status!=true){
+                 alert('Error enviando');
+                  return;
+                }
+                alert(respueta.msg);
+    
+            },
+            error=> {
+             alert(error.error.msg);
+           }
+      );
+    }else{
+      this.estadioService.updateEstadio(this.RegistroForm.value).subscribe(
+        resp=>{
+                let respueta:any = resp;
+                
+                if(respueta.status!=true){
+                 alert('Error enviando');
+                  return;
+                }
+                alert(respueta.msg);
+    
+            },
+            error=> {
+             alert(error.error.msg);
+           }
+      );
+    }
   }
 
 }

@@ -12,6 +12,8 @@ import { TecnicoComponent } from './tecnico/tecnico.component';
 import { EstadioComponent } from './estadio/estadio.component';
 import { UnauthorizedComponent } from '../unauthorized/unauthorized.component';
 import { PartidoComponent } from './partido/partido.component';
+import { ComptenciaComponent } from './comptencia/comptencia.component';
+import { MembresiaComponent } from './membresia/membresia.component';
 
 const routes: Routes = [
   { path: 'home', 
@@ -58,8 +60,14 @@ const routes: Routes = [
     path: 'partido',
     component: PartidoComponent
   },
-  { path: 'proyects', loadChildren: () => import('./proyects/components/proyects.module').then(m => m.ProyectsModule) },
-  { path: 'proyects-assign', loadChildren: () => import('./proyects-assign/components/proyects-assign.module').then(m => m.ProyectsAssignModule) },
+  {
+    path: 'competencia',
+    component: ComptenciaComponent
+  },
+  {
+    path: 'membresia',
+    component: MembresiaComponent
+  },
 
 ];
 

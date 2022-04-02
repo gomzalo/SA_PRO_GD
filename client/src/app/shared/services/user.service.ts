@@ -15,6 +15,17 @@ export class UserService {
   }
   insertUser(user){
     return this.http.post<any>(environment.apiAdministrador+'user', user)
+  }
+
+  membresiaBuy(user){
+    return this.http.post<any>(environment.apiCliente+'membership', user,{headers: new HttpHeaders(this.headerDict)})
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  membresiaCancel(user){
+    return this.http.put<any>(environment.apiCliente+'membership', user,{headers: new HttpHeaders(this.headerDict)})
     .pipe(
       catchError(this.handleError)
     );

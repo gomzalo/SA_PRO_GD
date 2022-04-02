@@ -3,7 +3,7 @@
   hosts: SERVERS
   tasks: 
     - name: Creating docker-compose file
-    copy:
+    - copy:
       dest: "/home/juanjohr97/docker-compose.yml"
       content: |
         version: "3.3"
@@ -92,6 +92,7 @@
           #   ports:
           #     - 80:80
           #   restart: on-failure
+
     - name: Docker
       shell: sudo docker-compose -f /home/juanjohr97/docker-compose.yml up --build
 

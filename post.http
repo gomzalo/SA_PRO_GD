@@ -73,20 +73,20 @@ content-type: application/json
 #     "password": "123"
 # }
 
-{
-    "email": "eduardoajsivinacccc@gmail.com",
-    "password": "123"
-}
+# {
+#     "email": "eduardoajsivinacccc@gmail.com",
+#     "password": "123"
+# }
 
 # {
 #     "email": "wjosuep13@gmail.com",
 #     "password": "123"
 # }
 
-# {
-#     "email": "gomzalo@outlook.com",
-#     "password": "mam12"
-# }
+{
+    "email": "gomzalo@outlook.com",
+    "password": "123"
+}
 
 # POST http://localhost:5003/user/login HTTP/1.1
 # content-type: application/json
@@ -319,16 +319,17 @@ DELETE http://localhost:5001/team/?id=7 HTTP/1.1
 # ----------    Crear   ----------
 
 POST http://localhost:5004/stadium HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJpZF9yb2wiOjMsImlhdCI6MTY0ODgyNDIyNSwiZXhwIjoxNjQ4OTEwNjI1fQ.nzpXKMjSa_JA9HSibjY88gVgFnKX9XH86KwqFskWgnI
 content-type: application/json
 
 {
-    "name": "Spotify Camp Nou",
-    "fundation_date": "1889-02-05",
-    "capacity": "5566224",
-    "id_country": "100",
-    "address": "Barcelona, Catalunya",
+    "name": "Mario Camposeco",
+    "fundation_date": "1945-02-05",
+    "capacity": "105468",
+    "id_country": "158",
+    "address": "Xelaju, Guatemala",
     "status": 1,
-    "photo": "Masdkfjasdlkjfkmasdcmkjlasdnijfnasdlkfj"
+    "photo": "Cual foto xd"
 }
 
 ###
@@ -452,7 +453,7 @@ content-type: application/json
     "result_visiting": 1,
     "status": 1,
     "id_stadium": 2,
-    "id_team_local": 8,id_competencia
+    "id_team_local": 8,
     "id_team_visiting": 3,
     "id_competition": 2
 }

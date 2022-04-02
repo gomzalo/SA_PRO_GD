@@ -1,0 +1,21 @@
+<h1>Suscribite con nosotros</h1>
+<section class="widget widget_blog_subscription option-b">
+  <form (ngSubmit)="suscribir()" accept-charset="utf-8" id="subscribe-blog">
+    <p>Subscribe a tu membresia</p>
+    <p>
+      <input type="text" name="email" style="width: 95%; padding: 1px 2px" placeholder="Vive la mejor experencia" value="" id="subscribe-field" disabled>
+    </p>
+    <p>
+      <input type="hidden" name="action" value="subscribe">
+      <input type="hidden" name="blog_id" value="109214814">
+      <input type="hidden" name="source" value="https://rosaliedemo.wordpress.com/">
+      <input type="hidden" name="sub-type" value="widget">
+      <input type="hidden" name="redirect_fragment" value="blog_subscription-2">
+      <input type="hidden" id="_wpnonce" name="_wpnonce" value="b0a1e6c4b6">
+      <input type="submit" value="Click to suscribe!">
+    </p>
+  </form>
+</section>
+<div class="link-container">
+  <a target="_blank" (click)="cancelarMembresia()" class="more-link">Cancelar membresia</a>
+</div>

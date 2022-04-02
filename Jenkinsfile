@@ -1,31 +1,31 @@
+
+
 pipeline{
     agent any
-
+    tools {nodejs '17.8.0'}
     stages {
-        stage("Prueba"){
-            when{ expression {
-                    def changeLogSets = currentBuild.changeSets
-                    for (int i = 0; i < changeLogSets.size(); i++) {
-                        def entries = changeLogSets[i].items
-                        for (int j = 0; j < entries.length; j++) {
-                            def entry = entries[j]
-                            def files = new ArrayList(entry.affectedFiles)
-                            for (int k = 0; k < files.size(); k++) {
-                                def file = files[k]
-                                if(file.path.contains("backend")){
-                                    return true
-                                }
-                            }
-                        }
-                    }
-                    return false
-                }   
-            }
-            steps{
-                dir("SoccerStats"){
-                    sh 'echo "Hello World "'
+        stage('test'){
+            steps {
+                dir("backend/administrative"){
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+                dir("backend/autenticacion"){
+                    sh 'npm run test'
                 }
             }
+        }
+        stage('Build') {  
+            steps{
+                    sh 'sudo docker login -u "bitochepe" -p "a596b343-ee91-47c8-a5c3-f49d76f8982c"'
+                    sh 'sudo docker-compose build'
+                    sh 'sudo docker-compose push'
+                }
+            }
+        stage('deploy'){
+            steps{
+                sh 'sudo ansible-playbook deploy-playbook.yml'
+            }   
         }
     }
 }

@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
         </head>
         <body>
             <center>
-            <h1>Administrative server running!</h1>
+            <h1>Administrative microserver running!</h1>
             </center>
         </body>
         </html>

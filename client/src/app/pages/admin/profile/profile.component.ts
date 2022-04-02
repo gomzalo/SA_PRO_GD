@@ -4,6 +4,7 @@ import { UserService } from '../../../shared/services/user.service';
 import { AuthService } from '../../../core/services/auth/auth.service'
 import { DomSanitizer } from '@angular/platform-browser';
 import { PaisService } from 'src/app/shared/services/pais.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class ProfileComponent implements OnInit {
     membership: new FormControl(0, [Validators.required]),
 
   });
-  constructor(private userService: UserService, private authService: AuthService, private _sanitizer: DomSanitizer,private paisService:PaisService) { }
+  constructor(private userService: UserService, private authService: AuthService, private _sanitizer: DomSanitizer,private paisService:PaisService, private router:Router) { }
 
   ngOnInit(): void {
     this.getcountries();
@@ -71,6 +72,10 @@ export class ProfileComponent implements OnInit {
         this.RegistroForm.patchValue(this.user)
       });
 
+  }
+
+  tomembresia(){
+    this.router.navigate(['membresia'],);
   }
 
 

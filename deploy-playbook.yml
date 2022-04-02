@@ -1,5 +1,7 @@
 name: Deployment-Servers
   hosts: SERVERS
-  tasks:       
+  tasks: 
+    - name: Ruta
+      shell: readlink -f .
     - name: Levantar todos los microservicios
       shell: docker-compose up --build -d

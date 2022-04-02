@@ -32,9 +32,7 @@ pipeline{
             }
         stage('deploy'){
             steps{
-                dir("ansible"){
-                    sh 'ansible-playbook deploy-playbook.yml'
-                }
+                sh 'ansible-playbook deploy-playbook.yml'
             }   
         }
     }

@@ -3,5 +3,8 @@
   hosts: SERVERS
   tasks: 
     - name: Ruta
+      shell: readlink -f .
+
+    - name: Docker
       shell: docker-compose up --build
 

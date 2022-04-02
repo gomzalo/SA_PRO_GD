@@ -11,6 +11,7 @@ pipeline{
                     sh 'npm run test'
                 }
                 dir("backend/autenticacion"){
+                    sh 'npm install'
                     sh 'npm run test'
                 }
             }

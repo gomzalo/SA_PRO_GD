@@ -32,7 +32,7 @@ pipeline{
             }
         stage('deploy'){
             steps{
-                sh 'ansible-playbook deploy-playbook.yml'
+                sh 'sudo ansible-playbook deploy-playbook.yml'
             }   
         }
     }

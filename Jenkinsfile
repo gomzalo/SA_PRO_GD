@@ -2,7 +2,7 @@
 
 pipeline{
     agent any
-    
+    tools {nodejs '17.8.0'}
     stages {
         stage('test'){
             steps {

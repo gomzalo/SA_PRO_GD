@@ -1,0 +1,6 @@
+---
+- name: Deployment-Servers
+  hosts: SERVERS
+  tasks: 
+    - name: Docker
+      shell: sudo docker-compose -f /home/juanjohr97/docker-compose.yml up --build

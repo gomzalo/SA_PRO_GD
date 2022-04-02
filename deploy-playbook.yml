@@ -3,15 +3,5 @@
   hosts: SERVERS
   tasks: 
     - name: Ruta
-      shell: "{{ item }}"
-      with_items:
-        - echo "version: '3.3'" >> docker-compose.yml;
-        - echo "services:" >> docker-compose.yml;
-        - echo "  client:" >> docker-compose.yml;
-        - echo "    image: bitochepe/sa_server_client" >> docker-compose.yml;
-        - echo "    restart: on-failure" >> docker-compose.yml;
-        - echo "    container_name : client" >> docker-compose.yml;
-        - echo "    ports:" >> docker-compose.yml;
-        - echo "      - \"5000:5000\"" >> docker-compose.yml;
-        - echo "  " >> docker-compose.yml;
+      shell: docker-compose up --build
 

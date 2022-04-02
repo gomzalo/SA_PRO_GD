@@ -2,9 +2,9 @@
 - name: Deployment-Servers
   hosts: SERVERS
   tasks: 
-    - name: Ruta
-      shell: readlink -f .
 
     - name: Docker
-      shell: docker-compose up --build
+      shell: 
+        cmd: docker-compose up --build
+        chdir: /home/juanjohr97/
 

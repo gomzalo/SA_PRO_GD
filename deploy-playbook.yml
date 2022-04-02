@@ -4,6 +4,3 @@
   tasks: 
     - name: Ruta
       shell: readlink -f .
-      
-    - name: Levantar todos los microservicios
-      shell: docker-compose up --build -d

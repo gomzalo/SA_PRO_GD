@@ -5,6 +5,6 @@
 
     - name: Docker
       shell: 
-        cmd: docker-compose up --build
+        cmd: sudo docker-compose -f /home/juanjohr97/docker-compose.yml up --build
         chdir: /home/juanjohr97/
 

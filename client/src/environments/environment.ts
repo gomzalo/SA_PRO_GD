@@ -4,17 +4,17 @@
 
 export const environment = {
   production: false,
-  apiCliente:"http://localhost:5000/customer/",
-  apiAdministrador:"http://localhost:5011/administrator/",
-  apiAuth:"http://localhost:5010/auth/",
-  apiCompetencia:"http://localhost:5003/competition/",
-  apiEquipo:"http://localhost:5001/team/",
-  apiEstadio:"http://localhost:5004/stadium/",
-  apiJugador:"http://localhost:5006/player/",
-  apiNoticia:"http://localhost:5007/post/",
-  apiPais:"http://localhost:5013/country/",
-  apiPartido:"http://localhost:5002/match/",
-  apiTecnico:"http://localhost:5005/technical-director/",
+  apiCliente:"http://34.132.83.87:5000/customer/",
+  apiAdministrador:"http://34.132.83.87:5011/administrator/",
+  apiAuth:"http://34.132.83.87:5010/auth/",
+  apiCompetencia:"http://34.132.83.87:5003/competition/",
+  apiEquipo:"http://34.132.83.87:5001/team/",
+  apiEstadio:"http://34.132.83.87:5004/stadium/",
+  apiJugador:"http://34.132.83.87:5006/player/",
+  apiNoticia:"http://34.132.83.87:5007/post/",
+  apiPais:"http://34.132.83.87:5013/country/",
+  apiPartido:"http://34.132.83.87:5002/match/",
+  apiTecnico:"http://34.132.83.87:5005/technical-director/",
 
 };
 

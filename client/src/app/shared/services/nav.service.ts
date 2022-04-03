@@ -10,6 +10,7 @@ export interface Menu {
 	title?: string;
 	icon?: string;
 	type?: string;
+	rol?:Number;
 	badgeType?: string;
 	badgeValue?: string;
 	active?: boolean;

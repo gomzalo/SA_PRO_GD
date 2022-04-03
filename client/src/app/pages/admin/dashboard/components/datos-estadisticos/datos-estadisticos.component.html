@@ -1,0 +1,323 @@
+<mat-form-field appearance="fill">
+    <mat-label>Seleccione un reporte</mat-label>
+    <mat-select [(ngModel)]="selectedReporte" name="reporte" ngDefaultControl>
+      <mat-option *ngFor="let reporte of reportes" [value]="reporte.id"  >
+        {{reporte.val}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div style="display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;">
+
+  <mat-form-field appearance="outline" class="center" *ngIf="selectedReporte==1 || selectedReporte==9">
+    <mat-label>Equipo </mat-label>
+    <mat-select  id="id_teams" [(ngModel)]="equipo">
+      <mat-option *ngFor="let equipo of equipos" [value]="equipo.id">
+        {{equipo.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="center" *ngIf="selectedReporte==6">
+    <mat-label>Genero </mat-label>
+    <mat-select  id="genero" [(ngModel)]="gender">
+      <mat-option *ngFor="let gen of genero" [value]="gen.id">
+        {{gen.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="center" *ngIf="selectedReporte==7">
+    <mat-label>Edad </mat-label>
+    <input matInput type="number" placeholder="Edad"  id="age" [(ngModel)]="edad">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="outline" class="center" *ngIf="selectedReporte==8 || selectedReporte==9">
+    <mat-label>Eliga la opción </mat-label>
+    <mat-select  id="gender" [(ngModel)]="orden">
+      <mat-option  value="0">
+        Más
+      </mat-option>
+      <mat-option  value="1">
+        Menos
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+ 
+
+<button type="button" class="btn btn-primary"   (click)="getdata()" *ngIf="selectedReporte!=0">Traer datos</button>
+  <button type="button" class="btn btn-primary"   (click)="decargar()" *ngIf="selectedReporte!=0">Decargar reporte en pdf</button>
+
+</div>
+
+  <table class="table" *ngIf="selectedReporte==1">
+    <thead>
+      <tr>
+
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let Jugador of report_data">
+        
+        <th scope="row">{{ Jugador.name}}</th>
+        <td>
+          {{ Jugador.lastname}}
+        </td>
+        <td>{{ Jugador.email}}</td>
+        <td> <button type="button" class="btn btn-secondary" (click)="editar(Jugador)">Editar</button></td>
+        <td> <button type="button" class="btn btn-danger" (click)="eliminar(Jugador.id)">Eliminar</button></td>
+      </tr>
+      </tbody>
+  </table>
+
+
+  <table class="table" *ngIf="selectedReporte==2">
+    <thead>
+      <tr>
+        <th scope="col">#2</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+  <table class="table" *ngIf="selectedReporte==3">
+    <thead>
+      <tr>
+        <th scope="col">#3</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table" *ngIf="selectedReporte==4">
+    <thead>
+      <tr>
+        <th scope="col">#4</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table" *ngIf="selectedReporte==5">
+    <thead>
+      <tr>
+        <th scope="col">#5</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <table class="table" *ngIf="selectedReporte==6">
+    <thead>
+      <tr>
+
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let usuario of report_data">
+        
+        <th scope="row">{{usuario.first_name}}</th>
+        <td>
+          {{ usuario.last_name}}
+        </td>
+        <td>{{ usuario.email}}</td>
+      </tr>
+      </tbody>
+  </table>
+
+  <table class="table" *ngIf="selectedReporte==7">
+    <thead>
+      <tr>
+
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let Jugador of report_data">
+        
+        <th scope="row">{{ Jugador.first_name}}</th>
+        <td>
+          {{ Jugador.last_name}}
+        </td>
+        <td>{{ Jugador.email}}</td>
+      </tr>
+      </tbody>
+  </table>
+
+  <table class="table" *ngIf="selectedReporte==8">
+    <thead>
+      <tr>
+
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Nacionalidad</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let usuario of report_data">
+        
+        <th scope="row">{{ usuario.name}}</th>
+        <td>
+          {{ usuario.lastname}}
+        </td>
+        <td>{{ usuario.nationality}}</td>
+      </tr>
+      </tbody>
+  </table>
+
+  <table class="table" *ngIf="selectedReporte==9" >
+    <thead>
+      <tr>
+
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Nacionalidad</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let usuario of report_data">
+        
+        <th scope="row">{{ usuario.name}}</th>
+        <td>
+          {{ usuario.lastname}}
+        </td>
+        <td>{{ usuario.nationality}}</td>
+      </tr>
+      </tbody>
+  </table>
+
+  <table class="table" *ngIf="selectedReporte==10">
+    <thead>
+      <tr>
+        <th scope="col">#10</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table> 

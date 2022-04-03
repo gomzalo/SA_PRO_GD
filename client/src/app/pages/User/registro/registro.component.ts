@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { PaisService } from '../../../shared/services/pais.service'
 import { UserService } from '../../../shared/services/user.service'
@@ -41,7 +42,7 @@ export class RegistroComponent implements OnInit {
 
   });
 
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService, private userService: UserService,private authService:AuthService ) { }
+  constructor(private formBuilder: FormBuilder, private paisService: PaisService, private userService: UserService,private authService:AuthService,private router:Router ) { }
 
   ngOnInit(): void {
     this.rol = this.authService.getSesion().id_rol;
@@ -89,7 +90,11 @@ export class RegistroComponent implements OnInit {
           form.photo = this.photo64
           form.birth_date = this.formatDate(form.birth_date)
           this.userService.insertUser(form)
-            .subscribe(res => console.log(res));
+            .subscribe(res => console.log(res),  error => {
+              if (error.status == 401) {
+                this.router.navigate(['unauthorized']);
+              }
+            });
         }else{
          
           form.photo = this.photo64
@@ -98,7 +103,11 @@ export class RegistroComponent implements OnInit {
           console.log(form)
           this.userService.updateUser(form)
 
-            .subscribe(res => console.log(res));
+            .subscribe(res => console.log(res),  error => {
+              if (error.status == 401) {
+                this.router.navigate(['unauthorized']);
+              }
+            });
 
         }
 

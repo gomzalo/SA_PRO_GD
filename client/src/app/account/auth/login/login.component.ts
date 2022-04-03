@@ -93,7 +93,14 @@ export class LoginComponent implements OnInit {
              if(respueta.data.id_status=="1"){
               let user_string = JSON.stringify(respueta.data);
               localStorage.setItem('currentUser',user_string); 
-               alert("Cuanta activa");
+
+              let userdata=this.authService.getSesion();
+              console.log(userdata);
+              if(userdata.id_rol==1){
+                this.router.navigate(['./reportesadmin']);
+                return;
+              }
+
                this.router.navigate(['./home']);
              }else{
               this.errorAlert('Error con su cuenta', respueta.msj);

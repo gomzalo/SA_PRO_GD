@@ -21,24 +21,18 @@ export class EquipoService {
 
   insertTeam(team){
     return this.http.post<any>(environment.apiEquipo, team,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
 
   updateTeam(team){
     return this.http.put<any>(environment.apiEquipo, team,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
   deleteTeam(_id:string){
     return this.http.delete<any>(environment.apiEquipo+'?id='+_id,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
 

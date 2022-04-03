@@ -32,10 +32,7 @@ const routes: Routes = [
     path: 'noticias',
     component: NoticiaComponent
   },
-  {
-    path: 'unauthorized',
-    component: UnauthorizedComponent
-  },
+
   {
     path: 'jugadores',
     component: JugadorComponent

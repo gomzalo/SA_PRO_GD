@@ -3,35 +3,31 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import {environment} from '../../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private router: Router) { }
   headerDict = {
     'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token,
   }
   insertCliente(cliente){
     return this.http.post<any>(environment.apiCliente, cliente,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
 
   updateCliente(cliente){
     return this.http.put<any>(environment.apiCliente, cliente,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
   deleteCliente(_id:string){
     return this.http.delete<any>(environment.apiCliente+'?id='+_id,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
 
@@ -59,8 +55,9 @@ export class ClienteService {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
+      if(error.status==401){
+        this.router.navigate(['unauthorized']);
+      }
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }

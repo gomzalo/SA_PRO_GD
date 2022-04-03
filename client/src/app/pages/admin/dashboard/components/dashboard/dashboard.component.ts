@@ -35,6 +35,10 @@ export class DashboardComponent implements OnInit {
     this.userService.getUser(user_id)
       .subscribe((data) => {
         this.user = data.data[0];
+      },  error => {
+        if (error.status == 401) {
+          this.router.navigate(['unauthorized']);
+        }
       });
   }
   getTeams(id_user: Number) {
@@ -44,6 +48,10 @@ export class DashboardComponent implements OnInit {
         for (const team of this.favoritos) {
           console.log(team)
           this.getNoticias(team.id)
+        }
+      },  error => {
+        if (error.status == 401) {
+          this.router.navigate(['unauthorized']);
         }
       });
   }
@@ -63,6 +71,10 @@ export class DashboardComponent implements OnInit {
       .subscribe((data) => {
         this.noticias=this.noticias.concat(data.data);
         console.log(this.noticias);
+      },  error => {
+        if (error.status == 401) {
+          this.router.navigate(['unauthorized']);
+        }
       });
 
   }
@@ -72,6 +84,10 @@ export class DashboardComponent implements OnInit {
       .subscribe((data) => {
         this.noticias=this.noticias.concat(data.data);
         console.log(this.noticias);
+      },  error => {
+        if (error.status == 401) {
+          this.router.navigate(['unauthorized']);
+        }
       });
 
   }

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { EquipoService } from 'src/app/shared/services/equipo.service';
 import { PartidoService } from 'src/app/shared/services/partido.service';
 import { EstadioService } from 'src/app/core/services/estadio.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-partido',
@@ -33,7 +34,7 @@ export class PartidoComponent implements OnInit {
     id_competition: new FormControl('', [Validators.required]),
   });
   
-  constructor(private formBuilder: FormBuilder, private equipoService: EquipoService, private partidoService:PartidoService, private estadioService:EstadioService) { }
+  constructor(private formBuilder: FormBuilder, private equipoService: EquipoService, private partidoService:PartidoService, private estadioService:EstadioService, private router: Router) { }
 
   ngOnInit(): void {
     this.getpartidos();
@@ -44,12 +45,20 @@ export class PartidoComponent implements OnInit {
 
   getTeams() {
     this.equipoService.getAllteams()
-      .subscribe((data) => { this.equipos = data.data });
+      .subscribe((data) => { this.equipos = data.data },  error => {
+        if (error.status == 401) {
+          this.router.navigate(['unauthorized']);
+        }
+      });
   }
 
   getStadiums() {
     this.estadioService.getEstadios()
-      .subscribe((data) => { this.estadios = data.data });
+      .subscribe((data) => { this.estadios = data.data },  error => {
+        if (error.status == 401) {
+          this.router.navigate(['unauthorized']);
+        }
+      });
   }
 
   formatDate(fecha:Date) {
@@ -61,7 +70,11 @@ export class PartidoComponent implements OnInit {
 
   getpartidos() {
     this.partidoService.getAllmatchs()
-      .subscribe((data) => { this.partidos = data.data;console.log(this.partidos)});
+      .subscribe((data) => { this.partidos = data.data;console.log(this.partidos)},  error => {
+        if (error.status == 401) {
+          this.router.navigate(['unauthorized']);
+        }
+      });
   }
 
   editar(partido) {
@@ -77,13 +90,21 @@ export class PartidoComponent implements OnInit {
         form.game_date = this.formatDate(form.game_date)
         console.log(form);
         this.partidoService.insertMatch(form)
-          .subscribe(res => console.log(res));
+          .subscribe(res => console.log(res),  error => {
+            if (error.status == 401) {
+              this.router.navigate(['unauthorized']);
+            }
+          });
       }else{        
         form.game_date = this.formatDate(form.game_date)
         console.log(form);
         form.id=this.partido.id;
         this.partidoService.updateMatch(form)
-          .subscribe(res => console.log(res));
+          .subscribe(res => console.log(res),  error => {
+            if (error.status == 401) {
+              this.router.navigate(['unauthorized']);
+            }
+          });
       }
     }
   }

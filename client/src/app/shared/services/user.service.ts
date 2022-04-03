@@ -46,9 +46,7 @@ export class UserService {
 
   updateUser(user){
     return this.http.put<any>(environment.apiAdministrador+'user', user,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
 

@@ -21,24 +21,18 @@ export class JugadorService {
 
   insertJugador(jugador){
     return this.http.post<any>(environment.apiJugador, jugador,this.requestOptions)
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
 
   updateJugador(jugador){
     return this.http.put<any>(environment.apiJugador, jugador,this.requestOptions)
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
   deleteJugador(_id:string){
     return this.http.delete<any>(environment.apiJugador+'?id='+_id,this.requestOptions)
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
 

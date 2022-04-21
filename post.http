@@ -57,6 +57,50 @@ content-type: application/json
     "id_rol": 3
 }
 
+
+# --------------------------   Reportes  --------------------------
+# **************    1. Usuarios Suscritos a X equipo  **************
+
+###
+GET http://localhost:5011/administrator/report/1/?id_team=2 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjo1LCJpZF9yb2wiOjEsImlhdCI6MTY1MDUxNzAyNCwiZXhwIjoxNjUwNjAzNDI0fQ._fU2V44448qKqIxG7Uo2nT4HdCuY3HvQE770aM0vrdM
+content-type: application/json
+# **************    2. Usuarios Suscritos a X equipo  **************
+
+###
+GET http://localhost:5011/administrator/report/2/?membership=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjo1LCJpZF9yb2wiOjEsImlhdCI6MTY1MDUxNzAyNCwiZXhwIjoxNjUwNjAzNDI0fQ._fU2V44448qKqIxG7Uo2nT4HdCuY3HvQE770aM0vrdM
+content-type: application/json
+
+# **************    3. Usuarios que Mas membresías han adquirido  **************
+
+###
+GET http://localhost:5011/administrator/report/3/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjo1LCJpZF9yb2wiOjEsImlhdCI6MTY1MDUxNzAyNCwiZXhwIjoxNjUwNjAzNDI0fQ._fU2V44448qKqIxG7Uo2nT4HdCuY3HvQE770aM0vrdM
+content-type: application/json
+
+# **************    4. Usuarios que más dinero han gastado  **************
+
+###
+GET http://localhost:5011/administrator/report/4/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjo1LCJpZF9yb2wiOjEsImlhdCI6MTY1MDUxNzAyNCwiZXhwIjoxNjUwNjAzNDI0fQ._fU2V44448qKqIxG7Uo2nT4HdCuY3HvQE770aM0vrdM
+content-type: application/json
+
+# **************    5. Usuarios de X País  **************
+
+###
+GET http://localhost:5011/administrator/report/5/?id_country=1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjo1LCJpZF9yb2wiOjEsImlhdCI6MTY1MDUxNzAyNCwiZXhwIjoxNjUwNjAzNDI0fQ._fU2V44448qKqIxG7Uo2nT4HdCuY3HvQE770aM0vrdM
+content-type: application/json
+
+# **************    10. Bitacora  **************
+
+###
+GET http://localhost:5011/administrator/report/10 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjo1LCJpZF9yb2wiOjEsImlhdCI6MTY1MDUxNzAyNCwiZXhwIjoxNjUwNjAzNDI0fQ._fU2V44448qKqIxG7Uo2nT4HdCuY3HvQE770aM0vrdM
+content-type: application/json
+
+
 ###
 
 # *******************************************
@@ -217,6 +261,8 @@ GET http://localhost:5000/customer/follow/?id_client=3 HTTP/1.1
 # Jugador
 ###
 GET http://localhost:5000/customer/report/1/?id_team=1&player=0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjo1LCJpZF9yb2wiOjEsImlhdCI6MTY1MDUxNzAyNCwiZXhwIjoxNjUwNjAzNDI0fQ._fU2V44448qKqIxG7Uo2nT4HdCuY3HvQE770aM0vrdM
+content-type: application/json
 # Tecnico
 ###
 GET http://localhost:5000/customer/report/1/?id_team=3&player=1

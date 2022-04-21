@@ -78,9 +78,9 @@ services:
     ports:
       - "5013:5013"
     restart: on-failure
-  frontend:
-    build: ./client
-    container_name: frontend
-    ports:
-      - 80:80
-    restart: on-failure
+  # frontend:
+  #   build: ./client
+  #   container_name: frontend
+  #   ports:
+  #     - 80:80
+  #   restart: on-failure

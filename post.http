@@ -78,15 +78,15 @@ content-type: application/json
 #     "password": "123"
 # }
 
-# {
-#     "email": "wjosuep13@gmail.com",
-#     "password": "123"
-# }
-
 {
-    "email": "gomzalo@outlook.com",
+    "email": "wjosuep13@gmail.com",
     "password": "123"
 }
+
+# {
+#     "email": "gomzalo@outlook.com",
+#     "password": "123"
+# }
 
 # POST http://localhost:5003/user/login HTTP/1.1
 # content-type: application/json

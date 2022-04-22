@@ -39,8 +39,8 @@ export class EquipoComponent implements OnInit {
       .subscribe((data) => { this.paises = data.data });
   }
 
-  formatDate(fecha:Date) {
-    const isoDateString =  fecha.toISOString();
+  formatDate(date: Date) {
+    const isoDateString = date.toISOString();
     const isoDate = new Date(isoDateString);
     const mySQLDateString = isoDate.toJSON().slice(0, 19).replace('T', ' ');
     return mySQLDateString
@@ -76,7 +76,7 @@ export class EquipoComponent implements OnInit {
     if (this.Form.valid) {
       if(!this.equipo){
         form.photo = this.photo64
-        form.foundation_date = this.formatDate(form.foundation_date)
+    
         console.log(form);
         this.equipoService.insertTeam(form)
           .subscribe(res => console.log(res), 
@@ -88,7 +88,8 @@ export class EquipoComponent implements OnInit {
           });
       }else{
         form.photo = this.photo64
-        form.foundation_date = this.formatDate(form.foundation_date)
+        console.log(form.foundation_date);
+        form.foundation_date = this.formatDate(new Date(form.foundation_date))
         console.log(form);
         form.id=this.equipo.id;
         this.equipoService.updateTeam(form)

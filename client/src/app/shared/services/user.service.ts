@@ -14,7 +14,7 @@ export class UserService {
     'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('currentUser')).token,
   }
   insertUser(user){
-    return this.http.post<any>(environment.apiAdministrador+'user', user)
+    return this.http.post<any>(environment.apiAdministrador+'user', user,{headers: new HttpHeaders(this.headerDict)})
   }
 
   membresiaBuy(user){

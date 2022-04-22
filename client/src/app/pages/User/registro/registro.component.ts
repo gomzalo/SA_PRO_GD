@@ -84,9 +84,9 @@ export class RegistroComponent implements OnInit {
     if (this.RegistroForm.valid) {
 
       if (form.password == form.confirmpass) {
-        console.log('coinciden pass')
+
         if(!this.editData){
-          console.log('inserrcion')
+
           form.photo = this.photo64
           form.birth_date = this.formatDate(form.birth_date)
           this.userService.insertUser(form)

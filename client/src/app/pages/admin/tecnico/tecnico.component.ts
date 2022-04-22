@@ -65,6 +65,7 @@ export class TecnicoComponent implements OnInit {
     this.equipo = equipo;
     console.log(equipo);
     this.photo64= equipo.photo;
+    this.equipo.id_country=equipo.id_nationality;
     delete equipo['photo'];
     this.Form.patchValue(this.equipo)
     
@@ -87,7 +88,7 @@ export class TecnicoComponent implements OnInit {
           });
       }else{
         form.photo = this.photo64
-        form.birth_date = this.formatDate(form.birth_date)
+        form.birth_date = this.formatDate(new Date(form.birth_date))
         console.log(form);
         form.id=this.equipo.id;
         this.tecnicoService.updateTecnico(form)

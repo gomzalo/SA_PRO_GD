@@ -6,7 +6,7 @@ const client_controller = require('../controllers/client_controller');
 router.get('/', authenticate_token_get, client_controller.get);
 router.post('/register', client_controller.create);
 router.put('/', authenticate_token, client_controller.update);
-router.delete('/:id', authenticate_token, client_controller.delete);
+router.delete('/', authenticate_token, client_controller.delete);
 router.post('/membership', authenticate_token_membership, client_controller.buy_membership);
 router.put('/membership', authenticate_token_membership, client_controller.cancel_membership);
 router.post('/follow', authenticate_token, authenticate_token, client_controller.follow_team);

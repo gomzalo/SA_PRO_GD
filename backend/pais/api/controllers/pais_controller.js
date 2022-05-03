@@ -7,7 +7,7 @@ module.exports = {
       paism.get(req.con, req.query, function(err, rows) {
         if(err){
           res.status(400).send({
-            status: false,
+            status: 400,
             msg: 'Error al obtener (los) pais(s).',
             data: [],
             error: err.toString()
@@ -19,7 +19,7 @@ module.exports = {
             return item;
           });
           res.status(200).send({
-            status: true,
+            status: 200,
             msg: 'Se han obtenido (los) pais(es).',
             data: newRows
           });

@@ -20,7 +20,7 @@ module.exports = {
             if(uncif_pass == pass){
               if(datos.id_estado != 1){
                 res.status(400).send({
-                  status: false,
+                  status: 400,
                   msg: 'Error de autenticacion, correo no confirmado.'
                 });
               }
@@ -32,24 +32,24 @@ module.exports = {
                   id_status: datos.id_estado,
                   id_rol: datos.id_rol
                 },
-                status: true,
+                status: 200,
                 msg: 'Logueado correctamente'
               });
             } else {
               res.status(400).send({
-                status: false,
+                status: 400,
                 msg: 'Error de autenticacion, contraseña incorrecta.'
               });
             }
           } else {
             res.status(400).send({
-              status: false,
+              status: 400,
               msg: 'Error de autenticacion, usuario no encontrado'
             });
           }
         } else {
           res.status(400).send({
-            status: false,
+            status: 400,
             msg: 'Error al autenticacion',
             error: err.toString()
           });
@@ -62,17 +62,20 @@ module.exports = {
         console.log(rows);
         if(err){
           res.status(400).send({
+            status: 400,
             msg: "Error al verificar correo.",
             data: []
           });
         } else {
           if(rows.changedRows != 0){
             res.status(200).send({
+              status: 200,
               msg: "Correo verificado con éxito.",
               data: []
             });
           } else {
             res.status(400).send({
+              status: 400,
               msg: "Error al verificar correo.",
               data: []
             });
@@ -86,7 +89,7 @@ module.exports = {
         // console.log(rows[0].id_usuario);
         if(err){
           res.status(400).send({
-            status: false,
+            status: 400,
             msg: 'Error al enviar contraseña temporal.',
             error: err.toString(),
             data: []
@@ -138,7 +141,7 @@ module.exports = {
             send_email(email_data, async (err, data) => {
               if(err){
                 res.status(400).send({
-                  status: true,
+                  status: 400,
                   msg: 'Error al enviar la contraseña temporal.',
                   data: []
                 });
@@ -152,14 +155,14 @@ module.exports = {
                 authm.update_password(req.con, pass_data, async function(err, rows){
                   if(err){
                     res.status(400).send({
-                      status: false,
+                      status: 400,
                       msg: "Error al actualizar contraseña temporal",
                       error: err.toString(),
                       data: []
                     });
                   } else {
                     res.status(200).send({
-                      status: true,
+                      status: 200,
                       msg: 'Se ha enviado un correo para restablecer la contraseña.',
                       data: []
                     });
@@ -169,7 +172,7 @@ module.exports = {
             });
           } else {
             res.status(400).send({
-              status: true,
+              status: 200,
               msg: 'Error al enviar la contraseña temporal, correo no encontrado.',
               data: []
             });
@@ -190,7 +193,7 @@ module.exports = {
             if(uncif_pass == pass){
               if(datos.id_estado != 1){
                 res.status(400).send({
-                  status: false,
+                  status: 400,
                   msg: 'Error de autenticacion, correo no confirmado.'
                 });
               }
@@ -199,7 +202,7 @@ module.exports = {
               authm.verify_temp_pass(req.con, datos.id_usuario, async function(err, rows_verify){
                 if(err){
                   res.status(400).send({
-                    status: false,
+                    status: 400,
                     msg: "Error al restablecer contraseña, verificacion password.",
                     error: err.toString(),
                     data: []
@@ -222,7 +225,7 @@ module.exports = {
                       authm.update_pass(req.con, pass_data, async function(err, rows){
                         if(err){
                           res.status(400).send({
-                            status: false,
+                            status: 400,
                             msg: "Error al restablecer contraseña antigua.",
                             error: err.toString(),
                             data: []
@@ -231,7 +234,7 @@ module.exports = {
                           res.status(400).send({
                             datos: datos,
                             data:[],
-                            status: false,
+                            status: 400,
                             msg: 'Se ha restablecido la contraseña antigua, pasaron los 2 minutos'
                           });
                         }
@@ -245,7 +248,7 @@ module.exports = {
                       authm.update_pass(req.con, pass_data, async function(err, rows){
                         if(err){
                           res.status(400).send({
-                            status: false,
+                            status: 400,
                             msg: "Error al restablecer contraseña nueva",
                             error: err.toString(),
                             data: []
@@ -257,7 +260,7 @@ module.exports = {
                               token: accessToken,
                               id_status: datos.id_estado
                             },
-                            status: true,
+                            status: 200,
                             msg: 'Se ha restablecido la contraseña nueva.'
                           });
                         }
@@ -266,7 +269,7 @@ module.exports = {
                     
                   } else {
                     res.status(400).send({
-                      status: false,
+                      status: 400,
                       msg: 'Error de autenticacion, usuario no encontrado'
                     });
                   }
@@ -274,19 +277,19 @@ module.exports = {
               });
             } else {
               res.status(400).send({
-                status: false,
+                status: 400,
                 msg: 'Error de autenticacion, contraseña incorrecta.'
               });
             }
           } else {
             res.status(400).send({
-              status: false,
+              status: 400,
               msg: 'Error de autenticacion, usuario no encontrado'
             });
           }
         } else {
           res.status(400).send({
-            status: false,
+            status: 400,
             msg: 'Error de autenticacion',
             error: err.toString()
           });

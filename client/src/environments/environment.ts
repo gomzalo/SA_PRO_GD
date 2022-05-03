@@ -2,18 +2,19 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-
+const ruta="http://localhost:80/esb";
 export const environment = {
   production: false,
-  apiCliente:"http://localhost:5000/customer/",
-  apiAdministrador:"http://localhost:5011/administrator/",
-  apiAuth:"http://localhost:5010/auth/",
+
+  apiCliente:ruta+"/customer/",
+  apiAdministrador:ruta+"/administrator/",
+  apiAuth:ruta+"/auth/",
   apiCompetencia:"http://localhost:5003/competition/",
   apiEquipo:"http://localhost:5001/team/",
   apiEstadio:"http://localhost:5004/stadium/",
   apiJugador:"http://localhost:5006/player/",
   apiNoticia:"http://localhost:5007/post/",
-  apiPais:"http://localhost:5013/country/",
+  apiPais:ruta+"/country/",
   apiPartido:"http://localhost:5002/match/",
   apiTecnico:"http://localhost:5005/technical-director/",
   

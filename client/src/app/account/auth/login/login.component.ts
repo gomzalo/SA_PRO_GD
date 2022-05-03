@@ -85,8 +85,8 @@ export class LoginComponent implements OnInit {
        .subscribe(
          resp=>{
              let respueta:any = resp;
-
-             if(respueta.status!=true){
+            console.log(resp);
+             if(respueta.status!=200){
                this.errorAlert('Error Login', 'Credenciales invalidas');
                return;
              }

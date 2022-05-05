@@ -9,14 +9,14 @@ export const environment = {
   apiCliente:ruta+"/customer/",
   apiAdministrador:ruta+"/administrator/",
   apiAuth:ruta+"/auth/",
-  apiCompetencia:"http://localhost:5003/competition/",
-  apiEquipo:"http://localhost:5001/team/",
-  apiEstadio:"http://localhost:5004/stadium/",
-  apiJugador:"http://localhost:5006/player/",
-  apiNoticia:"http://localhost:5007/post/",
-  apiPais:ruta+"/country/",
-  apiPartido:"http://localhost:5002/match/",
-  apiTecnico:"http://localhost:5005/technical-director/",
+  apiCompetencia:"http://35.188.31.34:5003/competition/",
+  apiEquipo:"http://35.188.31.34:5001/team/",
+  apiEstadio:"http://35.188.31.34:5004/stadium/",
+  apiJugador:"http://35.188.31.34:5006/player/",
+  apiNoticia:"http://35.188.31.34:5007/post/",
+  apiPais:"http://35.188.31.34:5013/country/",
+  apiPartido:"http://35.188.31.34:5002/match/",
+  apiTecnico:"http://35.188.31.34:5005/technical-director/",
   
 
 };

@@ -2,7 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const ruta="http://localhost:3000/esb";
+const ruta="http://104.198.130.96:3000/esb";
 export const environment = {
   production: false,
 

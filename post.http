@@ -571,3 +571,19 @@ content-type: application/json
 # ----------    Obtener     ----------
 
 GET http://localhost:5007/post/?team=5 HTTP/1.1
+
+# ***************************************************
+# ************** PREDICTION SERVER ********************* 
+# ***************************************************
+
+###
+
+# ----------    Obtener produccion   ----------
+
+POST http://localhost:5013/predict HTTP/1.1
+content-type: application/json
+
+{
+    "id_home": 3,
+    "id_away": 2
+}

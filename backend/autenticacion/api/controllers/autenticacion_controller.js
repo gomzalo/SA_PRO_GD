@@ -125,7 +125,7 @@ module.exports = {
                 })
                 .then(function (response) {
                     console.log(response);
-                    alert(response);
+                    alert(response.msg);
                 })
                 .catch(function (error) {
                     console.log(error);

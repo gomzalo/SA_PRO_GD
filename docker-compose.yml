@@ -24,12 +24,12 @@ services:
   server_news:
     build: ./backend/noticia
     image: bitochepe/sa_server_news
-  # server_predict:
-  #   build: ./backend/prediccion
-  #   container_name: predict
-  #   ports:
-  #     - "5009:5009"
-  #   restart: on-failure
+  server_predict:
+    build: ./backend/prediccion
+    container_name: bitochepe/sa_server_predict
+    ports:
+      - "5009:5009"
+    restart: on-failure
   server_auth:
     build: ./backend/autenticacion
     image: bitochepe/sa_server_auth

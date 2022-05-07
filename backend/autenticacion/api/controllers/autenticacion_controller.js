@@ -85,6 +85,64 @@ module.exports = {
         }
       });
     },
+// ||||||||||||||||||||   RESETEAR PASSWORD   ||||||||||||||||||||
+    reset_password: function(req, res) {
+      res.status(200).send(
+        `
+        <!--html-->
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <title>Soccer Stats SIUUU</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
+              <meta charset="utf-8" />
+            </head>
+            <body>
+                <h1><b>¡Confirmación de reseteo de contraseña!</b></h1>
+                Ingresa tu contraseña temporal: 
+                <label for="femail">Correo</label><br>
+                <input type="text" id="femail" name="femail" placeholder="Email"><br>
+                <label for="ftemp_pass">Contraseña temporal</label><br>
+                <input type="text" id="ftemp_pass" name="ftemp_pass" placeholder="Temp pass"><br>
+                <label for="fnew_pass">Last name:</label><br>
+                <input type="text" id="fnew_pass" name="fnew_pass" placeholder="New pass"><br><br>
+                <h2><a type="button" class="btn btn-primary btn-lg" onclick=resetpass()">Restablecer contraseña</a></h2>
+                <br>
+                Ingresa tu nueva contraseña
+                <br>
+                <br>
+                ${link}
+                <br>
+                <br>
+                <b>Nota: </b> ¡Si no restableces tu contraseña por una nueva, en los siguientes 2 minutos no podras iniciar sesión!
+            </body>
+            <!-- SCRIPTS -->
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script>
+              function resetpass(){
+                var temp_pass = document.getElementById("ftemp_pass").value;
+                var new_pass = document.getElementById("fnew_pass").value;
+                var email = document.getElementById("femail").value;
+                axios.post('http://35.188.184.126:5010/reset-password', {
+                  temporal_password: temp_pass,
+                  new_password: new_pass,
+                  email: email
+                })
+                .then(function (response) {
+                    console.log(response);
+                    location.reload();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+              }
+            </script>
+          </html>
+        <!--!html-->
+        `
+      );
+    },
 // ||||||||||||||||||||   PASS TEMPORAL   ||||||||||||||||||||
     temp_pass: async function(req, res) {
       authm.get_id(req.con, req.body, async function(err, rows){
@@ -103,7 +161,7 @@ module.exports = {
               length: 10,
               numbers: true
             });
-            let link = `${url}:4200/login/reset-password`;
+            let link = `http://35.188.184.126:5010/reset-password/?id=${user_id}`;
             let email_data = {
               email: req.body.email,
               id: user_id,
@@ -260,7 +318,10 @@ module.exports = {
                             datos: datos,
                             data:{
                               token: accessToken,
-                              id_status: datos.id_estado
+                              id_status: datos.id_estado,
+                              id_rol: datos.id_rol,
+                              id_user: datos.id_usuario,
+                              has_membership: datos.membership
                             },
                             status: 200,
                             msg: 'Se ha restablecido la contraseña nueva.'

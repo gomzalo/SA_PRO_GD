@@ -107,7 +107,7 @@ module.exports = {
                 <input type="text" id="ftemp_pass" name="ftemp_pass" placeholder="Temp pass"><br>
                 <label for="fnew_pass">Last name:</label><br>
                 <input type="text" id="fnew_pass" name="fnew_pass" placeholder="New pass"><br><br>
-                <h2><a type="button" class="btn btn-primary btn-lg" onclick=resetpass()">Restablecer contraseña</a></h2>
+                <h2><a type="button" class="btn btn-primary btn-lg" onclick="resetpass()">Restablecer contraseña</a></h2>
                 <br>
                 <b>Nota: </b> ¡Si no restableces tu contraseña por una nueva, en los siguientes 2 minutos no podras iniciar sesión!
             </body>

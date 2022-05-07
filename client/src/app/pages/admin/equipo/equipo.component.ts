@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PaisService } from 'src/app/shared/services/pais.service';
 import { EquipoService } from 'src/app/shared/services/equipo.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-equipo',
@@ -25,7 +26,7 @@ export class EquipoComponent implements OnInit {
 
   });
   
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private equipoService:EquipoService) { }
+  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private equipoService:EquipoService,private router:Router) { }
 
   ngOnInit(): void {
     this.getequipos();
@@ -38,8 +39,8 @@ export class EquipoComponent implements OnInit {
       .subscribe((data) => { this.paises = data.data });
   }
 
-  formatDate(fecha:Date) {
-    const isoDateString =  fecha.toISOString();
+  formatDate(date: Date) {
+    const isoDateString = date.toISOString();
     const isoDate = new Date(isoDateString);
     const mySQLDateString = isoDate.toJSON().slice(0, 19).replace('T', ' ');
     return mySQLDateString
@@ -47,7 +48,13 @@ export class EquipoComponent implements OnInit {
 
   getequipos() {
     this.equipoService.getAllteams()
-      .subscribe((data) => { this.equipos = data.data;console.log(this.equipos)});
+      .subscribe((data) => { this.equipos = data.data;console.log(this.equipos)}, 
+      error => {
+        console.log(error)
+        if (error.status== 401) {
+          this.router.navigate(['unauthorized']);
+        }
+      });
 
   }
 
@@ -69,23 +76,42 @@ export class EquipoComponent implements OnInit {
     if (this.Form.valid) {
       if(!this.equipo){
         form.photo = this.photo64
-        form.foundation_date = this.formatDate(form.foundation_date)
+    
         console.log(form);
         this.equipoService.insertTeam(form)
-          .subscribe(res => console.log(res));
+          .subscribe(res => console.log(res), 
+          error => {
+            console.log(error)
+            if (error.status== 401) {
+              this.router.navigate(['unauthorized']);
+            }
+          });
       }else{
         form.photo = this.photo64
-        form.foundation_date = this.formatDate(form.foundation_date)
+        console.log(form.foundation_date);
+        form.foundation_date = this.formatDate(new Date(form.foundation_date))
         console.log(form);
         form.id=this.equipo.id;
         this.equipoService.updateTeam(form)
-          .subscribe(res => console.log(res));
+          .subscribe(res => console.log(res), 
+          error => {
+            console.log(error)
+            if (error.status== 401) {
+              this.router.navigate(['unauthorized']);
+            }
+          });
       }
     }
   }
   eliminar(id_equipo){
     this.equipoService.deleteTeam(id_equipo)
-    .subscribe(res => console.log(res));
+    .subscribe(res => console.log(res), 
+    error => {
+      console.log(error)
+      if (error.status== 401) {
+        this.router.navigate(['unauthorized']);
+      }
+    });
   }
 
   onFileChange(event) {

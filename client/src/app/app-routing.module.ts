@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ContentLayoutComponent } from './shared/components/layout/content-layout/content-layout.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { VerifyAcountComponent } from './pages/verify-acount/verify-acount.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 // Guards
 // import { AdminGuard } from './core/guards/auth/admin.guard';
 // import { UserGuard } from './core/guards/auth/user.guard';
@@ -15,12 +16,18 @@ const routes: Routes = [
     component: InicioComponent,
   },
   {
+    path: 'unauthorized',
+    component: UnauthorizedComponent
+  },
+  {
     path: '',
     component: ContentLayoutComponent,
     loadChildren: () => import('./pages/admin/pages.module').then(m => m.PagesModule),
     // canActivate: [AdminGuard]
   },
   { path: 'users',  loadChildren: () => import('./pages/User/users.module').then(m => m.UsersModule) },
+  { path: 'estadio',  loadChildren: () => import('./pages/estadio/estadio.module').then(m => m.EstadioModule) },
+  { path: 'competencia',  loadChildren: () => import('./pages/competencia/competencia.module').then(m => m.CompetenciaModule) },
   {
     path: 'login',
     loadChildren: () => import('./account/account.module').then(m => m.AccountModule),

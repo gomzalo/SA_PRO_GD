@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { JugadorService } from 'src/app/shared/services/jugador.service';
 import { PaisService } from 'src/app/shared/services/pais.service';
 
@@ -11,8 +12,8 @@ import { PaisService } from 'src/app/shared/services/pais.service';
 export class JugadorComponent implements OnInit {
 
   paises = []
-  equipos = []
-  posiciones=[{id:1,val:'Portero'},{id:2,val:'Defensa'},{id:3,val:'Medio'},{id:1,val:'Delantero'}]
+  jugadores = []
+  posiciones=[{id:1,val:'Portero'},{id:2,val:'Defensa'},{id:3,val:'Medio'},{id:4,val:'Delantero'}]
   page = 1;
   pageSize = 4;
   size = 0;
@@ -24,22 +25,34 @@ export class JugadorComponent implements OnInit {
     lastname: new FormControl('', [Validators.required]),
     birth_date:new FormControl('', [Validators.required]),
     position:new FormControl('', [Validators.required]),
-    status:new FormControl('', [Validators.required]),
-    photo:new FormControl(this.photo64, [Validators.required]),
+    status:new FormControl(1, [Validators.required]),
+    photo:new FormControl(this.photo64, ),
     id_nationality:new FormControl('',[Validators.required] ),
 
   });
 
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private equipoService:JugadorService) { }
+  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private jugadorService:JugadorService, private router: Router) { }
 
   ngOnInit(): void {
     this.getcountries();
-    this.size = this.equipos.length
+    this.getJugadores();
+    this.size = this.jugadores.length
   }
 
   getcountries() {
     this.paisService.getpaises()
       .subscribe((data) => { this.paises = data.data });
+  }
+
+  getJugadores() {
+    this.jugadorService.getAlljugadors()
+      .subscribe((data) => { this.jugadores = data.data;console.log(this.jugadores); }, 
+      error => {
+        console.log(error)
+        if (error.status== 401) {
+          this.router.navigate(['unauthorized']);
+        }
+      });
   }
 
   formatDate(fecha:Date) {
@@ -49,11 +62,6 @@ export class JugadorComponent implements OnInit {
     return mySQLDateString
   }
 
-  getequipos() {
-    this.equipoService.getAlljugadors()
-      .subscribe((data) => { this.equipos = data.data;console.log(this.equipos)});
-
-  }
 
 
   editar(equipo) {
@@ -73,23 +81,35 @@ export class JugadorComponent implements OnInit {
     if (this.Form.valid) {
       if(!this.equipo){
         form.photo = this.photo64
-        form.foundation_date = this.formatDate(form.foundation_date)
+        form.birth_date = this.formatDate(form.birth_date)
         console.log(form);
-        this.equipoService.insertTeam(form)
-          .subscribe(res => console.log(res));
+        this.jugadorService.insertJugador(form)
+          .subscribe(res => console.log(res) , error => {
+            if (error.status == 401) {
+              this.router.navigate(['unauthorized']);
+            }
+          });
       }else{
         form.photo = this.photo64
-        form.foundation_date = this.formatDate(form.foundation_date)
+        form.birth_date = this.formatDate(form.birth_date)
         console.log(form);
         form.id=this.equipo.id;
-        this.equipoService.updateTeam(form)
-          .subscribe(res => console.log(res));
+        this.jugadorService.updateJugador(form)
+          .subscribe(res => console.log(res),  error => {
+            if (error.status == 401) {
+              this.router.navigate(['unauthorized']);
+            }
+          });
       }
     }
   }
   eliminar(id_equipo){
-    this.equipoService.deleteTeam(id_equipo)
-    .subscribe(res => console.log(res));
+    this.jugadorService.deleteJugador(id_equipo)
+    .subscribe(res => console.log(res),  error => {
+      if (error.status == 401) {
+        this.router.navigate(['unauthorized']);
+      }
+    });
   }
 
   onFileChange(event) {

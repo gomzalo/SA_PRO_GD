@@ -15,15 +15,21 @@ import { MaterialModule } from 'src/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {UsersModule} from '../User/users.module';
+import {EstadioModule} from '../estadio/estadio.module';
 import { NoticiaComponent } from './Noticia/noticia.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { JugadorComponent } from './jugador/jugador.component';
-
-
+import { TecnicoComponent } from './tecnico/tecnico.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EstadioComponent } from './estadio/estadio.component';
+import { PartidoComponent } from './partido/partido.component';
+import { ComptenciaComponent } from './comptencia/comptencia.component';
+import { CompetenciaModule } from '../competencia/competencia.module';
+import { MembresiaComponent } from './membresia/membresia.component';
 
 @NgModule({
-  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent, JugadorComponent],
+  declarations: [UsersComponent, NoticiaComponent,ReportesComponent,EquipoComponent, JugadorComponent, TecnicoComponent,ProfileComponent, EstadioComponent, PartidoComponent, ComptenciaComponent, MembresiaComponent],
   imports: [
     AngularDualListBoxModule,
     MatSelectModule,
@@ -35,7 +41,9 @@ import { JugadorComponent } from './jugador/jugador.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    UsersModule
-  ]
+    UsersModule,
+    CompetenciaModule,
+    EstadioModule
+    ]
 })
 export class PagesModule { }

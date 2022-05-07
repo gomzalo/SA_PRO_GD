@@ -1,0 +1,65 @@
+<form [formGroup]="RegistroForm" autocomplete="off" novalidate (ngSubmit)="submit(RegistroForm.value)" class="content">
+    <mat-card-content>
+      <div class="center margin-dark" style="display:flex;flex-flow: column;">
+  
+        <mat-form-field appearance="outline" class="center">
+          <mat-label>Nombre: </mat-label>
+          <input matInput type="text" placeholder="Nombre" formControlName="nombre" id="first-name">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="center">
+          <mat-label>Fecha fundacion </mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fecha_inaguracion">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="center">
+          <mat-label>Dirección </mat-label>
+          <textarea matInput id="direccion" formControlName="direccion" placeholder="Dirección"
+            formControlName="direccion">
+         </textarea>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="center">
+          <mat-label>Pais </mat-label>
+          <mat-select formControlName="id_pais" id="id_pais">
+            <mat-option *ngFor="let pais of paises" [value]="pais.id">
+              {{pais.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="center">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="status" id="status">
+            <mat-option *ngFor="let estado of estados" [value]="estado.id">
+              {{estado.Estado}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+  
+        <mat-form-field appearance="outline" class="center">
+          <mat-label>capacidad </mat-label>
+          <input matInput type="number" placeholder="Edad" formControlName="capacidad" id="capacidad">
+        </mat-form-field>
+  
+        <mat-label class="margenes">Foto de perfil </mat-label>
+        <input 
+        formControlName="photo"
+        id="file" 
+        type="file" 
+        class="form-control margenes"
+        (change)="onFileChange($event)">
+       
+        <br />
+
+        <img src="" alt="">
+  
+        <button mat-flat-button color="primary" type="submit" class="form-control">Aceptar </button>
+  
+      </div>
+    </mat-card-content>
+  </form>
+  

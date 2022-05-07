@@ -5,14 +5,26 @@ module.exports = {
       if(id != null){
         await con.query(
           `
-          SELECT * FROM Competencia
+          SELECT c.id_competencia AS id, c.nombre AS name,
+          c.id_tipo_competencia AS type, c.anio AS year,
+          c.id_campeon AS id_champion_team, e.nombre AS champion_team,
+          c.id_country AS id_country, p.nicename AS country
+          FROM Competencia c
+          INNER JOIN Equipo e ON c.id_campeon = e.id_equipo
+          INNER JOIN Pais p ON c.id_country = p.id_pais
           WHERE id_competencia = '${id}';
           `,
           callback)
       } else {
         await con.query(
           `
-          SELECT * FROM Competencia;
+          SELECT c.id_competencia AS id, c.nombre AS name,
+          c.id_tipo_competencia AS type, c.anio AS year,
+          c.id_campeon AS id_champion_team, e.nombre AS champion_team,
+          c.id_country AS id_country, p.nicename AS country
+          FROM Competencia c
+          INNER JOIN Equipo e ON c.id_campeon = e.id_equipo
+          INNER JOIN Pais p ON c.id_country = p.id_pais;
           `,
           callback)
       }

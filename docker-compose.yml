@@ -1,84 +1,44 @@
-version: "3"
+version: '3'
 services:
   server_client:
     build: ./backend/client
-    container_name: client
-    ports:
-      - "5000:5000"
-    restart: on-failure
-  
+    image: bitochepe/sa_server_client
   server_equipo:
     build: ./backend/equipo
-    container_name: team
-    ports:
-      - "5001:5001"
-    restart: on-failure
+    image: bitochepe/sa_server_equipo
   server_partido:
     build: ./backend/partido
-    container_name: match
-    ports:
-      - "5002:5002"
-    restart: on-failure
+    image: bitochepe/sa_server_partido
   server_competition:
     build: ./backend/competicion
-    container_name: comp
-    ports:
-      - "5003:5003"
-    restart: on-failure
+    image: bitochepe/sa_server_competition
   server_stadium:
     build: ./backend/estadio
-    container_name: stadium
-    ports:
-      - "5004:5004"
-    restart: on-failure
-  # server_tecnico:
-  #   build: ./backend/tecnico
-  #   container_name: coach
-  #   ports:
-  #     - "5005:5005"
-  #   restart: on-failure
-  # server_jugador:
-  #   build: ./backend/jugador
-  #   container_name: player
-  #   ports:
-  #     - "5006:5006"
-  #   restart: on-failure
+    image: bitochepe/sa_server_stadium
+  server_tecnico:
+    build: ./backend/tecnico
+    image: bitochepe/sa_server_tecnico
+  server_jugador:
+    build: ./backend/jugador
+    image: bitochepe/sa_server_jugador
   server_news:
     build: ./backend/noticia
-    container_name: news
-    ports:
-      - "5007:5007"
-    restart: on-failure
+    image: bitochepe/sa_server_news
+  server_predict:
+    build: ./backend/prediccion
+    image: bitochepe/sa_server_predict
   server_auth:
     build: ./backend/autenticacion
-    container_name: auth
-    ports:
-      - "5010:5010"
-    restart: on-failure
-
-  # server_administrador:
-  #   build: ./backend/administrador
-  #   container_name: admin
-  #   ports:
-  #     - "5011:5011"
-  #   restart: on-failure
-  # server_empleado:
-  #   build: ./backend/empleado
-  #   container_name: empleado
-  #   ports:
-  #     - "5012:5012"
-  #   restart: on-failure
+    image: bitochepe/sa_server_auth
+  server_admin:
+    build: ./backend/administrative
+    image: bitochepe/sa_server_admin
+  server_empleado:
+    build: ./backend/empleado
+    image: bitochepe/sa_server_empleado
   server_pais:
     build: ./backend/pais
-    container_name: pais
-    ports:
-      - "5013:5013"
-    restart: on-failure
-  # frontend:
-  #   build: ./Frontend
-  #   container_name: frontend
-  #   ports:
-  #     - 80:80
-  #   depends_on:
-  #     - server_client
-  #   restart: on-failure
+    image: bitochepe/sa_server_pais
+  frontend:
+    build: ./client
+    image: bitochepe/sa_frontend

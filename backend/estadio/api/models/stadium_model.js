@@ -5,14 +5,24 @@ module.exports = {
       if(id != null){
         await con.query(
           `
-          SELECT * FROM Estadio
-          WHERE id_estadio = '${id}';
+          SELECT e.id_estadio AS id, e.nombre AS name, e.fecha_inaguracion AS fundation_date,
+          e.capacidad AS capacity, e.id_pais AS id_country, p.nicename AS country,
+          e.direccion AS address, status, e.foto AS photo
+          FROM Estadio e
+          INNER JOIN Pais p ON e.id_pais = p.id_pais
+          WHERE id_estadio = '${id}'
+          ;
           `,
           callback)
       } else {
         await con.query(
           `
-          SELECT * FROM Estadio;
+          SELECT e.id_estadio AS id, e.nombre AS name, e.fecha_inaguracion AS fundation_date,
+          e.capacidad AS capacity, e.id_pais AS id_country, p.nicename AS country,
+          e.direccion AS address, status, e.foto AS photo
+          FROM Estadio e
+          INNER JOIN Pais p ON e.id_pais = p.id_pais
+          ;
           `,
           callback)
       }

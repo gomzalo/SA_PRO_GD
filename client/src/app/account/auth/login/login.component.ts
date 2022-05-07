@@ -69,6 +69,14 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/users/registro']);
   }
 
+  olvidepass() {
+    this.router.navigate(['/login/forgot']);
+  }
+
+  resetPass() {
+    this.router.navigate(['/login/reset-password']);
+  }
+
    handleLogin() {
   //  let session = this.authService.login({"email" : this.email,"password" : (this.password)});
 
@@ -77,15 +85,22 @@ export class LoginComponent implements OnInit {
        .subscribe(
          resp=>{
              let respueta:any = resp;
-
-             if(respueta.status!=true){
+            console.log(resp);
+             if(respueta.status!=200){
                this.errorAlert('Error Login', 'Credenciales invalidas');
                return;
              }
              if(respueta.data.id_status=="1"){
               let user_string = JSON.stringify(respueta.data);
               localStorage.setItem('currentUser',user_string); 
-               alert("Cuanta activa");
+
+              let userdata=this.authService.getSesion();
+              console.log(userdata);
+              if(userdata.id_rol==1){
+                this.router.navigate(['./reportesadmin']);
+                return;
+              }
+
                this.router.navigate(['./home']);
              }else{
               this.errorAlert('Error con su cuenta', respueta.msj);

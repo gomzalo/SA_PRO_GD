@@ -2,20 +2,23 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const ruta="http://104.154.104.29:3000/esb";
 export const environment = {
   production: false,
-  apiClient:"http://localhost:5000/customer/",
-  apiAdministrador:"http://localhost:5011/administrator/",
-  apiAuth:"http://localhost:5010/auth/",
-  apiCompetencia:"http://localhost:5003/competition/",
-  apiEquipo:"http://localhost:5001/team/",
-  apiEstadio:"http://localhost:5004/stadium/",
-  apiJugador:"http://localhost:5006/player/",
-  apiNoticia:"http://localhost:5007/post/",
-  apiPais:"http://localhost:5013/country/",
-  apiPartido:"http://localhost:5002/match/",
-  apiTecnico:"http://localhost:5005/technical-director/",
 
+  apiCliente:ruta+"/customer/",
+  apiAdministrador:ruta+"/administrator/",
+  apiAuth:ruta+"/auth/",
+  apiCompetencia:"http://35.188.184.126:5003/competition/",
+  apiEquipo:"http://35.188.184.126:5001/team/",
+  apiEstadio:"http://35.188.184.126:5004/stadium/",
+  apiJugador:"http://35.188.184.126:5006/player/",
+  apiNoticia:"http://35.188.184.126:5007/post/",
+  apiPais:"http://35.188.184.126:5013/country/",
+  apiPartido:"http://35.188.184.126:5002/match/",
+  apiTecnico:"http://35.188.184.126:5005/technical-director/",
+  apiPredicción:"http://35.188.184.126:5009/predict/",
+  
 };
 
 /*

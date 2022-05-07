@@ -34,8 +34,8 @@
         <mat-form-field appearance="outline" class="center">
           <mat-label>Equipo </mat-label>
           <mat-select formControlName="id_team" id="id_teams">
-            <mat-option *ngFor="let equipo of equipos" [value]="equipo.id_equipo">
-              {{equipo.nombre}}
+            <mat-option *ngFor="let equipo of equipos" [value]="equipo.id">
+              {{equipo.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -62,19 +62,18 @@
           <tbody>
           <tr *ngFor="let noticia of noticias">
             
-            <th scope="row">{{ noticia.titulo }}</th>
+            <th scope="row">{{ noticia.title }}</th>
             <td>
-              {{ noticia.descripcion}}
+              {{ noticia.description}}
             </td>
-            <td>{{ noticia.fecha}}</td>
+            <td>{{ noticia.date}}</td>
 
           </tr>
           </tbody>
         </table>
         
         <div class="d-flex justify-content-between p-2">
-          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCountries()">
-          </ngb-pagination>
+
        
         </div>
   </div>

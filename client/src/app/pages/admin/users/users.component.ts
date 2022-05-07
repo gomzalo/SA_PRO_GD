@@ -44,6 +44,10 @@ export class UsersComponent implements OnInit {
 
   }
 
+  cerrar(){
+    this.isOpen=false;
+    this.user=null
+  }
 
   editar(usuario, content) {
  

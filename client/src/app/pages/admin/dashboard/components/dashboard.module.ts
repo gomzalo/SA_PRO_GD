@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MaterialModule } from 'src/material.module';
 
 
 //Route
@@ -15,9 +16,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SharedModule } from '../../../../shared/shared.module';
 import { CountToModule } from 'angular-count-to';
+import { DatosEstadisticosComponent } from './datos-estadisticos/datos-estadisticos.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, DatosEstadisticosComponent],
   imports: [
     MatTabsModule,
     CommonModule,
@@ -27,7 +29,8 @@ import { CountToModule } from 'angular-count-to';
     NgbModule,
     NgxDatatableModule,
     SharedModule,
-    CountToModule
+    CountToModule,
+    MaterialModule
   ]
 })
 export class DashboardModule { }

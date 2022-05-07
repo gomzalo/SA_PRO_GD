@@ -28,8 +28,8 @@
           <mat-form-field appearance="outline" class="center">
             <mat-label>Pais </mat-label>
             <mat-select formControlName="id_country" id="pais">
-              <mat-option *ngFor="let pais of paises" [value]="pais.id_pais">
-                {{pais.nicename}}
+              <mat-option *ngFor="let pais of paises" [value]="pais.id">
+                {{pais.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -65,7 +65,7 @@
               <th scope="col">Nombre</th>
               <th scope="col">Pais</th>
               <th scope="col">Fecha Fundación</th>
-              <th scope="col">Estado</th>
+
   
             </tr>
             </thead>
@@ -77,7 +77,7 @@
                 {{ equipo.country}}
               </td>
               <td>{{ equipo.foundation_date}}</td>
-              <td>{{ equipo.status}}</td>
+
               <td> <button type="button" class="btn btn-secondary" (click)="editar(equipo)">Editar</button></td>
               <td> <button type="button" class="btn btn-danger" (click)="eliminar(equipo.id)">Eliminar</button></td>
             </tr>

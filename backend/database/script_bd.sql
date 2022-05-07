@@ -56,7 +56,7 @@ CREATE TABLE Tecnico (
     apellido VARCHAR(100) NOT NULL ,
     fecha_nac DATE NOT NULL,
     titulo VARCHAR(100) NOT NULL,
-    foto VARCHAR(300) NOT NULL,
+    foto longtext NOT NULL,
 	id_pais INT NOT NULL,
     id_estado INT NOT NULL,
     CONSTRAINT FK_Tecnico_Pais FOREIGN KEY (id_pais)
@@ -77,7 +77,7 @@ CREATE TABLE Jugador (
     fecha_nac DATE NOT NULL,
 	pais_nacionalidad INT NOT NULL,
     id_posicion INT NOT NULL,
-    foto VARCHAR(300) NOT NULL,
+    foto longtext NOT NULL,
     id_estado INT NOT NULL,
 	CONSTRAINT FK_Jugador_Posicion FOREIGN KEY (id_posicion)
         REFERENCES Posicion(id_posicion)
@@ -139,6 +139,16 @@ CREATE TABLE Competencia (
         REFERENCES Equipo(id_equipo)
 );
 
+CREATE TABLE Equipo_Competencia (
+    id_competencia INT NOT NULL,
+    id_equipo INT NOT NULL,
+    CONSTRAINT PK_Equipo_Competencia PRIMARY KEY (id_competencia, id_equipo),
+    CONSTRAINT FK_Equipo_Competencia_id_competencia FOREIGN KEY (id_competencia)
+        REFERENCES Competencia(id_competencia),
+    CONSTRAINT FK_Equipo_Competencia_id_equipo FOREIGN KEY (id_equipo)
+        REFERENCES Equipo(id_equipo)
+);
+
 CREATE TABLE Estadio (
     id_estadio INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL,
@@ -166,8 +176,8 @@ CREATE TABLE Arbitro (
 );
 
 CREATE TABLE Partido (
-    id_partido INT AUTO_INCREMENT PRIMARY KEY,
-    fecha DATE NOT NULL,
+    id_partido INT AUTO_INCREMENT,
+    fecha DATETIME NOT NULL,
     publico INT NOT NULL,
     id_estadio INT NOT NULL,
     id_visitante INT NOT NULL,
@@ -176,6 +186,8 @@ CREATE TABLE Partido (
     id_estado INT NOT NULL,
     result_local INT NOT NULL,
     result_visiting INT NOT NULL,
+    CONSTRAINT PK_Partido_Estadio_Competencia
+    PRIMARY KEY (id_partido, id_estadio, id_competencia, fecha),
     CONSTRAINT FK_Partido_Estadio FOREIGN KEY (id_estadio)
         REFERENCES Estadio(id_estadio),
     CONSTRAINT FK_Partido_Equipo_Visitante FOREIGN KEY (id_visitante)
@@ -189,9 +201,10 @@ CREATE TABLE Partido (
 );
 
 CREATE TABLE Arbitro_Partido (
-    id_arbitro INT NOT NULL PRIMARY KEY,
+    id_arbitro INT NOT NULL,
     id_partido INT NOT NULL,
     tipo_arbitro VARCHAR(100) NOT NULL,
+    CONSTRAINT PK_Arbitro_Partido PRIMARY KEY (id_arbitro, id_partido),
     CONSTRAINT FK_Arbitro_Partido_id_arbitro FOREIGN KEY (id_arbitro)
         REFERENCES Arbitro(id_arbitro),
     CONSTRAINT FK_Arbitro_Partido_id_partido FOREIGN KEY (id_partido)
@@ -256,6 +269,15 @@ CREATE TABLE Usuario (
         REFERENCES Rol(id_rol)
 );
 
+CREATE TABLE Usuario_Membresia(
+    id_usuario INT NOT NULL,
+    fecha DATE NOT NULL,
+    estado INT NOT NULL,
+    CONSTRAINT PK_Usuario_Membresia PRIMARY KEY(id_usuario, fecha),
+    CONSTRAINT FK_Usuario_Membresia FOREIGN KEY (id_usuario)
+        REFERENCES Usuario(id_usuario)
+);
+
 CREATE TABLE Usuario_Equipo(
     id_usuario INT NOT NULL,
     id_equipo INT NOT NULL,
@@ -281,16 +303,19 @@ CREATE TABLE Noticia(
 
 CREATE TABLE Bitacora (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
     tipo VARCHAR(100) NOT NULL,
     fecha DATE NOT NULL,
-    descripcion VARCHAR(300) NOT NULL
+    descripcion VARCHAR(300) NOT NULL,
+    CONSTRAINT FK_Bitacora_Usuario FOREIGN KEY (id_usuario)
+        REFERENCES Usuario(id_usuario)
 );
 
 CREATE TABLE Temp_Pass (
     id_usuario INT PRIMARY KEY NOT NULL,
     original_pass VARCHAR(50) NOT NULL,
     temporal_pass VARCHAR(50) NOT NULL,
-    hora DATE NOT NULL,
+    hora DATETIME NOT NULL,
     CONSTRAINT FK_Temp_Pass FOREIGN KEY (id_usuario)
         REFERENCES Usuario(id_usuario)
 );

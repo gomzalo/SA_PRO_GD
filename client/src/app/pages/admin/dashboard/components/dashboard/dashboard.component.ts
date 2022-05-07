@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
     this.userService.getUser(user_id)
       .subscribe((data) => {
         this.user = data.data[0];
+        console.log(this.user);
       },  error => {
         if (error.status == 401) {
           this.router.navigate(['unauthorized']);

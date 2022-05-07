@@ -50,6 +50,84 @@ export class ClienteService {
   }
 
 
+  reporte1( idequipo){
+    return this.http.get<any>(environment.apiCliente+'report/1',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+  reporte2(anios,tipo){
+    return this.http.get<any>(environment.apiCliente+'report/2?age='+anios+'&player='+tipo,{headers: new HttpHeaders(this.headerDict)});
+  }
+
+  reporte3(anios,tipo){
+    return this.http.get<any>(environment.apiCliente+'report/3?age='+anios+'&player='+tipo,{headers: new HttpHeaders(this.headerDict)});
+  }
+
+  reporte4(competicion){
+    return this.http.get<any>(environment.apiCliente+'report/4',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+
+  reporte5(pais){
+    return this.http.get<any>(environment.apiCliente+'report/5',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+  reporte6(anios){
+    return this.http.get<any>(environment.apiCliente+'report/6?age='+anios,{headers: new HttpHeaders(this.headerDict)});
+  }
+
+  reporte7(pais){
+    return this.http.get<any>(environment.apiCliente+'report/7',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+  reporte8(capacidad){
+    return this.http.get<any>(environment.apiCliente+'report/8?capacity='+capacidad,{headers: new HttpHeaders(this.headerDict)});
+  }
+
+
+  reporte9(equipo){
+    return this.http.get<any>(environment.apiCliente+'report/9',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+  reporte10(id,tipo){
+    return this.http.get<any>(environment.apiCliente+'report/10',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+
+  reporte11(goles){
+    return this.http.get<any>(environment.apiCliente+'report/11?goals='+goles,{headers: new HttpHeaders(this.headerDict)});
+  }
+
+
+  reporte12(incidencia,competicion){
+    return this.http.get<any>(environment.apiCliente+'report/12',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+  reporte13(incidencia,competicion,anio){
+    return this.http.get<any>(environment.apiCliente+'report/13',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+  reporte14(competicion,equipo){
+    return this.http.get<any>(environment.apiCliente+'report/14',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+  reporte15(anio){
+    return this.http.get<any>(environment.apiCliente+'report/15',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+
+  reporte16(equipo1,equipo2){
+    return this.http.get<any>(environment.apiCliente+'report/16',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+
+  reporte17(equipo){
+    return this.http.get<any>(environment.apiCliente+'report/17',{headers: new HttpHeaders(this.headerDict)});
+  }
+
+
+
+
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

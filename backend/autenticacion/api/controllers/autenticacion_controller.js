@@ -30,7 +30,9 @@ module.exports = {
                 data:{
                   token: accessToken,
                   id_status: datos.id_estado,
-                  id_rol: datos.id_rol
+                  id_rol: datos.id_rol,
+                  id_user: datos.id_usuario,
+                  has_membership: datos.membership
                 },
                 status: 200,
                 msg: 'Logueado correctamente'

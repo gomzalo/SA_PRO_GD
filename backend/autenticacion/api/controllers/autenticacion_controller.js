@@ -107,7 +107,7 @@ module.exports = {
                 <input type="text" id="ftemp_pass" name="ftemp_pass" placeholder="Temp pass"><br>
                 <label for="fnew_pass">Last name:</label><br>
                 <input type="text" id="fnew_pass" name="fnew_pass" placeholder="New pass"><br><br>
-                <h2><a type="button" class="btn btn-primary btn-lg" onclick=resetpass()">Restablecer contraseña</a></h2>
+                <h2><a type="button" class="btn btn-primary btn-lg" onclick="resetpass()">Restablecer contraseña</a></h2>
                 <br>
                 <b>Nota: </b> ¡Si no restableces tu contraseña por una nueva, en los siguientes 2 minutos no podras iniciar sesión!
             </body>
@@ -118,18 +118,18 @@ module.exports = {
                 var temp_pass = document.getElementById("ftemp_pass").value;
                 var new_pass = document.getElementById("fnew_pass").value;
                 var email = document.getElementById("femail").value;
-                axios.post('http://35.188.184.126:5010/reset-password', {
+                axios.post('http://35.188.184.126:5010/auth/reset-password', {
                   temporal_password: temp_pass,
                   new_password: new_pass,
                   email: email
                 })
                 .then(function (response) {
                     console.log(response);
-                    alert(response);
+                    alert(response.msg);
                 })
                 .catch(function (error) {
                     console.log(error);
-                    alert(response);
+                    alert(error);
                 });
               }
             </script>
@@ -270,8 +270,9 @@ module.exports = {
                     let now_min = new Date().getMinutes();
                     console.log(hora);
                     console.log(now_min);
-                    console.log(dif);
+                    
                     let dif = hora - now_min;
+                    console.log(dif);
                     if(dif >= 2){
                       let pass_data = {
                         id: datos.id_usuario,

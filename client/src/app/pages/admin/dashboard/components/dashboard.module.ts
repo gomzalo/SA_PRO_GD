@@ -16,9 +16,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { SharedModule } from '../../../../shared/shared.module';
 import { CountToModule } from 'angular-count-to';
+import { DatosEstadisticosComponent } from './datos-estadisticos/datos-estadisticos.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, DatosEstadisticosComponent],
   imports: [
     MatTabsModule,
     CommonModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { JugadorService } from 'src/app/shared/services/jugador.service';
 import { PaisService } from 'src/app/shared/services/pais.service';
 
@@ -30,7 +31,7 @@ export class JugadorComponent implements OnInit {
 
   });
 
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private jugadorService:JugadorService) { }
+  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private jugadorService:JugadorService, private router: Router) { }
 
   ngOnInit(): void {
     this.getcountries();
@@ -45,7 +46,13 @@ export class JugadorComponent implements OnInit {
 
   getJugadores() {
     this.jugadorService.getAlljugadors()
-      .subscribe((data) => { this.jugadores = data.data;console.log(this.jugadores); });
+      .subscribe((data) => { this.jugadores = data.data;console.log(this.jugadores); }, 
+      error => {
+        console.log(error)
+        if (error.status== 401) {
+          this.router.navigate(['unauthorized']);
+        }
+      });
   }
 
   formatDate(fecha:Date) {
@@ -77,20 +84,32 @@ export class JugadorComponent implements OnInit {
         form.birth_date = this.formatDate(form.birth_date)
         console.log(form);
         this.jugadorService.insertJugador(form)
-          .subscribe(res => console.log(res));
+          .subscribe(res => console.log(res) , error => {
+            if (error.status == 401) {
+              this.router.navigate(['unauthorized']);
+            }
+          });
       }else{
         form.photo = this.photo64
         form.birth_date = this.formatDate(form.birth_date)
         console.log(form);
         form.id=this.equipo.id;
         this.jugadorService.updateJugador(form)
-          .subscribe(res => console.log(res));
+          .subscribe(res => console.log(res),  error => {
+            if (error.status == 401) {
+              this.router.navigate(['unauthorized']);
+            }
+          });
       }
     }
   }
   eliminar(id_equipo){
     this.jugadorService.deleteJugador(id_equipo)
-    .subscribe(res => console.log(res));
+    .subscribe(res => console.log(res),  error => {
+      if (error.status == 401) {
+        this.router.navigate(['unauthorized']);
+      }
+    });
   }
 
   onFileChange(event) {

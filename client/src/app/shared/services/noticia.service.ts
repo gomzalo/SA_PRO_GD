@@ -22,9 +22,7 @@ export class NoticiaService {
 
   insertNotice(Notice){
     return this.http.post<any>(environment.apiNoticia, Notice,{headers: new HttpHeaders(this.headerDict)})
-    .pipe(
-      catchError(this.handleError)
-    );
+    
   }
 
 

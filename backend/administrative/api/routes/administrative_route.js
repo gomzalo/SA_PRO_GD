@@ -21,7 +21,7 @@ router.get('/report/10', authenticate_token, administrative_controller.get_repor
 router.post('/user', authenticate_token, administrative_controller.create_user);
 router.put('/user/status', authenticate_token, administrative_controller.update_user_status);
 router.put('/user', authenticate_token, administrative_controller.update_user);
-router.get('/', authenticate_token, administrative_controller.get_user);
+router.get('/user', authenticate_token, administrative_controller.get_user);
 // ||||||||||||||||||||   AUTENTICAR TOKEN   ||||||||||||||||||||
 function authenticate_token(req, res, next){
     const authHeader = req.headers['authorization'];

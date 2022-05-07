@@ -49,7 +49,33 @@
             </table>
 
         </mat-tab>
-        <mat-tab label="Consulta Datos Estadisticos" *ngIf="user.membership==1"> Consulta Datos Estadisticos </mat-tab>
+        <mat-tab label="Consulta Datos Estadisticos" *ngIf="user.membership==1"> Consulta Datos Estadisticos 
+          <app-datos-estadisticos>
+          </app-datos-estadisticos>
+
+        </mat-tab>
+
+        <mat-tab label="Predicción" *ngIf="user.membership==1"> 
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>Equipo Local </mat-label>
+            <mat-select  id="id_teams" [(ngModel)]="equipo1">
+              <mat-option *ngFor="let equipo of equipos" [value]="equipo.id">
+                {{equipo.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="center">
+            <mat-label>Equipo Visitante </mat-label>
+            <mat-select  id="id_teams" [(ngModel)]="equipo2">
+              <mat-option *ngFor="let equipo of equipos" [value]="equipo.id">
+                {{equipo.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button (click)="predict()">Predecir Resultado</button>
+          <h1>Resultado:</h1> <p *ngIf="result">Local:{{result.homeGoals}} Visitante: {{result.awayGoals}}</p>
+        </mat-tab>
       </mat-tab-group>
     </div>
 

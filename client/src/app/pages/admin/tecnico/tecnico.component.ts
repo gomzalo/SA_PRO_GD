@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TecnicoService } from 'src/app/shared/services/tecnico.service';
 import { PaisService } from 'src/app/shared/services/pais.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tecnico',
@@ -28,7 +29,7 @@ export class TecnicoComponent implements OnInit {
 
   });
 
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private tecnicoService:TecnicoService) { }
+  constructor(private formBuilder: FormBuilder, private paisService: PaisService,private tecnicoService:TecnicoService,private router:Router) { }
 
   ngOnInit(): void {
     this.getcountries();
@@ -43,7 +44,11 @@ export class TecnicoComponent implements OnInit {
 
   getTecnicos() {
     this.tecnicoService.getAllTecnicos()
-      .subscribe((data) => { this.tecnicos = data.data;console.log(this.tecnicos); });
+      .subscribe((data) => { this.tecnicos = data.data;console.log(this.tecnicos); },  error => {
+        if (error.status == 401) {
+          this.router.navigate(['unauthorized']);
+        }
+      });
   }
 
   formatDate(fecha:Date) {
@@ -60,6 +65,7 @@ export class TecnicoComponent implements OnInit {
     this.equipo = equipo;
     console.log(equipo);
     this.photo64= equipo.photo;
+    this.equipo.id_country=equipo.id_nationality;
     delete equipo['photo'];
     this.Form.patchValue(this.equipo)
     
@@ -75,20 +81,32 @@ export class TecnicoComponent implements OnInit {
         form.birth_date = this.formatDate(form.birth_date)
         console.log(form);
         this.tecnicoService.insertTecnico(form)
-          .subscribe(res => console.log(res));
+          .subscribe(res => console.log(res),  error => {
+            if (error.status == 401) {
+              this.router.navigate(['unauthorized']);
+            }
+          });
       }else{
         form.photo = this.photo64
-        form.birth_date = this.formatDate(form.birth_date)
+        form.birth_date = this.formatDate(new Date(form.birth_date))
         console.log(form);
         form.id=this.equipo.id;
         this.tecnicoService.updateTecnico(form)
-          .subscribe(res => console.log(res));
+          .subscribe(res => console.log(res),  error => {
+            if (error.status == 401) {
+              this.router.navigate(['unauthorized']);
+            }
+          });
       }
     }
   }
   eliminar(id_equipo){
     this.tecnicoService.deleteTecnico(id_equipo)
-    .subscribe(res => console.log(res));
+    .subscribe(res => console.log(res),  error => {
+      if (error.status == 401) {
+        this.router.navigate(['unauthorized']);
+      }
+    });
   }
 
   onFileChange(event) {
@@ -97,7 +115,7 @@ export class TecnicoComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      console.log(reader.result);
+      //console.log(reader.result);
       this.photo64 = reader.result;
 
     };

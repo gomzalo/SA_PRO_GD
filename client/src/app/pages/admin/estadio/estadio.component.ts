@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EstadioService } from 'src/app/core/services/estadio.service';
 
 interface Country {
@@ -16,7 +17,7 @@ interface Country {
 })
 export class EstadioComponent implements OnInit {
   
-  constructor(private estadioServide: EstadioService) { }
+  constructor(private estadioServide: EstadioService,private router:Router) { }
   estadios:any=[];
   estadio:any;
   countries: Country[];
@@ -39,11 +40,13 @@ export class EstadioComponent implements OnInit {
           console.log(respueta.data);
           
           this.estadios=(respueta.data);
-      },
-      error=> {
-       console.log(error.error);
-       alert(error.error.msg);
-     }
+      }, 
+      error => {
+        console.log(error)
+        if (error.status== 401) {
+          this.router.navigate(['unauthorized']);
+        }
+      }
 
     );
   }

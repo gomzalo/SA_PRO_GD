@@ -11,6 +11,43 @@ pipeline{
                     sh 'npm run test'
                 }
                 dir("backend/autenticacion"){
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+                dir("backend/client"){
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+                dir("backend/competicion"){
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+                dir("backend/empleado"){
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+                dir("backend/equipo"){
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+                dir("backend/estadio"){
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+                dir("backend/jugador"){
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+                dir("backend/noticia"){
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+                dir("backend/pais"){
+                    sh 'npm install'
+                    sh 'npm run test'
+                }
+                dir("backend/tecnico"){
+                    sh 'npm install'
                     sh 'npm run test'
                 }
             }

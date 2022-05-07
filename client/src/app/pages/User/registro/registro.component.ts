@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { PaisService } from '../../../shared/services/pais.service'
 import { UserService } from '../../../shared/services/user.service'
+import { ClienteService } from '../../../shared/services/client.service'
 
 
 
@@ -16,11 +18,11 @@ export class RegistroComponent implements OnInit {
   genero = [{ id: 'M', value: 'Masculino' }, { id: 'F', value: 'Femenino' }, { id: 'U', value: 'Lo que sea' },]
   roles = [{ id: 1, value: 'Administrador' }, { id: 2, value: 'Empleado' }, { id: 3, value: 'Cliente' },]
   @Input() editData: any;
-  editcomplete:any;
+  editcomplete: any;
   paises = []
   photo64 = null
-  rol=-1
-  estados=[{id:1,Estado:'Activo'},{id:2,Estado:'Congelado'},{id:3,Estado:'Eliminado'}]
+  rol = -1
+  estados = [{ id: 1, Estado: 'Activo' }, { id: 2, Estado: 'Congelado' }, { id: 3, Estado: 'Eliminado' }]
   RegistroForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
@@ -35,27 +37,35 @@ export class RegistroComponent implements OnInit {
     id_estado: new FormControl(2, [Validators.required]),
     id_rol: new FormControl(3, [Validators.required]),
     phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    photo: new FormControl('photo', ),
+    photo: new FormControl('photo',),
     age: new FormControl('', [Validators.required, Validators.min(1)]),
     membership: new FormControl(0, [Validators.required]),
 
   });
 
-  constructor(private formBuilder: FormBuilder, private paisService: PaisService, private userService: UserService,private authService:AuthService ) { }
+  constructor(
+    private formBuilder: FormBuilder,
+     private paisService: PaisService,
+      private userService: UserService,
+      private clientService: ClienteService,
+       private authService: AuthService, 
+      private router: Router) { }
 
   ngOnInit(): void {
     this.rol = this.authService.getSesion().id_rol;
+    this.rol = this.rol == null ? this.rol = 3 : this.rol;
+    console.log(this.rol);
     this.getcountries();
-    this.editcomplete=this.editData;
+    this.editcomplete = this.editData;
     if (this.editData) {
-   
-      this.photo64= this.editData.photo;
+
+      this.photo64 = this.editData.photo;
       delete this.editData['photo'];
 
       this.editData.name = this.editData.first_name;
-      this.editData.lastname= this.editData.last_name;
-      this.editData.birth_date=this.editData.fecha_nac;
-      this.editData.address=this.editData.direccion;
+      this.editData.lastname = this.editData.last_name;
+      this.editData.birth_date = this.editData.fecha_nac;
+      this.editData.address = this.editData.direccion;
 
       this.RegistroForm.patchValue(this.editData)
     }
@@ -74,7 +84,7 @@ export class RegistroComponent implements OnInit {
 
   getcountries() {
     this.paisService.getpaises()
-      .subscribe((data) => { this.paises = data.data;console.log(this.paises); });
+      .subscribe((data) => { this.paises = data.data; console.log(this.paises); });
   }
 
 
@@ -83,22 +93,50 @@ export class RegistroComponent implements OnInit {
     if (this.RegistroForm.valid) {
 
       if (form.password == form.confirmpass) {
-        console.log('coinciden pass')
-        if(!this.editData){
-          console.log('inserrcion')
+
+        if (!this.editData) {
+
           form.photo = this.photo64
           form.birth_date = this.formatDate(form.birth_date)
-          this.userService.insertUser(form)
-            .subscribe(res => console.log(res));
-        }else{
-         
+          if (this.rol == 1) {
+            this.userService.insertUser(form)
+              .subscribe(res => console.log(res), error => {
+                if (error.status == 401) {
+                  this.router.navigate(['unauthorized']);
+                }
+              });
+          } else {
+            this.clientService.insertCliente(form)
+              .subscribe(res => console.log(res), error => {
+                if (error.status == 401) {
+                  this.router.navigate(['unauthorized']);
+                }
+              });
+          }
+
+        } else {
+
           form.photo = this.photo64
           form.birth_date = this.formatDate(new Date(form.birth_date))
-          form.id=this.editData.id_usuario;
+          form.id = this.editData.id_usuario;
           console.log(form)
-          this.userService.updateUser(form)
+          if (this.rol == 1) {
+            this.userService.updateUser(form)
 
-            .subscribe(res => console.log(res));
+              .subscribe(res => console.log(res), error => {
+                if (error.status == 401) {
+                  this.router.navigate(['unauthorized']);
+                }
+              });
+          } else {
+            this.clientService.insertCliente(form)
+              .subscribe(res => console.log(res), error => {
+                if (error.status == 401) {
+                  this.router.navigate(['unauthorized']);
+                }
+              });
+          }
+
 
         }
 

@@ -48,12 +48,12 @@ services:
     ports:
       - "5007:5007"
     restart: on-failure
-  # server_predict:
-  #   build: ./backend/prediccion
-  #   container_name: predict
-  #   ports:
-  #     - "5009:5009"
-  #   restart: on-failure
+  server_predict:
+    build: ./backend/prediccion
+    container_name: predict
+    ports:
+      - "5009:5009"
+    restart: on-failure
   server_auth:
     build: ./backend/autenticacion
     container_name: auth
@@ -78,9 +78,9 @@ services:
     ports:
       - "5013:5013"
     restart: on-failure
-  frontend:
-    build: ./client
-    container_name: frontend
-    ports:
-      - 80:80
-    restart: on-failure
+  # frontend:
+  #   build: ./client
+  #   container_name: frontend
+  #   ports:
+  #     - 80:80
+  #   restart: on-failure

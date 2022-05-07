@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ContentLayoutComponent } from './shared/components/layout/content-layout/content-layout.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { VerifyAcountComponent } from './pages/verify-acount/verify-acount.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 // Guards
 // import { AdminGuard } from './core/guards/auth/admin.guard';
 // import { UserGuard } from './core/guards/auth/user.guard';
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: '',
     component: InicioComponent,
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent
   },
   {
     path: '',

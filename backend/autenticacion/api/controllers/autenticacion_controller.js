@@ -87,7 +87,7 @@ module.exports = {
     },
 // ||||||||||||||||||||   RESETEAR PASSWORD   ||||||||||||||||||||
     reset_password: function(req, res) {
-      res.status(200).send(
+      res.send(
         `
         <!--html-->
           <!doctype html>

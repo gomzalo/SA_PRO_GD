@@ -109,12 +109,6 @@ module.exports = {
                 <input type="text" id="fnew_pass" name="fnew_pass" placeholder="New pass"><br><br>
                 <h2><a type="button" class="btn btn-primary btn-lg" onclick=resetpass()">Restablecer contraseña</a></h2>
                 <br>
-                Ingresa tu nueva contraseña
-                <br>
-                <br>
-                ${link}
-                <br>
-                <br>
                 <b>Nota: </b> ¡Si no restableces tu contraseña por una nueva, en los siguientes 2 minutos no podras iniciar sesión!
             </body>
             <!-- SCRIPTS -->
@@ -161,7 +155,7 @@ module.exports = {
               length: 10,
               numbers: true
             });
-            let link = `http://35.188.184.126:5010/resetpass/`;
+            let link = `http://35.188.184.126:5010/auth/resetpass/`;
             let email_data = {
               email: req.body.email,
               id: user_id,

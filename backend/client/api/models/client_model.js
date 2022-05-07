@@ -475,7 +475,7 @@ module.exports = {
       await con.query(query, callback)
     },
     get_report_11: async function(con, data, callback) {
-      const goals = data.id_team;
+      const goals = data.goals;
       let query = `
       select
       t1.id_partido as id,

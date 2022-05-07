@@ -22,7 +22,7 @@ export class RestarPasswordComponent implements OnInit {
          resp=>{
              let respueta:any = resp;
 
-             if(respueta.status!=true){
+             if(respueta.status!=200){
               alert('Error enviando');
                return;
              }

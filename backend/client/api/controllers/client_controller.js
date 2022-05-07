@@ -411,14 +411,14 @@ module.exports = {
           res.status(400).send({
             status: 400,
             data: [],
-            msg: `Error al obtener los partidos donde hubo ${re.query.goals} cantidad de goles.`,
+            msg: `Error al obtener los partidos donde hubo ${req.query.goals} cantidad de goles.`,
             error: err.toString()
           });
         } else {
           res.status(200).send({
             status: 200,
             data: rows,
-            msg: `Error al obtener los partidos donde hubo ${re.query.goals} cantidad de goles.`
+            msg: `Error al obtener los partidos donde hubo ${req.query.goals} cantidad de goles.`
           });
         }
       });

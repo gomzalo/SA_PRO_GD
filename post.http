@@ -342,6 +342,7 @@ content-type: application/json
 // ********************       9. Histórico de partidos de X equipo      ******************
 ###
 GET http://localhost:5000/customer/report/9/?id_team=2
+
 # ***************************************************
 # ************** TEAM SERVER ************** 
 # ***************************************************

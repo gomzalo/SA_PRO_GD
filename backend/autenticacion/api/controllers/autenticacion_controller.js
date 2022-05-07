@@ -129,7 +129,7 @@ module.exports = {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    alert(response);
+                    alert(error);
                 });
               }
             </script>

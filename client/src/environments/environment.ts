@@ -2,21 +2,21 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const ruta="http://104.198.130.96:3000/esb";
+const ruta="http://104.154.104.29:3000/esb";
 export const environment = {
   production: false,
 
   apiCliente:ruta+"/customer/",
   apiAdministrador:ruta+"/administrator/",
   apiAuth:ruta+"/auth/",
-  apiCompetencia:"http://35.188.31.34:5003/competition/",
-  apiEquipo:"http://35.188.31.34:5001/team/",
-  apiEstadio:"http://35.188.31.34:5004/stadium/",
-  apiJugador:"http://35.188.31.34:5006/player/",
-  apiNoticia:"http://35.188.31.34:5007/post/",
-  apiPais:"http://35.188.31.34:5013/country/",
-  apiPartido:"http://35.188.31.34:5002/match/",
-  apiTecnico:"http://35.188.31.34:5005/technical-director/",
+  apiCompetencia:"http://35.188.184.126:5003/competition/",
+  apiEquipo:"http://35.188.184.126:5001/team/",
+  apiEstadio:"http://35.188.184.126:5004/stadium/",
+  apiJugador:"http://35.188.184.126:5006/player/",
+  apiNoticia:"http://35.188.184.126:5007/post/",
+  apiPais:"http://35.188.184.126:5013/country/",
+  apiPartido:"http://35.188.184.126:5002/match/",
+  apiTecnico:"http://35.188.184.126:5005/technical-director/",
   
 
 };

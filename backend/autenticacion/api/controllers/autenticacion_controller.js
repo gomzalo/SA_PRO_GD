@@ -125,10 +125,11 @@ module.exports = {
                 })
                 .then(function (response) {
                     console.log(response);
-                    location.reload();
+                    alert(response);
                 })
                 .catch(function (error) {
                     console.log(error);
+                    alert(response);
                 });
               }
             </script>

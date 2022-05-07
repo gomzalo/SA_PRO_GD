@@ -324,7 +324,10 @@ GET http://localhost:5000/customer/report/4/?id_competition=2
 GET http://localhost:5000/customer/report/5/?id_country=88
 // ********************       6. Equipos con X años de antigüedad      ******************
 ###
-GET http://localhost:5000/customer/report/6/?age=85
+GET http://35.188.184.126:5000/customer/report/6/?age=85
+# GET http://localhost:5000/customer/report/6/?age=85
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJpZF9yb2wiOjMsImlhdCI6MTY1MTg5NDg3OSwiZXhwIjoxNjUxOTgxMjc5fQ.xkxFBRlv613eJYxg3hRPHw_JgEAFljVhSTaigjGBaqQ
+content-type: application/json
 
 // ********************       7. Estadios en X pais      ******************
 ###
@@ -332,7 +335,9 @@ GET http://localhost:5000/customer/report/7/?id_country=100
 
 // ********************       8. Estadios con capacidad menor o igual a X      ******************
 ###
-GET http://localhost:5000/customer/report/8/?capacity=5888888888
+GET http://35.188.184.126:5000/customer/report/8/?capacity=150122
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJpZF9yb2wiOjMsImlhdCI6MTY1MTg5NDg3OSwiZXhwIjoxNjUxOTgxMjc5fQ.xkxFBRlv613eJYxg3hRPHw_JgEAFljVhSTaigjGBaqQ
+content-type: application/json
 
 // ********************       9. Histórico de partidos de X equipo      ******************
 ###

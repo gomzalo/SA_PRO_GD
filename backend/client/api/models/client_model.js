@@ -415,7 +415,7 @@ module.exports = {
           p.nicename AS country, e.capacidad AS capacity
           FROM Estadio e
           INNER JOIN Pais p ON e.id_pais = p.id_pais
-            WHERE e.capacidad >= ${capacity}
+            WHERE e.capacidad <= ${capacity}
             GROUP BY e.id_estadio
         ;
       `;

@@ -295,7 +295,7 @@ content-type: application/json
 # **************    2. Jugadores o tecnicos mayores de X años  **************
 # Jugador
 ###
-GET http://35.188.184.126:5000/customer/report/2/?age=1&player=0
+GET http://localhost:5000/customer/report/2/?age=1&player=0
 # GET http://104.154.104.29:3000/esb/customer/report/2/?age=1&player=0
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJpZF9yb2wiOjMsImlhdCI6MTY1MTg5NDg3OSwiZXhwIjoxNjUxOTgxMjc5fQ.xkxFBRlv613eJYxg3hRPHw_JgEAFljVhSTaigjGBaqQ
 content-type: application/json

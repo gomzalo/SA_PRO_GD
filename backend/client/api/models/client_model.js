@@ -285,7 +285,7 @@ module.exports = {
             INNER JOIN Asignacion_Tecnico_Equipo ate ON ate.id_tecnico = t.id_tecnico
             INNER JOIN Equipo te ON te.id_equipo = ate.id_equipo
               WHERE TIMESTAMPDIFF (YEAR, t.fecha_nac, CURDATE()) > ${age_to_compare}
-              GROUP BY t.id_tecnico, j.nombre, j.apellido, pa.nicename, j.foto, p.nombre, te.nombre
+              GROUP BY t.id_tecnico, t.nombre, t.apellido, pa.nicename, t.foto, te.nombre
           ;
         `
       }

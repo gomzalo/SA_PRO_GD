@@ -619,7 +619,8 @@ GET http://localhost:5007/post/?team=5 HTTP/1.1
 
 # ----------    Obtener produccion   ----------
 
-POST http://localhost:5013/predict HTTP/1.1
+# POST http://localhost:5013/predict HTTP/1.1
+POST http://35.188.184.126:5009/predict HTTP/1.1
 content-type: application/json
 
 {

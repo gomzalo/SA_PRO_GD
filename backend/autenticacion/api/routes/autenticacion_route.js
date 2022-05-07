@@ -5,7 +5,7 @@ const app = express();
 
 router.post('/', autenticacion_controller.login);
 router.get('/', autenticacion_controller.validar_cuenta);
-router.get('/reset-password', autenticacion_controller.reset_password);
+router.get('/resetpass', autenticacion_controller.reset_password);
 router.post('/temporal-password', autenticacion_controller.temp_pass);
 router.post('/reset-password', autenticacion_controller.reset_pass);
 // ::::::::::::::::::::::::     REPORTES    ::::::::::::::::::::::::

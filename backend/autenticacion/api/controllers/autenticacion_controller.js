@@ -118,7 +118,7 @@ module.exports = {
                 var temp_pass = document.getElementById("ftemp_pass").value;
                 var new_pass = document.getElementById("fnew_pass").value;
                 var email = document.getElementById("femail").value;
-                axios.post('http://35.188.184.126:5010/reset-password', {
+                axios.post('http://35.188.184.126:5010/auth/reset-password', {
                   temporal_password: temp_pass,
                   new_password: new_pass,
                   email: email

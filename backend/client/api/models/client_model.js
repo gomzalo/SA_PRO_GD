@@ -270,7 +270,7 @@ module.exports = {
             INNER JOIN Asignacion_Jugador_Equipo aje ON aje.id_jugador = j.id_jugador
             INNER JOIN Equipo te ON te.id_equipo = aje.id_equipo
               WHERE TIMESTAMPDIFF (YEAR, j.fecha_nac, CURDATE()) > ${age_to_compare}
-              GROUP BY j.id_jugador
+              GROUP BY j.id_jugador, j.nombre, j.apellido, pa.nicename, j.foto, p.nombre, te.nombre
           ;
         `
       }
@@ -285,7 +285,7 @@ module.exports = {
             INNER JOIN Asignacion_Tecnico_Equipo ate ON ate.id_tecnico = t.id_tecnico
             INNER JOIN Equipo te ON te.id_equipo = ate.id_equipo
               WHERE TIMESTAMPDIFF (YEAR, t.fecha_nac, CURDATE()) > ${age_to_compare}
-              GROUP BY t.id_tecnico
+              GROUP BY t.id_tecnico, j.nombre, j.apellido, pa.nicename, j.foto, p.nombre, te.nombre
           ;
         `
       }

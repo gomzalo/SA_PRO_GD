@@ -36,7 +36,7 @@ function changeIp(grupo) {
             break;
 
         case 'E':
-            var ip = 'http://104.154.104.29'
+            var ip = 'http://35.193.56.199:3005/esb/'
             proxy.register("http://104.154.104.29:3000/esb/auth", ip + "auth");
             proxy.register("http://104.154.104.29:3000/esb/administrator", ip + "administrator");
             proxy.register("http://104.154.104.29:3000/esb/customer", ip + "customer");
@@ -52,7 +52,7 @@ function changeIp(grupo) {
             break;
 
         case 'G':
-            var ip = 'http://104.154.104.29'
+            var ip = 'http://34.125.61.119:3000/esb/'
             proxy.register("http://104.154.104.29:3000/esb/auth", ip + "auth");
             proxy.register("http://104.154.104.29:3000/esb/administrator", ip + "administrator");
             proxy.register("http://104.154.104.29:3000/esb/customer", ip + "customer");
@@ -60,7 +60,7 @@ function changeIp(grupo) {
             break;
 
         case 'H':
-            var ip = 'http://104.154.104.29'
+            var ip = 'http://34.132.139.69:5000/esb/'
             proxy.register("http://104.154.104.29:3000/esb/auth", ip + "auth");
             proxy.register("http://104.154.104.29:3000/esb/administrator", ip + "administrator");
             proxy.register("http://104.154.104.29:3000/esb/customer", ip + "customer");

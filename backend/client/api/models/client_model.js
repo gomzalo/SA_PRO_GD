@@ -270,7 +270,7 @@ module.exports = {
             INNER JOIN Asignacion_Jugador_Equipo aje ON aje.id_jugador = j.id_jugador
             INNER JOIN Equipo te ON te.id_equipo = aje.id_equipo
               WHERE TIMESTAMPDIFF (YEAR, j.fecha_nac, CURDATE()) > ${age_to_compare}
-              GROUP BY j.id_jugador
+              GROUP BY j.id_jugador, j.nombre, j.apellido, pa.nicename, j.foto, p.nombre, te.nombre
           ;
         `
       }
@@ -285,7 +285,7 @@ module.exports = {
             INNER JOIN Asignacion_Tecnico_Equipo ate ON ate.id_tecnico = t.id_tecnico
             INNER JOIN Equipo te ON te.id_equipo = ate.id_equipo
               WHERE TIMESTAMPDIFF (YEAR, t.fecha_nac, CURDATE()) > ${age_to_compare}
-              GROUP BY t.id_tecnico
+              GROUP BY t.id_tecnico, t.nombre, t.apellido, pa.nicename, t.foto, te.nombre
           ;
         `
       }
@@ -415,7 +415,7 @@ module.exports = {
           p.nicename AS country, e.capacidad AS capacity
           FROM Estadio e
           INNER JOIN Pais p ON e.id_pais = p.id_pais
-            WHERE e.capacidad >= ${capacity}
+            WHERE e.capacidad <= ${capacity}
             GROUP BY e.id_estadio
         ;
       `;
@@ -475,7 +475,7 @@ module.exports = {
       await con.query(query, callback)
     },
     get_report_11: async function(con, data, callback) {
-      const goals = data.id_team;
+      const goals = data.goals;
       let query = `
       select
       t1.id_partido as id,

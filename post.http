@@ -122,15 +122,38 @@ content-type: application/json
 #     "password": "123"
 # }
 
+# {
+#     "email": "wjosuep13@gmail.com",
+#     "password": "123"
+# }
+
+{
+    "email": "gomzalo@outlook.com",
+    "password": "SiSaleSA_"
+}
+
+###
+
+POST http://35.188.184.126:5010/auth/ HTTP/1.1
+content-type: application/json
+
 {
     "email": "wjosuep13@gmail.com",
     "password": "123"
 }
 
-# {
-#     "email": "gomzalo@outlook.com",
-#     "password": "123"
-# }
+###
+POST http://104.154.104.29:3000/esb/auth/ HTTP/1.1
+content-type: application/json
+
+{
+    "email": "wjosuep13@gmail.com",
+    "password": "123"
+}
+
+###
+
+
 
 # POST http://localhost:5003/user/login HTTP/1.1
 # content-type: application/json
@@ -266,17 +289,27 @@ content-type: application/json
 # Tecnico
 ###
 GET http://localhost:5000/customer/report/1/?id_team=3&player=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJpZF9yb2wiOjMsImlhdCI6MTY1MTg5NDg3OSwiZXhwIjoxNjUxOTgxMjc5fQ.xkxFBRlv613eJYxg3hRPHw_JgEAFljVhSTaigjGBaqQ
+content-type: application/json
+
 # **************    2. Jugadores o tecnicos mayores de X años  **************
 # Jugador
 ###
 GET http://localhost:5000/customer/report/2/?age=1&player=0
+# GET http://104.154.104.29:3000/esb/customer/report/2/?age=1&player=0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJpZF9yb2wiOjMsImlhdCI6MTY1MTg5NDg3OSwiZXhwIjoxNjUxOTgxMjc5fQ.xkxFBRlv613eJYxg3hRPHw_JgEAFljVhSTaigjGBaqQ
+content-type: application/json
+
 # Tecnico
 ###
 GET http://localhost:5000/customer/report/2/?age=3&player=1
 # **************    3. Jugadores o tecnicos menores de X años  **************
 # Jugador
 ###
-GET http://localhost:5000/customer/report/3/?age=1&player=0
+# GET http://localhost:5000/customer/report/3/?age=1&player=0
+GET http://35.188.184.126:5000/customer/report/3/?age=1&player=0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJpZF9yb2wiOjMsImlhdCI6MTY1MTg5NDg3OSwiZXhwIjoxNjUxOTgxMjc5fQ.xkxFBRlv613eJYxg3hRPHw_JgEAFljVhSTaigjGBaqQ
+content-type: application/json
 # Tecnico
 ###
 GET http://localhost:5000/customer/report/3/?age=3&player=1
@@ -291,7 +324,10 @@ GET http://localhost:5000/customer/report/4/?id_competition=2
 GET http://localhost:5000/customer/report/5/?id_country=88
 // ********************       6. Equipos con X años de antigüedad      ******************
 ###
-GET http://localhost:5000/customer/report/6/?age=85
+GET http://35.188.184.126:5000/customer/report/6/?age=85
+# GET http://localhost:5000/customer/report/6/?age=85
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJpZF9yb2wiOjMsImlhdCI6MTY1MTg5NDg3OSwiZXhwIjoxNjUxOTgxMjc5fQ.xkxFBRlv613eJYxg3hRPHw_JgEAFljVhSTaigjGBaqQ
+content-type: application/json
 
 // ********************       7. Estadios en X pais      ******************
 ###
@@ -299,11 +335,14 @@ GET http://localhost:5000/customer/report/7/?id_country=100
 
 // ********************       8. Estadios con capacidad menor o igual a X      ******************
 ###
-GET http://localhost:5000/customer/report/8/?capacity=5888888888
+GET http://35.188.184.126:5000/customer/report/8/?capacity=150122
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJpZF9yb2wiOjMsImlhdCI6MTY1MTg5NDg3OSwiZXhwIjoxNjUxOTgxMjc5fQ.xkxFBRlv613eJYxg3hRPHw_JgEAFljVhSTaigjGBaqQ
+content-type: application/json
 
 // ********************       9. Histórico de partidos de X equipo      ******************
 ###
 GET http://localhost:5000/customer/report/9/?id_team=2
+
 # ***************************************************
 # ************** TEAM SERVER ************** 
 # ***************************************************
@@ -493,10 +532,10 @@ POST http://localhost:5002/match HTTP/1.1
 content-type: application/json
 
 {
-    "game_date": "2022-03-01",
-    "attendees": 56988,
-    "result_local": 5,
-    "result_visiting": 1,
+    "game_date": "2022-04-01",
+    "attendees": 24377,
+    "result_local": 1,
+    "result_visiting": 3,
     "status": 1,
     "id_stadium": 2,
     "id_team_local": 8,

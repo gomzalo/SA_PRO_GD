@@ -4,7 +4,9 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { NoticiaService } from 'src/app/shared/services/noticia.service';
 import { ClienteService } from 'src/app/shared/services/client.service';
+import {EquipoService} from 'src/app/shared/services/equipo.service'
 
+import {PrediccionService} from 'src/app/shared/services/prediccion.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -16,17 +18,24 @@ export class DashboardComponent implements OnInit {
   noticias = []
   favoritos = []
   filtro=0;
+  equipos=[]
+  equipo1=''
+  equipo2=''
+  result
   constructor(
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
     private noticiaService: NoticiaService,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private equipoService:EquipoService,
+    private prediccionService:PrediccionService
   ) { }
 
   ngOnInit(): void {
     this.getUser();
     this.getAllNoticias();
+    this.getallTeams();
   }
 
 
@@ -55,6 +64,16 @@ export class DashboardComponent implements OnInit {
           this.router.navigate(['unauthorized']);
         }
       });
+  }
+
+  getallTeams() {
+    this.equipoService.getAllteams()
+      .subscribe((data) => { this.equipos = data.data; console.log(this.equipos) });
+  }
+
+  predict() {
+    this.prediccionService.predict(this.equipo1,this.equipo2)
+      .subscribe((data) => { this.result= data.data; });
   }
 
   getdata(){

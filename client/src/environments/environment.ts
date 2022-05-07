@@ -17,8 +17,8 @@ export const environment = {
   apiPais:"http://35.188.184.126:5013/country/",
   apiPartido:"http://35.188.184.126:5002/match/",
   apiTecnico:"http://35.188.184.126:5005/technical-director/",
+  apiPredicción:"http://35.188.184.126:5009/predict/",
   
-
 };
 
 /*

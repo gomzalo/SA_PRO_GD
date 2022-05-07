@@ -161,7 +161,7 @@ module.exports = {
               length: 10,
               numbers: true
             });
-            let link = `http://35.188.184.126:5010/reset-password/?id=${user_id}`;
+            let link = `http://35.188.184.126:5010/reset-password/`;
             let email_data = {
               email: req.body.email,
               id: user_id,

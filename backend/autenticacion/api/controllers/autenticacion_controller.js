@@ -270,8 +270,9 @@ module.exports = {
                     let now_min = new Date().getMinutes();
                     console.log(hora);
                     console.log(now_min);
-                    console.log(dif);
+                    
                     let dif = hora - now_min;
+                    console.log(dif);
                     if(dif >= 2){
                       let pass_data = {
                         id: datos.id_usuario,

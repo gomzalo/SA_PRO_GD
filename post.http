@@ -188,9 +188,9 @@ POST http://localhost:5010/auth/reset-password HTTP/1.1
 content-type: application/json
 
 {
-    "email": "gomzalo@outlook.com",
-    "temporal_password": "Fqvm3NibaK",
-    "new_password": "mam12"
+    "email": "gonzalo-garcia@outlook.com",
+    "temporal_password": "kb4U80lIom",
+    "new_password": "123"
 }
 
 ###
